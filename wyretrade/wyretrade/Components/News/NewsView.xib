@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="861" id="fqH-ZK-nQe" customClass="NewsView" customModule="wyretrade" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="826" height="861"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fqH-ZK-nQe" id="i2A-YA-X2f">
+                <rect key="frame" x="0.0" y="0.0" width="826" height="861"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="titleLabel" text="News Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55u-LC-BAf">
+                        <rect key="frame" x="40" y="15" width="746" height="30"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="image" translatesAutoresizingMaskIntoConstraints="NO" id="W2G-JN-PXU">
+                        <rect key="frame" x="60" y="65" width="706" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="K7O-CQ-uQC"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="descriptionLabel" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAZ-Cp-VGj">
+                        <rect key="frame" x="40" y="285" width="746" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="dateLabel" text="2021-03-03" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJK-Rs-zL2">
+                        <rect key="frame" x="692" y="329" width="94" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="W2G-JN-PXU" secondAttribute="trailing" constant="40" id="0eh-qg-tSf"/>
+                    <constraint firstItem="55u-LC-BAf" firstAttribute="leading" secondItem="i2A-YA-X2f" secondAttribute="leadingMargin" constant="20" id="ASh-fY-fur"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="55u-LC-BAf" secondAttribute="trailing" constant="20" id="Jug-SS-P1I"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PAZ-Cp-VGj" secondAttribute="trailing" constant="20" id="Kga-xj-kju"/>
+                    <constraint firstItem="55u-LC-BAf" firstAttribute="top" secondItem="i2A-YA-X2f" secondAttribute="top" constant="15" id="TZU-Id-RN8"/>
+                    <constraint firstItem="W2G-JN-PXU" firstAttribute="leading" secondItem="i2A-YA-X2f" secondAttribute="leadingMargin" constant="40" id="ezQ-tT-b1D"/>
+                    <constraint firstItem="W2G-JN-PXU" firstAttribute="top" secondItem="55u-LC-BAf" secondAttribute="bottom" constant="20" id="hQy-pj-VmU"/>
+                    <constraint firstItem="PAZ-Cp-VGj" firstAttribute="top" secondItem="W2G-JN-PXU" secondAttribute="bottom" constant="20" id="p0i-KB-pFb"/>
+                    <constraint firstItem="PAZ-Cp-VGj" firstAttribute="leading" secondItem="i2A-YA-X2f" secondAttribute="leadingMargin" constant="20" id="wVi-G2-chS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="636.23188405797111" y="343.19196428571428"/>
+        </tableViewCell>
+    </objects>
+</document>
