@@ -84,6 +84,7 @@
 		7BDD29EC25F28D2B007A6921 /* CoinWithdrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29EB25F28D2B007A6921 /* CoinWithdrawModel.swift */; };
 		7BDD29F225F28F95007A6921 /* CoinWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BDD29F125F28F95007A6921 /* CoinWithdrawItem.xib */; };
 		7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29F625F28FB7007A6921 /* CoinWithdrawItem.swift */; };
+		7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29FB25F29949007A6921 /* SupportController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +187,7 @@
 		7BDD29EB25F28D2B007A6921 /* CoinWithdrawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinWithdrawModel.swift; sourceTree = "<group>"; };
 		7BDD29F125F28F95007A6921 /* CoinWithdrawItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoinWithdrawItem.xib; sourceTree = "<group>"; };
 		7BDD29F625F28FB7007A6921 /* CoinWithdrawItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinWithdrawItem.swift; sourceTree = "<group>"; };
+		7BDD29FB25F29949007A6921 /* SupportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportController.swift; sourceTree = "<group>"; };
 		918040A114F91B22508A5AD5 /* Pods-wyretrade.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.debug.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.debug.xcconfig"; sourceTree = "<group>"; };
 		93A6C30EBBBA3C80D50430A6 /* Pods-wyretrade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.release.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.release.xcconfig"; sourceTree = "<group>"; };
 		BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wyretrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -335,6 +337,7 @@
 				7BDD29CC25F25EB6007A6921 /* StocksSellController.swift */,
 				7BDD29E125F28AFC007A6921 /* StocksHistoryController.swift */,
 				7BDD29E625F28BB9007A6921 /* CoinWithdrawController.swift */,
+				7BDD29FB25F29949007A6921 /* SupportController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				7BDD297525F19327007A6921 /* StocksModel.swift in Sources */,
 				7B28B88D25F02B3000C5F4C3 /* SwapModel.swift in Sources */,
 				7B6D920425F0B0F000B1E466 /* StakeController.swift in Sources */,
+				7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */,
 				7BDD297E25F193BC007A6921 /* StocksItem.swift in Sources */,
 				7BDD295C25F17D4E007A6921 /* MtnItem.swift in Sources */,
 				7BDD293925F17383007A6921 /* PredictOwnerController.swift in Sources */,
