@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="CTg-IJ-jaX" customClass="PaymentUser" customModule="wyretrade" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="401" height="56"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CTg-IJ-jaX" id="CEP-lQ-Fgw">
+                <rect key="frame" x="0.0" y="0.0" width="401" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEY-6z-gvv">
+                        <rect key="frame" x="0.0" y="0.0" width="371" height="46.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBT-7u-cGi">
+                                <rect key="frame" x="0.0" y="0.0" width="185.5" height="46.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vua-VD-Wu3">
+                                        <rect key="frame" x="0.0" y="16" width="185.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tBT-7u-cGi" secondAttribute="height" multiplier="4:1" id="cYl-AG-llR"/>
+                                    <constraint firstAttribute="trailing" secondItem="vua-VD-Wu3" secondAttribute="trailing" id="hYb-vg-2rz"/>
+                                    <constraint firstItem="vua-VD-Wu3" firstAttribute="leading" secondItem="tBT-7u-cGi" secondAttribute="leading" id="hqc-5K-7KF"/>
+                                    <constraint firstItem="vua-VD-Wu3" firstAttribute="centerY" secondItem="tBT-7u-cGi" secondAttribute="centerY" id="kVb-vg-4ho"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbi-HK-EoW">
+                                <rect key="frame" x="185.5" y="0.0" width="185.5" height="46.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecj-ZJ-XwH">
+                                        <rect key="frame" x="0.0" y="16" width="185.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ecj-ZJ-XwH" firstAttribute="centerY" secondItem="tbi-HK-EoW" secondAttribute="centerY" id="ArE-zi-97o"/>
+                                    <constraint firstAttribute="width" secondItem="tbi-HK-EoW" secondAttribute="height" multiplier="4:1" id="GAw-f8-5rY"/>
+                                    <constraint firstItem="ecj-ZJ-XwH" firstAttribute="leading" secondItem="tbi-HK-EoW" secondAttribute="leading" id="Xdm-tF-Q1M"/>
+                                    <constraint firstAttribute="trailing" secondItem="ecj-ZJ-XwH" secondAttribute="trailing" id="ywn-aH-GfD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-gb-wA9">
+                        <rect key="frame" x="376" y="13.5" width="25" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="igQ-cb-cvE"/>
+                            <constraint firstAttribute="height" constant="29" id="uGv-jA-3oT"/>
+                        </constraints>
+                        <state key="normal" image="ic_delete_forever"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tOm-gb-wA9" firstAttribute="centerY" secondItem="CEP-lQ-Fgw" secondAttribute="centerY" id="5tP-Rd-UF6"/>
+                    <constraint firstItem="WEY-6z-gvv" firstAttribute="leading" secondItem="CEP-lQ-Fgw" secondAttribute="leading" id="Trr-g5-AR9"/>
+                    <constraint firstItem="WEY-6z-gvv" firstAttribute="top" secondItem="CEP-lQ-Fgw" secondAttribute="top" id="caA-r7-wQ0"/>
+                    <constraint firstAttribute="trailing" secondItem="WEY-6z-gvv" secondAttribute="trailing" constant="30" id="nj5-JE-1Rr"/>
+                    <constraint firstAttribute="trailing" secondItem="tOm-gb-wA9" secondAttribute="trailing" id="oSr-CJ-PJd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="139.85507246376812" y="73.660714285714278"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_delete_forever" width="36" height="36"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
