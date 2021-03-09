@@ -13,7 +13,7 @@
 		7B28B88D25F02B3000C5F4C3 /* SwapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28B88C25F02B3000C5F4C3 /* SwapModel.swift */; };
 		7B4D8E7A25EC8AAC00557F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8E7925EC8AAC00557F92 /* AppDelegate.swift */; };
 		7B4D8E7C25EC8AAC00557F92 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8E7B25EC8AAC00557F92 /* SceneDelegate.swift */; };
-		7B4D8E7E25EC8AAC00557F92 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8E7D25EC8AAC00557F92 /* TabbarController.swift */; };
+		7B4D8E7E25EC8AAC00557F92 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8E7D25EC8AAC00557F92 /* MainController.swift */; };
 		7B4D8E8125EC8AAC00557F92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B4D8E7F25EC8AAC00557F92 /* Main.storyboard */; };
 		7B4D8E8325EC8AB500557F92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B4D8E8225EC8AB500557F92 /* Assets.xcassets */; };
 		7B4D8E8625EC8AB500557F92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B4D8E8425EC8AB500557F92 /* LaunchScreen.storyboard */; };
@@ -25,6 +25,8 @@
 		7B4D8F0B25ECDB2600557F92 /* StocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8F0A25ECDB2600557F92 /* StocksController.swift */; };
 		7B4D8F1025ECDB3700557F92 /* CashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8F0F25ECDB3700557F92 /* CashController.swift */; };
 		7B4D8F1525ECDB4300557F92 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8F1425ECDB4300557F92 /* MenuController.swift */; };
+		7B61D05125F5BC2F00B219E5 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B61D05025F5BC2F00B219E5 /* SplashController.swift */; };
+		7B61D07C25F5EA6500B219E5 /* LeftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B61D07B25F5EA6500B219E5 /* LeftController.swift */; };
 		7B68492625F3AE820075BB79 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68492525F3AE820075BB79 /* ChangePasswordController.swift */; };
 		7B68492B25F3AE910075BB79 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68492A25F3AE910075BB79 /* ForgotPasswordController.swift */; };
 		7B68493025F3AEA40075BB79 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68492F25F3AEA40075BB79 /* ResetPasswordController.swift */; };
@@ -64,6 +66,15 @@
 		7B6D922325F0B97000B1E466 /* LinkWalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6D922225F0B97000B1E466 /* LinkWalletModel.swift */; };
 		7B6D922925F0BA9A00B1E466 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6D922825F0BA9A00B1E466 /* AccountView.swift */; };
 		7B6D923B25F0BAD500B1E466 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B6D923A25F0BAD500B1E466 /* AccountView.xib */; };
+		7B76AE8F25F626F700C9FE5A /* TradeCryptosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76AE8E25F626F700C9FE5A /* TradeCryptosController.swift */; };
+		7B76AE9425F629B100C9FE5A /* DepositHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76AE9325F629B100C9FE5A /* DepositHistoryController.swift */; };
+		7B76AE9925F62A3500C9FE5A /* StocksNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76AE9825F62A3500C9FE5A /* StocksNewsController.swift */; };
+		7B76AE9E25F62B6E00C9FE5A /* LinkWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76AE9D25F62B6E00C9FE5A /* LinkWalletController.swift */; };
+		7B76AEA425F62E3300C9FE5A /* LeftMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B76AEA325F62E3300C9FE5A /* LeftMenuCell.swift */; };
+		7B7AB50425F7015400860D82 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AB50325F7015400860D82 /* Network.swift */; };
+		7B7AB50C25F701D800860D82 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AB50B25F701D800860D82 /* NetworkHandler.swift */; };
+		7B7AB51225F702D600860D82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AB51125F702D600860D82 /* Constants.swift */; };
+		7B7AB52A25F71A6500860D82 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AB52925F71A6500860D82 /* RequestHandler.swift */; };
 		7B9AED0C25F36C3A00068775 /* SigninController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AED0B25F36C3A00068775 /* SigninController.swift */; };
 		7B9AED1125F36D5300068775 /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AED1025F36D4F00068775 /* SignupController.swift */; };
 		7BDD292525F16E5D007A6921 /* MtnController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD292425F16E5D007A6921 /* MtnController.swift */; };
@@ -130,7 +141,7 @@
 		7B4D8E7625EC8AAC00557F92 /* wyretrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wyretrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B4D8E7925EC8AAC00557F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B4D8E7B25EC8AAC00557F92 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7B4D8E7D25EC8AAC00557F92 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		7B4D8E7D25EC8AAC00557F92 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		7B4D8E8025EC8AAC00557F92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B4D8E8225EC8AB500557F92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B4D8E8525EC8AB500557F92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -147,6 +158,8 @@
 		7B4D8F0A25ECDB2600557F92 /* StocksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksController.swift; sourceTree = "<group>"; };
 		7B4D8F0F25ECDB3700557F92 /* CashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashController.swift; sourceTree = "<group>"; };
 		7B4D8F1425ECDB4300557F92 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		7B61D05025F5BC2F00B219E5 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
+		7B61D07B25F5EA6500B219E5 /* LeftController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftController.swift; sourceTree = "<group>"; };
 		7B68492525F3AE820075BB79 /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		7B68492A25F3AE910075BB79 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		7B68492F25F3AEA40075BB79 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
@@ -186,6 +199,15 @@
 		7B6D922225F0B97000B1E466 /* LinkWalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkWalletModel.swift; sourceTree = "<group>"; };
 		7B6D922825F0BA9A00B1E466 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		7B6D923A25F0BAD500B1E466 /* AccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
+		7B76AE8E25F626F700C9FE5A /* TradeCryptosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeCryptosController.swift; sourceTree = "<group>"; };
+		7B76AE9325F629B100C9FE5A /* DepositHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositHistoryController.swift; sourceTree = "<group>"; };
+		7B76AE9825F62A3500C9FE5A /* StocksNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksNewsController.swift; sourceTree = "<group>"; };
+		7B76AE9D25F62B6E00C9FE5A /* LinkWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkWalletController.swift; sourceTree = "<group>"; };
+		7B76AEA325F62E3300C9FE5A /* LeftMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuCell.swift; sourceTree = "<group>"; };
+		7B7AB50325F7015400860D82 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		7B7AB50B25F701D800860D82 /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
+		7B7AB51125F702D600860D82 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7B7AB52925F71A6500860D82 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		7B9AED0B25F36C3A00068775 /* SigninController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninController.swift; sourceTree = "<group>"; };
 		7B9AED1025F36D4F00068775 /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		7BDD292425F16E5D007A6921 /* MtnController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MtnController.swift; sourceTree = "<group>"; };
@@ -260,6 +282,7 @@
 		7B05703225EEEB9D001E4D24 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7B76AEA225F62E1E00C9FE5A /* LeftMenu */,
 				7B68496025F3D08A0075BB79 /* USDCPaymentItem */,
 				7B68494325F3C5FC0075BB79 /* PaymentUser */,
 				7BDD29F025F28F73007A6921 /* CoinWithdrawItem */,
@@ -314,6 +337,8 @@
 		7B4D8E7825EC8AAC00557F92 /* wyretrade */ = {
 			isa = PBXGroup;
 			children = (
+				7B7AB51025F702B600860D82 /* Constants */,
+				7B7AB50225F7012200860D82 /* Network */,
 				7BDD299125F1F3DD007A6921 /* helper */,
 				7B6C9FFB25EF226A00D11EB5 /* Models */,
 				7B05703225EEEB9D001E4D24 /* Components */,
@@ -349,7 +374,7 @@
 		7B4D8EFA25ECD98700557F92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7B4D8E7D25EC8AAC00557F92 /* TabbarController.swift */,
+				7B4D8E7D25EC8AAC00557F92 /* MainController.swift */,
 				7B4D8EFB25ECDA8F00557F92 /* HomeController.swift */,
 				7B4D8F0025ECDAEB00557F92 /* CoinsController.swift */,
 				7B4D8F0525ECDB1900557F92 /* SwapController.swift */,
@@ -390,6 +415,12 @@
 				7B68492525F3AE820075BB79 /* ChangePasswordController.swift */,
 				7B68492A25F3AE910075BB79 /* ForgotPasswordController.swift */,
 				7B68492F25F3AEA40075BB79 /* ResetPasswordController.swift */,
+				7B61D05025F5BC2F00B219E5 /* SplashController.swift */,
+				7B61D07B25F5EA6500B219E5 /* LeftController.swift */,
+				7B76AE8E25F626F700C9FE5A /* TradeCryptosController.swift */,
+				7B76AE9325F629B100C9FE5A /* DepositHistoryController.swift */,
+				7B76AE9825F62A3500C9FE5A /* StocksNewsController.swift */,
+				7B76AE9D25F62B6E00C9FE5A /* LinkWalletController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -487,6 +518,32 @@
 				7B6D923A25F0BAD500B1E466 /* AccountView.xib */,
 			);
 			path = LinkWalletItem;
+			sourceTree = "<group>";
+		};
+		7B76AEA225F62E1E00C9FE5A /* LeftMenu */ = {
+			isa = PBXGroup;
+			children = (
+				7B76AEA325F62E3300C9FE5A /* LeftMenuCell.swift */,
+			);
+			path = LeftMenu;
+			sourceTree = "<group>";
+		};
+		7B7AB50225F7012200860D82 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7B7AB50325F7015400860D82 /* Network.swift */,
+				7B7AB50B25F701D800860D82 /* NetworkHandler.swift */,
+				7B7AB52925F71A6500860D82 /* RequestHandler.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7B7AB51025F702B600860D82 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				7B7AB51125F702D600860D82 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		7BDD294225F17907007A6921 /* PredictionItem */ = {
@@ -781,10 +838,11 @@
 				7B68497125F3E2450075BB79 /* CashAddContactController.swift in Sources */,
 				7B6D922925F0BA9A00B1E466 /* AccountView.swift in Sources */,
 				7B4D8F1525ECDB4300557F92 /* MenuController.swift in Sources */,
+				7B61D07C25F5EA6500B219E5 /* LeftController.swift in Sources */,
 				7BDD299D25F1F59C007A6921 /* StocksDepositBankController.swift in Sources */,
 				7B68494A25F3C62D0075BB79 /* PaymentUser.swift in Sources */,
 				7B68497B25F3E2E40075BB79 /* CashSendController.swift in Sources */,
-				7B4D8E7E25EC8AAC00557F92 /* TabbarController.swift in Sources */,
+				7B4D8E7E25EC8AAC00557F92 /* MainController.swift in Sources */,
 				7B68493A25F3AF570075BB79 /* USDCAddContactController.swift in Sources */,
 				7BDD292A25F16F46007A6921 /* PredictionController.swift in Sources */,
 				7B68496725F3D0C00075BB79 /* USDCPayment.swift in Sources */,
@@ -793,12 +851,14 @@
 				7B68493525F3AF100075BB79 /* USDCPayController.swift in Sources */,
 				7BDD293425F1736A007A6921 /* PredictResultsController.swift in Sources */,
 				7B05703A25EEEC1A001E4D24 /* NewsView.swift in Sources */,
+				7B76AE9E25F62B6E00C9FE5A /* LinkWalletController.swift in Sources */,
 				7B6CA00525EF247F00D11EB5 /* CoinModel.swift in Sources */,
 				7B4D8F1025ECDB3700557F92 /* CashController.swift in Sources */,
 				7BDD29C825F25EA1007A6921 /* StocksBuyController.swift in Sources */,
 				7BDD297525F19327007A6921 /* StocksModel.swift in Sources */,
 				7B28B88D25F02B3000C5F4C3 /* SwapModel.swift in Sources */,
 				7B6D920425F0B0F000B1E466 /* StakeController.swift in Sources */,
+				7B7AB51225F702D600860D82 /* Constants.swift in Sources */,
 				7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */,
 				7BDD297E25F193BC007A6921 /* StocksItem.swift in Sources */,
 				7BDD295C25F17D4E007A6921 /* MtnItem.swift in Sources */,
@@ -808,13 +868,17 @@
 				7BDD29A625F20B1E007A6921 /* StocksDepositItem.swift in Sources */,
 				7B4D8E7A25EC8AAC00557F92 /* AppDelegate.swift in Sources */,
 				7B6CA00B25EF268300D11EB5 /* CoinView.swift in Sources */,
+				7B76AE8F25F626F700C9FE5A /* TradeCryptosController.swift in Sources */,
 				7BDD295625F17C15007A6921 /* MtnModel.swift in Sources */,
 				7B6D91F825F0AFB300B1E466 /* StakeItem.swift in Sources */,
 				7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */,
+				7B7AB50425F7015400860D82 /* Network.swift in Sources */,
 				7B6C9FFD25EF22C800D11EB5 /* NewsModel.swift in Sources */,
 				7B68494F25F3C6460075BB79 /* UserModel.swift in Sources */,
 				7BDD29CD25F25EB6007A6921 /* StocksSellController.swift in Sources */,
+				7B61D05125F5BC2F00B219E5 /* SplashController.swift in Sources */,
 				7BDD29BE25F25C58007A6921 /* Company.swift in Sources */,
+				7B76AEA425F62E3300C9FE5A /* LeftMenuCell.swift in Sources */,
 				7BDD297025F18D10007A6921 /* PortfolioController.swift in Sources */,
 				7BDD293E25F177AC007A6921 /* PredictionModel.swift in Sources */,
 				7B6CA01B25EFB87600D11EB5 /* StockPosition.swift in Sources */,
@@ -824,8 +888,10 @@
 				7BDD29B825F2126C007A6921 /* StocksDetailController.swift in Sources */,
 				7BDD29E225F28AFC007A6921 /* StocksHistoryController.swift in Sources */,
 				7BDD29D225F275DB007A6921 /* StocksOrderModel.swift in Sources */,
+				7B76AE9925F62A3500C9FE5A /* StocksNewsController.swift in Sources */,
 				7B6D920925F0B1B300B1E466 /* StakeModel.swift in Sources */,
 				7B4D8F0625ECDB1900557F92 /* SwapController.swift in Sources */,
+				7B7AB52A25F71A6500860D82 /* RequestHandler.swift in Sources */,
 				7BDD29EC25F28D2B007A6921 /* CoinWithdrawModel.swift in Sources */,
 				7BDD298825F1AA05007A6921 /* StocksDepositController.swift in Sources */,
 				7B68495C25F3D02F0075BB79 /* USDCPaymentModel.swift in Sources */,
@@ -837,10 +903,12 @@
 				7B4D8F0125ECDAEB00557F92 /* CoinsController.swift in Sources */,
 				7B68492B25F3AE910075BB79 /* ForgotPasswordController.swift in Sources */,
 				7B68497625F3E2870075BB79 /* CashItemListController.swift in Sources */,
+				7B76AE9425F629B100C9FE5A /* DepositHistoryController.swift in Sources */,
 				7B4D8F0B25ECDB2600557F92 /* StocksController.swift in Sources */,
 				7B6D922325F0B97000B1E466 /* LinkWalletModel.swift in Sources */,
 				7BDD296B25F180AC007A6921 /* PredictionPostController.swift in Sources */,
 				7B6D91DB25F07C7200B1E466 /* ProfileController.swift in Sources */,
+				7B7AB50C25F701D800860D82 /* NetworkHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,7 +1091,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = remitty.wyretrade;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wyretrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1042,7 +1110,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = remitty.wyretrade;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wyretrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

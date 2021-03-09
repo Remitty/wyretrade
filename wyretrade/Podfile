@@ -13,12 +13,14 @@ target 'wyretrade' do
     # Star control
     pod 'Cosmos'
     
-   
+    pod 'NVActivityIndicatorView'
+    pod 'SlideMenuControllerSwift', :git => 'https://github.com/AtomicSLLC/SlideMenuControllerSwift.git', :branch => 'swift5'
+    pod 'DeviceKit'
 # Pods for MDC-Tutorial
   pod 'MaterialComponents/AppBar+Theming'
   pod 'MaterialComponents/Buttons'
   pod 'MaterialComponents/Collections'
   pod 'MaterialComponents/Cards'
-pod 'MaterialComponents/NavigationDrawer'
+  pod 'MaterialComponents/NavigationDrawer'
     
 end

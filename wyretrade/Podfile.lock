@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.4.1)
   - Cosmos (23.0.0)
+  - DeviceKit (4.3.0)
   - MaterialComponents/AnimationTiming (123.0.0)
   - MaterialComponents/AppBar (123.0.0):
     - MaterialComponents/FlexibleHeader
@@ -161,31 +162,53 @@ PODS:
     - MDFTextAccessibility
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - SlideMenuControllerSwift (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - Cosmos
+  - DeviceKit
   - "MaterialComponents/AppBar+Theming"
   - MaterialComponents/Buttons
   - MaterialComponents/Cards
   - MaterialComponents/Collections
   - MaterialComponents/NavigationDrawer
+  - NVActivityIndicatorView
+  - SlideMenuControllerSwift (from `https://github.com/AtomicSLLC/SlideMenuControllerSwift.git`, branch `swift5`)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Cosmos
+    - DeviceKit
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - NVActivityIndicatorView
+
+EXTERNAL SOURCES:
+  SlideMenuControllerSwift:
+    :branch: swift5
+    :git: https://github.com/AtomicSLLC/SlideMenuControllerSwift.git
+
+CHECKOUT OPTIONS:
+  SlideMenuControllerSwift:
+    :commit: 21240fd221adc2e50adb366d45bc19185bb62e3c
+    :git: https://github.com/AtomicSLLC/SlideMenuControllerSwift.git
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  DeviceKit: 7decde449c308ac7e816e2184ded1c7c596fb885
   MaterialComponents: 7a40e33dc8726359d12e667b74a4007d87e4abd4
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  SlideMenuControllerSwift: d740ea24105a658fe6a8c256f2bf5832fee7c047
 
-PODFILE CHECKSUM: 41649140e2e14d7092e002cbaf37646799187986
+PODFILE CHECKSUM: ed08aab37d2d04a671b0f6624956028744c82089
 
 COCOAPODS: 1.10.1

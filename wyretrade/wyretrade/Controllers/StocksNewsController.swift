@@ -1,13 +1,14 @@
 //
-//  ViewController.swift
+//  StocksNewsController.swift
 //  wyretrade
 //
-//  Created by maxus on 2/28/21.
+//  Created by maxus on 3/8/21.
 //
 
+import Foundation
 import UIKit
 
-class TabbarController: UITabBarController {
+class StocksNewsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,4 +17,3 @@ class TabbarController: UITabBarController {
 
 
 }
-

@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
-@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
+    static let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -33,4 +37,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+extension AppDelegate {
+    func moveToMain() {
+//        let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateViewController(withIdentifier: "MainController") as! MainController
+        let leftVC = storyboard.instantiateViewController(withIdentifier: "LeftController") as! LeftController
+        let navi : UINavigationController = UINavigationController(rootViewController: mainVC)
+        let slideMenuController = SlideMenuController(mainViewController: navi, leftMenuViewController: leftVC)
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func moveToLogin() {
+//        let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "SigninController") as! SigninController
+        let nav: UINavigationController = UINavigationController(rootViewController: loginVC)
+        self.window?.rootViewController = nav
+        self.window?.makeKeyAndVisible()
+    }
+}
+
 
