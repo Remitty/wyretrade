@@ -17,7 +17,7 @@ class Constants {
 
              static  let REDIRECT_URL = base + "api/coinstock/";
 
-             static  let login = REDIRECT_URL + "oauth/token ";
+             static  let login = REDIRECT_URL + "oauth/token";
              static  let register = REDIRECT_URL + "signup";
 
              static  let CHECK_MAIL_ALREADY_REGISTERED = api_url+"verify";
