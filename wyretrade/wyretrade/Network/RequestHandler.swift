@@ -16,8 +16,11 @@ class RequestHandler {
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, false, success: { (successResponse) in
             let dictionary = successResponse as! [String: Any]
-            let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
+            if let userData = dictionary["user"] as? [String:Any] {
+                data = UserModel(fromDictionary: userData)
+            }
+//            let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+             UserDefaults.standard.set(data, forKey: "userData")
             // UserDefaults.standard.synchronize()
             // let objLogin = UserModel(fromDictionary: dictionary)
             success(successResponse)

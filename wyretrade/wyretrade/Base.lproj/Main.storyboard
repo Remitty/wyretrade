@@ -1461,6 +1461,9 @@
                                                         <rect key="frame" x="33.666666666666657" y="0.0" width="296.33333333333337" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="sA0-YX-p1T" id="vCk-Rj-swZ"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -1488,6 +1491,9 @@
                                                         <rect key="frame" x="28.000000000000004" y="0.0" width="62.333333333333343" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="fzX-EB-h6M" id="lkt-cu-c4b"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -1507,6 +1513,7 @@
                                             <color key="titleColor" red="0.093263645820000005" green="0.84853170379999998" blue="0.26059470280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="actionForgotPassword:" destination="4Cy-LQ-4Cy" eventType="primaryActionTriggered" id="evE-ze-aXT"/>
                                             <segue destination="1Kx-1f-1BT" kind="show" id="rTm-A3-Wcl"/>
                                         </connections>
                                     </button>
@@ -1521,6 +1528,9 @@
                                         <state key="normal" title="Log In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="submit:" destination="4Cy-LQ-4Cy" eventType="primaryActionTriggered" id="5u3-rd-fKY"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfH-vb-jb7">
                                         <rect key="frame" x="20" y="300" width="350" height="14.333333333333314"/>
@@ -1535,7 +1545,7 @@
                                             <color key="titleColor" red="0.093263645820000005" green="0.84853170379999998" blue="0.26059470280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="BI5-iV-SYi" kind="show" identifier="register" id="Jkd-f9-tPe"/>
+                                            <action selector="actionRegister:" destination="4Cy-LQ-4Cy" eventType="primaryActionTriggered" id="Fw3-k0-E7G"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1574,6 +1584,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jAX-yZ-ubz"/>
+                    <connections>
+                        <outlet property="btnForgotPassword" destination="ueW-jA-qXV" id="Kf1-gl-eQH"/>
+                        <outlet property="btnRegister" destination="ehA-dt-EKx" id="rYX-Rj-G36"/>
+                        <outlet property="btnSubmit" destination="VmZ-Wa-Aws" id="MFX-Yu-xJS"/>
+                        <outlet property="txtEmail" destination="Zf7-gb-Zh4" id="fat-EE-Nwq"/>
+                        <outlet property="txtPassword" destination="YmK-hT-VsC" id="m0J-hC-9NR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qua-Ou-k7e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
