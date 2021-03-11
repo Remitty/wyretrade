@@ -59,18 +59,15 @@ class SigninController: UIViewController {
                     RequestHandler.loginUser(parameter: parameters , success: { (successResponse) in
 //                        self.stopAnimating()
                         if successResponse.success {
-                            if self.isVerifyOn && successResponse.data.isAccountConfirm == false {
-                                let alert = AlertView.prepare(title: "", message: successResponse.message, okAction: {
-                                    let confirmationVC = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController
-                                    confirmationVC.isFromVerification = true
-                                    confirmationVC.user_id = successResponse.data.id
-                                    self.navigationController?.pushViewController(confirmationVC, animated: true)
-                                })
-                                self.presentVC(alert)
+                            if successResponse.user.isCompleteProfile == false {
+                                let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
+                                self.navigationController?.pushViewController(completeVC, animated: true)
                             } else {
                                 self.defaults.set(true, forKey: "isLogin")
                                 self.defaults.synchronize()
-                                self.appDelegate.moveToHome()
+                                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
+                                self.navigationController?.pushViewController(mainVC, animated: true)
+                                // self.appDelegate.moveToHome()
                             }
                         } else {
                             let alert = Constants.showBasicAlert(message: successResponse.message)
@@ -88,8 +85,12 @@ class SigninController: UIViewController {
     }
     
     @IBAction func actionRegister(_ sender: Any) {
+        let registerVC = self.storyboard?.instantiateViewController(withIdentifier: "SignupController") as! SignupController
+        self.navigationController?.pushViewController(registerVC, animated: true)
     }
     
     @IBAction func actionForgotPassword(_ sender: Any) {
+        let forgotVC = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordController") as! ForgotPasswordController
+        self.navigationController?.pushViewController(forgotVC, animated: true)
     }
 }

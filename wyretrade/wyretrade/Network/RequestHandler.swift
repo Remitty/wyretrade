@@ -11,18 +11,18 @@ import Alamofire
 class RequestHandler {
     static let sharedInstance = RequestHandler()
     
-    class func loginUser(parameter: NSDictionary, success: @escaping(UserModel)-> Void, failure: @escaping(NetworkError)-> Void) {
+    class func loginUser(parameter: NSDictionary, success: @escaping(UserAuthModel)-> Void, failure: @escaping(NetworkError)-> Void) {
         let url = Constants.URL.login
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, false, success: { (successResponse) in
             let dictionary = successResponse as! [String: Any]
             if let userData = dictionary["user"] as? [String:Any] {
-                data = UserModel(fromDictionary: userData)
+                // user = UserAuthModel(fromDictionary: userData)
+                let data = NSKeyedArchiver.archivedData(withRootObject: userData)
+                UserDefaults.standard.set(data, forKey: "userAuthData")
+                UserDefaults.standard.synchronize()
             }
-//            let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-             UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objLogin = UserModel(fromDictionary: dictionary)
+            // let objLogin = UserAuthModel(fromDictionary: dictionary)
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -838,7 +838,7 @@ class RequestHandler {
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
-    
+
     class func getPredictionList(parameter: NSDictionary, success: @escaping(UserModel)-> Void, failure: @escaping(NetworkError)-> Void) {
         let url = Constants.URL.GET_PREDICTABLE_LIST
         print(url)

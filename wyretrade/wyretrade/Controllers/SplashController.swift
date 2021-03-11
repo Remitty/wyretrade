@@ -37,7 +37,12 @@ class SplashController: UIViewController {
 
         if defaults.bool(forKey: "isLogin") {
 //            self.appDelegate.moveToMain()
-            self.moveToMain()
+            var data = defaults.object(forKey: "userAuthData")
+            let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
+            let userAuth = UserAuthModel(fromDictionary: objUser)
+            if userAuth.isCompleteProfile
+                self.moveToMain()
+            else self.moveToCompleteProfile()
         }
         else {
 //            self.appDelegate.moveToLogin()
@@ -63,5 +68,14 @@ class SplashController: UIViewController {
         self.window?.rootViewController = nav
         self.window?.makeKeyAndVisible()
         navigationController?.pushViewController(loginVC, animated: true)
+    }
+
+    func moveToCompleteProfile() {
+
+        let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
+        let nav: UINavigationController = UINavigationController(rootViewController: profileVC)
+        self.window?.rootViewController = nav
+        self.window?.makeKeyAndVisible()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
