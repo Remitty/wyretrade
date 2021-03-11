@@ -48,8 +48,8 @@ class SplashController: UIViewController {
             }
         }
         else {
-            self.appDelegate.moveToLogin()
-//            self.moveToLogin()
+//            self.appDelegate.moveToLogin()
+            self.moveToLogin()
         }
     }
     
@@ -67,18 +67,18 @@ class SplashController: UIViewController {
     func moveToLogin() {
 
         let loginVC = storyboard?.instantiateViewController(withIdentifier: "SigninController") as! SigninController
-        let nav: UINavigationController = UINavigationController(rootViewController: loginVC)
-        self.window?.rootViewController = nav
-        self.window?.makeKeyAndVisible()
+//        let nav: UINavigationController = UINavigationController(rootViewController: loginVC)
+//        self.window?.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
         navigationController?.pushViewController(loginVC, animated: true)
     }
 
     func moveToCompleteProfile() {
 
         let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
-        let nav: UINavigationController = UINavigationController(rootViewController: profileVC)
-        self.window?.rootViewController = nav
-        self.window?.makeKeyAndVisible()
+//        let nav: UINavigationController = UINavigationController(rootViewController: profileVC)
+//        self.window?.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
         navigationController?.pushViewController(profileVC, animated: true)
     }
 }

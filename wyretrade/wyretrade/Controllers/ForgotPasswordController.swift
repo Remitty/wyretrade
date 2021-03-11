@@ -33,6 +33,7 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
 
 
     @IBAction func actionBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     @IBAction func actionNext(_ sender: Any) {
         guard let email = txtEmail.text else {

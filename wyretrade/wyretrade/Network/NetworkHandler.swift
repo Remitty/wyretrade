@@ -15,25 +15,30 @@ class NetworkHandler {
         if Network.isAvailable {
             var headers: HTTPHeaders
             if isAuth {
-                var userAuthToken = UserDefaults.standard.string(forKey: "userAuthToken")
+                
+                let data = UserDefaults.standard.object(forKey: "userAuthData")
+                let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
+                let userAuth = UserAuthModel(fromDictionary: objUser)
+                var userAuthToken = userAuth.access_token
                 headers = [
                 "Accept": "application/json",
-                "Authorization": "Bearer \(userAuthToken)",
-                ] as! HTTPHeaders
+                "Authorization": "Bearer \(userAuthToken)"
+                ]
             } else {
-
+                
                 headers = [
-                    "Accept": "application/json",
-                    ] as! HTTPHeaders
+                    "Accept": "application/json"
+                    ]
             }
-            
+            print(headers)
             let manager = Alamofire.Session.default
             manager.session.configuration.timeoutIntervalForRequest = Constants.NetworkError.timeOutInterval
             print(Parameters.self)
             manager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<600).responseJSON
                 { (response) -> Void in
                     
-                    print(response)
+                print("response \(response)")
+                
  
                     guard let statusCode = response.response?.statusCode else {
                         var networkError = NetworkError()
@@ -47,9 +52,10 @@ class NetworkHandler {
                     }
                 
                     if statusCode == 422 {
+                        
                         var networkError = NetworkError()
                         
-                        let response = response.result
+                        let response = response.value!
                         let dictionary = response as! [String: AnyObject]
                         
                         guard let message = dictionary["error"] as! String? else {
@@ -67,9 +73,11 @@ class NetworkHandler {
                         
                         
                     }else{
+                        
                         switch (response.result) {
                         case .success:
-                            let response = response.result
+                            let response = response.value!
+                            
                             success(response)
                             break
                         case .failure(let error):
@@ -103,16 +111,19 @@ class NetworkHandler {
         
        var headers: HTTPHeaders
         if isAuth {
-                var userAuthToken = UserDefaults.standard.string(forKey: "userAuthToken")
-                headers = [
+            let data = UserDefaults.standard.object(forKey: "userAuthData")
+            let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
+            let userAuth = UserAuthModel(fromDictionary: objUser)
+            var userAuthToken = userAuth.access_token
+            headers = [
                 "Accept": "application/json",
                 "Authorization": "Bearer \(userAuthToken)",
-                ] as! HTTPHeaders
+                ]
             } else {
 
                 headers = [
                     "Accept": "application/json",
-                    ] as! HTTPHeaders
+                    ]
             }
         
         manager.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) -> Void in
@@ -122,7 +133,7 @@ class NetworkHandler {
             switch response.result{
             //Case 1
             case .success:
-                let response = response.result
+                let response = response.value
                 success(response)
                 break
             case .failure (let error):

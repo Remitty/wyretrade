@@ -101,13 +101,5 @@ class SigninController: UIViewController, UITextFieldDelegate {
         self.login()
     }
     
-    @IBAction func actionRegister(_ sender: Any) {
-        let registerVC = self.storyboard?.instantiateViewController(withIdentifier: "SignupController") as! SignupController
-        self.navigationController?.pushViewController(registerVC, animated: true)
-    }
     
-    @IBAction func actionForgotPassword(_ sender: Any) {
-        let forgotVC = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordController") as! ForgotPasswordController
-        self.navigationController?.pushViewController(forgotVC, animated: true)
-    }
 }

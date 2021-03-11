@@ -47,8 +47,21 @@ class SignupController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+       self.navigationController?.isNavigationBarHidden = true
+       
+   }
+
+   override func viewWillDisappear(_ animated: Bool) {
+       super.viewWillDisappear(animated)
+       self.navigationController?.isNavigationBarHidden = false
+   }
 
     @IBAction func gotoSignin(_ sender: Any) {
+//        let loginVC = storyboard?.instantiateViewController(withIdentifier: "SigninController") as! SigninController
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func actionSubmit(_ sender: Any) {
