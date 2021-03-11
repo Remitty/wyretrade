@@ -38,10 +38,49 @@ class HomeController: UIViewController
 //            newsTable.dataSource = self
 //        }
 //    }
+
+    var newsList : [NewsModel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        var data = defaults.object(forKey: "userAuthData")
+        let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
+        let userAuth = UserAuthModel(fromDictionary: objUser)
+
+        self.userName.text = userAuth.first_name 
+        self.loadData()
+        
+    }
+
+    func loadData() {
+        
+                    
+//                    self.showLoader()
+        RequestHandler.getHome(nil, success: { (successResponse) in
+//                        self.stopAnimating()
+                let dictionary = successResponse as! [String: Any]
+                let success = dictionary["success"] as! Bool
+                var news : NewsModel!
+                if success {
+                    if let newsData = dictionary["news"] as? [String:Any] {
+                        for item in newsData {
+                            news = NewsModel(fromDictionary: item)
+                            newsList.append(news)
+                        }
+                    }
+
+                    self.usdcBalance.text = dictionary["usdc_balance"] as? String
+                    
+                } else {
+                    let alert = Constants.showBasicAlert(message: dictionary["message"] as! String)
+                    self.presentVC(alert)
+                }
+            }) { (error) in
+                let alert = Constants.showBasicAlert(message: error.message)
+                        self.presentVC(alert)
+            }
+        }
     }
 
 
