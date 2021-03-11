@@ -77,6 +77,14 @@
 		7B7AB52A25F71A6500860D82 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AB52925F71A6500860D82 /* RequestHandler.swift */; };
 		7B9AED0C25F36C3A00068775 /* SigninController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AED0B25F36C3A00068775 /* SigninController.swift */; };
 		7B9AED1125F36D5300068775 /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AED1025F36D4F00068775 /* SignupController.swift */; };
+		7BA7726725F9A2E400EAC761 /* UserAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */; };
+		7BA7728025F9B0DE00EAC761 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7727F25F9B0DE00EAC761 /* ViewController.swift */; };
+		7BA7728525F9BB0E00EAC761 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7728425F9BB0E00EAC761 /* AlertView.swift */; };
+		7BA7728A25F9BB4600EAC761 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7728925F9BB4600EAC761 /* Button.swift */; };
+		7BA7728F25F9BB9100EAC761 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7728E25F9BB9100EAC761 /* CheckBox.swift */; };
+		7BA7729425F9BC1100EAC761 /* StringValidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7729325F9BC1100EAC761 /* StringValidate.swift */; };
+		7BA7729925F9BC9A00EAC761 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7729825F9BC9A00EAC761 /* Timer.swift */; };
+		7BA7729E25F9BCE100EAC761 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7729D25F9BCE100EAC761 /* View.swift */; };
 		7BDD292525F16E5D007A6921 /* MtnController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD292425F16E5D007A6921 /* MtnController.swift */; };
 		7BDD292A25F16F46007A6921 /* PredictionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD292925F16F46007A6921 /* PredictionController.swift */; };
 		7BDD292F25F17328007A6921 /* PredictListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD292E25F17328007A6921 /* PredictListController.swift */; };
@@ -210,6 +218,14 @@
 		7B7AB52925F71A6500860D82 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		7B9AED0B25F36C3A00068775 /* SigninController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninController.swift; sourceTree = "<group>"; };
 		7B9AED1025F36D4F00068775 /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
+		7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthModel.swift; sourceTree = "<group>"; };
+		7BA7727F25F9B0DE00EAC761 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7BA7728425F9BB0E00EAC761 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		7BA7728925F9BB4600EAC761 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		7BA7728E25F9BB9100EAC761 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		7BA7729325F9BC1100EAC761 /* StringValidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringValidate.swift; sourceTree = "<group>"; };
+		7BA7729825F9BC9A00EAC761 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		7BA7729D25F9BCE100EAC761 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		7BDD292425F16E5D007A6921 /* MtnController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MtnController.swift; sourceTree = "<group>"; };
 		7BDD292925F16F46007A6921 /* PredictionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionController.swift; sourceTree = "<group>"; };
 		7BDD292E25F17328007A6921 /* PredictListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictListController.swift; sourceTree = "<group>"; };
@@ -374,53 +390,53 @@
 		7B4D8EFA25ECD98700557F92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7B4D8E7D25EC8AAC00557F92 /* MainController.swift */,
-				7B4D8EFB25ECDA8F00557F92 /* HomeController.swift */,
-				7B4D8F0025ECDAEB00557F92 /* CoinsController.swift */,
-				7B4D8F0525ECDB1900557F92 /* SwapController.swift */,
-				7B4D8F0A25ECDB2600557F92 /* StocksController.swift */,
-				7B4D8F0F25ECDB3700557F92 /* CashController.swift */,
-				7B4D8F1425ECDB4300557F92 /* MenuController.swift */,
-				7B6D91DA25F07C7200B1E466 /* ProfileController.swift */,
-				7B6D91DF25F07CB100B1E466 /* ProfileEditController.swift */,
-				7B6D920325F0B0F000B1E466 /* StakeController.swift */,
-				7B6D920D25F0B31F00B1E466 /* StakeListController.swift */,
-				7BDD292425F16E5D007A6921 /* MtnController.swift */,
-				7BDD292925F16F46007A6921 /* PredictionController.swift */,
-				7BDD292E25F17328007A6921 /* PredictListController.swift */,
-				7BDD293325F1736A007A6921 /* PredictResultsController.swift */,
-				7BDD293825F17383007A6921 /* PredictOwnerController.swift */,
-				7BDD296525F17F90007A6921 /* MtnTransactionController.swift */,
-				7BDD296A25F180AC007A6921 /* PredictionPostController.swift */,
-				7BDD296F25F18D10007A6921 /* PortfolioController.swift */,
-				7BDD298725F1AA05007A6921 /* StocksDepositController.swift */,
-				7BDD298C25F1AACE007A6921 /* StocksWithdrawController.swift */,
-				7BDD299725F1F572007A6921 /* StocksDepositCoinController.swift */,
-				7BDD299C25F1F59C007A6921 /* StocksDepositBankController.swift */,
-				7BDD29B725F2126C007A6921 /* StocksDetailController.swift */,
-				7BDD29C725F25EA1007A6921 /* StocksBuyController.swift */,
-				7BDD29CC25F25EB6007A6921 /* StocksSellController.swift */,
-				7BDD29E125F28AFC007A6921 /* StocksHistoryController.swift */,
-				7BDD29E625F28BB9007A6921 /* CoinWithdrawController.swift */,
-				7BDD29FB25F29949007A6921 /* SupportController.swift */,
-				7B9AED0B25F36C3A00068775 /* SigninController.swift */,
-				7B68493425F3AF100075BB79 /* USDCPayController.swift */,
-				7B68493925F3AF570075BB79 /* USDCAddContactController.swift */,
 				7B68493E25F3AF960075BB79 /* CashAccountInfoController.swift */,
 				7B68496B25F3E1E20075BB79 /* CashAddBankController.swift */,
 				7B68497025F3E2450075BB79 /* CashAddContactController.swift */,
+				7B4D8F0F25ECDB3700557F92 /* CashController.swift */,
 				7B68497525F3E2870075BB79 /* CashItemListController.swift */,
 				7B68497A25F3E2E40075BB79 /* CashSendController.swift */,
-				7B9AED1025F36D4F00068775 /* SignupController.swift */,
 				7B68492525F3AE820075BB79 /* ChangePasswordController.swift */,
-				7B68492A25F3AE910075BB79 /* ForgotPasswordController.swift */,
-				7B68492F25F3AEA40075BB79 /* ResetPasswordController.swift */,
-				7B61D05025F5BC2F00B219E5 /* SplashController.swift */,
-				7B61D07B25F5EA6500B219E5 /* LeftController.swift */,
-				7B76AE8E25F626F700C9FE5A /* TradeCryptosController.swift */,
+				7B4D8F0025ECDAEB00557F92 /* CoinsController.swift */,
+				7BDD29E625F28BB9007A6921 /* CoinWithdrawController.swift */,
 				7B76AE9325F629B100C9FE5A /* DepositHistoryController.swift */,
-				7B76AE9825F62A3500C9FE5A /* StocksNewsController.swift */,
+				7B68492A25F3AE910075BB79 /* ForgotPasswordController.swift */,
+				7B4D8EFB25ECDA8F00557F92 /* HomeController.swift */,
+				7B61D07B25F5EA6500B219E5 /* LeftController.swift */,
 				7B76AE9D25F62B6E00C9FE5A /* LinkWalletController.swift */,
+				7B4D8E7D25EC8AAC00557F92 /* MainController.swift */,
+				7B4D8F1425ECDB4300557F92 /* MenuController.swift */,
+				7BDD292425F16E5D007A6921 /* MtnController.swift */,
+				7BDD296525F17F90007A6921 /* MtnTransactionController.swift */,
+				7BDD296F25F18D10007A6921 /* PortfolioController.swift */,
+				7BDD292925F16F46007A6921 /* PredictionController.swift */,
+				7BDD296A25F180AC007A6921 /* PredictionPostController.swift */,
+				7BDD292E25F17328007A6921 /* PredictListController.swift */,
+				7BDD293825F17383007A6921 /* PredictOwnerController.swift */,
+				7BDD293325F1736A007A6921 /* PredictResultsController.swift */,
+				7B6D91DA25F07C7200B1E466 /* ProfileController.swift */,
+				7B6D91DF25F07CB100B1E466 /* ProfileEditController.swift */,
+				7B68492F25F3AEA40075BB79 /* ResetPasswordController.swift */,
+				7B9AED0B25F36C3A00068775 /* SigninController.swift */,
+				7B9AED1025F36D4F00068775 /* SignupController.swift */,
+				7B61D05025F5BC2F00B219E5 /* SplashController.swift */,
+				7B6D920325F0B0F000B1E466 /* StakeController.swift */,
+				7B6D920D25F0B31F00B1E466 /* StakeListController.swift */,
+				7BDD29C725F25EA1007A6921 /* StocksBuyController.swift */,
+				7B4D8F0A25ECDB2600557F92 /* StocksController.swift */,
+				7BDD299C25F1F59C007A6921 /* StocksDepositBankController.swift */,
+				7BDD299725F1F572007A6921 /* StocksDepositCoinController.swift */,
+				7BDD298725F1AA05007A6921 /* StocksDepositController.swift */,
+				7BDD29B725F2126C007A6921 /* StocksDetailController.swift */,
+				7BDD29E125F28AFC007A6921 /* StocksHistoryController.swift */,
+				7B76AE9825F62A3500C9FE5A /* StocksNewsController.swift */,
+				7BDD29CC25F25EB6007A6921 /* StocksSellController.swift */,
+				7BDD298C25F1AACE007A6921 /* StocksWithdrawController.swift */,
+				7BDD29FB25F29949007A6921 /* SupportController.swift */,
+				7B4D8F0525ECDB1900557F92 /* SwapController.swift */,
+				7B76AE8E25F626F700C9FE5A /* TradeCryptosController.swift */,
+				7B68493925F3AF570075BB79 /* USDCAddContactController.swift */,
+				7B68493425F3AF100075BB79 /* USDCPayController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -446,6 +462,7 @@
 		7B6C9FFB25EF226A00D11EB5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */,
 				7B6C9FFC25EF22C800D11EB5 /* NewsModel.swift */,
 				7B6CA00425EF247F00D11EB5 /* CoinModel.swift */,
 				7B6CA01425EFB70200D11EB5 /* StockPositionModel.swift */,
@@ -576,6 +593,13 @@
 		7BDD299125F1F3DD007A6921 /* helper */ = {
 			isa = PBXGroup;
 			children = (
+				7BA7727F25F9B0DE00EAC761 /* ViewController.swift */,
+				7BA7728425F9BB0E00EAC761 /* AlertView.swift */,
+				7BA7728925F9BB4600EAC761 /* Button.swift */,
+				7BA7728E25F9BB9100EAC761 /* CheckBox.swift */,
+				7BA7729325F9BC1100EAC761 /* StringValidate.swift */,
+				7BA7729825F9BC9A00EAC761 /* Timer.swift */,
+				7BA7729D25F9BCE100EAC761 /* View.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -839,6 +863,7 @@
 				7B6D922925F0BA9A00B1E466 /* AccountView.swift in Sources */,
 				7B4D8F1525ECDB4300557F92 /* MenuController.swift in Sources */,
 				7B61D07C25F5EA6500B219E5 /* LeftController.swift in Sources */,
+				7BA7729E25F9BCE100EAC761 /* View.swift in Sources */,
 				7BDD299D25F1F59C007A6921 /* StocksDepositBankController.swift in Sources */,
 				7B68494A25F3C62D0075BB79 /* PaymentUser.swift in Sources */,
 				7B68497B25F3E2E40075BB79 /* CashSendController.swift in Sources */,
@@ -847,7 +872,10 @@
 				7BDD292A25F16F46007A6921 /* PredictionController.swift in Sources */,
 				7B68496725F3D0C00075BB79 /* USDCPayment.swift in Sources */,
 				7BDD299825F1F572007A6921 /* StocksDepositCoinController.swift in Sources */,
+				7BA7728F25F9BB9100EAC761 /* CheckBox.swift in Sources */,
 				7B68493F25F3AF960075BB79 /* CashAccountInfoController.swift in Sources */,
+				7BA7728A25F9BB4600EAC761 /* Button.swift in Sources */,
+				7BA7728525F9BB0E00EAC761 /* AlertView.swift in Sources */,
 				7B68493525F3AF100075BB79 /* USDCPayController.swift in Sources */,
 				7BDD293425F1736A007A6921 /* PredictResultsController.swift in Sources */,
 				7B05703A25EEEC1A001E4D24 /* NewsView.swift in Sources */,
@@ -868,13 +896,16 @@
 				7BDD29A625F20B1E007A6921 /* StocksDepositItem.swift in Sources */,
 				7B4D8E7A25EC8AAC00557F92 /* AppDelegate.swift in Sources */,
 				7B6CA00B25EF268300D11EB5 /* CoinView.swift in Sources */,
+				7BA7729925F9BC9A00EAC761 /* Timer.swift in Sources */,
 				7B76AE8F25F626F700C9FE5A /* TradeCryptosController.swift in Sources */,
 				7BDD295625F17C15007A6921 /* MtnModel.swift in Sources */,
 				7B6D91F825F0AFB300B1E466 /* StakeItem.swift in Sources */,
 				7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */,
 				7B7AB50425F7015400860D82 /* Network.swift in Sources */,
+				7BA7726725F9A2E400EAC761 /* UserAuthModel.swift in Sources */,
 				7B6C9FFD25EF22C800D11EB5 /* NewsModel.swift in Sources */,
 				7B68494F25F3C6460075BB79 /* UserModel.swift in Sources */,
+				7BA7729425F9BC1100EAC761 /* StringValidate.swift in Sources */,
 				7BDD29CD25F25EB6007A6921 /* StocksSellController.swift in Sources */,
 				7B61D05125F5BC2F00B219E5 /* SplashController.swift in Sources */,
 				7BDD29BE25F25C58007A6921 /* Company.swift in Sources */,
@@ -892,6 +923,7 @@
 				7B6D920925F0B1B300B1E466 /* StakeModel.swift in Sources */,
 				7B4D8F0625ECDB1900557F92 /* SwapController.swift in Sources */,
 				7B7AB52A25F71A6500860D82 /* RequestHandler.swift in Sources */,
+				7BA7728025F9B0DE00EAC761 /* ViewController.swift in Sources */,
 				7BDD29EC25F28D2B007A6921 /* CoinWithdrawModel.swift in Sources */,
 				7BDD298825F1AA05007A6921 /* StocksDepositController.swift in Sources */,
 				7B68495C25F3D02F0075BB79 /* USDCPaymentModel.swift in Sources */,

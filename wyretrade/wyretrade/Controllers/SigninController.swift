@@ -7,15 +7,23 @@
 
 import Foundation
 import UIKit
+import MaterialComponents
+import UITextField_Shake
 
-class SigninController: UIViewController {
+class SigninController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtEmail: UITextField! {
+        didSet {
+            txtEmail.delegate = self
+        }
+    }
     @IBOutlet weak var txtPassword: UITextField!
     
     @IBOutlet weak var btnSubmit: MDCButton!
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var btnForgotPassword: UIButton!
+    
+    var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,15 +59,24 @@ class SigninController: UIViewController {
                 }
                 else {
                     let param : [String : Any] = [
-                                                    "email" : email,
-                                                    "password": password
-                                                ]
+                        "email" : email,
+                        "password": password,
+                        "device_id" : "ios",
+                        "device_token" : "ios"
+                    ]
                     
 //                    self.showLoader()
-                    RequestHandler.loginUser(parameter: parameters , success: { (successResponse) in
+                    RequestHandler.loginUser(parameter: param as NSDictionary, success: { (successResponse) in
 //                        self.stopAnimating()
-                        if successResponse.success {
-                            if successResponse.user.isCompleteProfile == false {
+                        let dictionary = successResponse as! [String: Any]
+                        let success = dictionary["success"] as! Bool
+                        var user : UserAuthModel!
+                        if success {
+                            if let userData = dictionary["user"] as? [String:Any] {
+                                
+                                user = UserAuthModel(fromDictionary: userData)
+                            }
+                            if user.isCompleteProfile == false {
                                 let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
                                 self.navigationController?.pushViewController(completeVC, animated: true)
                             } else {
@@ -70,12 +87,12 @@ class SigninController: UIViewController {
                                 // self.appDelegate.moveToHome()
                             }
                         } else {
-                            let alert = Constants.showBasicAlert(message: successResponse.message)
-//                            self.presentVC(alert)
+                            let alert = Constants.showBasicAlert(message: dictionary["message"] as! String)
+                            self.presentVC(alert)
                         }
                     }) { (error) in
                         let alert = Constants.showBasicAlert(message: error.message)
-//                                self.presentVC(alert)
+                                self.presentVC(alert)
                     }
                 }
     }

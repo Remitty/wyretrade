@@ -14,7 +14,7 @@ class SplashController: UIViewController {
     
     var window: UIWindow?
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     var defaults = UserDefaults.standard
 
@@ -40,13 +40,16 @@ class SplashController: UIViewController {
             var data = defaults.object(forKey: "userAuthData")
             let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
             let userAuth = UserAuthModel(fromDictionary: objUser)
-            if userAuth.isCompleteProfile
+            if userAuth.isCompleteProfile {
                 self.moveToMain()
-            else self.moveToCompleteProfile()
+            }
+            else {
+                self.moveToCompleteProfile()
+            }
         }
         else {
-//            self.appDelegate.moveToLogin()
-            self.moveToLogin()
+            self.appDelegate.moveToLogin()
+//            self.moveToLogin()
         }
     }
     

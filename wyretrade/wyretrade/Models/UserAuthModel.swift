@@ -11,14 +11,14 @@ struct UserAuthModel {
     var last_name: String!
     var email: String!
     var access_token: String!
-    var isCompleteProfile: String!
+    var isCompleteProfile: Bool!
     
     init(fromDictionary dictionary: [String: Any]) {
         first_name = dictionary["first_name"] as? String
         last_name = dictionary["last_name"] as? String
         email = dictionary["email"] as? String
         access_token = dictionary["access_token"] as? String
-        isCompleteProfile = dictionary["isCompleteProfile"] as? String
+        isCompleteProfile = dictionary["isCompleteProfile"] as? Bool
     }
     
     func toDictionary() -> [String: Any] {

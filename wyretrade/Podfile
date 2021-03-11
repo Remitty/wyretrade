@@ -15,7 +15,10 @@ target 'wyretrade' do
     
     pod 'NVActivityIndicatorView'
     pod 'SlideMenuControllerSwift', :git => 'https://github.com/AtomicSLLC/SlideMenuControllerSwift.git', :branch => 'swift5'
+    pod 'UITextField+Shake'
+    
     pod 'DeviceKit'
+    
 # Pods for MDC-Tutorial
   pod 'MaterialComponents/AppBar+Theming'
   pod 'MaterialComponents/Buttons'

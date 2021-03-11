@@ -15,7 +15,7 @@ class NetworkHandler {
         if Network.isAvailable {
             var headers: HTTPHeaders
             if isAuth {
-                var userAuthToken = UserDefaults.standard.stromg(forKey: "userAuthToken")
+                var userAuthToken = UserDefaults.standard.string(forKey: "userAuthToken")
                 headers = [
                 "Accept": "application/json",
                 "Authorization": "Bearer \(userAuthToken)",
@@ -103,7 +103,7 @@ class NetworkHandler {
         
        var headers: HTTPHeaders
         if isAuth {
-                var userAuthToken = UserDefaults.standard.stromg(forKey: "userAuthToken")
+                var userAuthToken = UserDefaults.standard.string(forKey: "userAuthToken")
                 headers = [
                 "Accept": "application/json",
                 "Authorization": "Bearer \(userAuthToken)",

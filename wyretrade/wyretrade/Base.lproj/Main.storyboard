@@ -1624,6 +1624,9 @@
                                                 <rect key="frame" x="33.666666666666657" y="0.0" width="296.33333333333337" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gVD-dK-p2j" id="AYL-Tu-ReY"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1644,6 +1647,9 @@
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionBack:" destination="1Kx-1f-1BT" eventType="primaryActionTriggered" id="FkO-z4-kU5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AU7-5r-tWX">
                                 <rect key="frame" x="335" y="512.33333333333337" width="35" height="30"/>
@@ -1651,6 +1657,9 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionNext:" destination="1Kx-1f-1BT" eventType="primaryActionTriggered" id="zSg-Mc-F1v"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FeC-7s-FBE"/>
@@ -1669,6 +1678,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fU8-74-b5D"/>
+                    <connections>
+                        <outlet property="txtEmail" destination="fcz-7C-Prt" id="ZSk-fp-rHN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HqZ-Og-Z7X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1723,6 +1735,9 @@
                                                 <rect key="frame" x="28" y="0.0" width="302" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="UZs-0i-ZC9" id="07p-Vw-gDK"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1750,6 +1765,9 @@
                                                 <rect key="frame" x="30.666666666666657" y="0.0" width="299.33333333333337" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Cpc-K1-5Tr" id="bXf-v8-s4E"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1773,6 +1791,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionSubmit:" destination="Fab-hO-Tk2" eventType="primaryActionTriggered" id="DRs-Pj-L8k"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YA2-5l-F4s"/>
@@ -1791,6 +1812,11 @@
                             <constraint firstItem="raC-SM-5Kl" firstAttribute="top" secondItem="CnF-a6-FF2" secondAttribute="bottom" constant="40" id="vcq-LS-TUV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtConfirmPassword" destination="18S-z0-RYI" id="4Ie-d1-sg6"/>
+                        <outlet property="txtOtp" destination="8ZU-Vb-rpD" id="moz-3q-9Me"/>
+                        <outlet property="txtPassword" destination="gHX-YR-Dj2" id="Za0-Fh-d6v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lbd-Fy-Hl8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1941,6 +1967,9 @@
                                         <state key="normal" title="Sign up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="actionSubmit:" destination="BI5-iV-SYi" eventType="touchCancel" id="ngg-BO-3a6"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dk3-Jf-CNo">
                                         <rect key="frame" x="94.333333333333314" y="351" width="100.66666666666669" height="14.333333333333314"/>
@@ -1948,12 +1977,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6s-E5-crd">
-                                        <rect key="frame" x="220" y="348" width="59" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" red="0.093263645820000005" green="0.84853170379999998" blue="0.26059470280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHY-Zo-zVI">
+                                        <rect key="frame" x="274" y="343" width="47" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Sign In">
+                                            <color key="titleColor" red="0.093263645820000005" green="0.84853170379999998" blue="0.26059470280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="gotoSignin:" destination="BI5-iV-SYi" eventType="primaryActionTriggered" id="cQs-3e-I7q"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -1965,9 +1998,7 @@
                                     <constraint firstAttribute="trailing" secondItem="iFb-zk-7ag" secondAttribute="trailing" constant="20" id="J2J-TE-HJh"/>
                                     <constraint firstAttribute="trailing" secondItem="rDb-6M-uMx" secondAttribute="trailing" constant="20" id="JKh-7l-8pb"/>
                                     <constraint firstItem="un5-MT-iIf" firstAttribute="centerX" secondItem="WiN-S7-BjW" secondAttribute="centerX" id="Npc-qK-NYt"/>
-                                    <constraint firstItem="A6s-E5-crd" firstAttribute="top" secondItem="un5-MT-iIf" secondAttribute="bottom" constant="17" id="O18-ai-Mdq"/>
                                     <constraint firstItem="IvH-bp-tuD" firstAttribute="leading" secondItem="WiN-S7-BjW" secondAttribute="leading" id="P6D-oA-kCh"/>
-                                    <constraint firstItem="A6s-E5-crd" firstAttribute="leading" secondItem="Dk3-Jf-CNo" secondAttribute="trailing" constant="25" id="Xz9-hl-C0Z"/>
                                     <constraint firstItem="CVn-pf-RqO" firstAttribute="top" secondItem="rDb-6M-uMx" secondAttribute="bottom" constant="10" id="Zr1-7a-wMo"/>
                                     <constraint firstItem="Dk3-Jf-CNo" firstAttribute="trailing" secondItem="WiN-S7-BjW" secondAttribute="centerX" id="fFD-RO-6lu"/>
                                     <constraint firstItem="iFb-zk-7ag" firstAttribute="top" secondItem="IvH-bp-tuD" secondAttribute="bottom" constant="20" id="iae-oK-jI5"/>
@@ -1993,6 +2024,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1tF-OT-8Hj"/>
+                    <connections>
+                        <outlet property="btnRegister" destination="un5-MT-iIf" id="B7O-C9-Zq3"/>
+                        <outlet property="btnSignin" destination="MHY-Zo-zVI" id="8RK-6D-r5B"/>
+                        <outlet property="txtEmail" destination="LYQ-MG-DxM" id="wHT-T7-Feb"/>
+                        <outlet property="txtFirstName" destination="NCG-pd-AfT" id="Ndo-T8-gJK"/>
+                        <outlet property="txtLastName" destination="EDR-2h-QX9" id="F4M-U2-4qH"/>
+                        <outlet property="txtPassword" destination="YGc-cR-izI" id="adv-Ig-GlB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0K-2i-Yc5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

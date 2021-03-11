@@ -166,6 +166,7 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
   - SlideMenuControllerSwift (5.0.0)
+  - "UITextField+Shake (1.2.1)"
 
 DEPENDENCIES:
   - Alamofire
@@ -178,6 +179,7 @@ DEPENDENCIES:
   - MaterialComponents/NavigationDrawer
   - NVActivityIndicatorView
   - SlideMenuControllerSwift (from `https://github.com/AtomicSLLC/SlideMenuControllerSwift.git`, branch `swift5`)
+  - "UITextField+Shake"
 
 SPEC REPOS:
   trunk:
@@ -188,6 +190,7 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - NVActivityIndicatorView
+    - "UITextField+Shake"
 
 EXTERNAL SOURCES:
   SlideMenuControllerSwift:
@@ -208,7 +211,8 @@ SPEC CHECKSUMS:
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SlideMenuControllerSwift: d740ea24105a658fe6a8c256f2bf5832fee7c047
+  "UITextField+Shake": 298ac5a0f239d731bdab999b19b628c956ca0ac3
 
-PODFILE CHECKSUM: ed08aab37d2d04a671b0f6624956028744c82089
+PODFILE CHECKSUM: 6f378a5cf2224b0e8ca82f5f328da25d4a0bd01b
 
 COCOAPODS: 1.10.1

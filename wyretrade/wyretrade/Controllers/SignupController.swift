@@ -7,13 +7,116 @@
 
 import Foundation
 import UIKit
+import MaterialComponents
+import NVActivityIndicatorView
 
-class SignupController: UIViewController {
+class SignupController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var txtFirstName: UITextField! {
+        didSet {
+            txtFirstName.delegate = self
+        }
+    }
+    @IBOutlet weak var txtLastName: UITextField!{
+        didSet {
+            txtLastName.delegate = self
+        }
+    }
+    @IBOutlet weak var txtPassword: UITextField!{
+        didSet {
+            txtPassword.delegate = self
+        }
+    }
+    @IBOutlet weak var txtEmail: UITextField!{
+        didSet {
+            txtEmail.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var btnSignin: UIButton!
+    @IBOutlet weak var btnRegister: UIButton! {
+        didSet {
+            btnRegister.roundCorners()
+            btnRegister.layer.borderWidth = 1
+        }
+    }
+    
+    var defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func gotoSignin(_ sender: Any) {
+    }
+    
+    @IBAction func actionSubmit(_ sender: Any) {
+        guard let firstName = txtFirstName.text else {
+            return
+        }
+        guard let lastName = txtLastName.text else {
+            return
+        }
+        guard let email = txtEmail.text else {
+            return
+        }
+        guard let password = txtPassword.text else {
+            return
+        }
+        
+        if firstName == "" {
+             self.txtFirstName.shake(6, withDelta: 10, speed: 0.06)
+        }
+        if lastName == "" {
+             self.txtLastName.shake(6, withDelta: 10, speed: 0.06)
+        }
+        else if email == "" {
+            self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+        }
+        else if !email.isValidEmail {
+            self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+        }
+        else if password == "" {
+            self.txtPassword.shake(6, withDelta: 10, speed: 0.06)
+        }
 
+        else {
+            let param : [String: Any] = [
+                "first_name": firstName,
+                "last_name": lastName,
+                "email": email,
+                "password": password,
+                "device_token": "ios"
+            ]
+            
+//            self.showLoader()
+        RequestHandler.registerUser(parameter: param as NSDictionary, success: { (successResponse) in
+//            self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            let success = dictionary["success"] as! Bool
+            var user : UserAuthModel!
+            if success {
+                
+                    self.defaults.set(true, forKey: "isLogin")
+                    self.defaults.synchronize()
+                    self.moveToCompleteProfile()
+                
+            }
+            else {
+                let alert = Constants.showBasicAlert(message: dictionary["message"] as! String)
+                self.presentVC(alert)
+            }
+        }) { (error) in
+            let alert = Constants.showBasicAlert(message: error.message)
+            self.presentVC(alert)
+        }
+        }
+    }
+    
+    func moveToCompleteProfile() {
+        let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
+        self.navigationController?.pushViewController(completeVC, animated: true)
+    }
+    
 }
