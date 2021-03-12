@@ -161,7 +161,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //MARK:- Table View Delegate Methods
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 11
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,7 +171,6 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: LeftMenuCell = tableView.dequeueReusableCell(withIdentifier: "LeftMenuCell", for: indexPath) as! LeftMenuCell
-        let section = indexPath.section
         let row = indexPath.row
         
         cell.lblName.text = self.mainMenus[row]
@@ -181,7 +180,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 50
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

@@ -45,56 +45,56 @@ class SigninController: UIViewController, UITextFieldDelegate {
         guard let email = txtEmail.text else {
                     return
                 }
-                guard let password = txtPassword.text else {
-                    return
-                }
-                if email == "" {
-                    self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
-                }
-                else if !email.isValidEmail {
-                    self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
-                }
-                else if password == "" {
-                     self.txtPassword.shake(6, withDelta: 10, speed: 0.06)
-                }
-                else {
-                    let param : [String : Any] = [
-                        "email" : email,
-                        "password": password,
-                        "device_id" : "ios",
-                        "device_token" : "ios"
-                    ]
-                    
+        guard let password = txtPassword.text else {
+            return
+        }
+        if email == "" {
+            self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+        }
+        else if !email.isValidEmail {
+            self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+        }
+        else if password == "" {
+             self.txtPassword.shake(6, withDelta: 10, speed: 0.06)
+        }
+        else {
+            let param : [String : Any] = [
+                "email" : email,
+                "password": password,
+                "device_id" : "ios",
+                "device_token" : "ios"
+            ]
+            
 //                    self.showLoader()
-                    RequestHandler.loginUser(parameter: param as NSDictionary, success: { (successResponse) in
+            RequestHandler.loginUser(parameter: param as NSDictionary, success: { (successResponse) in
 //                        self.stopAnimating()
-                        let dictionary = successResponse as! [String: Any]
-                        let success = dictionary["success"] as! Bool
-                        var user : UserAuthModel!
-                        if success {
-                            if let userData = dictionary["user"] as? [String:Any] {
-                                
-                                user = UserAuthModel(fromDictionary: userData)
-                            }
-                            if user.isCompleteProfile == false {
-                                let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
-                                self.navigationController?.pushViewController(completeVC, animated: true)
-                            } else {
-                                self.defaults.set(true, forKey: "isLogin")
-                                self.defaults.synchronize()
-                                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
-                                self.navigationController?.pushViewController(mainVC, animated: true)
-                                // self.appDelegate.moveToHome()
-                            }
-                        } else {
-                            let alert = Constants.showBasicAlert(message: dictionary["message"] as! String)
-                            self.presentVC(alert)
-                        }
-                    }) { (error) in
-                        let alert = Constants.showBasicAlert(message: error.message)
-                                self.presentVC(alert)
+                let dictionary = successResponse as! [String: Any]
+                let success = dictionary["success"] as! Bool
+                var user : UserAuthModel!
+                if success {
+                    if let userData = dictionary["user"] as? [String:Any] {
+                        
+                        user = UserAuthModel(fromDictionary: userData)
                     }
+                    if user.isCompleteProfile == false {
+                        let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
+                        self.navigationController?.pushViewController(completeVC, animated: true)
+                    } else {
+                        self.defaults.set(true, forKey: "isLogin")
+                        self.defaults.synchronize()
+                        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
+                        self.navigationController?.pushViewController(mainVC, animated: true)
+                        // self.appDelegate.moveToHome()
+                    }
+                } else {
+                    let alert = Constants.showBasicAlert(message: dictionary["message"] as! String)
+                    self.presentVC(alert)
                 }
+            }) { (error) in
+                let alert = Constants.showBasicAlert(message: error.message)
+                        self.presentVC(alert)
+            }
+        }
     }
     
     @IBAction func submit(_ sender: Any) {

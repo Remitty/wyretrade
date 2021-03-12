@@ -49,3 +49,13 @@ extension String {
     
     
 }
+
+extension String {
+    var date: String {
+        let start = self.index(self.startIndex, offsetBy: 0)
+        let end = self.index(self.startIndex, offsetBy: 10)
+        let sub = String(self[start..<end])
+        
+        return sub
+    }
+}

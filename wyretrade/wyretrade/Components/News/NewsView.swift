@@ -8,10 +8,15 @@
 import Foundation
 import UIKit
 
-protocol NewsViewParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class NewsView: UITableViewCell {
+    
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var logo: UIImageView!
+    @IBOutlet weak var summary: UILabel!
+    @IBOutlet weak var date: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
 }

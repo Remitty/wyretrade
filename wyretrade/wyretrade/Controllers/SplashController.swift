@@ -57,8 +57,9 @@ class SplashController: UIViewController {
 
         let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
          let leftVC = storyboard?.instantiateViewController(withIdentifier: "LeftController") as! LeftController
-         let navi : UINavigationController = UINavigationController(rootViewController: mainVC)
-         let slideMenuController = SlideMenuController(mainViewController: navi, leftMenuViewController: leftVC)
+//         let navi : UINavigationController = UINavigationController(rootViewController: mainVC)
+         let slideMenuController = SlideMenuController(mainViewController: mainVC, leftMenuViewController: leftVC)
+        
 //        self.window?.rootViewController = slideMenuController
         //        self.window?.makeKeyAndVisible()
         navigationController?.pushViewController(slideMenuController, animated: true)

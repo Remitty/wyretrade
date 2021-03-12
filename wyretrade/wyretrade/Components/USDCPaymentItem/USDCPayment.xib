@@ -82,6 +82,11 @@
                     <constraint firstAttribute="trailing" secondItem="lgv-8N-kuj" secondAttribute="trailing" id="SqL-EX-bu3"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="amount" destination="US6-tv-hv3" id="RxT-oa-ADe"/>
+                <outlet property="date" destination="oVI-rB-mMl" id="lj2-u6-dPj"/>
+                <outlet property="to" destination="mlb-xo-06h" id="igl-la-G2V"/>
+            </connections>
             <point key="canvasLocation" x="139.85507246376812" y="73.660714285714278"/>
         </tableViewCell>
     </objects>

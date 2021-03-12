@@ -19,7 +19,7 @@ class NetworkHandler {
                 let data = UserDefaults.standard.object(forKey: "userAuthData")
                 let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
                 let userAuth = UserAuthModel(fromDictionary: objUser)
-                var userAuthToken = userAuth.access_token
+                var userAuthToken = userAuth.access_token!
                 headers = [
                 "Accept": "application/json",
                 "Authorization": "Bearer \(userAuthToken)"
@@ -51,13 +51,22 @@ class NetworkHandler {
                         
                     }
                 
-                    if statusCode == 422 {
+                    if statusCode != 200 {
                         
                         var networkError = NetworkError()
                         
                         let response = response.value!
-                        let dictionary = response as! [String: AnyObject]
                         
+                        if response is String {
+                            networkError.status = statusCode
+                            networkError.message = response as! String
+                            
+                            failure(networkError)
+                            
+                            return
+                        }
+                        
+                        let dictionary = response as! [String: AnyObject]
                         guard let message = dictionary["error"] as! String? else {
                             networkError.status = statusCode
                             networkError.message = "Validation Error"
@@ -114,7 +123,7 @@ class NetworkHandler {
             let data = UserDefaults.standard.object(forKey: "userAuthData")
             let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
             let userAuth = UserAuthModel(fromDictionary: objUser)
-            var userAuthToken = userAuth.access_token
+            var userAuthToken = userAuth.access_token!
             headers = [
                 "Accept": "application/json",
                 "Authorization": "Bearer \(userAuthToken)",
@@ -126,30 +135,72 @@ class NetworkHandler {
                     ]
             }
         
-        manager.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) -> Void in
+        manager.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) -> Void in
       
             debugPrint(response)
             print(response)
-            switch response.result{
-            //Case 1
-            case .success:
-                let response = response.value
-                success(response)
-                break
-            case .failure (let error):
+            guard let statusCode = response.response?.statusCode else {
                 var networkError = NetworkError()
-                if error._code == NSURLErrorTimedOut {
-                    networkError.status = Constants.NetworkError.timout
-                    networkError.message = Constants.NetworkError.timoutError
+                
+                networkError.status = Constants.NetworkError.timout
+                networkError.message = Constants.NetworkError.timoutError
+                
+                failure(networkError)
+                return
+                
+            }
+        
+            if statusCode != 200 {
+                var networkError = NetworkError()
+                
+                let response = response.value!
+                if response is String {
+                    networkError.status = statusCode
+                    networkError.message = response as! String
                     
                     failure(networkError)
-                } else {
-                    networkError.status = Constants.NetworkError.generic
-                    networkError.message = Constants.NetworkError.genericError
                     
-                    failure(networkError)
+                    return
                 }
-                break
+                
+                let dictionary = response as! [String: AnyObject]
+                guard let message = dictionary["error"] as! String? else {
+                    networkError.status = statusCode
+                    networkError.message = "Validation Error"
+                    
+                    failure(networkError)
+                    
+                    return
+                }
+                networkError.status = statusCode
+                networkError.message = message
+                
+                failure(networkError)
+                
+                
+            }
+            else {
+                switch response.result{
+                //Case 1
+                case .success:
+                    let response = response.value
+                    success(response)
+                    break
+                case .failure (let error):
+                    var networkError = NetworkError()
+                    if error._code == NSURLErrorTimedOut {
+                        networkError.status = Constants.NetworkError.timout
+                        networkError.message = Constants.NetworkError.timoutError
+                        
+                        failure(networkError)
+                    } else {
+                        networkError.status = Constants.NetworkError.generic
+                        networkError.message = Constants.NetworkError.genericError
+                        
+                        failure(networkError)
+                    }
+                    break
+                }
             }
         }
     }

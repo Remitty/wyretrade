@@ -16,7 +16,7 @@ struct USDCPaymentModel {
     init(fromDictionary dictionary: [String: Any]) {
         to = dictionary["to"] as? String
         amount = dictionary["amount"] as? String
-        date = dictionary["date"] as? String
+        date = (dictionary["date"] as? String)?.date
         id = dictionary["id"] as? String
     }
     

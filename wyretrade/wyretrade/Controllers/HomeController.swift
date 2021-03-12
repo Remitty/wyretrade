@@ -8,21 +8,8 @@
 import UIKit
 import MaterialComponents
 
-class HomeController: UIViewController
-//                      , UITableViewDelegate, UITableViewDataSource, NewsViewParameterDelegate
-{
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let section = indexPath.section
-//        return UITableViewCell()
-//    }
-//
-//    func paramData(param: NSDictionary) {
-//        return nil
-//    }
+class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var usdcBalance: UILabel!
@@ -32,14 +19,19 @@ class HomeController: UIViewController
     @IBOutlet weak var contactCard: MDCCard!
     
     @IBOutlet weak var newsTable: UITableView!
-//    {
-//        didSet {
-//            newsTable.delegate = self
-//            newsTable.dataSource = self
-//        }
-//    }
+    {
+        didSet {
+            newsTable.delegate = self
+            newsTable.dataSource = self
+            newsTable.showsVerticalScrollIndicator = false
+//            newsTable.separatorColor = UIColor.darkGray
+//            newsTable.separatorStyle = .singleLineEtched
+            newsTable.register(UINib(nibName: "NewsView", bundle: nil), forCellReuseIdentifier: "NewsView")
+        }
+    }
 
-    var newsList : [NewsModel]!
+    var newsList = [NewsModel]()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,41 +44,64 @@ class HomeController: UIViewController
         self.loadData()
         
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 350
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: NewsView = tableView.dequeueReusableCell(withIdentifier: "NewsView", for: indexPath) as! NewsView
+        let news = newsList[indexPath.row]
+        cell.title.text = news.title
+        cell.summary.text = news.description
+        cell.date.text = news.date
+        cell.logo.load(url: URL(string:news.image)!)
+        
+        return cell
+    }
 
     func loadData() {
         
                     
 //                    self.showLoader()
-        RequestHandler.getHome(nil, success: { (successResponse) in
+        let param : [String : Any] = [:]
+        RequestHandler.getHome(parameter: param as NSDictionary, success: { (successResponse) in
 //                        self.stopAnimating()
-                let dictionary = successResponse as! [String: Any]
-                let success = dictionary["success"] as! Bool
-                var news : NewsModel!
-                if success {
-                    if let newsData = dictionary["news"] as? [String:Any] {
-                        for item in newsData {
-                            news = NewsModel(fromDictionary: item)
-                            newsList.append(news)
-                        }
-                    }
-
-                    self.usdcBalance.text = dictionary["usdc_balance"] as? String
-                    
-                } else {
-                    let alert = Constants.showBasicAlert(message: dictionary["message"] as! String)
-                    self.presentVC(alert)
+            let dictionary = successResponse as! [String: Any]
+            
+            var news : NewsModel!
+            
+            if let newsData = dictionary["news"] as? [[String:Any]] {
+                self.newsList = [NewsModel]()
+                for item in newsData {
+                    news = NewsModel(fromDictionary: item)
+                    self.newsList.append(news)
                 }
+                self.newsTable.reloadData()
+            }
+
+            self.usdcBalance.text = CoinFormat.init(value: dictionary["usdc_balance"] as! Double).description
+                    
+                
             }) { (error) in
                 let alert = Constants.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
-        }
+        
     }
-
-
-    @IBAction func payCardClickAction(_ sender: Any) {
+    
+    @IBAction func actionPayCardTouched(_ sender: Any) {
+        let payVC = self.storyboard?.instantiateViewController(withIdentifier: "USDCPayController") as! USDCPayController
+        self.navigationController?.pushViewController(payVC, animated: true)
+        
     }
-    @IBAction func contactCardClickAction(_ sender: Any) {
+    @IBAction func actionContactCardTouched(_ sender: Any) {
+        let contactVC = self.storyboard?.instantiateViewController(withIdentifier: "USDCAddContactController") as! USDCAddContactController
+        self.navigationController?.pushViewController(contactVC, animated: true)
     }
 }
 

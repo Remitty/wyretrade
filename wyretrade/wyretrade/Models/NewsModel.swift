@@ -16,16 +16,20 @@ struct NewsModel {
     init(fromDictionary dictionary: [String: Any]) {
         title = dictionary["title"] as? String
         image = dictionary["image"] as? String
-        description = dictionary["description"] as? String
-        date = dictionary["date"] as? String
+        description = dictionary["text"] as? String
+        var publishedDate = dictionary["publishedDate"] as! String
+//        let start = publishedDate.index(publishedDate.startIndex, offsetBy: 0)
+//        let end = publishedDate.index(publishedDate.startIndex, offsetBy: 10)
+//        date = String(publishedDate[start..<end])
+        date = publishedDate.date
     }
     
     func toDictionary() -> [String: Any] {
         var dictionary = [String: Any]()
         dictionary["title"] = title
         dictionary["image"] = image
-        dictionary["description"] = description
-        dictionary["date"] = date
+        dictionary["text"] = description
+        dictionary["publishedDate"] = date
         return dictionary
     }
 }

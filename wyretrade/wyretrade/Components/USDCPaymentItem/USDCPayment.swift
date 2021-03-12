@@ -8,10 +8,9 @@
 import Foundation
 import UIKit
 
-protocol USDCPaymentParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class USDCPayment: UITableViewCell {
     
+    @IBOutlet weak var to: UILabel!
+    @IBOutlet weak var amount: UILabel!
+    @IBOutlet weak var date: UILabel!
 }

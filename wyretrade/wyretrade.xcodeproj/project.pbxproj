@@ -10,6 +10,8 @@
 		30766CA7A93BF484DD06FAA5 /* Pods_wyretrade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */; };
 		7B05703A25EEEC1A001E4D24 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B05703925EEEC1A001E4D24 /* NewsView.swift */; };
 		7B05704225EEEC85001E4D24 /* NewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B05704125EEEC85001E4D24 /* NewsView.xib */; };
+		7B11933A25FAFE6F00E8FDED /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11933925FAFE6F00E8FDED /* NumberFormatter.swift */; };
+		7B11933F25FB0C0900E8FDED /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11933E25FB0C0900E8FDED /* URLImage.swift */; };
 		7B28B88D25F02B3000C5F4C3 /* SwapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28B88C25F02B3000C5F4C3 /* SwapModel.swift */; };
 		7B4D8E7A25EC8AAC00557F92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8E7925EC8AAC00557F92 /* AppDelegate.swift */; };
 		7B4D8E7C25EC8AAC00557F92 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D8E7B25EC8AAC00557F92 /* SceneDelegate.swift */; };
@@ -145,6 +147,8 @@
 /* Begin PBXFileReference section */
 		7B05703925EEEC1A001E4D24 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		7B05704125EEEC85001E4D24 /* NewsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsView.xib; sourceTree = "<group>"; };
+		7B11933925FAFE6F00E8FDED /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		7B11933E25FB0C0900E8FDED /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
 		7B28B88C25F02B3000C5F4C3 /* SwapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapModel.swift; sourceTree = "<group>"; };
 		7B4D8E7625EC8AAC00557F92 /* wyretrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wyretrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B4D8E7925EC8AAC00557F92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -298,23 +302,23 @@
 		7B05703225EEEB9D001E4D24 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7B76AEA225F62E1E00C9FE5A /* LeftMenu */,
-				7B68496025F3D08A0075BB79 /* USDCPaymentItem */,
-				7B68494325F3C5FC0075BB79 /* PaymentUser */,
+				7B6CA00925EF263E00D11EB5 /* CoinItem */,
 				7BDD29F025F28F73007A6921 /* CoinWithdrawItem */,
-				7BDD29D625F2771A007A6921 /* StocksOrderItem */,
 				7BDD29BC25F25C42007A6921 /* CompanyProfile */,
-				7BDD29A425F20AF9007A6921 /* StockDepositHistoryItem */,
-				7BDD297925F1938F007A6921 /* StocksItem */,
-				7BDD295A25F17D32007A6921 /* MtnItem */,
-				7BDD294225F17907007A6921 /* PredictionItem */,
+				7B76AEA225F62E1E00C9FE5A /* LeftMenu */,
 				7B6D922725F0BA7A00B1E466 /* LinkWalletItem */,
+				7BDD295A25F17D32007A6921 /* MtnItem */,
+				7B05703325EEEBBA001E4D24 /* News */,
+				7B68494325F3C5FC0075BB79 /* PaymentUser */,
+				7BDD294225F17907007A6921 /* PredictionItem */,
 				7B6D921725F0B4A200B1E466 /* StakeCoin */,
 				7B6D91F225F0AEE500B1E466 /* StakeHistoryItem */,
-				7B6D91E425F0AC9400B1E466 /* SwapHistoryItem */,
+				7BDD29A425F20AF9007A6921 /* StockDepositHistoryItem */,
 				7B6CA01925EFB84300D11EB5 /* StockPosition */,
-				7B6CA00925EF263E00D11EB5 /* CoinItem */,
-				7B05703325EEEBBA001E4D24 /* News */,
+				7BDD297925F1938F007A6921 /* StocksItem */,
+				7BDD29D625F2771A007A6921 /* StocksOrderItem */,
+				7B6D91E425F0AC9400B1E466 /* SwapHistoryItem */,
+				7B68496025F3D08A0075BB79 /* USDCPaymentItem */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -600,6 +604,8 @@
 				7BA7729325F9BC1100EAC761 /* StringValidate.swift */,
 				7BA7729825F9BC9A00EAC761 /* Timer.swift */,
 				7BA7729D25F9BCE100EAC761 /* View.swift */,
+				7B11933925FAFE6F00E8FDED /* NumberFormatter.swift */,
+				7B11933E25FB0C0900E8FDED /* URLImage.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -878,6 +884,7 @@
 				7BA7728525F9BB0E00EAC761 /* AlertView.swift in Sources */,
 				7B68493525F3AF100075BB79 /* USDCPayController.swift in Sources */,
 				7BDD293425F1736A007A6921 /* PredictResultsController.swift in Sources */,
+				7B11933F25FB0C0900E8FDED /* URLImage.swift in Sources */,
 				7B05703A25EEEC1A001E4D24 /* NewsView.swift in Sources */,
 				7B76AE9E25F62B6E00C9FE5A /* LinkWalletController.swift in Sources */,
 				7B6CA00525EF247F00D11EB5 /* CoinModel.swift in Sources */,
@@ -888,6 +895,7 @@
 				7B6D920425F0B0F000B1E466 /* StakeController.swift in Sources */,
 				7B7AB51225F702D600860D82 /* Constants.swift in Sources */,
 				7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */,
+				7B11933A25FAFE6F00E8FDED /* NumberFormatter.swift in Sources */,
 				7BDD297E25F193BC007A6921 /* StocksItem.swift in Sources */,
 				7BDD295C25F17D4E007A6921 /* MtnItem.swift in Sources */,
 				7BDD293925F17383007A6921 /* PredictOwnerController.swift in Sources */,
