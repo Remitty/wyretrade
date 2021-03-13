@@ -37,7 +37,8 @@ class CoinView: UITableViewCell {
     
     @IBAction func actionDeposit(_ sender: Any) {
         var param: NSDictionary = [
-            "coin": id
+            "coin": id,
+            "symbol": symbol
         ]
         
         self.delegate?.depositParamData(param: param)

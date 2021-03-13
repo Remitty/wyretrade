@@ -16,5 +16,9 @@ class Alert {
         return alert
     }
     
-    static func 
+    static func showConfirmAlert (message: String, handler: @escaping (UIAlertAction)->Void) -> UIAlertController {
+        let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: handler))
+        return alert
+    }
 }

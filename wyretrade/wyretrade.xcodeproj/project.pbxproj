@@ -88,6 +88,7 @@
 		7BA7729425F9BC1100EAC761 /* StringValidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7729325F9BC1100EAC761 /* StringValidate.swift */; };
 		7BA7729925F9BC9A00EAC761 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7729825F9BC9A00EAC761 /* Timer.swift */; };
 		7BA7729E25F9BCE100EAC761 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7729D25F9BCE100EAC761 /* View.swift */; };
+		7BD5E8A625FC638900396595 /* CoinTradeOptionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD5E8A525FC638900396595 /* CoinTradeOptionModal.swift */; };
 		7BDD292525F16E5D007A6921 /* MtnController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD292425F16E5D007A6921 /* MtnController.swift */; };
 		7BDD292A25F16F46007A6921 /* PredictionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD292925F16F46007A6921 /* PredictionController.swift */; };
 		7BDD292F25F17328007A6921 /* PredictListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD292E25F17328007A6921 /* PredictListController.swift */; };
@@ -232,6 +233,7 @@
 		7BA7729325F9BC1100EAC761 /* StringValidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringValidate.swift; sourceTree = "<group>"; };
 		7BA7729825F9BC9A00EAC761 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		7BA7729D25F9BCE100EAC761 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		7BD5E8A525FC638900396595 /* CoinTradeOptionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTradeOptionModal.swift; sourceTree = "<group>"; };
 		7BDD292425F16E5D007A6921 /* MtnController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MtnController.swift; sourceTree = "<group>"; };
 		7BDD292925F16F46007A6921 /* PredictionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionController.swift; sourceTree = "<group>"; };
 		7BDD292E25F17328007A6921 /* PredictListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictListController.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				7BDD29D625F2771A007A6921 /* StocksOrderItem */,
 				7B6D91E425F0AC9400B1E466 /* SwapHistoryItem */,
 				7B68496025F3D08A0075BB79 /* USDCPaymentItem */,
+				7BD5E8A525FC638900396595 /* CoinTradeOptionModal.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -948,6 +951,7 @@
 				7B68492B25F3AE910075BB79 /* ForgotPasswordController.swift in Sources */,
 				7B68497625F3E2870075BB79 /* CashItemListController.swift in Sources */,
 				7B76AE9425F629B100C9FE5A /* DepositHistoryController.swift in Sources */,
+				7BD5E8A625FC638900396595 /* CoinTradeOptionModal.swift in Sources */,
 				7B4D8F0B25ECDB2600557F92 /* StocksController.swift in Sources */,
 				7B6D922325F0B97000B1E466 /* LinkWalletModel.swift in Sources */,
 				7BDD296B25F180AC007A6921 /* PredictionPostController.swift in Sources */,

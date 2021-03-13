@@ -121,7 +121,18 @@ extension CoinsController: CoinViewParameterDelegate {
             let dictionary = successResponse as! [String: Any]
             
             var address = dictionary["address"] as! String
-            print(address)
+            let alertController = UIAlertController(title: "Only send \(param["symbol"]!)", message: nil, preferredStyle: .alert)
+            let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
+                let pasteboard = UIPasteboard.general
+                pasteboard.string = address
+            }
+            
+            alertController.addTextField { (textField) in
+                textField.text = address
+            }
+            alertController.addAction(copyAction)
+            
+            self.present(alertController, animated: true, completion: nil)
         
         }) {
             (error) in

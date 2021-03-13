@@ -151,13 +151,17 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case .support :
             self.slideMenuController()?.changeMainViewController(self.viewSupport, close: true)
         case .logout :
-            self.logoutUser()
+            let alert = Alert.showConfirmAlert(message: "Are you sure you want to logout?", handler: { (_) in self.logoutUser()})
+            self.presentVC(alert)
+            
         }
     }
     
     //MARK-: Logout user
     func logoutUser() {
         self.defaults.set(false, forKey: "isLogin")
+        let signinController = storyboard?.instantiateViewController(withIdentifier: "SigninController") as! SigninController
+        self.navigationController?.pushViewController(signinController, animated: true)
     }
     //MARK:- Table View Delegate Methods
     func numberOfSections(in tableView: UITableView) -> Int {

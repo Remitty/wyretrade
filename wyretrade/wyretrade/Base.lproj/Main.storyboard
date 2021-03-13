@@ -107,6 +107,70 @@
             </objects>
             <point key="canvasLocation" x="1304.6153846153845" y="121.56398104265402"/>
         </scene>
+        <!--Coin Trade Option Modal-->
+        <scene sceneID="8Xj-hb-XbO">
+            <objects>
+                <viewController storyboardIdentifier="CoinTradeOptionModal" id="uJt-VQ-gpc" customClass="CoinTradeOptionModal" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mb3-rK-oRF">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfP-s7-ya8">
+                                <rect key="frame" x="20" y="64" width="350" height="726"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxv-di-Rhy" customClass="DLRadioButton" customModule="wyretrade" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="69" height="30"/>
+                                        <state key="normal" title="Onramper">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iconSize">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18g-aR-56o" customClass="DLRadioButton" customModule="wyretrade" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="54" height="30"/>
+                                        <state key="normal" title="xanpool">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykU-VN-4ox">
+                                        <rect key="frame" x="0.0" y="120" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ykU-VN-4ox" firstAttribute="leading" secondItem="LfP-s7-ya8" secondAttribute="leading" id="37I-50-YxD"/>
+                                    <constraint firstItem="ykU-VN-4ox" firstAttribute="top" secondItem="18g-aR-56o" secondAttribute="bottom" constant="30" id="7DH-CR-ETx"/>
+                                    <constraint firstItem="18g-aR-56o" firstAttribute="leading" secondItem="LfP-s7-ya8" secondAttribute="leading" id="Gks-8a-YK0"/>
+                                    <constraint firstItem="zxv-di-Rhy" firstAttribute="leading" secondItem="LfP-s7-ya8" secondAttribute="leading" id="Jlv-3H-an4"/>
+                                    <constraint firstItem="zxv-di-Rhy" firstAttribute="top" secondItem="LfP-s7-ya8" secondAttribute="top" id="iaD-k0-g1f"/>
+                                    <constraint firstItem="18g-aR-56o" firstAttribute="top" secondItem="zxv-di-Rhy" secondAttribute="bottom" constant="30" id="ncA-V3-hq9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rlo-af-Kvt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rlo-af-Kvt" firstAttribute="trailing" secondItem="LfP-s7-ya8" secondAttribute="trailing" constant="20" id="Xay-GB-9Oz"/>
+                            <constraint firstItem="Rlo-af-Kvt" firstAttribute="bottom" secondItem="LfP-s7-ya8" secondAttribute="bottom" constant="20" id="iqj-aB-jcl"/>
+                            <constraint firstItem="LfP-s7-ya8" firstAttribute="top" secondItem="Rlo-af-Kvt" secondAttribute="top" constant="20" id="s9y-w7-qvG"/>
+                            <constraint firstItem="LfP-s7-ya8" firstAttribute="leading" secondItem="Rlo-af-Kvt" secondAttribute="leading" constant="20" id="uEO-Pk-jhE"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3OV-Tl-NqZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2021" y="155"/>
+        </scene>
         <!--Cash-->
         <scene sceneID="Nof-gl-tX8">
             <objects>
