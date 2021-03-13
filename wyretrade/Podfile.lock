@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.4.1)
-  - Cosmos (23.0.0)
   - DeviceKit (4.3.0)
   - DLRadioButton (1.4.12)
   - DynamicBlurView (4.1.0)
@@ -175,7 +174,6 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - Cosmos
   - DeviceKit
   - DLRadioButton (~> 1.4)
   - "MaterialComponents/AppBar+Theming"
@@ -192,7 +190,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - Cosmos
     - DeviceKit
     - DLRadioButton
     - DynamicBlurView
@@ -216,7 +213,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
-  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   DeviceKit: 7decde449c308ac7e816e2184ded1c7c596fb885
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
@@ -229,6 +225,6 @@ SPEC CHECKSUMS:
   "UITextField+Shake": 298ac5a0f239d731bdab999b19b628c956ca0ac3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: e78a058a8c42ae1c58d3444f79fb0273618803ff
+PODFILE CHECKSUM: e84dd4dce98547256d366ec7034c63bfcb31fc78
 
 COCOAPODS: 1.10.1

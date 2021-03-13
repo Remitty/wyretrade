@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="29" id="dGJ-jO-P3e" customClass="SwapItem" customModule="wyretrade" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwapItem" rowHeight="29" id="dGJ-jO-P3e" customClass="SwapItem" customModule="wyretrade" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="385" height="29"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dGJ-jO-P3e" id="ibn-Iv-Cqa">
@@ -100,6 +100,12 @@
                     <constraint firstAttribute="trailing" secondItem="4Ws-oH-rYe" secondAttribute="trailing" id="z4d-7Y-9cN"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lbDate" destination="xmh-Z8-KlH" id="fgu-6i-r8T"/>
+                <outlet property="lbGet" destination="iNc-rL-Dub" id="8Bh-B9-rrM"/>
+                <outlet property="lbSend" destination="gym-NI-fgm" id="fvL-Vd-M34"/>
+                <outlet property="lbStatus" destination="Hm4-hu-7JX" id="5uz-EM-Fu0"/>
+            </connections>
             <point key="canvasLocation" x="128.2608695652174" y="64.620535714285708"/>
         </tableViewCell>
     </objects>

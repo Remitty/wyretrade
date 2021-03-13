@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PopupDialog
 
 class CoinsController: UIViewController {
     
@@ -112,7 +113,21 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
 
 extension CoinsController: CoinViewParameterDelegate {
     func tradeParamData(param: NSDictionary) {
+        let cointradecontroller: CoinTradeOptionModal = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeOptionModal") as! CoinTradeOptionModal
+        let popup = PopupDialog(viewController: cointradecontroller,
+                                buttonAlignment: .horizontal,
+                                transitionStyle: .bounceDown,
+                                tapGestureDismissal: true,
+                                panGestureDismissal: true)
+        let buttonTwo = DefaultButton(title: "Select", height: 30) {
+                    print("here")
+                }
+        popup.addButton(buttonTwo)
         
+//        let overlayAppearance = PopupDialogOverlayView.appearance()
+//        overlayAppearance.opacity = 0.3
+        
+        self.presentVC(popup)
     }
     
     func depositParamData(param: NSDictionary) {

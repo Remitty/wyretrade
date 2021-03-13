@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class USDCPayController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+class USDCPayController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var balance: UILabel!
     @IBOutlet weak var txtAmount: UITextField! {
@@ -38,20 +38,6 @@ class USDCPayController: UIViewController, UITextFieldDelegate, UITableViewDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.loadTransaction()
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: USDCPayment = tableView.dequeueReusableCell(withIdentifier: "USDCPayment", for: indexPath) as! USDCPayment
-        let item = historyList[indexPath.row]
-        cell.to.text = item.to
-        cell.amount.text = item.amount
-        cell.date.text = item.date
-        
-        return cell
     }
     
     func loadTransaction() {
@@ -126,5 +112,21 @@ class USDCPayController: UIViewController, UITextFieldDelegate, UITableViewDeleg
             self.pay(param: param)
         }
         
+    }
+}
+
+extension USDCPayController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return historyList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: USDCPayment = tableView.dequeueReusableCell(withIdentifier: "USDCPayment", for: indexPath) as! USDCPayment
+        let item = historyList[indexPath.row]
+        cell.to.text = item.to
+        cell.amount.text = item.amount
+        cell.date.text = item.date
+        
+        return cell
     }
 }

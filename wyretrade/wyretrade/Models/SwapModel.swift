@@ -16,11 +16,11 @@ struct SwapModel {
     
     
     init(fromDictionary dictionary: [String: Any]) {
-        amount = dictionary["amount"] as? String
-        sendSymbol = dictionary["sendSymbol"] as? String
-        getSymbol = dictionary["getSymbol"] as? String
-        status = dictionary["status"] as? String
-        date = dictionary["date"] as? String
+        amount = CoinFormat(value: (dictionary["amount"] as! NSString).doubleValue, decimal: 4).description
+        sendSymbol = dictionary["from"] as? String
+        getSymbol = dictionary["to"] as? String
+        status = dictionary["status_text"] as? String
+        date = (dictionary["created_at"] as? String)?.date
         
     }
     

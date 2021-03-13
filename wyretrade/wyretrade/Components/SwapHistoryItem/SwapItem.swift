@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-protocol SwapItemParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class SwapItem: UITableViewCell {
     
+    @IBOutlet weak var lbSend: UILabel!
+    @IBOutlet weak var lbGet: UILabel!
+    @IBOutlet weak var lbStatus: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
 }
