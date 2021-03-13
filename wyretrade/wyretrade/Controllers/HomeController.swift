@@ -84,11 +84,11 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.newsTable.reloadData()
             }
 
-            self.usdcBalance.text = CoinFormat.init(value: dictionary["usdc_balance"] as! Double).description
+            self.usdcBalance.text = CoinFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
                     
                 
             }) { (error) in
-                let alert = Constants.showBasicAlert(message: error.message)
+                let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
         

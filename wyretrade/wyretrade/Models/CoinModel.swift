@@ -8,26 +8,34 @@
 import Foundation
 
 struct CoinModel {
+    var id: String!
     var name: String!
-    var image: String!
+    var symbol: String!
+    var icon: String!
     var price: String!
     var balance: String!
     var holding: String!
-    var changeToday: String!
+    var changeToday: Double! = 0
     
     init(fromDictionary dictionary: [String: Any]) {
-        name = dictionary["name"] as? String
-        image = dictionary["image"] as? String
-        price = dictionary["price"] as? String
-        balance = dictionary["balance"] as? String
-        holding = dictionary["holding"] as? String
-        changeToday = dictionary["changeToday"] as? String
+        id = "\(dictionary["id"] as! Int)"
+        name = dictionary["coin_name"] as? String
+        symbol = dictionary["coin_symbol"] as? String
+        icon = dictionary["icon"] as? String
+        if !icon.starts(with: "http") {
+            icon = Constants.URL.base + icon
+        }
+        price = PriceFormat.init(amount: dictionary["coin_rate"] as! Double , currency: Currency.usd).description
+        balance = CoinFormat.init(value: dictionary["balance"] as! Double, decimal: 4).description
+        holding = PriceFormat.init(amount: (dictionary["est_usdc"] as! NSString).doubleValue , currency: Currency.usd).description
+        changeToday = (dictionary["change_rate"] as! NSString).doubleValue
     }
     
     func toDictionary() -> [String: Any] {
         var dictionary = [String: Any]()
         dictionary["name"] = name
-        dictionary["image"] = image
+        dictionary["symbol"] = symbol
+        dictionary["icon"] = icon
         dictionary["price"] = price
         dictionary["balance"] = balance
         dictionary["holding"] = holding

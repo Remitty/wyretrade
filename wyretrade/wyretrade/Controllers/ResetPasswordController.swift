@@ -63,11 +63,11 @@ class ResetPasswordController: UIViewController, UITextFieldDelegate {
                 self.navigationController?.pushViewController(confirmationVC, animated: true)
             }
             else {
-                let alert = Constants.showBasicAlert(message: dictionary["message"] as! String)
+                let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
                 self.presentVC(alert)
             }
         }) { (error) in
-            let alert = Constants.showBasicAlert(message: error.message)
+            let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
     }

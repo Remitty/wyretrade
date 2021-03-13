@@ -9,9 +9,10 @@ import Foundation
 
 struct CoinFormat: Codable {
     var value: Double
+    var decimal: Int
 }
 
-struct Price: Codable {
+struct PriceFormat: Codable {
     var amount: Double
     var currency: Currency
 }
@@ -25,25 +26,17 @@ enum Currency: String, Codable {
 
 extension CoinFormat: CustomStringConvertible {
     var description: String {
-        return formattedValue
-    }
-    
-    private static var valueFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 4
-        return formatter
-    }()
-
-    var formattedValue: String {
+        formatter.maximumFractionDigits = decimal
+        
         let number = NSNumber(value: value)
-        return Self.valueFormatter.string(from: number)!
+        
+        return formatter.string(from: number)!
     }
-
-    
 }
 
-extension Price: CustomStringConvertible {
+extension PriceFormat: CustomStringConvertible {
     var description: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency

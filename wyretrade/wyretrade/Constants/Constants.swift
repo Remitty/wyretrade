@@ -170,12 +170,6 @@ class Constants {
         case loadingMessage = ""
     }
     
-    static func showBasicAlert (message: String) -> UIAlertController{
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        return alert
-    }
-    
     //Convert data to json string
     static func json(from object:Any) -> String? {
         guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {

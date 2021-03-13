@@ -75,7 +75,7 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableVi
                     
                 
             }) { (error) in
-                let alert = Constants.showBasicAlert(message: error.message)
+                let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
     }
@@ -97,7 +97,7 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableVi
         
         }) {
             (error) in
-            let alert = Constants.showBasicAlert(message: error.message)
+            let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
     }
@@ -119,7 +119,7 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableVi
         
         }) {
             (error) in
-            let alert = Constants.showBasicAlert(message: error.message)
+            let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
     }
