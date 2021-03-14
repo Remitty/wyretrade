@@ -34,6 +34,7 @@ class StocksDetailController: UIViewController {
                                                                               "name" : "Verastem, Inc.",
                                                                               "profit" : "-0.84",
                                                                               "symbol" : "VSTM"])
+    let companyView = Company().loadView() as! Company
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,33 @@ class StocksDetailController: UIViewController {
             self.imgProfit.image = UIImage(named: "ic_down")
         }
         
+        self.loadData()
+        
+        self.configCompany()
+        
+    }
+    
+    private func configCompany() {
+        self.companyView.translatesAutoresizingMaskIntoConstraints = false
+        self.viewCompany.addSubview(self.companyView)
+    }
+    
+    func loadData() {
+        let param : [String : Any] = ["ticker": self.stocks.ticker]
+        RequestHandler.getStockDetail(parameter: param as NSDictionary, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            let company = CompanyModel(fromDictionary: dictionary["company"] as! [String: Any])
+
+            self.companyView.lbDescription.text = company.description
+            self.companyView.lbIndustry.text = company.industry
+            self.companyView.lbDate.text = company.site
+            
+        }) { (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
     }
 
     @IBAction func actionBuy(_ sender: Any) {
