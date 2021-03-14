@@ -14,6 +14,7 @@ struct StockPositionModel {
     var price: String!
     var avgPrice: String!
     var profit: String!
+    var dbProfit: Double!
     var holding: String!
     var changeToday: Double!
     var changeTodayPercent: Double!
@@ -25,6 +26,7 @@ struct StockPositionModel {
         price = PriceFormat(amount: (dictionary["current_price"] as! NSString).doubleValue, currency: Currency.usd).description
         avgPrice = PriceFormat(amount: (dictionary["avg_price"] as! NSString).doubleValue, currency: Currency.usd).description
         profit = PriceFormat(amount: (dictionary["profit"] as! NSString).doubleValue, currency: Currency.usd).description
+        dbProfit = (dictionary["profit"] as! NSString).doubleValue
         holding = PriceFormat(amount: (dictionary["holding"] as! NSString).doubleValue, currency: Currency.usd).description
         changeToday = (dictionary["change"] as! NSString).doubleValue
         changeTodayPercent = (dictionary["change_percent"] as! NSString).doubleValue

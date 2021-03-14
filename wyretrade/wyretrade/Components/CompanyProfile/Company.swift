@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-protocol CompanyParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class Company: UIView {
     
 }

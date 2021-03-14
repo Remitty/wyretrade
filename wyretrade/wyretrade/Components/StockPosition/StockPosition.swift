@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-protocol StockPositionParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class StockPosition: UITableViewCell {
     
     @IBOutlet weak var lbStocksName: UILabel!
@@ -22,8 +18,5 @@ class StockPosition: UITableViewCell {
     @IBOutlet weak var lbHolding: UILabel!
     @IBOutlet weak var lbProfit: UILabel!
     @IBOutlet weak var imgProfit: UIImageView!
-    
-    
-    
-    
+  
 }
