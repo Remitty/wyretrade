@@ -10,10 +10,104 @@ import UIKit
 
 class PortfolioController: UIViewController {
 
+    @IBOutlet weak var lbBalance: UILabel!
+    @IBOutlet weak var lbPortfolio: UILabel!
+    @IBOutlet weak var lbProfit: UILabel!
+    @IBOutlet weak var lbMargin: UILabel!
+    @IBOutlet weak var imgProfit: UIImageView!
+    
+    
+    @IBOutlet weak var stocksTable: UITableView!{
+        didSet {
+            stocksTable.delegate = self
+            stocksTable.dataSource = self
+            stocksTable.showsVerticalScrollIndicator = false
+            stocksTable.separatorColor = UIColor.darkGray
+            stocksTable.separatorStyle = .singleLineEtched
+            stocksTable.register(UINib(nibName: "StockPosition", bundle: nil), forCellReuseIdentifier: "StockPosition")
+        }
+    }
+    
+    var stocksList = [StockPositionModel]()
+    var stockAutoSell = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.loadData()
     }
 
+    func loadData() {
+        let param : [String : Any] = [:]
+        RequestHandler.getInvestedStocks(parameter: param as NSDictionary, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            var stocks : StockPositionModel!
+            
+            if let data = dictionary["stocks"] as? [[String:Any]] {
+                self.stocksList = [StockPositionModel]()
+                for item in data {
+                    stocks = StockPositionModel(fromDictionary: item)
+                    self.stocksList.append(stocks)
+                }
+                self.stocksTable.reloadData()
+            }
+            
+            self.lbBalance.text = PriceFormat.init(amount: (dictionary["stock_balance"] as! NSString).doubleValue, currency: Currency.usd).description
+            self.lbPortfolio.text = PriceFormat.init(amount: (dictionary["total_balance"] as! NSString).doubleValue, currency: Currency.usd).description
+            self.lbMargin.text = PriceFormat.init(amount: (dictionary["margin_balance"] as! NSString).doubleValue, currency: Currency.usd).description
+            
+            var profit: Double = (dictionary["stock_profit"] as! NSString).doubleValue
+            self.lbProfit.text = PriceFormat.init(amount: profit, currency: Currency.usd).description
+            
+            if profit >= 0 {
+                self.lbProfit.textColor = UIColor.green
+                self.imgProfit.image = UIImage(named: "ic_up")
+            } else {
+                self.lbProfit.textColor = UIColor.red
+                self.imgProfit.image = UIImage(named: "ic_down")
+            }
+            
+            self.stockAutoSell = dictionary["stock_auto_sell"] as! Bool
+                    
+                
+            }) { (error) in
+                let alert = Alert.showBasicAlert(message: error.message)
+                        self.presentVC(alert)
+            }
+    }
+}
 
+
+extension PortfolioController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return stocksList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: StockPosition = tableView.dequeueReusableCell(withIdentifier: "StockPosition", for: indexPath) as! StockPosition
+        let item = stocksList[indexPath.row]
+        cell.lbStocksSymbol.text = item.ticker
+        cell.lbStocksName.text = item.name
+        cell.lbStocksChangeToday.text = "$\(item.changeToday!)"
+        cell.lbStocksShares.text = "\(item.shares!) Shares"
+        cell.lbStocksPrice.text = item.price
+        cell.lbHolding.text = item.holding
+        cell.lbProfit.text = item.profit
+        
+        if item.changeToday >= 0 {
+            cell.lbProfit.textColor = UIColor.green
+            cell.imgProfit.image = UIImage(named: "ic_up")
+        } else {
+            cell.lbProfit.textColor = UIColor.red
+            cell.imgProfit.image = UIImage(named: "ic_down")
+        }
+        
+        return cell
+    }
 }

@@ -471,23 +471,23 @@
 		7B6C9FFB25EF226A00D11EB5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */,
-				7B6C9FFC25EF22C800D11EB5 /* NewsModel.swift */,
 				7B6CA00425EF247F00D11EB5 /* CoinModel.swift */,
-				7B6CA01425EFB70200D11EB5 /* StockPositionModel.swift */,
-				7B28B88C25F02B3000C5F4C3 /* SwapModel.swift */,
-				7B6D920825F0B1B300B1E466 /* StakeModel.swift */,
-				7B6D921225F0B3F700B1E466 /* StakeCoinModel.swift */,
-				7B6D922225F0B97000B1E466 /* LinkWalletModel.swift */,
-				7BDD293D25F177AC007A6921 /* PredictionModel.swift */,
-				7BDD295525F17C15007A6921 /* MtnModel.swift */,
-				7BDD297425F19327007A6921 /* StocksModel.swift */,
-				7BDD29B225F20C2C007A6921 /* StocksDepositModel.swift */,
-				7BDD29D125F275DB007A6921 /* StocksOrderModel.swift */,
 				7BDD29EB25F28D2B007A6921 /* CoinWithdrawModel.swift */,
-				7B68494E25F3C6460075BB79 /* UserModel.swift */,
+				7B6D922225F0B97000B1E466 /* LinkWalletModel.swift */,
+				7BDD295525F17C15007A6921 /* MtnModel.swift */,
+				7B6C9FFC25EF22C800D11EB5 /* NewsModel.swift */,
 				7B68495325F3C92A0075BB79 /* PaymentUserModel.swift */,
+				7BDD293D25F177AC007A6921 /* PredictionModel.swift */,
+				7B6D921225F0B3F700B1E466 /* StakeCoinModel.swift */,
+				7B6D920825F0B1B300B1E466 /* StakeModel.swift */,
+				7B6CA01425EFB70200D11EB5 /* StockPositionModel.swift */,
+				7BDD29B225F20C2C007A6921 /* StocksDepositModel.swift */,
+				7BDD297425F19327007A6921 /* StocksModel.swift */,
+				7BDD29D125F275DB007A6921 /* StocksOrderModel.swift */,
+				7B28B88C25F02B3000C5F4C3 /* SwapModel.swift */,
 				7B68495B25F3D02F0075BB79 /* USDCPaymentModel.swift */,
+				7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */,
+				7B68494E25F3C6460075BB79 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -14,4 +14,9 @@ protocol StocksItemParameterDelegate {
 
 class StocksItem: UITableViewCell {
     
+    @IBOutlet weak var lbStocksSymbol: UILabel!
+    @IBOutlet weak var lbStocksPrice: UILabel!
+    @IBOutlet weak var lbStocksShares: UILabel!
+    @IBOutlet weak var lbStocksChangePercent: UILabel!
+    @IBOutlet weak var lbStocksName: UILabel!
 }

@@ -472,11 +472,7 @@ class RequestHandler {
         let url = Constants.URL.GET_ALL_STOCKS_DAILY
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+           
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))

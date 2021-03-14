@@ -31,6 +31,9 @@ class SwapController: UIViewController, UITextFieldDelegate {
     }
     
     var historyList = [SwapModel]()
+    var sendCoinList = [CoinModel]()
+    var buyCoinList = [CoinModel]()
+    
     var buyCoinId = ""
     var sellCoinId = ""
     var sellAmount = 0
@@ -66,68 +69,112 @@ class SwapController: UIViewController, UITextFieldDelegate {
     }
     
     func submitExchange() {
-        guard let email = txtEmail.text else {
-                    return
-                }
-        guard let password = txtPassword.text else {
+        if self.sellCoinId == "" {
+            self.showToast(message: "Please select selling coin")
             return
         }
-        if email == "" {
-            self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+        if self.buyCoinId == "" {
+            self.showToast(message: "Please select buying coin")
+            return
         }
-        else if !email.isValidEmail {
-            self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+        if self.sellAmount == 0 {
+            self.txtSellAmount.shake(6, withDelta: 10, speed: 0.06)
+            return
         }
-        else if password == "" {
-             self.txtPassword.shake(6, withDelta: 10, speed: 0.06)
-        }
-        else {
+        
+        
             let param : [String : Any] = [
-                "email" : email,
-                "password": password,
-                "device_id" : "ios",
-                "device_token" : "ios"
+                "buy_coin_id" : self.buyCoinId,
+                "sell_coin_id": self.sellCoinId,
+                "sell_amount" : self.sellAmount,
             ]
             
 //                    self.showLoader()
-            RequestHandler.loginUser(parameter: param as NSDictionary, success: { (successResponse) in
+            RequestHandler.coinExchange(parameter: param as NSDictionary, success: { (successResponse) in
 //                        self.stopAnimating()
                 let dictionary = successResponse as! [String: Any]
-                let success = dictionary["success"] as! Bool
-                var user : UserAuthModel!
-                if success {
-                    if let userData = dictionary["user"] as? [String:Any] {
-                        
-                        user = UserAuthModel(fromDictionary: userData)
+                
+                var history : SwapModel!
+                
+                self.showToast(message: dictionary["message"] as! String)
+                
+                if let historyData = dictionary["history"] as? [[String:Any]] {
+                    self.historyList = [SwapModel]()
+                    for item in historyData {
+                        history = SwapModel(fromDictionary: item)
+                        self.historyList.append(history)
                     }
-                    if user.isCompleteProfile == false {
-                        let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
-                        self.navigationController?.pushViewController(completeVC, animated: true)
-                    } else {
-                        self.defaults.set(true, forKey: "isLogin")
-                        self.defaults.synchronize()
-                        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
-                        self.navigationController?.pushViewController(mainVC, animated: true)
-                        // self.appDelegate.moveToHome()
-                    }
-                } else {
-                    let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
-                    self.presentVC(alert)
+                    self.historyTable.reloadData()
                 }
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
+        
+    }
+    
+    func getBuyCoins() {
+        let param : [String : Any] = [:]
+        
+//                    self.showLoader()
+        RequestHandler.coinExchangeBuyAssets(parameter: param as NSDictionary, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            var coin : CoinModel!
+            
+            if let coins = dictionary["assets"] as? [[String:Any]] {
+                self.buyCoinList = [CoinModel]()
+                for item in coins {
+                    coin = CoinModel(fromDictionary: item)
+                    self.buyCoinList.append(coin)
+                }
+                
+            }
+        }) { (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
+    }
+    
+    func getSellCoins() {
+        let param : [String : Any] = [:]
+        
+//                    self.showLoader()
+        RequestHandler.coinExchangeSendAssets(parameter: param as NSDictionary, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            var coin : CoinModel!
+            
+            if let coins = dictionary["assets"] as? [[String:Any]] {
+                self.sendCoinList = [CoinModel]()
+                for item in coins {
+                    coin = CoinModel(fromDictionary: item)
+                    self.sendCoinList.append(coin)
+                }
+                
+            }
+        }) { (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
         }
     }
 
     @IBAction func actionSelectSellCoin(_ sender: Any) {
+        self.getSellCoins()
     }
     
     @IBAction func actionSubmit(_ sender: Any) {
         self.submitExchange()
     }
     @IBAction func actionSelectBuyCoin(_ sender: Any) {
+        if self.sellCoinId == "" {
+            self.showToast(message: "Please select selling coin")
+            return
+        }
+        
+        self.getBuyCoins()
     }
 }
 
