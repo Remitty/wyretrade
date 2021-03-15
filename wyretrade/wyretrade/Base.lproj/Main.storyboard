@@ -1391,9 +1391,6 @@
                                         <state key="normal" title="Deposit">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="EHZ-iU-5h1" kind="show" id="A53-SS-6F9"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpJ-8E-kVB">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -4910,7 +4907,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7g-tT-wQc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2328" y="2128"/>
+            <point key="canvasLocation" x="1771" y="2147"/>
         </scene>
         <!--Stocks Detail Controller-->
         <scene sceneID="LJD-Qj-U5e">
@@ -6251,7 +6248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ds5-df-haZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7201.538461538461" y="2127.7251184834122"/>
+            <point key="canvasLocation" x="3065" y="1437"/>
         </scene>
         <!--Coin-->
         <scene sceneID="V3H-0A-DGh">
@@ -6262,7 +6259,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRo-ub-0xk">
-                                <rect key="frame" x="20" y="64" width="350" height="648"/>
+                                <rect key="frame" x="20" y="64" width="350" height="746"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zz6-xN-U1o">
                                         <rect key="frame" x="0.0" y="0.0" width="130" height="200"/>
@@ -6545,27 +6542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZF9-8a-Yxf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3317" y="1437"/>
-        </scene>
-        <!--Stocks Deposit Controller-->
-        <scene sceneID="uVP-yn-hPN">
-            <objects>
-                <tabBarController id="EHZ-iU-5h1" customClass="StocksDepositController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="UuG-zj-X47"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d6M-Mb-jec">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <outlet property="topbar" destination="d6M-Mb-jec" id="3oZ-Oi-N2L"/>
-                        <segue destination="SX4-rO-KAo" kind="relationship" relationship="viewControllers" id="BzV-6u-A4X"/>
-                        <segue destination="3ho-y5-bxb" kind="relationship" relationship="viewControllers" id="SMZ-W8-Xm0"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7xl-TM-vAP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2238" y="1418"/>
+            <point key="canvasLocation" x="2357" y="1437"/>
         </scene>
         <!--Stocks Withdraw Controller-->
         <scene sceneID="6gr-ry-DdO">
@@ -6807,7 +6784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tr0-lx-ADA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4121.538461538461" y="1451.6587677725117"/>
+            <point key="canvasLocation" x="772" y="2147"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1sh-J6-muz">

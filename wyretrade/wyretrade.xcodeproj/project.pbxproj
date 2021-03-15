@@ -413,53 +413,18 @@
 		7B4D8EFA25ECD98700557F92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7B68493E25F3AF960075BB79 /* CashAccountInfoController.swift */,
-				7B68496B25F3E1E20075BB79 /* CashAddBankController.swift */,
-				7B68497025F3E2450075BB79 /* CashAddContactController.swift */,
-				7B4D8F0F25ECDB3700557F92 /* CashController.swift */,
-				7B68497525F3E2870075BB79 /* CashItemListController.swift */,
-				7B68497A25F3E2E40075BB79 /* CashSendController.swift */,
-				7B68492525F3AE820075BB79 /* ChangePasswordController.swift */,
-				7B4D8F0025ECDAEB00557F92 /* CoinsController.swift */,
-				7BDD29E625F28BB9007A6921 /* CoinWithdrawController.swift */,
-				7B76AE9325F629B100C9FE5A /* DepositHistoryController.swift */,
-				7B68492A25F3AE910075BB79 /* ForgotPasswordController.swift */,
+				D34C4C7725FF61FD000B32D2 /* mtn */,
+				D34C4C7625FF61B7000B32D2 /* predict */,
+				D34C4C7525FF6160000B32D2 /* crypto */,
+				D34C4C7425FF6111000B32D2 /* auth */,
+				D34C4C7325FF60F4000B32D2 /* cash */,
+				D34C4C7225FF60C3000B32D2 /* stocks */,
 				7B4D8EFB25ECDA8F00557F92 /* HomeController.swift */,
 				7B61D07B25F5EA6500B219E5 /* LeftController.swift */,
-				7B76AE9D25F62B6E00C9FE5A /* LinkWalletController.swift */,
 				7B4D8E7D25EC8AAC00557F92 /* MainController.swift */,
 				7B4D8F1425ECDB4300557F92 /* MenuController.swift */,
-				7BDD292425F16E5D007A6921 /* MtnController.swift */,
-				7BDD296525F17F90007A6921 /* MtnTransactionController.swift */,
-				7BDD296F25F18D10007A6921 /* PortfolioController.swift */,
-				7BDD292925F16F46007A6921 /* PredictionController.swift */,
-				7BDD296A25F180AC007A6921 /* PredictionPostController.swift */,
-				7BDD292E25F17328007A6921 /* PredictListController.swift */,
-				7BDD293825F17383007A6921 /* PredictOwnerController.swift */,
-				7BDD293325F1736A007A6921 /* PredictResultsController.swift */,
-				7B6D91DA25F07C7200B1E466 /* ProfileController.swift */,
-				7B6D91DF25F07CB100B1E466 /* ProfileEditController.swift */,
-				7B68492F25F3AEA40075BB79 /* ResetPasswordController.swift */,
-				7B9AED0B25F36C3A00068775 /* SigninController.swift */,
-				7B9AED1025F36D4F00068775 /* SignupController.swift */,
 				7B61D05025F5BC2F00B219E5 /* SplashController.swift */,
-				7B6D920325F0B0F000B1E466 /* StakeController.swift */,
-				7B6D920D25F0B31F00B1E466 /* StakeListController.swift */,
-				7BDD29C725F25EA1007A6921 /* StocksBuyController.swift */,
-				7B4D8F0A25ECDB2600557F92 /* StocksController.swift */,
-				7BDD299C25F1F59C007A6921 /* StocksDepositBankController.swift */,
-				7BDD299725F1F572007A6921 /* StocksDepositCoinController.swift */,
-				7BDD298725F1AA05007A6921 /* StocksDepositController.swift */,
-				7BDD29B725F2126C007A6921 /* StocksDetailController.swift */,
-				7BDD29E125F28AFC007A6921 /* StocksHistoryController.swift */,
-				7B76AE9825F62A3500C9FE5A /* StocksNewsController.swift */,
-				7BDD29CC25F25EB6007A6921 /* StocksSellController.swift */,
-				7BDD298C25F1AACE007A6921 /* StocksWithdrawController.swift */,
 				7BDD29FB25F29949007A6921 /* SupportController.swift */,
-				7B4D8F0525ECDB1900557F92 /* SwapController.swift */,
-				7B76AE8E25F626F700C9FE5A /* TradeCryptosController.swift */,
-				7B68493925F3AF570075BB79 /* USDCAddContactController.swift */,
-				7B68493425F3AF100075BB79 /* USDCPayController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -684,6 +649,89 @@
 				BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D34C4C7225FF60C3000B32D2 /* stocks */ = {
+			isa = PBXGroup;
+			children = (
+				7BDD298725F1AA05007A6921 /* StocksDepositController.swift */,
+				7BDD29B725F2126C007A6921 /* StocksDetailController.swift */,
+				7BDD29E125F28AFC007A6921 /* StocksHistoryController.swift */,
+				7B76AE9825F62A3500C9FE5A /* StocksNewsController.swift */,
+				7BDD29CC25F25EB6007A6921 /* StocksSellController.swift */,
+				7BDD298C25F1AACE007A6921 /* StocksWithdrawController.swift */,
+				7BDD296F25F18D10007A6921 /* PortfolioController.swift */,
+				7BDD29C725F25EA1007A6921 /* StocksBuyController.swift */,
+				7B4D8F0A25ECDB2600557F92 /* StocksController.swift */,
+				7BDD299C25F1F59C007A6921 /* StocksDepositBankController.swift */,
+				7BDD299725F1F572007A6921 /* StocksDepositCoinController.swift */,
+			);
+			path = stocks;
+			sourceTree = "<group>";
+		};
+		D34C4C7325FF60F4000B32D2 /* cash */ = {
+			isa = PBXGroup;
+			children = (
+				7B68493E25F3AF960075BB79 /* CashAccountInfoController.swift */,
+				7B68496B25F3E1E20075BB79 /* CashAddBankController.swift */,
+				7B68497025F3E2450075BB79 /* CashAddContactController.swift */,
+				7B4D8F0F25ECDB3700557F92 /* CashController.swift */,
+				7B68497525F3E2870075BB79 /* CashItemListController.swift */,
+				7B68497A25F3E2E40075BB79 /* CashSendController.swift */,
+			);
+			path = cash;
+			sourceTree = "<group>";
+		};
+		D34C4C7425FF6111000B32D2 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				7B6D91DA25F07C7200B1E466 /* ProfileController.swift */,
+				7B6D91DF25F07CB100B1E466 /* ProfileEditController.swift */,
+				7B68492F25F3AEA40075BB79 /* ResetPasswordController.swift */,
+				7B9AED0B25F36C3A00068775 /* SigninController.swift */,
+				7B9AED1025F36D4F00068775 /* SignupController.swift */,
+				7B68492A25F3AE910075BB79 /* ForgotPasswordController.swift */,
+				7B68492525F3AE820075BB79 /* ChangePasswordController.swift */,
+			);
+			path = auth;
+			sourceTree = "<group>";
+		};
+		D34C4C7525FF6160000B32D2 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				7B76AE9D25F62B6E00C9FE5A /* LinkWalletController.swift */,
+				7B76AE8E25F626F700C9FE5A /* TradeCryptosController.swift */,
+				7B68493925F3AF570075BB79 /* USDCAddContactController.swift */,
+				7B68493425F3AF100075BB79 /* USDCPayController.swift */,
+				7B4D8F0525ECDB1900557F92 /* SwapController.swift */,
+				7B6D920325F0B0F000B1E466 /* StakeController.swift */,
+				7B6D920D25F0B31F00B1E466 /* StakeListController.swift */,
+				7B4D8F0025ECDAEB00557F92 /* CoinsController.swift */,
+				7BDD29E625F28BB9007A6921 /* CoinWithdrawController.swift */,
+				7B76AE9325F629B100C9FE5A /* DepositHistoryController.swift */,
+			);
+			path = crypto;
+			sourceTree = "<group>";
+		};
+		D34C4C7625FF61B7000B32D2 /* predict */ = {
+			isa = PBXGroup;
+			children = (
+				7BDD292925F16F46007A6921 /* PredictionController.swift */,
+				7BDD296A25F180AC007A6921 /* PredictionPostController.swift */,
+				7BDD292E25F17328007A6921 /* PredictListController.swift */,
+				7BDD293825F17383007A6921 /* PredictOwnerController.swift */,
+				7BDD293325F1736A007A6921 /* PredictResultsController.swift */,
+			);
+			path = predict;
+			sourceTree = "<group>";
+		};
+		D34C4C7725FF61FD000B32D2 /* mtn */ = {
+			isa = PBXGroup;
+			children = (
+				7BDD292425F16E5D007A6921 /* MtnController.swift */,
+				7BDD296525F17F90007A6921 /* MtnTransactionController.swift */,
+			);
+			path = mtn;
 			sourceTree = "<group>";
 		};
 		D3CD1EC025FE691C00255A89 /* StocksWithdrawItem */ = {
