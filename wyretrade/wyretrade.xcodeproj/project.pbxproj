@@ -130,6 +130,7 @@
 		D34C4C4125FE9CB8000B32D2 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */; };
 		D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */; };
 		D34C4C5625FF08D5000B32D2 /* StocksTradeSelectModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C5525FF08D5000B32D2 /* StocksTradeSelectModal.swift */; };
+		D34C4C7C25FF62A9000B32D2 /* StocksDepositPagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C7B25FF62A9000B32D2 /* StocksDepositPagerVC.swift */; };
 		D3CD1EBC25FE662B00255A89 /* StocksWithdrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */; };
 		D3CD1EC225FE694000255A89 /* StocksWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */; };
 		D3CD1EC725FE697A00255A89 /* StocksWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */; };
@@ -284,6 +285,7 @@
 		D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 		D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 		D34C4C5525FF08D5000B32D2 /* StocksTradeSelectModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTradeSelectModal.swift; sourceTree = "<group>"; };
+		D34C4C7B25FF62A9000B32D2 /* StocksDepositPagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksDepositPagerVC.swift; sourceTree = "<group>"; };
 		D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawModel.swift; sourceTree = "<group>"; };
 		D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawItem.swift; sourceTree = "<group>"; };
 		D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StocksWithdrawItem.xib; sourceTree = "<group>"; };
@@ -665,6 +667,7 @@
 				7B4D8F0A25ECDB2600557F92 /* StocksController.swift */,
 				7BDD299C25F1F59C007A6921 /* StocksDepositBankController.swift */,
 				7BDD299725F1F572007A6921 /* StocksDepositCoinController.swift */,
+				D34C4C7B25FF62A9000B32D2 /* StocksDepositPagerVC.swift */,
 			);
 			path = stocks;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				7B68496725F3D0C00075BB79 /* USDCPayment.swift in Sources */,
 				7BDD299825F1F572007A6921 /* StocksDepositCoinController.swift in Sources */,
 				7BA7728F25F9BB9100EAC761 /* CheckBox.swift in Sources */,
+				D34C4C7C25FF62A9000B32D2 /* StocksDepositPagerVC.swift in Sources */,
 				D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */,
 				7B68493F25F3AF960075BB79 /* CashAccountInfoController.swift in Sources */,
 				7BA7728A25F9BB4600EAC761 /* Button.swift in Sources */,

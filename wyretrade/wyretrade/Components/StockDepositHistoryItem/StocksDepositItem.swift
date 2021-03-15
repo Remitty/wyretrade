@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-protocol StocksDepositItemParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class StocksDepositItem: UITableViewCell {
     
+    @IBOutlet weak var lbRequestAmount: UILabel!
+    @IBOutlet weak var lbReceivedAmount: UILabel!
+    @IBOutlet weak var lbStatus: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
 }

@@ -100,6 +100,12 @@
                     <constraint firstItem="F9I-fQ-Stq" firstAttribute="leading" secondItem="DNr-Ef-h5J" secondAttribute="leading" id="bEQ-l5-YdW"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lbDate" destination="efb-Ee-ULS" id="YHn-Pl-tsM"/>
+                <outlet property="lbReceivedAmount" destination="T8z-Us-C0A" id="Unu-3T-FIt"/>
+                <outlet property="lbRequestAmount" destination="dLJ-uh-384" id="aSK-3v-pC5"/>
+                <outlet property="lbStatus" destination="sAL-H7-oQV" id="ov6-b2-bzn"/>
+            </connections>
             <point key="canvasLocation" x="128.2608695652174" y="64.620535714285708"/>
         </tableViewCell>
     </objects>

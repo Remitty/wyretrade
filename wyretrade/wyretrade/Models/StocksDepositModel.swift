@@ -16,9 +16,12 @@ struct StocksDepositModel {
     
     init(fromDictionary dictionary: [String: Any]) {
         amount = dictionary["amount"] as? String
-        received = dictionary["received"] as? String
+        if let payable = dictionary["payable"] as? String {
+            received = payable
+        }
+//        received = dictionary["payable"] as? String
         status = dictionary["status"] as? String
-        date = dictionary["date"] as? String
+        date = (dictionary["updated_at"] as? String)?.date
         
     }
     
