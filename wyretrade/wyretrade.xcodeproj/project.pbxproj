@@ -128,6 +128,8 @@
 		7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29F625F28FB7007A6921 /* CoinWithdrawItem.swift */; };
 		7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29FB25F29949007A6921 /* SupportController.swift */; };
 		D34C4C4125FE9CB8000B32D2 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */; };
+		D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */; };
+		D34C4C5625FF08D5000B32D2 /* StocksTradeSelectModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C5525FF08D5000B32D2 /* StocksTradeSelectModal.swift */; };
 		D3CD1EBC25FE662B00255A89 /* StocksWithdrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */; };
 		D3CD1EC225FE694000255A89 /* StocksWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */; };
 		D3CD1EC725FE697A00255A89 /* StocksWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */; };
@@ -280,6 +282,8 @@
 		93A6C30EBBBA3C80D50430A6 /* Pods-wyretrade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.release.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.release.xcconfig"; sourceTree = "<group>"; };
 		BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wyretrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
+		D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
+		D34C4C5525FF08D5000B32D2 /* StocksTradeSelectModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTradeSelectModal.swift; sourceTree = "<group>"; };
 		D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawModel.swift; sourceTree = "<group>"; };
 		D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawItem.swift; sourceTree = "<group>"; };
 		D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StocksWithdrawItem.xib; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 				D3CD1EC025FE691C00255A89 /* StocksWithdrawItem */,
 				7B6D91E425F0AC9400B1E466 /* SwapHistoryItem */,
 				7B68496025F3D08A0075BB79 /* USDCPaymentItem */,
+				D34C4C5525FF08D5000B32D2 /* StocksTradeSelectModal.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				7B68494E25F3C6460075BB79 /* UserModel.swift */,
 				D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */,
 				D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */,
+				D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -908,6 +914,7 @@
 				7B68496725F3D0C00075BB79 /* USDCPayment.swift in Sources */,
 				7BDD299825F1F572007A6921 /* StocksDepositCoinController.swift in Sources */,
 				7BA7728F25F9BB9100EAC761 /* CheckBox.swift in Sources */,
+				D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */,
 				7B68493F25F3AF960075BB79 /* CashAccountInfoController.swift in Sources */,
 				7BA7728A25F9BB4600EAC761 /* Button.swift in Sources */,
 				7BA7728525F9BB0E00EAC761 /* AlertView.swift in Sources */,
@@ -945,6 +952,7 @@
 				7B68494F25F3C6460075BB79 /* UserModel.swift in Sources */,
 				7BA7729425F9BC1100EAC761 /* StringValidate.swift in Sources */,
 				7BDD29CD25F25EB6007A6921 /* StocksSellController.swift in Sources */,
+				D34C4C5625FF08D5000B32D2 /* StocksTradeSelectModal.swift in Sources */,
 				7B61D05125F5BC2F00B219E5 /* SplashController.swift in Sources */,
 				7BDD29BE25F25C58007A6921 /* Company.swift in Sources */,
 				7B76AEA425F62E3300C9FE5A /* LeftMenuCell.swift in Sources */,

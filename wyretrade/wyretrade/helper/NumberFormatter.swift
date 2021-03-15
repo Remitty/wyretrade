@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CoinFormat: Codable {
+struct NumberFormat: Codable {
     var value: Double
     var decimal: Int
 }
@@ -24,14 +24,13 @@ enum Currency: String, Codable {
     case pln
 }
 
-extension CoinFormat: CustomStringConvertible {
+extension NumberFormat: CustomStringConvertible {
     var description: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = decimal
         
         let number = NSNumber(value: value)
-        
         return formatter.string(from: number)!
     }
 }

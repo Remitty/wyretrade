@@ -21,7 +21,7 @@ class StocksController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    var stocksList = [StocksModel]()
+    var stocksList = [StockPositionModel]()
     var query = ""
     
     override func viewDidLoad() {
@@ -43,12 +43,12 @@ class StocksController: UIViewController, UISearchBarDelegate {
 //                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            var stocks : StocksModel!
+            var stocks : StockPositionModel!
             
             if let data = dictionary["stocks"] as? [[String:Any]] {
-                self.stocksList = [StocksModel]()
+                self.stocksList = [StockPositionModel]()
                 for item in data {
-                    stocks = StocksModel(fromDictionary: item)
+                    stocks = StockPositionModel(fromDictionary: item)
                     self.stocksList.append(stocks)
                 }
                 self.stocksTable.reloadData()
@@ -83,13 +83,25 @@ extension StocksController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        
+        let item = stocksList[indexPath.row]
+        
+        let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
+        detailController.stocks = item
+        
+        self.navigationController?.pushViewController(detailController, animated: true)
+
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: StocksItem = tableView.dequeueReusableCell(withIdentifier: "StocksItem", for: indexPath) as! StocksItem
         let item = stocksList[indexPath.row]
         cell.lbStocksSymbol.text = item.ticker
         cell.lbStocksName.text = item.name
-        cell.lbStocksChangePercent.text = CoinFormat.init(value: item.changeTodayPercent!, decimal: 4).description + "%"
+        cell.lbStocksChangePercent.text = NumberFormat.init(value: item.changeTodayPercent!, decimal: 4).description + "%"
         if item.changeTodayPercent >= 0 {
             cell.lbStocksChangePercent.textColor = UIColor.green
         } else {

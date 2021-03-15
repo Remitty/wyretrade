@@ -16,7 +16,7 @@ struct SwapModel {
     
     
     init(fromDictionary dictionary: [String: Any]) {
-        amount = CoinFormat(value: (dictionary["amount"] as! NSString).doubleValue, decimal: 4).description
+        amount = NumberFormat(value: (dictionary["amount"] as! NSString).doubleValue, decimal: 4).description
         sendSymbol = dictionary["from"] as? String
         getSymbol = dictionary["to"] as? String
         status = dictionary["status_text"] as? String

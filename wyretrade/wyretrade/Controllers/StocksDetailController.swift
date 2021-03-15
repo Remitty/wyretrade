@@ -34,6 +34,8 @@ class StocksDetailController: UIViewController {
                                                                               "name" : "Verastem, Inc.",
                                                                               "profit" : "-0.84",
                                                                               "symbol" : "VSTM"])
+    var stocksBalance = 0.0
+    var company = CompanyModel.init(fromDictionary: ["description": "", "industry": "", "website": ""])
     let companyView = Company().loadView() as! Company
 
     override func viewDidLoad() {
@@ -43,10 +45,7 @@ class StocksDetailController: UIViewController {
         self.lbStocksName.text = self.stocks.name
         self.lbStocksPrice.text = self.stocks.price
         self.lbStocksChange.text = "$\(self.stocks.changeToday!) (\(self.stocks.changeTodayPercent!)%)  Today"
-        self.lbShares.text = "\(self.stocks.shares!)"
-        self.lbAvgPrice.text = self.stocks.avgPrice
-        self.lbHolding.text = self.stocks.holding
-        self.lbProfit.text = self.stocks.profit
+        
         if self.stocks.dbProfit >= 0 {
             self.lbProfit.textColor = UIColor.green
             self.lbStocksChange.textColor = UIColor.green
@@ -55,6 +54,16 @@ class StocksDetailController: UIViewController {
             self.lbProfit.textColor = UIColor.red
             self.lbStocksChange.textColor = UIColor.red
             self.imgProfit.image = UIImage(named: "ic_down")
+        }
+        
+        if self.stocks.shares > 0 {
+            self.lbShares.text = "\(self.stocks.shares!)"
+            self.lbAvgPrice.text = self.stocks.avgPrice
+            self.lbHolding.text = self.stocks.holding
+            self.lbProfit.text = self.stocks.profit
+        } else {
+            self.viewFirst.isHidden = false
+            self.viewSecond.isHidden = false
         }
         
         self.loadData()
@@ -74,11 +83,80 @@ class StocksDetailController: UIViewController {
 //                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            let company = CompanyModel(fromDictionary: dictionary["company"] as! [String: Any])
+            self.stocksBalance = dictionary["stock_balance"] as! Double
 
-            self.companyView.lbDescription.text = company.description
-            self.companyView.lbIndustry.text = company.industry
-            self.companyView.lbDate.text = company.site
+            var chartDayData = [ChartModel]()
+            var chartWeekData = [ChartModel]()
+            var chartMonthData = [ChartModel]()
+            var chartMonth6Data = [ChartModel]()
+            var chartYearData = [ChartModel]()
+            var chartAllData = [ChartModel]()
+            
+            var chart : ChartModel!
+            
+            if let data = dictionary["aggregate_day"] as? [[String:Any]] {
+                
+                for item in data {
+                    chart = ChartModel(fromDictionary: item)
+                    chartDayData.append(chart)
+                }
+                
+            }
+            
+            if let data = dictionary["aggregate_week"] as? [[String:Any]] {
+                
+                for item in data {
+                    chart = ChartModel(fromDictionary: item)
+                    chartWeekData.append(chart)
+                }
+                
+            }
+            
+            if let data = dictionary["aggregate_month"] as? [[String:Any]] {
+                
+                for item in data {
+                    chart = ChartModel(fromDictionary: item)
+                    chartMonthData.append(chart)
+                }
+                
+            }
+            
+            if let data = dictionary["aggregate_month6"] as? [[String:Any]] {
+                
+                for item in data {
+                    chart = ChartModel(fromDictionary: item)
+                    chartMonth6Data.append(chart)
+                }
+                
+            }
+            
+            if let data = dictionary["aggregate_year"] as? [[String:Any]] {
+                
+                for item in data {
+                    chart = ChartModel(fromDictionary: item)
+                    chartYearData.append(chart)
+                }
+                
+            }
+            
+            if let data = dictionary["aggregate_all"] as? [[String:Any]] {
+                
+                for item in data {
+                    chart = ChartModel(fromDictionary: item)
+                    chartAllData.append(chart)
+                }
+                
+            }
+            
+            guard let company = dictionary["company"] else {
+                return
+            }
+            
+            self.company = CompanyModel(fromDictionary: company as! [String: Any])
+
+            self.companyView.lbDescription.text = self.company.description
+            self.companyView.lbIndustry.text = self.company.industry
+            self.companyView.lbDate.text = self.company.site
             
         }) { (error) in
             let alert = Alert.showBasicAlert(message: error.message)
@@ -87,8 +165,20 @@ class StocksDetailController: UIViewController {
     }
 
     @IBAction func actionBuy(_ sender: Any) {
+        let buyController = storyboard?.instantiateViewController(withIdentifier: "StocksBuyController") as! StocksBuyController
+        buyController.stocks = self.stocks
+        buyController.company = self.company
+        buyController.stocksBalance = self.stocksBalance
+        buyController.isBuy = true
+        self.navigationController?.pushViewController(buyController, animated: true)
     }
     
     @IBAction func actionSell(_ sender: Any) {
+        let buyController = storyboard?.instantiateViewController(withIdentifier: "StocksBuyController") as! StocksBuyController
+        buyController.stocks = self.stocks
+        buyController.company = self.company
+        buyController.stocksBalance = self.stocksBalance
+        buyController.isBuy = false
+        self.navigationController?.pushViewController(buyController, animated: true)
     }
 }

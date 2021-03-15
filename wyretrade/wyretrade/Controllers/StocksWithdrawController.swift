@@ -50,7 +50,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate {
                 self.historyTable.reloadData()
             }
                     
-            self.lbBalance.text = CoinFormat.init(value: (dictionary["stock2usdc"] as! NSString).doubleValue, decimal: 4).description
+            self.lbBalance.text = NumberFormat.init(value: (dictionary["stock2usdc"] as! NSString).doubleValue, decimal: 4).description
             self.lbEstBalance.text = PriceFormat.init(amount: (dictionary["stock_balance"] as! NSString).doubleValue, currency: Currency.usd).description
             
             }) { (error) in
@@ -79,7 +79,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate {
                 self.historyTable.reloadData()
             }
                     
-            self.lbBalance.text = CoinFormat.init(value: (dictionary["usdc_balance"] as! NSString).doubleValue, decimal: 4).description
+            self.lbBalance.text = NumberFormat.init(value: (dictionary["usdc_balance"] as! NSString).doubleValue, decimal: 4).description
             self.lbEstBalance.text = PriceFormat.init(amount: (dictionary["stock_balance"] as! NSString).doubleValue, currency: Currency.usd).description
             
             self.showToast(message: dictionary["message"] as! String)

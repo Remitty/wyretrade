@@ -57,7 +57,7 @@ class CoinsController: UIViewController {
             self.lbHolding.text = PriceFormat.init(amount: (dictionary["total_balance"] as! NSString).doubleValue, currency: Currency.usd).description
             
             var effect: Double = (dictionary["total_effect"] as! NSString).doubleValue
-            self.lbChangePercent.text = CoinFormat.init(value: effect, decimal: 4).description + " %"
+            self.lbChangePercent.text = NumberFormat.init(value: effect, decimal: 4).description + " %"
             
             if effect >= 0 {
                 self.lbChangePercent.textColor = UIColor.green

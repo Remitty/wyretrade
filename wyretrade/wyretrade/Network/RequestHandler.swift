@@ -513,11 +513,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_STOCK_ORDER_CREATE
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))

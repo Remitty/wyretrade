@@ -12,6 +12,7 @@ struct StockPositionModel {
     var name: String!
     var shares: Double!
     var price: String!
+    var dbPrice: Double!
     var avgPrice: String!
     var profit: String!
     var dbProfit: Double!
@@ -23,13 +24,32 @@ struct StockPositionModel {
         name = dictionary["name"] as? String
         ticker = dictionary["symbol"] as? String
         shares = dictionary["filled_qty"] as? Double
+//        price = PriceFormat(amount: dictionary["current_price"] as! Double, currency: Currency.usd).description
         price = PriceFormat(amount: (dictionary["current_price"] as! NSString).doubleValue, currency: Currency.usd).description
+        dbPrice = (dictionary["current_price"] as! NSString).doubleValue
         avgPrice = PriceFormat(amount: (dictionary["avg_price"] as! NSString).doubleValue, currency: Currency.usd).description
-        profit = PriceFormat(amount: (dictionary["profit"] as! NSString).doubleValue, currency: Currency.usd).description
-        dbProfit = (dictionary["profit"] as! NSString).doubleValue
+        
         holding = PriceFormat(amount: (dictionary["holding"] as! NSString).doubleValue, currency: Currency.usd).description
-        changeToday = (dictionary["change"] as! NSString).doubleValue
-        changeTodayPercent = (dictionary["change_percent"] as! NSString).doubleValue
+        if let changeTodayTemp = (dictionary["change"] as? NSString)?.doubleValue {
+            changeToday = (NumberFormat.init(value: changeTodayTemp, decimal: 4).description as! NSString).doubleValue
+        } else {
+            changeToday = (NumberFormat.init(value: dictionary["change"] as! Double, decimal: 4).description as! NSString).doubleValue
+        }
+        
+        if let changeTodayPercentTemp = (dictionary["change_percent"] as? NSString)?.doubleValue {
+            changeTodayPercent = (NumberFormat.init(value: changeTodayPercentTemp, decimal: 4).description as! NSString).doubleValue
+        } else {
+            changeTodayPercent = (NumberFormat.init(value: dictionary["change_percent"] as! Double, decimal: 4).description as! NSString).doubleValue
+        }
+        
+        if let profitTemp = (dictionary["profit"] as? NSString)?.doubleValue {
+            dbProfit = profitTemp
+            profit = PriceFormat(amount: dbProfit, currency: Currency.usd).description
+        } else {
+            dbProfit = dictionary["profit"] as? Double
+            profit = PriceFormat(amount: dbProfit, currency: Currency.usd).description
+        }
+        
     }
     
     func toDictionary() -> [String: Any] {

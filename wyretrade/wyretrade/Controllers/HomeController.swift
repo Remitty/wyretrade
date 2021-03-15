@@ -84,7 +84,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.newsTable.reloadData()
             }
 
-            self.usdcBalance.text = CoinFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
+            self.usdcBalance.text = NumberFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
                     
                 
             }) { (error) in

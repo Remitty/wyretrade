@@ -57,7 +57,7 @@ class USDCPayController: UIViewController, UITextFieldDelegate {
                 self.historyTable.reloadData()
             }
                     
-            self.balance.text = CoinFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
+            self.balance.text = NumberFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
             
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)
@@ -80,7 +80,7 @@ class USDCPayController: UIViewController, UITextFieldDelegate {
                 self.historyTable.reloadData()
             }
             
-            self.balance.text = CoinFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
+            self.balance.text = NumberFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
         
         }) {
             (error) in

@@ -50,6 +50,7 @@ class PortfolioController: UIViewController {
                 for item in data {
                     stocks = StockPositionModel(fromDictionary: item)
                     self.stocksList.append(stocks)
+                    
                 }
                 self.stocksTable.reloadData()
             }
