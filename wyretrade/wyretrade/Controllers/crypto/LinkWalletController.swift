@@ -10,10 +10,14 @@ import UIKit
 
 class LinkWalletController: UIViewController {
 
+    @IBOutlet weak var accountTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
 
+    @IBAction func actionConnect(_ sender: Any) {
+    }
 }

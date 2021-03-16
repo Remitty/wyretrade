@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 
-protocol CoinWithdrawItemParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class CoinWithdrawItem: UITableViewCell {
     
+    @IBOutlet weak var lbAsset: UILabel!
+    @IBOutlet weak var lbAmount: UILabel!
+    @IBOutlet weak var lbStatus: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
+    @IBOutlet weak var lbAddress: UILabel!
 }

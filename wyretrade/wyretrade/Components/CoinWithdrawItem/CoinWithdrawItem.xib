@@ -109,6 +109,13 @@
                     <constraint firstItem="aKq-xl-AOI" firstAttribute="leading" secondItem="AW1-Ct-zn1" secondAttribute="leading" id="bLe-ft-JJh"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lbAddress" destination="aKq-xl-AOI" id="AJ7-HI-lab"/>
+                <outlet property="lbAmount" destination="0DF-hL-B42" id="SHs-eV-yB5"/>
+                <outlet property="lbAsset" destination="ON6-5g-aC7" id="h1A-Aw-ZuB"/>
+                <outlet property="lbDate" destination="LvP-YV-HOf" id="hj1-C3-8sk"/>
+                <outlet property="lbStatus" destination="VEe-Hx-yIT" id="WvH-n3-eAR"/>
+            </connections>
             <point key="canvasLocation" x="139.85507246376812" y="73.660714285714278"/>
         </tableViewCell>
     </objects>
