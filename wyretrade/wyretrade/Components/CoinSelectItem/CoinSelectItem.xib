@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="6Q8-wE-mEO">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="6Q8-wE-mEO" customClass="CoinSelectItem" customModule="wyretrade" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="424" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Q8-wE-mEO" id="TIV-nF-IQw" customClass="CoinSelectItem" customModule="wyretrade" customModuleProvider="target">
@@ -49,6 +49,10 @@
                     <constraint firstAttribute="trailing" secondItem="y2q-uc-spH" secondAttribute="trailing" constant="10" id="n8f-Ub-tOl"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imgIcon" destination="0UE-E5-UeK" id="bZ9-27-6wg"/>
+                <outlet property="lbName" destination="l7I-ji-qGX" id="ZEg-5N-LHj"/>
+            </connections>
             <point key="canvasLocation" x="-147.82608695652175" y="18.75"/>
         </tableViewCell>
     </objects>

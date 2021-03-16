@@ -16,10 +16,10 @@ struct CoinWithdrawModel {
     
     
     init(fromDictionary dictionary: [String: Any]) {
-        symbol = dictionary["symbol"] as? String
+        symbol = dictionary["currency"] as? String
         amount = "\(dictionary["amount"]!)"
         address = dictionary["address"] as? String
-        status = dictionary["status"] as? String
+        status = dictionary["status_text"] as? String
         date = (dictionary["created_at"] as! String).date
         
     }

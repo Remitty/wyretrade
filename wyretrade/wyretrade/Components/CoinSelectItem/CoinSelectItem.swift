@@ -10,5 +10,7 @@ import UIKit
 
 class CoinSelectItem: UITableViewCell {
     
+    @IBOutlet weak var imgIcon: UIImageView!
     
+    @IBOutlet weak var lbName: UILabel!
 }
