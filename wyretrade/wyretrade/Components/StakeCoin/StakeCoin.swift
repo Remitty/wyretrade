@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 
-protocol StakeCoinParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class StakeCoin: UITableViewCell {
+    
+    @IBOutlet weak var imgIcon: UIImageView!
+    @IBOutlet weak var lbSymbol: UILabel!
+    @IBOutlet weak var lbBalance: UILabel!
+    @IBOutlet weak var lbStakingAcmount: UILabel!
+    
     
 }

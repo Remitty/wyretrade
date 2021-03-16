@@ -56,6 +56,10 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    @IBOutlet weak var lbUserName: UILabel!
+    @IBOutlet weak var lbUserEmail: UILabel!
+    
+    
     //MARK:- Properties
     
     var defaults = UserDefaults.standard
@@ -87,6 +91,13 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.initializeViews()
         self.initializeOtherViews()
         
+        let data = UserDefaults.standard.object(forKey: "userAuthData")
+        let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
+        let userAuth = UserAuthModel(fromDictionary: objUser)
+        
+        self.lbUserName.text = "\(userAuth.first_name!) \(userAuth.last_name!)"
+        self.lbUserEmail.text = userAuth.email
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +106,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     fileprivate func initializeViews() {
-        let stakecoinView = storyboard?.instantiateViewController(withIdentifier: "StakeController") as! StakeController
+        let stakecoinView = storyboard?.instantiateViewController(withIdentifier: "StakeListController") as! StakeListController
         self.viewStakeCoin = UINavigationController(rootViewController: stakecoinView)
         
         let tradeCryptosView = storyboard?.instantiateViewController(withIdentifier: "TradeCryptosController") as! TradeCryptosController
@@ -163,6 +174,12 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let signinController = storyboard?.instantiateViewController(withIdentifier: "SigninController") as! SigninController
         self.navigationController?.pushViewController(signinController, animated: true)
     }
+    
+    @IBAction func actionEditProfile(_ sender: Any) {
+        let profileView = storyboard?.instantiateViewController(withIdentifier: "ProfileController") as! ProfileController
+        self.navigationController?.pushViewController(profileView, animated: true)
+    }
+    
     //MARK:- Table View Delegate Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

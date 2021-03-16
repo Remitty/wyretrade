@@ -15,20 +15,11 @@ struct StakeModel {
     
     
     init(fromDictionary dictionary: [String: Any]) {
-        qty = dictionary["amount"] as? String
+        qty = "\(dictionary["amount"]!)"
         type = dictionary["type"] as? String
-        token = dictionary["token"] as? String
-        date = dictionary["date"] as? String
+        token = dictionary["asset"] as? String
+        date = (dictionary["updated_at"] as! String).date
         
     }
-    
-    func toDictionary() -> [String: Any] {
-        var dictionary = [String: Any]()
-        dictionary["amount"] = qty
-        dictionary["type"] = type
-        dictionary["token"] = token
-        dictionary["date"] = date
-        
-        return dictionary
-    }
+   
 }

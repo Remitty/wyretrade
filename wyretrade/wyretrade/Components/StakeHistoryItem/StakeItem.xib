@@ -100,6 +100,12 @@
                     <constraint firstAttribute="trailing" secondItem="4Ws-oH-rYe" secondAttribute="trailing" id="z4d-7Y-9cN"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lbActivity" destination="gym-NI-fgm" id="W1l-T4-R5L"/>
+                <outlet property="lbDate" destination="xmh-Z8-KlH" id="U23-Sz-lVI"/>
+                <outlet property="lbQty" destination="Hm4-hu-7JX" id="uMG-bK-qgN"/>
+                <outlet property="lbToken" destination="iNc-rL-Dub" id="PrJ-TR-1b7"/>
+            </connections>
             <point key="canvasLocation" x="128.2608695652174" y="64.620535714285708"/>
         </tableViewCell>
     </objects>

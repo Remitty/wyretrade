@@ -99,6 +99,12 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" systemColor="systemGray5Color"/>
+            <connections>
+                <outlet property="imgIcon" destination="lLy-MV-pWT" id="eJO-Rw-rcU"/>
+                <outlet property="lbBalance" destination="jov-kx-ISl" id="clY-8q-cD1"/>
+                <outlet property="lbStakingAcmount" destination="HIa-4Q-oc9" id="dXs-wt-7N1"/>
+                <outlet property="lbSymbol" destination="BGm-LT-oR6" id="anp-us-Nnu"/>
+            </connections>
             <point key="canvasLocation" x="173.91304347826087" y="76.004464285714278"/>
         </tableViewCell>
     </objects>

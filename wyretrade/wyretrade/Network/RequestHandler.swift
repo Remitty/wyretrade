@@ -72,11 +72,7 @@ class RequestHandler {
         let url = Constants.URL.CHANGE_PASSWORD
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -87,11 +83,7 @@ class RequestHandler {
         let url = Constants.URL.UserProfile
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -102,6 +94,14 @@ class RequestHandler {
         let url = Constants.URL.UseProfileUpdate
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            let dictionary = successResponse as! [String: Any]
+            if let userData = dictionary["user"] as? [String:Any] {
+                
+                let data = NSKeyedArchiver.archivedData(withRootObject: userData)
+                UserDefaults.standard.set(data, forKey: "userAuthData")
+                UserDefaults.standard.synchronize()
+            }
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -386,14 +386,10 @@ class RequestHandler {
     }
 
     class func getStakeBalance(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
-        let url = Constants.URL.GET_STAKE_BALANCE
+        let url = Constants.URL.GET_STAKE_BALANCE + "/" + (parameter["id"] as! String)
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))

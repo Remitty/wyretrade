@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-protocol StakeItemParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class StakeItem: UITableViewCell {
     
+    @IBOutlet weak var lbActivity: UILabel!
+    @IBOutlet weak var lbToken: UILabel!
+    @IBOutlet weak var lbQty: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
 }
