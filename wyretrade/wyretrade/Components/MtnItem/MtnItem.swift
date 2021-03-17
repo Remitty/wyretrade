@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 
-protocol MtnItemParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class MtnItem: UITableViewCell {
+    
+    @IBOutlet weak var lbType: UILabel!
+    @IBOutlet weak var lbAmount: UILabel!
+    @IBOutlet weak var lbToPhone: UILabel!
+    @IBOutlet weak var lbStatus: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
     
 }

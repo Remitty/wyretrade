@@ -112,7 +112,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tradeCryptosView = storyboard?.instantiateViewController(withIdentifier: "TradeCryptosController") as! TradeCryptosController
         self.viewTradeCryptos = UINavigationController(rootViewController: tradeCryptosView)
         
-        let linkwalletView = storyboard?.instantiateViewController(withIdentifier: "LinkWalletController") as! LinkWalletController
+        let linkwalletView = storyboard?.instantiateViewController(withIdentifier: "LinkAccountController") as! LinkAccountController
         self.viewLinkWallet = UINavigationController(rootViewController: linkwalletView)
         
         let mtnView = storyboard?.instantiateViewController(withIdentifier: "MtnController") as! MtnController

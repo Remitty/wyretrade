@@ -2318,7 +2318,7 @@
             </objects>
             <point key="canvasLocation" x="-714" y="2090"/>
         </scene>
-        <!--MTN Service-->
+        <!--Mtn Controller-->
         <scene sceneID="6wC-Pi-ODe">
             <objects>
                 <viewController storyboardIdentifier="MtnController" id="Er0-5U-RzY" customClass="MtnController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
@@ -2343,16 +2343,24 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <state key="normal" title="View all"/>
                                                 <connections>
-                                                    <segue destination="moI-kN-xPV" kind="show" id="dCL-6P-cyg"/>
+                                                    <segue destination="f7H-MC-ZTa" kind="show" id="dCL-6P-cyg"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctb-th-wR1">
+                                                <rect key="frame" x="0.0" y="25.666666666666689" width="320" height="62.333333333333343"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="xw9-ih-IGz" secondAttribute="trailing" id="6Ir-of-OHh"/>
                                             <constraint firstItem="Wdm-3N-CiN" firstAttribute="top" secondItem="odL-Lz-7YF" secondAttribute="top" id="Ju6-pK-Llr"/>
+                                            <constraint firstAttribute="bottom" secondItem="ctb-th-wR1" secondAttribute="bottom" id="KGr-In-LrH"/>
                                             <constraint firstItem="Wdm-3N-CiN" firstAttribute="leading" secondItem="odL-Lz-7YF" secondAttribute="leading" id="NYQ-Y6-qwi"/>
                                             <constraint firstItem="xw9-ih-IGz" firstAttribute="top" secondItem="odL-Lz-7YF" secondAttribute="top" constant="-6" id="Njn-Fx-T3P"/>
+                                            <constraint firstItem="ctb-th-wR1" firstAttribute="leading" secondItem="odL-Lz-7YF" secondAttribute="leading" id="TU2-Xn-I9H"/>
+                                            <constraint firstItem="ctb-th-wR1" firstAttribute="top" secondItem="Wdm-3N-CiN" secondAttribute="bottom" constant="10" id="TiB-CR-ZCJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="ctb-th-wR1" secondAttribute="trailing" id="XEn-Yc-lKk"/>
                                             <constraint firstItem="xw9-ih-IGz" firstAttribute="centerY" secondItem="Wdm-3N-CiN" secondAttribute="centerY" id="dPL-Mb-B5N"/>
                                         </constraints>
                                     </view>
@@ -2388,26 +2396,32 @@
                                                 <rect key="frame" x="143" y="0.0" width="177" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCB-QV-JCl" customClass="MDCButton">
-                                                        <rect key="frame" x="67" y="0.0" width="110" height="27"/>
+                                                        <rect key="frame" x="47" y="0.0" width="130" height="27"/>
                                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="110" id="3V4-Jp-3Xm"/>
+                                                            <constraint firstAttribute="width" constant="130" id="3V4-Jp-3Xm"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="MTN -&gt; USDC">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="actionMtnToUsdc:" destination="Er0-5U-RzY" eventType="primaryActionTriggered" id="imM-Nl-FBP"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHV-0w-eAq" customClass="MDCButton">
-                                                        <rect key="frame" x="67" y="37" width="110" height="27"/>
+                                                        <rect key="frame" x="47" y="37" width="130" height="27"/>
                                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="110" id="0UH-2L-Bfh"/>
+                                                            <constraint firstAttribute="width" constant="130" id="0UH-2L-Bfh"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="USDC -&gt; MTN">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="actionUsdcToMtn:" destination="Er0-5U-RzY" eventType="primaryActionTriggered" id="Z3n-Kf-LEo"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2453,15 +2467,18 @@
                                                 <rect key="frame" x="171.33333333333337" y="0.0" width="148.66666666666663" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6f-om-kXW" customClass="MDCButton">
-                                                        <rect key="frame" x="68.666666666666657" y="6.6666666666666856" width="80" height="27"/>
+                                                        <rect key="frame" x="48.666666666666657" y="6.6666666666666856" width="100" height="27"/>
                                                         <color key="backgroundColor" red="0.84853170379999998" green="0.16744886370000001" blue="0.75945471409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="80" id="kZL-SR-nSO"/>
+                                                            <constraint firstAttribute="width" constant="100" id="kZL-SR-nSO"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="Withdraw">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="actionDisbursement:" destination="Er0-5U-RzY" eventType="primaryActionTriggered" id="wZ4-e5-3Ya"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2482,7 +2499,7 @@
                                     <constraint firstAttribute="trailing" secondItem="7qk-jQ-sTn" secondAttribute="trailing" constant="20" id="xmf-Wf-gXi"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8et-v5-Y74" userLabel="balance" customClass="MDCCard" customModule="wyretrade" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8et-v5-Y74" userLabel="balance" customClass="MDCCard">
                                 <rect key="frame" x="15" y="74" width="360" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ2-Wd-EBJ">
@@ -2497,14 +2514,14 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zoT-Sx-zbT">
                                                 <rect key="frame" x="0.0" y="29.333333333333329" width="320" height="36"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="2533" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-Wc-F8I">
-                                                        <rect key="frame" x="0.0" y="0.0" width="76.333333333333329" height="36"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKl-Wc-F8I">
+                                                        <rect key="frame" x="0.0" y="0.0" width="20.333333333333332" height="36"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XAF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSD-UY-zY7">
-                                                        <rect key="frame" x="96.333333333333357" y="0.0" width="223.66666666666663" height="36"/>
+                                                        <rect key="frame" x="40.333333333333343" y="0.0" width="279.66666666666663" height="36"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2565,15 +2582,18 @@
                                                 <rect key="frame" x="143" y="0.0" width="177" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Nd-4U-TnV" customClass="MDCButton">
-                                                        <rect key="frame" x="97" y="6.6666666666666856" width="80" height="27"/>
+                                                        <rect key="frame" x="77" y="6.6666666666666856" width="100" height="27"/>
                                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="80" id="hQi-xR-c7K"/>
+                                                            <constraint firstAttribute="width" constant="100" id="hQi-xR-c7K"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="Topup">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="actionTopup:" destination="Er0-5U-RzY" eventType="primaryActionTriggered" id="Llk-Lu-jCS"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2615,12 +2635,17 @@
                             <constraint firstItem="a1v-MP-4QM" firstAttribute="top" secondItem="8et-v5-Y74" secondAttribute="bottom" constant="15" id="xy9-Tg-WPC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="MTN Service" image="nav_smartphone" id="frS-5D-hsa"/>
+                    <navigationItem key="navigationItem" id="7NS-Q7-fIf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="lbBalance" destination="PKl-Wc-F8I" id="32F-Ta-uAH"/>
+                        <outlet property="lbCurrency" destination="rSD-UY-zY7" id="kWj-Bv-B7l"/>
+                        <outlet property="transactionView" destination="ctb-th-wR1" id="RQP-0s-HsU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpN-2v-aPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345" y="5873"/>
+            <point key="canvasLocation" x="2203.0769230769229" y="5872.7488151658763"/>
         </scene>
         <!--Mtn Transaction Controller-->
         <scene sceneID="dXh-Fv-Wzs">
@@ -2631,7 +2656,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-9b-ttV">
-                                <rect key="frame" x="10" y="10" width="370" height="736"/>
+                                <rect key="frame" x="10" y="66" width="370" height="680"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -2645,10 +2670,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="naE-9L-pyx"/>
+                    <connections>
+                        <outlet property="historyTable" destination="fbA-9b-ttV" id="QhE-Bc-Abq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xK3-V8-WFC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1010" y="5877"/>
+            <point key="canvasLocation" x="3796.9230769230767" y="5876.3033175355449"/>
         </scene>
         <!--Prediction-->
         <scene sceneID="r5d-vC-tZI">
@@ -2736,7 +2764,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Icw-ME-MqR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="6497"/>
+            <point key="canvasLocation" x="3821.5384615384614" y="6496.9194312796208"/>
         </scene>
         <!--Results-->
         <scene sceneID="oD8-Ft-NiH">
@@ -2766,7 +2794,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRf-XC-Hxn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695" y="6497"/>
+            <point key="canvasLocation" x="4481.538461538461" y="6496.9194312796208"/>
         </scene>
         <!--My Posts-->
         <scene sceneID="nxG-XY-dLC">
@@ -2796,7 +2824,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WO8-V8-Noc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2351" y="6497"/>
+            <point key="canvasLocation" x="5138.4615384615381" y="6496.9194312796208"/>
         </scene>
         <!--Prediction Post Controller-->
         <scene sceneID="WwP-dw-iMZ">
@@ -3094,7 +3122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIP-XZ-BXg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2981.5384615384614" y="6499.7630331753553"/>
+            <point key="canvasLocation" x="5769.2307692307686" y="6499.7630331753553"/>
         </scene>
         <!--Crypto Withdraw-->
         <scene sceneID="9Q6-cR-fT9">
@@ -3685,7 +3713,7 @@
         <!--Link Wallet-->
         <scene sceneID="y7r-Hm-rZI">
             <objects>
-                <viewController storyboardIdentifier="LinkWalletController" id="6Nh-h5-Yjo" customClass="LinkWalletController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LinkAccountController" id="6Nh-h5-Yjo" customClass="LinkAccountController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VVK-lQ-Apr">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3736,6 +3764,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVT-kK-qf2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="345" y="5225"/>
+        </scene>
+        <!--Link Asset Controller-->
+        <scene sceneID="icZ-KW-Hwh">
+            <objects>
+                <viewController storyboardIdentifier="LinkAssetController" id="xnS-Rj-6Vk" customClass="LinkAssetController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vkC-5t-tqS">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y3X-5r-WUM">
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oxP-fo-rPg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oxP-fo-rPg" firstAttribute="trailing" secondItem="y3X-5r-WUM" secondAttribute="trailing" id="1Ib-GU-87z"/>
+                            <constraint firstItem="y3X-5r-WUM" firstAttribute="top" secondItem="oxP-fo-rPg" secondAttribute="top" id="DHq-BN-0kD"/>
+                            <constraint firstItem="y3X-5r-WUM" firstAttribute="leading" secondItem="oxP-fo-rPg" secondAttribute="leading" id="e3M-ib-tpe"/>
+                            <constraint firstItem="oxP-fo-rPg" firstAttribute="bottom" secondItem="y3X-5r-WUM" secondAttribute="bottom" id="gTc-F5-RIh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="assetTable" destination="y3X-5r-WUM" id="nqN-pY-fqe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v7a-H0-psd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="5235"/>
         </scene>
         <!--Trade Cryptos-->
         <scene sceneID="hht-xD-sEd">
@@ -8135,6 +8193,21 @@
             </objects>
             <point key="canvasLocation" x="-2372.3076923076924" y="2090.0473933649287"/>
         </scene>
+        <!--WebVC-->
+        <scene sceneID="ihN-2Z-lXp">
+            <objects>
+                <viewController storyboardIdentifier="webVC" id="kbZ-hd-5G3" customClass="webVC" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jeG-id-HmX">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Zbr-x3-rCy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tO8-yE-Sts" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2771" y="-409"/>
+        </scene>
         <!--leftmenu-->
         <scene sceneID="N5x-Ia-wyh">
             <objects>
@@ -8339,6 +8412,25 @@
             </objects>
             <point key="canvasLocation" x="2935.3846153846152" y="3315.63981042654"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vay-wJ-xMh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f7H-MC-ZTa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Moe-1A-Bso"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8as-aO-MMi">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="moI-kN-xPV" kind="relationship" relationship="rootViewController" id="cHa-xe-dVG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zop-cC-kMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2867.6923076923076" y="5876.3033175355449"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrowdown" width="15" height="13"/>
@@ -8377,7 +8469,6 @@
         <image name="nav_bitcoin" width="21" height="21"/>
         <image name="nav_chart" width="24" height="24"/>
         <image name="nav_news" width="20" height="20"/>
-        <image name="nav_smartphone" width="17" height="24"/>
         <image name="nav_support" width="21" height="21"/>
         <image name="nav_trade" width="23" height="23"/>
         <image name="nav_trading" width="23" height="21"/>

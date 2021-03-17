@@ -140,6 +140,7 @@ extension CoinsController: CoinViewParameterDelegate {
             let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
                 let pasteboard = UIPasteboard.general
                 pasteboard.string = address
+                self.showToast(message: "Copied successfully")
             }
             
             alertController.addTextField { (textField) in

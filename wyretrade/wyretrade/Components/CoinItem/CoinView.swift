@@ -28,7 +28,7 @@ class CoinView: UITableViewCell {
     var delegate: CoinViewParameterDelegate?
     
     @IBAction func actionTrade(_ sender: Any) {
-        var param: NSDictionary = [
+        let param: NSDictionary = [
             "symbol": symbol
         ]
         
@@ -36,7 +36,7 @@ class CoinView: UITableViewCell {
     }
     
     @IBAction func actionDeposit(_ sender: Any) {
-        var param: NSDictionary = [
+        let param: NSDictionary = [
             "coin": id,
             "symbol": symbol
         ]

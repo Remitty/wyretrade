@@ -8,10 +8,9 @@
 import Foundation
 import UIKit
 
-protocol AccountViewParameterDelegate {
-    func paramData(param: NSDictionary)
-}
-
 class AccountView: UITableViewCell {
     
+    @IBOutlet weak var lbAsset: UILabel!
+    @IBOutlet weak var lbBalance: UILabel!
+    @IBOutlet weak var lbAssetCnt: UILabel!
 }

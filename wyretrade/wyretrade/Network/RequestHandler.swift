@@ -400,11 +400,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_STAKE
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -415,11 +411,7 @@ class RequestHandler {
         let url = Constants.URL.GET_STAKE_LIST
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -430,11 +422,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_STAKE_RELEASE
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -445,11 +433,7 @@ class RequestHandler {
         let url = Constants.URL.GET_STOCK_DETAIL
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -471,11 +455,7 @@ class RequestHandler {
         let url = Constants.URL.GET_ALL_STOCKS_AGGREGATE
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:false, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -486,11 +466,7 @@ class RequestHandler {
         let url = Constants.URL.GET_STOCK_NEWS
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -512,11 +488,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_STOCK_ORDER_REPLACE
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -703,11 +675,7 @@ class RequestHandler {
         let url = Constants.URL.GET_PREDICTABLE_LIST
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -718,11 +686,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_PREDICT
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+           
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -733,11 +697,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_PREDICT_BID
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -748,11 +708,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_PREDICT_CANCEL
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -763,11 +719,7 @@ class RequestHandler {
         let url = Constants.URL.GET_MTN_SERVICE
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -778,11 +730,7 @@ class RequestHandler {
         let url = Constants.URL.GET_MTN_TRANSACTION
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -793,11 +741,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_MTN_PAY
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -808,11 +752,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_MTN_TOPUP
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -823,11 +763,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_MTN_CONVERT
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -838,11 +774,7 @@ class RequestHandler {
         let url = Constants.URL.ZABO_REDIRECT
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:false, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -853,11 +785,7 @@ class RequestHandler {
         let url = Constants.URL.GET_ZABO_ACCOUNTS
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+           
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -868,11 +796,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_ZABO_ACCOUNTS
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -880,14 +804,10 @@ class RequestHandler {
     }
 
     class func getZaboAccountDetail(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
-        let url = Constants.URL.GET_ZABO_ACCOUNT
+        let url = Constants.URL.GET_ZABO_ACCOUNT + (parameter["id"] as! String)
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
@@ -898,11 +818,7 @@ class RequestHandler {
         let url = Constants.URL.REQUEST_ZABO_DEPOSIT
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
