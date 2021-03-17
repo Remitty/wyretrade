@@ -24,12 +24,32 @@ struct StockPositionModel {
         name = dictionary["name"] as? String
         ticker = dictionary["symbol"] as? String
         shares = dictionary["filled_qty"] as? Double
-//        price = PriceFormat(amount: dictionary["current_price"] as! Double, currency: Currency.usd).description
-        price = PriceFormat(amount: (dictionary["current_price"] as! NSString).doubleValue, currency: Currency.usd).description
-        dbPrice = (dictionary["current_price"] as! NSString).doubleValue
-        avgPrice = PriceFormat(amount: (dictionary["avg_price"] as! NSString).doubleValue, currency: Currency.usd).description
+
+        if let priceTemp = (dictionary["current_price"] as? NSString)?.doubleValue {
+            price = PriceFormat(amount: priceTemp, currency: Currency.usd).description
+            dbPrice =  priceTemp
+        } else {
+            price = PriceFormat(amount: dictionary["current_price"] as! Double, currency: Currency.usd).description
+            dbPrice = dictionary["current_price"] as! Double
+        }
         
-        holding = PriceFormat(amount: (dictionary["holding"] as! NSString).doubleValue, currency: Currency.usd).description
+        if let avgPriceTemp = (dictionary["avg_price"] as? NSString)?.doubleValue {
+            avgPrice = PriceFormat(amount: avgPriceTemp, currency: Currency.usd).description
+            
+        } else {
+            avgPrice = PriceFormat(amount: dictionary["avg_price"] as! Double, currency: Currency.usd).description
+            
+        }
+        
+        if let holdingTemp = (dictionary["holding"] as? NSString)?.doubleValue {
+            holding = PriceFormat(amount: holdingTemp, currency: Currency.usd).description
+            
+        } else {
+            holding = PriceFormat(amount: dictionary["holding"] as! Double, currency: Currency.usd).description
+            
+        }
+        
+        
         if let changeTodayTemp = (dictionary["change"] as? NSString)?.doubleValue {
             changeToday = (NumberFormat.init(value: changeTodayTemp, decimal: 4).description as! NSString).doubleValue
         } else {

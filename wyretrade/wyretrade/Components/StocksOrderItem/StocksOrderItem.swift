@@ -14,4 +14,10 @@ protocol StocksOrderItemParameterDelegate {
 
 class StocksOrderItem: UITableViewCell {
     
+    @IBOutlet weak var lbTicker: UILabel!
+    @IBOutlet weak var lbShares: UILabel!
+    @IBOutlet weak var lbType: UILabel!
+    @IBOutlet weak var lbStatus: UILabel!
+    @IBOutlet weak var lbAmount: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
 }

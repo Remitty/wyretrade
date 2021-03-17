@@ -44,11 +44,13 @@ class StocksBuyController: UIViewController, UITextFieldDelegate {
                                                                               "name" : "Verastem, Inc.",
                                                                               "profit" : "-0.84",
                                                                               "symbol" : "VSTM"])
+    var order = StocksOrderModel.init(fromDictionary: ["ticker": "", "side": "", "type": "", "order_id": "", "est_cost": "", "status": "", "created_at": "2021-01-22 18:34:04", "qty": "", "limit_price": ""])
+    
     var stocksBalance = 0.0
     var stocksShares = 0.0
     var estShares = 0.0
     var company = CompanyModel.init(fromDictionary: ["description": "", "industry": "", "website": ""])
-    var isBuy = true
+    var side = "buy"
     var isLimit = false
     
     let companyView = Company().loadView() as! Company
@@ -63,12 +65,31 @@ class StocksBuyController: UIViewController, UITextFieldDelegate {
         self.stocksShares = self.stocks.shares
         self.lbMarketPrice.text = self.stocks.price
         
-        if self.isBuy {
+        
+        
+        switch self.side {
+        case "buy":
             self.configCompany()
-        } else {
+        case "sell":
             self.btnTrade.setTitle("Sell", for: .normal)
             self.btnTrade.backgroundColor = UIColor.red
+        case "replace":
+            self.txtAmount.text = "\(self.order.amount!)"
+            self.lbEstCost.text = "\(self.order.shares!)"
+            self.btnTrade.setTitle("Update \(self.order.side!)", for: .normal)
+            if self.order.type == "market" {
+                self.viewLimit.isHidden = true
+                self.viewMarket.isHidden = false
+            } else {
+                self.viewLimit.isHidden = false
+                self.viewMarket.isHidden = true
+                self.txtLimitPrice.text = "\(self.order.limitPrice!)"
+                
+            }
+        default:
+            print("no data")
         }
+        
         lbMarket.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(StocksBuyController.marketClick))
         lbMarket.addGestureRecognizer(tap)
@@ -173,6 +194,26 @@ class StocksBuyController: UIViewController, UITextFieldDelegate {
                     self.presentVC(alert)
         }
     }
+    
+    func replaceOrder(param: NSDictionary) {
+        RequestHandler.replaceStocksOrder(parameter: param , success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            self.stocksBalance = (dictionary["stock_balance"] as! NSString).doubleValue
+            self.lbStocksBalance.text = "\(self.stocksBalance)"
+            self.stocksShares = (dictionary["shares"] as! NSString).doubleValue
+            self.lbStocksShares.text = "\(self.stocksShares)"
+            
+            self.showToast(message: dictionary["message"] as! String)
+            
+            
+            
+        }) { (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
+    }
 
     @IBAction func actionSubmit(_ sender: Any) {
         guard let amount = txtAmount.text else {
@@ -183,16 +224,36 @@ class StocksBuyController: UIViewController, UITextFieldDelegate {
              self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
             return
         }
-        if self.isBuy {
+        
+        
+        switch self.side {
+        case "buy":
             if (amount as! NSString).doubleValue > self.stocksBalance {
                 self.showToast(message: "Insufficient balance")
                 return
             }
-        } else {
+        case "sell":
             if self.estShares > self.stocksShares {
                 self.showToast(message: "Insufficient shares")
                 return
             }
+        case "replace":
+            switch self.order.side {
+            case "buy":
+                if (amount as! NSString).doubleValue > self.stocksBalance {
+                    self.showToast(message: "Insufficient balance")
+                    return
+                }
+            case "sell":
+                if self.estShares > self.stocksShares {
+                    self.showToast(message: "Insufficient shares")
+                    return
+                }
+            default:
+                print("no data")
+            }
+        default:
+            print("no data")
         }
         
         var limitPrice = "0"
@@ -215,14 +276,21 @@ class StocksBuyController: UIViewController, UITextFieldDelegate {
             
             "ticker": self.stocks.ticker!,
             "shares": self.estShares,
-            "buyorsell": self.isBuy ? "buy" : "sell",
+            "buyorsell": self.side == "replace" ? self.order.side: self.side,
             "cost": amount,
             "type": self.isLimit ? "limit": "market",
             "limit_price": self.isLimit ? limitPrice: 0
         ]
         
-        let alert = Alert.showConfirmAlert(message: "Please confirm your transaction. Trading fees is 0.10 XMT or $0.99. I fyou hold over 100XMT, no trading fee.", handler: {(_) in self.createOrder(param: param as! NSDictionary)})
-        self.presentVC(alert)
+        if self.side != "replace" {
+            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction. Trading fees is 0.10 XMT or $0.99. I fyou hold over 100XMT, no trading fee.", handler: {(_) in self.createOrder(param: param as! NSDictionary)})
+            self.presentVC(alert)
+        } else {
+            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction. Trading fees is 0.10 XMT or $0.99. I fyou hold over 100XMT, no trading fee.", handler: {(_) in self.replaceOrder(param: param as! NSDictionary)})
+            self.presentVC(alert)
+        }
+        
+        
         
     }
     

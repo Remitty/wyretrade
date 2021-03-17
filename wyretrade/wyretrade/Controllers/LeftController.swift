@@ -124,7 +124,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let coinwithdrawView = storyboard?.instantiateViewController(withIdentifier: "CoinWithdrawController") as! CoinWithdrawController
         self.viewCryptoWithdraw = UINavigationController(rootViewController: coinwithdrawView)
         
-        let stockshistoryView = storyboard?.instantiateViewController(withIdentifier: "StocksHistoryController") as! StocksHistoryController
+        let stockshistoryView = storyboard?.instantiateViewController(withIdentifier: "StocksHistoryPagerVC") as! StocksHistoryPagerVC
         self.viewStockHistory = UINavigationController(rootViewController: stockshistoryView)
         
         let deposithistoryView = storyboard?.instantiateViewController(withIdentifier: "DepositHistoryController") as! DepositHistoryController

@@ -1,15 +1,14 @@
 //
-//  PredictionController.swift
+//  StocksHistorPagerVC.swift
 //  wyretrade
 //
-//  Created by maxus on 3/4/21.
+//  Created by brian on 3/16/21.
 //
 
 import Foundation
-import UIKit
 import XLPagerTabStrip
 
-class PredictPagerVC: SegmentedPagerTabStripViewController {
+class StocksHistoryPagerVC: SegmentedPagerTabStripViewController {
     var isReload = false
     var orderList = [StocksOrderModel]()
     var historyList = [StocksOrderModel]()
@@ -132,7 +131,4 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
             pagerBehaviour = .common(skipIntermediateViewControllers: arc4random() % 2 == 0)
             reloadPagerTabStripView()
         }
-    @IBAction func actionPredict(_ sender: Any) {
-    }
 }
-

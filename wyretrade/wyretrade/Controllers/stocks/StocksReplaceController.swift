@@ -1,14 +1,14 @@
 //
-//  StocksDetailController.swift
+//  StocksReplaceController.swift
 //  wyretrade
 //
-//  Created by maxus on 3/4/21.
+//  Created by brian on 3/17/21.
 //
 
 import Foundation
 import UIKit
 
-class StocksDetailController: UIViewController {
+class StocksReplaceController: UIViewController {
     
     @IBOutlet weak var lbStocksSymbol: UILabel!
     @IBOutlet weak var lbStocksName: UILabel!
@@ -25,15 +25,8 @@ class StocksDetailController: UIViewController {
     @IBOutlet weak var viewFirst: UIView!
     @IBOutlet weak var viewSecond: UIView!
     
-    var stocks: StockPositionModel = StockPositionModel.init(fromDictionary: ["avg_price" : "2.33",
-                                                                              "change" : "-0.07",
-                                                                              "change_percent" : "-2.88",
-                                                                              "current_price" : "2.36",
-                                                                              "filled_qty" : 12,
-                                                                              "holding" : "28.32",
-                                                                              "name" : "Verastem, Inc.",
-                                                                              "profit" : "-0.84",
-                                                                              "symbol" : "VSTM"])
+    var order = StocksOrderModel.init(fromDictionary: ["ticker": "", "side": "", "type": "", "order_id": "", "est_cost": "", "status": "", "created_at": "2021-01-22 18:34:04", "qty": "", "limit_price": ""])
+    var stocks: StockPositionModel!
     var stocksBalance = 0.0
     var company = CompanyModel.init(fromDictionary: ["description": "", "industry": "", "website": ""])
     let companyView = Company().loadView() as! Company
@@ -41,34 +34,11 @@ class StocksDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.lbStocksSymbol.text = self.stocks.ticker
-        self.lbStocksName.text = self.stocks.name
-        self.lbStocksPrice.text = self.stocks.price
-        self.lbStocksChange.text = "$\(self.stocks.changeToday!) (\(self.stocks.changeTodayPercent!)%)  Today"
         
-        if self.stocks.dbProfit >= 0 {
-            self.lbProfit.textColor = UIColor.green
-            self.lbStocksChange.textColor = UIColor.green
-            self.imgProfit.image = UIImage(named: "ic_up")
-        } else {
-            self.lbProfit.textColor = UIColor.red
-            self.lbStocksChange.textColor = UIColor.red
-            self.imgProfit.image = UIImage(named: "ic_down")
-        }
-        
-        if self.stocks.shares > 0 {
-            self.lbShares.text = "\(self.stocks.shares!)"
-            self.lbAvgPrice.text = self.stocks.avgPrice
-            self.lbHolding.text = self.stocks.holding
-            self.lbProfit.text = self.stocks.profit
-        } else {
-            self.viewFirst.isHidden = false
-            self.viewSecond.isHidden = false
-        }
         
         self.loadData()
         
-        self.configCompany()
+//        self.configCompany()
         
     }
     
@@ -78,12 +48,14 @@ class StocksDetailController: UIViewController {
     }
     
     func loadData() {
-        let param : [String : Any] = ["ticker": self.stocks.ticker]
+        let param : [String : Any] = ["ticker": self.order.ticker]
         RequestHandler.getStockDetail(parameter: param as NSDictionary, success: { (successResponse) in
 //                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.stocksBalance = dictionary["stock_balance"] as! Double
+            
+            self.stocks = StockPositionModel.init(fromDictionary: dictionary["stock"] as! [String: Any])
 
             var chartDayData = [ChartModel]()
             var chartWeekData = [ChartModel]()
@@ -148,37 +120,45 @@ class StocksDetailController: UIViewController {
                 
             }
             
-            guard let company = dictionary["company"] else {
-                return
-            }
-            
-            self.company = CompanyModel(fromDictionary: company as! [String: Any])
-
-            self.companyView.lbDescription.text = self.company.description
-            self.companyView.lbIndustry.text = self.company.industry
-            self.companyView.lbDate.text = self.company.site
+//            guard let company = dictionary["company"] else {
+//                return
+//            }
+//
+//            self.company = CompanyModel(fromDictionary: company as! [String: Any])
+//
+//            self.companyView.lbDescription.text = self.company.description
+//            self.companyView.lbIndustry.text = self.company.industry
+//            self.companyView.lbDate.text = self.company.site
             
         }) { (error) in
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
     }
+    
+    func submitCancel() {
+        let param = ["order_id": self.order.orderId]
+    }
 
-    @IBAction func actionBuy(_ sender: Any) {
-        let buyController = storyboard?.instantiateViewController(withIdentifier: "StocksBuyController") as! StocksBuyController
-        buyController.stocks = self.stocks
-        buyController.company = self.company
-        buyController.stocksBalance = self.stocksBalance
-        buyController.side = "buy"
-        self.navigationController?.pushViewController(buyController, animated: true)
+    @IBAction func actionCancel(_ sender: Any) {
+        let alert = Alert.showConfirmAlert(message: "Are you sure cancel this order?", handler: {
+            (_) in self.submitCancel()
+        })
+        self.presentVC(alert)
     }
     
-    @IBAction func actionSell(_ sender: Any) {
-        let buyController = storyboard?.instantiateViewController(withIdentifier: "StocksBuyController") as! StocksBuyController
-        buyController.stocks = self.stocks
-        buyController.company = self.company
-        buyController.stocksBalance = self.stocksBalance
-        buyController.side = "sell"
-        self.navigationController?.pushViewController(buyController, animated: true)
+    @IBAction func actionReplace(_ sender: Any) {
+        if self.stocks != nil {
+            let buyController = storyboard?.instantiateViewController(withIdentifier: "StocksBuyController") as! StocksBuyController
+            buyController.stocks = self.stocks
+            buyController.order = self.order
+            buyController.company = self.company
+            buyController.stocksBalance = self.stocksBalance
+            buyController.side = "replace"
+            self.navigationController?.pushViewController(buyController, animated: true)
+        } else {
+            self.showToast(message: "Please wait for loading data")
+        }
+        
     }
 }

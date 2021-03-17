@@ -12,13 +12,14 @@ class Alert {
     
     static func showBasicAlert (message: String) -> UIAlertController{
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
     }
     
     static func showConfirmAlert (message: String, handler: @escaping (UIAlertAction)->Void) -> UIAlertController {
         let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: handler))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: handler))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         return alert
     }
 }
