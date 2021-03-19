@@ -824,5 +824,16 @@ class RequestHandler {
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
+    
+    class func getSupport(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.HELP
+        print(url)
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            
+            success(successResponse)
+        }) { (error) in
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
         
 }

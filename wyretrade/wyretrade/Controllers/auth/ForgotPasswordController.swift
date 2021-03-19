@@ -41,9 +41,11 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
             }
         if email == "" {
             self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+            return
         }
         else if !email.isValidEmail {
             self.txtEmail.shake(6, withDelta: 10, speed: 0.06)
+            return
         }
         let param : [String: Any] = [
            "email": email
@@ -52,23 +54,21 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
         RequestHandler.forgotPassword(parameter: param as NSDictionary, success: { (successResponse) in
 //            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
-            let success = dictionary["success"] as! Bool
-            if success {
-                let dictionary = successResponse as! [String: Any]
-                if let userData = dictionary["user"] as? [String:Any] {
-                    let confirmationVC = self.storyboard?.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
-//                    confirmationVC.user_id = userData.id
-                    
-                    self.navigationController?.pushViewController(confirmationVC, animated: true)
-                    
-                }
+            
+            self.showToast(message: dictionary["message"] as! String)
+            
+            if let userData = dictionary["user"] as? [String:Any] {
+                let user = UserAuthModel(fromDictionary: userData)
+                let confirmationVC = self.storyboard?.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
+                confirmationVC.user = user
                 
+                self.navigationController?.pushViewController(confirmationVC, animated: true)
                 
             }
-            else {
-                let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
-                self.presentVC(alert)
-            }
+                
+                
+            
+           
         }) { (error) in
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)

@@ -35,17 +35,20 @@ class ChangePasswordController: UIViewController, UITextFieldDelegate {
     @IBAction func actionUpdate(_ sender: Any) {
         if txtOldPw.text == "" {
             txtOldPw.shake(6, withDelta: 10, speed: 0.06)
+            return
         }
         if txtNewPw.text == "" {
             txtNewPw.shake(6, withDelta: 10, speed: 0.06)
+            return
         }
         if txtConfirmPw.text == "" {
             txtConfirmPw.shake(6, withDelta: 10, speed: 0.06)
+            return
         }
         
         let param = [
             "password": txtNewPw.text,
-            "password_confirm": txtConfirmPw.text,
+            "password_confirmation": txtConfirmPw.text,
             "old_password": txtOldPw.text
         ] as! NSDictionary
         

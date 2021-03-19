@@ -11,7 +11,7 @@ import NVActivityIndicatorView
 
 enum MainMenu: Int {
     case stakecoin = 0
-    case tradecryptos
+    case TradeToken
     case linkwallet
     case mtnservice
     case prediction
@@ -69,7 +69,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var othersArrayImages = [#imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
     
     var viewStakeCoin: UIViewController!
-    var viewTradeCryptos: UIViewController!
+    var viewTradeToken: UIViewController!
     var viewLinkWallet: UIViewController!
     var viewMtnService: UIViewController!
     var viewPrediction: UIViewController!
@@ -109,8 +109,8 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let stakecoinView = storyboard?.instantiateViewController(withIdentifier: "StakeListController") as! StakeListController
         self.viewStakeCoin = UINavigationController(rootViewController: stakecoinView)
         
-        let tradeCryptosView = storyboard?.instantiateViewController(withIdentifier: "TradeCryptosController") as! TradeCryptosController
-        self.viewTradeCryptos = UINavigationController(rootViewController: tradeCryptosView)
+        let TradeTokenView = storyboard?.instantiateViewController(withIdentifier: "TradeTokenController") as! TradeTokenController
+        self.viewTradeToken = UINavigationController(rootViewController: TradeTokenView)
         
         let linkwalletView = storyboard?.instantiateViewController(withIdentifier: "LinkAccountController") as! LinkAccountController
         self.viewLinkWallet = UINavigationController(rootViewController: linkwalletView)
@@ -118,7 +118,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let mtnView = storyboard?.instantiateViewController(withIdentifier: "MtnController") as! MtnController
         self.viewMtnService = UINavigationController(rootViewController: mtnView)
         
-        let predictionView = storyboard?.instantiateViewController(withIdentifier: "PredictionController") as! PredictionController
+        let predictionView = storyboard?.instantiateViewController(withIdentifier: "PredictPagerVC") as! PredictPagerVC
         self.viewPrediction = UINavigationController(rootViewController: predictionView)
 
         let coinwithdrawView = storyboard?.instantiateViewController(withIdentifier: "CoinWithdrawController") as! CoinWithdrawController
@@ -143,8 +143,8 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         switch other {
         case .stakecoin:
             self.slideMenuController()?.changeMainViewController(self.viewStakeCoin, close: true)
-        case .tradecryptos:
-            self.slideMenuController()?.changeMainViewController(self.viewTradeCryptos, close: true)
+        case .TradeToken:
+            self.slideMenuController()?.changeMainViewController(self.viewTradeToken, close: true)
         case .linkwallet:
             self.slideMenuController()?.changeMainViewController(self.viewLinkWallet, close: true)
         case .mtnservice:

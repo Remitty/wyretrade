@@ -190,7 +190,7 @@ extension CoinWithdrawController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension CoinWithdrawController: CoinSelectontrollerDelegate {
+extension CoinWithdrawController: CoinSelectControllerDelegate {
     func selectCoin(param: CoinModel) {
         self.coin = param
         self.lbBalance.text = param.balance

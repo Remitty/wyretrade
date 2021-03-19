@@ -23,7 +23,7 @@ class CoinSelectController: UIViewController {
     
     var coinList = [CoinModel]()
     
-    var delegate: CoinSelectontrollerDelegate!
+    var delegate: CoinSelectControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +95,6 @@ extension CoinSelectController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-protocol CoinSelectontrollerDelegate {
+protocol CoinSelectControllerDelegate {
     func selectCoin(param: CoinModel)
 }

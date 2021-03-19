@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TokenAskItem" id="aPJ-43-35w" customClass="TokenAskItem" customModule="wyretrade" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aPJ-43-35w" id="gyZ-dZ-P5h">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Maa-oN-5Bv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOU-ZR-FAX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Qty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jd-GY-ghB">
+                                        <rect key="frame" x="0.0" y="0.0" width="385" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Puc-il-lPj">
+                                        <rect key="frame" x="385" y="0.0" width="29" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NOU-ZR-FAX" firstAttribute="top" secondItem="Maa-oN-5Bv" secondAttribute="top" id="5K5-K9-uhG"/>
+                            <constraint firstAttribute="trailing" secondItem="NOU-ZR-FAX" secondAttribute="trailing" id="JIY-Qw-cw4"/>
+                            <constraint firstItem="NOU-ZR-FAX" firstAttribute="leading" secondItem="Maa-oN-5Bv" secondAttribute="leading" id="Nn4-uv-1d7"/>
+                            <constraint firstAttribute="bottom" secondItem="NOU-ZR-FAX" secondAttribute="bottom" id="thQ-Xl-xa6"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Maa-oN-5Bv" firstAttribute="top" secondItem="gyZ-dZ-P5h" secondAttribute="top" id="4Cr-eA-shA"/>
+                    <constraint firstItem="Maa-oN-5Bv" firstAttribute="leading" secondItem="gyZ-dZ-P5h" secondAttribute="leading" id="P1l-OT-KDp"/>
+                    <constraint firstAttribute="bottom" secondItem="Maa-oN-5Bv" secondAttribute="bottom" id="PXh-zg-eCb"/>
+                    <constraint firstAttribute="trailing" secondItem="Maa-oN-5Bv" secondAttribute="trailing" id="Us0-NX-67g"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lbPrice" destination="Puc-il-lPj" id="2v2-fW-Quo"/>
+                <outlet property="lbQty" destination="4jd-GY-ghB" id="MYR-ny-XRR"/>
+            </connections>
+            <point key="canvasLocation" x="249" y="149"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
