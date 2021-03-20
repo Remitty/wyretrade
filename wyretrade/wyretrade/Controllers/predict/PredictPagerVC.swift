@@ -11,41 +11,39 @@ import XLPagerTabStrip
 
 class PredictPagerVC: SegmentedPagerTabStripViewController {
     var isReload = false
-    var depositFromBankList = [StocksDepositModel]()
-    var depositFromCoinList = [StocksDepositModel]()
-    var usdcBalance = 0.0
-    var usdBalance = ""
-    var stocksBalance = 0.0
+    var newList = [PredictionModel]()
+    var ownerList = [PredictionModel]()
+    var resultList = [PredictionModel]()
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        settings.style.segmentedControlColor = .white
+        settings.style.segmentedControlColor = .green
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         self.looadData()
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 
-        let child1 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositCoinController") as! StocksDepositCoinController
-        let child2 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositBankController") as! StocksDepositBankController
+        let child1 = self.storyboard?.instantiateViewController(withIdentifier: "PredictListController") as! PredictListController
+        let child3 = self.storyboard?.instantiateViewController(withIdentifier: "PredictOwnerController") as! PredictOwnerController
+        let child2 = self.storyboard?.instantiateViewController(withIdentifier: "PredictResultsController") as! PredictResultsController
         
-        child1.depositFromCoinList = self.depositFromCoinList
-        child1.stocksBalance = self.stocksBalance
-        child1.usdcBalance = self.usdcBalance
+        child1.predictList = newList
+        child2.predictList = resultList
+        child3.predictList = ownerList
         
-        child2.depositFromBankList = self.depositFromBankList
-        child2.stocksBalance = self.stocksBalance
-        child2.usdBalance = self.usdBalance
         
         guard isReload else {
-            return [child1, child2]
+            return [child1, child2, child3]
         }
         
-        var childVCs = [child1, child2]
+        var childVCs = [child1, child2, child3]
         let count = childVCs.count
         
         for index in childVCs.indices {
@@ -61,38 +59,40 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
     
     func looadData() {
         let param : [String : Any] = [:]
-        RequestHandler.getUserBalance(parameter: param as NSDictionary, success: { (successResponse) in
+        RequestHandler.getPredictionList(parameter: param as NSDictionary, success: { (successResponse) in
 //                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            var deposit : StocksDepositModel!
+            var predict : PredictionModel!
             
-            if let data = dictionary["coin_stock_transfer"] as? [[String:Any]] {
-                self.depositFromBankList = [StocksDepositModel]()
-                self.depositFromCoinList = [StocksDepositModel]()
+            if let data = dictionary["new_predict"] as? [[String:Any]] {
+                
+                self.newList = [PredictionModel]()
                 
                 for item in data {
-                    deposit = StocksDepositModel(fromDictionary: item)
-                    self.depositFromBankList.append(deposit)
-                    self.depositFromCoinList.append(deposit)
+                    predict = PredictionModel(fromDictionary: item)
+                    self.newList.append(predict)
                 }
+            }
+            if let data = dictionary["incoming"] as? [[String:Any]] {
                 
+                self.resultList = [PredictionModel]()
                 
+                for item in data {
+                    predict = PredictionModel(fromDictionary: item)
+                    self.resultList.append(predict)
+                }
+            }
+            if let data = dictionary["my_post"] as? [[String:Any]] {
+                
+                self.ownerList = [PredictionModel]()
+                
+                for item in data {
+                    predict = PredictionModel(fromDictionary: item)
+                    self.ownerList.append(predict)
+                }
             }
             
-            if let usdcBalance = (dictionary["usdc_balance"] as? NSString)?.doubleValue {
-                self.usdcBalance = usdcBalance
-            } else {
-                self.usdcBalance = dictionary["usdc_balance"] as! Double
-            }
-            
-            if let stockBalance = (dictionary["stock_balance"] as? NSString)?.doubleValue {
-                self.stocksBalance = stockBalance
-            } else {
-                self.stocksBalance = dictionary["stock_balance"] as! Double
-            }
-            
-            self.usdBalance = dictionary["bank_usd_balance"] as! String
             
             self.reloadPagerTabStripView()
    

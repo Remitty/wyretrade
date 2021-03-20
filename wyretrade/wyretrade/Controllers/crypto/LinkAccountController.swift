@@ -29,19 +29,21 @@ class LinkAccountController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
+        
         self.loadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       super.viewWillAppear(animated)
-       self.navigationController?.isNavigationBarHidden = true
-       
-   }
-
-   override func viewWillDisappear(_ animated: Bool) {
-       super.viewWillDisappear(animated)
-       self.navigationController?.isNavigationBarHidden = false
-   }
+//    override func viewWillAppear(_ animated: Bool) {
+//       super.viewWillAppear(animated)
+//       self.navigationController?.isNavigationBarHidden = true
+//
+//   }
+//
+//   override func viewWillDisappear(_ animated: Bool) {
+//       super.viewWillDisappear(animated)
+//       self.navigationController?.isNavigationBarHidden = false
+//   }
     
     func loadData() {
         let param : [String : Any] = [:]

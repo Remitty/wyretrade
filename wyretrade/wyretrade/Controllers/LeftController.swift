@@ -10,6 +10,7 @@ import SlideMenuControllerSwift
 import NVActivityIndicatorView
 
 enum MainMenu: Int {
+    
     case stakecoin = 0
     case TradeToken
     case linkwallet
@@ -68,6 +69,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var otherMenus = ["Support", "Logout"]
     var othersArrayImages = [#imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
     
+    var viewHome: UITabBarController!
     var viewStakeCoin: UIViewController!
     var viewTradeToken: UIViewController!
     var viewLinkWallet: UIViewController!
@@ -106,32 +108,35 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     fileprivate func initializeViews() {
+        let mainView = storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
+        self.viewHome = mainView //UINavigationController(rootViewController: stakecoinView)
+        
         let stakecoinView = storyboard?.instantiateViewController(withIdentifier: "StakeListController") as! StakeListController
-        self.viewStakeCoin = UINavigationController(rootViewController: stakecoinView)
+        self.viewStakeCoin = stakecoinView//UINavigationController(rootViewController: stakecoinView)
         
         let TradeTokenView = storyboard?.instantiateViewController(withIdentifier: "TradeTokenController") as! TradeTokenController
-        self.viewTradeToken = UINavigationController(rootViewController: TradeTokenView)
+        self.viewTradeToken = TradeTokenView//UINavigationController(rootViewController: TradeTokenView)
         
         let linkwalletView = storyboard?.instantiateViewController(withIdentifier: "LinkAccountController") as! LinkAccountController
-        self.viewLinkWallet = UINavigationController(rootViewController: linkwalletView)
+        self.viewLinkWallet = linkwalletView//UINavigationController(rootViewController: linkwalletView)
         
         let mtnView = storyboard?.instantiateViewController(withIdentifier: "MtnController") as! MtnController
-        self.viewMtnService = UINavigationController(rootViewController: mtnView)
+        self.viewMtnService = mtnView//UINavigationController(rootViewController: mtnView)
         
         let predictionView = storyboard?.instantiateViewController(withIdentifier: "PredictPagerVC") as! PredictPagerVC
-        self.viewPrediction = UINavigationController(rootViewController: predictionView)
+        self.viewPrediction = predictionView//UINavigationController(rootViewController: predictionView)
 
         let coinwithdrawView = storyboard?.instantiateViewController(withIdentifier: "CoinWithdrawController") as! CoinWithdrawController
-        self.viewCryptoWithdraw = UINavigationController(rootViewController: coinwithdrawView)
+        self.viewCryptoWithdraw = coinwithdrawView//UINavigationController(rootViewController: coinwithdrawView)
         
         let stockshistoryView = storyboard?.instantiateViewController(withIdentifier: "StocksHistoryPagerVC") as! StocksHistoryPagerVC
-        self.viewStockHistory = UINavigationController(rootViewController: stockshistoryView)
+        self.viewStockHistory = stockshistoryView//UINavigationController(rootViewController: stockshistoryView)
         
         let deposithistoryView = storyboard?.instantiateViewController(withIdentifier: "DepositHistoryController") as! DepositHistoryController
-        self.viewDepositActivities = UINavigationController(rootViewController: deposithistoryView)
+        self.viewDepositActivities = deposithistoryView//UINavigationController(rootViewController: deposithistoryView)
         
         let stocksnewsView = storyboard?.instantiateViewController(withIdentifier: "StocksNewsController") as! StocksNewsController
-        self.viewStockNews = UINavigationController(rootViewController: stocksnewsView)
+        self.viewStockNews = stocksnewsView//UINavigationController(rootViewController: stocksnewsView)
     }
 
     func initializeOtherViews() {
@@ -141,26 +146,38 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func changeMenu(_ other: MainMenu) {
         switch other {
+//        case .home:
+//            self.slideMenuController()?.changeMainViewController(self.viewHome, close: true)
         case .stakecoin:
-            self.slideMenuController()?.changeMainViewController(self.viewStakeCoin, close: true)
+            self.navigationController?.pushViewController(viewStakeCoin, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewStakeCoin, close: true)
         case .TradeToken:
-            self.slideMenuController()?.changeMainViewController(self.viewTradeToken, close: true)
+            self.navigationController?.pushViewController(viewTradeToken, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewTradeToken, close: true)
         case .linkwallet:
-            self.slideMenuController()?.changeMainViewController(self.viewLinkWallet, close: true)
+            self.navigationController?.pushViewController(viewLinkWallet, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewLinkWallet, close: true)
         case .mtnservice:
-            self.slideMenuController()?.changeMainViewController(self.viewMtnService, close: true)
+            self.navigationController?.pushViewController(viewMtnService, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewMtnService, close: true)
         case .prediction:
-            self.slideMenuController()?.changeMainViewController(self.viewPrediction, close: true)
+            self.navigationController?.pushViewController(viewPrediction, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewPrediction, close: true)
         case .cryptowithdraw:
-            self.slideMenuController()?.changeMainViewController(self.viewCryptoWithdraw, close: true)
+            self.navigationController?.pushViewController(viewCryptoWithdraw, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewCryptoWithdraw, close: true)
         case .stockhistory:
-            self.slideMenuController()?.changeMainViewController(self.viewStockHistory, close: true)
+            self.navigationController?.pushViewController(viewStockHistory, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewStockHistory, close: true)
         case .depositactivities:
-            self.slideMenuController()?.changeMainViewController(self.viewDepositActivities, close: true)
+            self.navigationController?.pushViewController(viewDepositActivities, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewDepositActivities, close: true)
         case .stocknews:
-            self.slideMenuController()?.changeMainViewController(self.viewStockNews, close: true)
+            self.navigationController?.pushViewController(viewStockNews, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewStockNews, close: true)
         case .support :
-            self.slideMenuController()?.changeMainViewController(self.viewSupport, close: true)
+            self.navigationController?.pushViewController(viewSupport, animated: true)
+//            self.slideMenuController()?.changeMainViewController(self.viewSupport, close: true)
         case .logout :
             let alert = Alert.showConfirmAlert(message: "Are you sure you want to logout?", handler: { (_) in self.logoutUser()})
             self.presentVC(alert)

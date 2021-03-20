@@ -60,8 +60,8 @@ class SplashController: UIViewController {
 //         let navi : UINavigationController = UINavigationController(rootViewController: mainVC)
          let slideMenuController = SlideMenuController(mainViewController: mainVC, leftMenuViewController: leftVC)
         
-//        self.window?.rootViewController = slideMenuController
-        //        self.window?.makeKeyAndVisible()
+        self.window?.rootViewController = slideMenuController
+                self.window?.makeKeyAndVisible()
         navigationController?.pushViewController(slideMenuController, animated: true)
     }
     

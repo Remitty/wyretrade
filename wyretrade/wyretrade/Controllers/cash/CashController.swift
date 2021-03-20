@@ -20,6 +20,9 @@ class CashController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
+        
         // Do any additional setup after loading the view.
         accountView.isUserInteractionEnabled = true
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(CashController.accountClick))

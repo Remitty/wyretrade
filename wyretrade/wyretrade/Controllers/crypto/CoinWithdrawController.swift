@@ -42,22 +42,23 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         // Do any additional setup after loading the view.
         txtAmount.addTarget(self, action: #selector(CoinWithdrawController.amountTextFiledDidChange), for: .editingChanged)
         
         self.loadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       super.viewWillAppear(animated)
-       self.navigationController?.isNavigationBarHidden = true
-       
-   }
-
-   override func viewWillDisappear(_ animated: Bool) {
-       super.viewWillDisappear(animated)
-       self.navigationController?.isNavigationBarHidden = false
-   }
+//    override func viewWillAppear(_ animated: Bool) {
+//       super.viewWillAppear(animated)
+//       self.navigationController?.isNavigationBarHidden = true
+//
+//   }
+//
+//   override func viewWillDisappear(_ animated: Bool) {
+//       super.viewWillDisappear(animated)
+//       self.navigationController?.isNavigationBarHidden = false
+//   }
     
     @objc func amountTextFiledDidChange(_ textField: UITextField) {
         guard let amount = textField.text else {

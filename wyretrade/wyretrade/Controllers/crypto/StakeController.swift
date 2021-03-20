@@ -46,6 +46,8 @@ class StakeController: UIViewController, UITextFieldDelegate {
         
         lbSymbol.text = self.symbol
         lbSymbol2.text = self.symbol
+        
+        
     }
     
     func loadData() {

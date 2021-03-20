@@ -7,6 +7,7 @@
 
 import UIKit
 import MaterialComponents
+//import SlideMenuControllerSwift
 
 class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -40,10 +41,24 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
         let userAuth = UserAuthModel(fromDictionary: objUser)
 
-        self.userName.text = userAuth.first_name 
+        self.userName.text = userAuth.first_name
+        
+        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
+        
         self.loadData()
         
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//       super.viewWillAppear(animated)
+//       self.navigationController?.isNavigationBarHidden = true
+//
+//   }
+//
+//   override func viewWillDisappear(_ animated: Bool) {
+//       super.viewWillDisappear(animated)
+//       self.navigationController?.isNavigationBarHidden = false
+//   }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsList.count

@@ -77,6 +77,7 @@ class TradeTokenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
         self.addTradeView()
         

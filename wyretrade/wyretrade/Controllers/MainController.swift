@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 class MainController: UITabBarController {
 
@@ -18,7 +19,7 @@ class MainController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
        self.navigationController?.isNavigationBarHidden = true
-
+        
    }
 
    override func viewWillDisappear(_ animated: Bool) {
