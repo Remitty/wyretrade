@@ -3212,7 +3212,7 @@
                                                                             <imageReference key="image" image="arrowtriangle.down.fill" catalog="system" symbolScale="small"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <segue destination="os7-Dm-TiB" kind="show" id="P8u-yw-xXs"/>
+                                                                            <action selector="actionSelectCoin:" destination="c6O-m3-KpC" eventType="primaryActionTriggered" id="t7V-sw-6bK"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjL-pa-laN">
@@ -3564,11 +3564,11 @@
             <objects>
                 <viewController storyboardIdentifier="CoinSelectController" id="os7-Dm-TiB" customClass="CoinSelectController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OiL-WO-tun">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pdd-zy-NM1">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -8277,7 +8277,7 @@
                                                                             <imageReference key="image" image="arrowtriangle.down.fill" catalog="system" symbolScale="small"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="actionSelectBuyCoin:" destination="j5K-gd-DgT" eventType="primaryActionTriggered" id="KhW-Ge-Gca"/>
+                                                                            <action selector="actionSelectBuyCoin:" destination="j5K-gd-DgT" eventType="primaryActionTriggered" id="XR7-FY-u5f"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hku-zN-QYu">
@@ -8396,7 +8396,7 @@
                                                                             <imageReference key="image" image="arrowtriangle.down.fill" catalog="system" symbolScale="small"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="actionSelectSellCoin:" destination="j5K-gd-DgT" eventType="primaryActionTriggered" id="boU-pT-5r9"/>
+                                                                            <action selector="actionSelectSellCoin:" destination="j5K-gd-DgT" eventType="primaryActionTriggered" id="1OT-si-lhq"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cC7-5F-iKF">
@@ -8656,7 +8656,7 @@
                                                                     </tableViewCell>
                                                                 </prototypes>
                                                             </tableView>
-                                                            <view contentMode="scaleToFill" restorationIdentifier="ContractView" translatesAutoresizingMaskIntoConstraints="NO" id="coc-Xr-fAT" customClass="MDCCard">
+                                                            <view contentMode="scaleToFill" restorationIdentifier="ContractView" translatesAutoresizingMaskIntoConstraints="NO" id="coc-Xr-fAT">
                                                                 <rect key="frame" x="10" y="295" width="350" height="90"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaf-Id-xAC">
@@ -8688,11 +8688,8 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="interactable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="actionContactCardTouched:" destination="0eR-sx-zDU" eventType="touchUpInside" id="WXX-jR-4D1"/>
-                                                                </connections>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZM-x6-Ozq" customClass="MDCCard">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZM-x6-Ozq">
                                                                 <rect key="frame" x="10" y="185" width="350" height="90"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vru-Yz-Jua">
@@ -8725,9 +8722,6 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="interactable" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="actionPayCardTouched:" destination="0eR-sx-zDU" eventType="touchUpInside" id="feT-ch-g2q"/>
-                                                                </connections>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="O0M-rA-PgV">
                                                                 <rect key="frame" x="30" y="20" width="340" height="35"/>

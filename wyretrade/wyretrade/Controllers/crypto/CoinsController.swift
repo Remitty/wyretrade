@@ -7,6 +7,7 @@
 
 import UIKit
 import PopupDialog
+import SafariServices
 
 class CoinsController: UIViewController {
     
@@ -28,6 +29,7 @@ class CoinsController: UIViewController {
     var coinList = [CoinModel]()
     var onramperApiKey: String!
     var xanpoolApiKey: String!
+    var onRamperCoins = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +54,7 @@ class CoinsController: UIViewController {
                 for item in coinData {
                     coin = CoinModel(fromDictionary: item)
                     self.coinList.append(coin)
+                    self.onRamperCoins += coin.symbol + ","
                 }
                 self.coinTable.reloadData()
             }
@@ -79,13 +82,93 @@ class CoinsController: UIViewController {
             }
     }
     
+    func actionXanpool(param: NSDictionary) {
+        RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            let dictionary = successResponse as! [String: Any]
+            
+            var address = dictionary["address"] as! String
+            
+            let base = "https://checkout.xanpool.com/"
+            let apiKey = "?apiKey=\(self.xanpoolApiKey!)"
+            let wallet = "&owallet=\(address)"
+            let symbol = "&cryptoCurrency=\(param["symbol"]!)"
+            let transactionType = "&transactionType="
+            let isWebview = "&isWebview=true"
+            let partner = "&partnerData=88824d8683434f4e"
+             let url = base + apiKey + wallet + symbol + transactionType + isWebview + partner
+            
+            let webviewController = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC
+            webviewController.url = url
+            self.navigationController?.pushViewController(webviewController, animated: true)
+            
+        }) {
+            (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+            self.presentVC(alert)
+        }
+    }
     
+    func actionRamp(param: NSDictionary) {
+        RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            let dictionary = successResponse as! [String: Any]
+            
+            var address = dictionary["address"] as! String
+            
+            let base = "https://checkout.xanpool.com/"
+            let apiKey = "?apiKey=\(self.xanpoolApiKey!)"
+            let wallet = "&owallet=\(address)"
+            let symbol = "&cryptoCurrency=\(param["symbol"]!)"
+            let transactionType = "&transactionType="
+            let isWebview = "&isWebview=true"
+            let partner = "&partnerData=88824d8683434f4e"
+             let url = base + apiKey + wallet + symbol + transactionType + isWebview + partner
+            
+            let webviewController = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC
+            webviewController.url = url
+            self.navigationController?.pushViewController(webviewController, animated: true)
+            
+        }) {
+            (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+            self.presentVC(alert)
+        }
+    }
+    
+    func actionOnramp(param: NSDictionary) {
+        RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            let dictionary = successResponse as! [String: Any]
+            
+            var address = dictionary["address"] as! String
+            
+            var configuration = Ramp.Configuration(url: "https://widget-instant.ramp.network/")
+            configuration.userAddress = address
+            configuration.swapAsset = param["symbol"] as? String
+//            configuration.fiatValue = "2"
+//            configuration.swapAsset = "BTC"
+//            configuration.finalUrl = "rampexample://ramp.purchase.complete"
+            let rampWidgetUrl = configuration.composeUrl()
+            
+            let rampVC = SFSafariViewController(url: rampWidgetUrl)
+            rampVC.modalPresentationStyle = .overFullScreen
+            self.present(rampVC, animated: true)
+            
+        }) {
+            (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+            self.presentVC(alert)
+        }
+    }
+   
 }
  
 extension CoinsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coinList.count
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 130
+        }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CoinView = tableView.dequeueReusableCell(withIdentifier: "CoinView", for: indexPath) as! CoinView
@@ -97,6 +180,10 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
         cell.lbHolding.text = coin.holding
         cell.lbBalance.text = "\(coin.balance!) \(coin.symbol!)"
         cell.lbChangePercent.text = "\(coin.changeToday!) %"
+        cell.buyType = coin.buyType
+        if coin.buyType == 0 || coin.buyType == 100 {
+            cell.btnBuy.isHidden = true
+        }
         if coin.changeToday >= 0 {
             cell.lbChangePercent.textColor = UIColor.green
             cell.imgChange.image = UIImage(named: "ic_up")
@@ -115,25 +202,49 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
 
 extension CoinsController: CoinViewParameterDelegate {
     func tradeParamData(param: NSDictionary) {
-        let cointradecontroller: CoinTradeOptionModal = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeOptionModal") as! CoinTradeOptionModal
-        let popup = PopupDialog(viewController: cointradecontroller,
-                                buttonAlignment: .horizontal,
-                                transitionStyle: .bounceDown,
-                                tapGestureDismissal: true,
-                                panGestureDismissal: true)
-        let buttonTwo = DefaultButton(title: "Select", height: 30) {
-                    print("here")
-                }
-        popup.addButton(buttonTwo)
+//        let cointradecontroller: CoinTradeOptionModal = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeOptionModal") as! CoinTradeOptionModal
+//        let popup = PopupDialog(viewController: cointradecontroller,
+//                                buttonAlignment: .horizontal,
+//                                transitionStyle: .bounceDown,
+//                                tapGestureDismissal: true,
+//                                panGestureDismissal: true)
+//        let buttonTwo = DefaultButton(title: "Select", height: 30) {
+//                    print("here")
+//                }
+//        popup.addButton(buttonTwo)
+//
+////        let overlayAppearance = PopupDialogOverlayView.appearance()
+////        overlayAppearance.opacity = 0.3
+//
+//        self.presentVC(popup)
         
-//        let overlayAppearance = PopupDialogOverlayView.appearance()
-//        overlayAppearance.opacity = 0.3
+        let alertController = UIAlertController(title: "Buy / Sell", message: "Select option to buy cryptocurrencies with over 40 fiat currencies", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Buy / Sell(INR, MYR, HKD, PHP, TBH, VND, SGD, RP) \n Pwered by xanpool", style: .default) { (_) in
+            self.actionXanpool(param: param)
+        }
+        let action2 = UIAlertAction(title: "Buy only(USD, EUR) \n Pwered by Ramp", style: .default) { action in
+            self.actionRamp(param: param)
+        }
+        let action3 = UIAlertAction(title: "Buy only(Global) \n Pwered by onramp", style: .default) { action in
+            self.actionOnramp(param: param)
+        }
+        alertController.addAction(action2)
+        if (param["buyType"] as! Int) > 2 {
+            alertController.addAction(action3)
+        }
+        if (param["buyType"] as! Int) > 1 {
+            alertController.addAction(action1)
+        }
+        UILabel.appearance(whenContainedInInstancesOf:[UIAlertController.self]).numberOfLines = 2
         
-        self.presentVC(popup)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        self.presentVC(alertController);
     }
     
     func depositParamData(param: NSDictionary) {
-        print(param)
+        
         RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
             let dictionary = successResponse as! [String: Any]
             

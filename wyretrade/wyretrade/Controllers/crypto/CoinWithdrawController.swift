@@ -34,6 +34,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     }
     
     var historyList = [CoinWithdrawModel]()
+    var coinList = [CoinModel]()
     var coin: CoinModel!
     var withdrawFee = 0.0
     var symbol = ""
@@ -49,16 +50,6 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
         self.loadData()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//       super.viewWillAppear(animated)
-//       self.navigationController?.isNavigationBarHidden = true
-//
-//   }
-//
-//   override func viewWillDisappear(_ animated: Bool) {
-//       super.viewWillDisappear(animated)
-//       self.navigationController?.isNavigationBarHidden = false
-//   }
     
     @objc func amountTextFiledDidChange(_ textField: UITextField) {
         guard let amount = textField.text else {
@@ -74,10 +65,10 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
         self.lbEstGet.text = "\(est) \(self.symbol)"
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let next = segue.destination as! CoinSelectController
-        next.delegate = self
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let next = segue.destination as! CoinSelectController
+//        next.delegate = self
+//    }
     
     func loadData() {
             let param : [String : Any] = [:]
@@ -170,6 +161,35 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
             (_) in self.submitWithdraw(param: param)
         })
     }
+    
+    @IBAction func actionSelectCoin(_ sender: Any) {
+        let param : [String : Any] = [:]
+        RequestHandler.getCoinWithdrawableAssets(parameter: param as NSDictionary, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            var coin : CoinModel!
+            
+            if let Data = dictionary["assets"] as? [[String:Any]] {
+                self.coinList = [CoinModel]()
+                for item in Data {
+                    coin = CoinModel(fromDictionary: item)
+                    self.coinList.append(coin)
+                }
+                
+                let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
+                detailController.delegate = self
+                detailController.coinList = self.coinList
+                self.navigationController?.pushViewController(detailController, animated: true)
+            }
+            
+            }) { (error) in
+                let alert = Alert.showBasicAlert(message: error.message)
+                        self.presentVC(alert)
+            }
+        
+    }
+    
     
 }
 

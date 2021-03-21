@@ -9,15 +9,15 @@ import UIKit
 import MaterialComponents
 //import SlideMenuControllerSwift
 
-class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeController: UIViewController {
     
     
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var usdcBalance: UILabel!
     
     @IBOutlet weak var balanceCard: MDCCard!
-    @IBOutlet weak var payCard: MDCCard!
-    @IBOutlet weak var contactCard: MDCCard!
+    @IBOutlet weak var payCard: UIView!
+    @IBOutlet weak var contactCard: UIView!
     
     @IBOutlet weak var newsTable: UITableView!
     {
@@ -45,40 +45,18 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
+        payCard.isUserInteractionEnabled = true
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(HomeController.payCardClick))
+        payCard.addGestureRecognizer(tap1)
+        
+        contactCard.isUserInteractionEnabled = true
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(HomeController.contactCardClick))
+        contactCard.addGestureRecognizer(tap2)
+        
         self.loadData()
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//       super.viewWillAppear(animated)
-//       self.navigationController?.isNavigationBarHidden = true
-//
-//   }
-//
-//   override func viewWillDisappear(_ animated: Bool) {
-//       super.viewWillDisappear(animated)
-//       self.navigationController?.isNavigationBarHidden = false
-//   }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsList.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: NewsView = tableView.dequeueReusableCell(withIdentifier: "NewsView", for: indexPath) as! NewsView
-        let news = newsList[indexPath.row]
-        cell.title.text = news.title
-        cell.summary.text = news.description
-        cell.date.text = news.date
-        cell.logo.load(url: URL(string:news.image)!)
-        
-        return cell
-    }
-
     func loadData() {
         
                     
@@ -109,14 +87,34 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    @IBAction func actionPayCardTouched(_ sender: Any) {
+    @objc func payCardClick(sender: UITapGestureRecognizer) {
         let payVC = self.storyboard?.instantiateViewController(withIdentifier: "USDCPayController") as! USDCPayController
         self.navigationController?.pushViewController(payVC, animated: true)
         
     }
-    @IBAction func actionContactCardTouched(_ sender: Any) {
+    @objc func contactCardClick(sender: UITapGestureRecognizer) {
         let contactVC = self.storyboard?.instantiateViewController(withIdentifier: "USDCAddContactController") as! USDCAddContactController
         self.navigationController?.pushViewController(contactVC, animated: true)
     }
 }
 
+extension HomeController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 350
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: NewsView = tableView.dequeueReusableCell(withIdentifier: "NewsView", for: indexPath) as! NewsView
+        let news = newsList[indexPath.row]
+        cell.title.text = news.title
+        cell.summary.text = news.description
+        cell.date.text = news.date
+        cell.logo.load(url: URL(string:news.image)!)
+        
+        return cell
+    }
+}

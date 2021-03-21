@@ -17,6 +17,8 @@ struct CoinModel {
     var holding: String!
     var changeToday: Double!
     var withdrawFee: Double!
+    var buyType: Int!
+    var exchangeRate: Double!
     
     init?(fromDictionary dictionary: [String: Any]) {
         id = "\(dictionary["id"] as! Int)"
@@ -47,6 +49,12 @@ struct CoinModel {
         if let change_rate = dictionary["change_rate"] as? NSString {
             changeToday = change_rate.doubleValue
         }
+        
+        if let exchange = dictionary["exchange_rate"] as? NSString {
+            exchangeRate = exchange.doubleValue
+        }
+        
+        buyType = dictionary["buy_now"] as? Int
         
     }
    

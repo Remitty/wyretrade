@@ -27,7 +27,7 @@ class CoinSelectController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,28 +41,7 @@ class CoinSelectController: UIViewController {
        self.navigationController?.isNavigationBarHidden = false
    }
     
-    func loadData() {
-            let param : [String : Any] = [:]
-            RequestHandler.getCoinWithdrawableAssets(parameter: param as NSDictionary, success: { (successResponse) in
-    //                        self.stopAnimating()
-                let dictionary = successResponse as! [String: Any]
-                
-                var coin : CoinModel!
-                
-                if let Data = dictionary["assets"] as? [[String:Any]] {
-                    self.coinList = [CoinModel]()
-                    for item in Data {
-                        coin = CoinModel(fromDictionary: item)
-                        self.coinList.append(coin)
-                    }
-                    self.coinTable.reloadData()
-                }
-                
-                }) { (error) in
-                    let alert = Alert.showBasicAlert(message: error.message)
-                            self.presentVC(alert)
-                }
-        }
+   
 }
 
 extension CoinSelectController: UITableViewDelegate, UITableViewDataSource {

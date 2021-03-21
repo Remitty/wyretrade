@@ -166,6 +166,7 @@
 		D371A3692604898100C5ECEE /* TokenBidItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3682604898000C5ECEE /* TokenBidItem.swift */; };
 		D371A36E260489BA00C5ECEE /* TokenAskItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D371A36D260489BA00C5ECEE /* TokenAskItem.xib */; };
 		D371A37326048AD700C5ECEE /* TokenBidItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D371A37226048AD700C5ECEE /* TokenBidItem.xib */; };
+		D371A37A2606EBAF00C5ECEE /* Ramp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3792606EBAE00C5ECEE /* Ramp.swift */; };
 		D3CD1EBC25FE662B00255A89 /* StocksWithdrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */; };
 		D3CD1EC225FE694000255A89 /* StocksWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */; };
 		D3CD1EC725FE697A00255A89 /* StocksWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */; };
@@ -356,6 +357,7 @@
 		D371A3682604898000C5ECEE /* TokenBidItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBidItem.swift; sourceTree = "<group>"; };
 		D371A36D260489BA00C5ECEE /* TokenAskItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenAskItem.xib; sourceTree = "<group>"; };
 		D371A37226048AD700C5ECEE /* TokenBidItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenBidItem.xib; sourceTree = "<group>"; };
+		D371A3792606EBAE00C5ECEE /* Ramp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ramp.swift; sourceTree = "<group>"; };
 		D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawModel.swift; sourceTree = "<group>"; };
 		D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawItem.swift; sourceTree = "<group>"; };
 		D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StocksWithdrawItem.xib; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 		7B4D8E7825EC8AAC00557F92 /* wyretrade */ = {
 			isa = PBXGroup;
 			children = (
+				D371A3772606EB6400C5ECEE /* third */,
 				7B7AB51025F702B600860D82 /* Constants */,
 				7B7AB50225F7012200860D82 /* Network */,
 				7BDD299125F1F3DD007A6921 /* helper */,
@@ -898,6 +901,22 @@
 			path = TokenAskItem;
 			sourceTree = "<group>";
 		};
+		D371A3772606EB6400C5ECEE /* third */ = {
+			isa = PBXGroup;
+			children = (
+				D371A3782606EB7400C5ECEE /* ramp */,
+			);
+			path = third;
+			sourceTree = "<group>";
+		};
+		D371A3782606EB7400C5ECEE /* ramp */ = {
+			isa = PBXGroup;
+			children = (
+				D371A3792606EBAE00C5ECEE /* Ramp.swift */,
+			);
+			path = ramp;
+			sourceTree = "<group>";
+		};
 		D3CD1EC025FE691C00255A89 /* StocksWithdrawItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -1163,6 +1182,7 @@
 				D371A3372603D5B500C5ECEE /* TradeTokenHistoryController.swift in Sources */,
 				7BDD29C825F25EA1007A6921 /* StocksBuyController.swift in Sources */,
 				D371A3612604893600C5ECEE /* TokenAskItem.swift in Sources */,
+				D371A37A2606EBAF00C5ECEE /* Ramp.swift in Sources */,
 				7BDD297525F19327007A6921 /* StocksModel.swift in Sources */,
 				7B28B88D25F02B3000C5F4C3 /* SwapModel.swift in Sources */,
 				7B6D920425F0B0F000B1E466 /* StakeController.swift in Sources */,
