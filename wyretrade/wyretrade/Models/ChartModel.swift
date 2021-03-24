@@ -7,11 +7,15 @@
 
 import Foundation
 struct ChartModel {
-    var value: String!
+    var value: Double!
     var date: String!
     
     init(fromDictionary dictionary: [String: Any]) {
-        value = dictionary["value"] as? String
+        if let valuetemp = dictionary["open"] as? NSString {
+            value = valuetemp.doubleValue
+        } else {
+            value = dictionary["open"] as? Double
+        }
         date = dictionary["date"] as? String        
     }
 }

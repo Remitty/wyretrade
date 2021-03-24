@@ -35,8 +35,18 @@ struct TokenTradeDataModel {
         }
         
         changeRate = "\(dictionary["change_rate"]!)"
-        lastHigh = "\(dictionary["last_high"]!)"
-        lastLow = "\(dictionary["last_low"]!)"
+        
+        if let high = dictionary["last_high"] as? NSString {
+            lastHigh = NumberFormat(value: high.doubleValue, decimal: 6).description
+        } else {
+            lastHigh = NumberFormat(value: dictionary["last_high"] as! Double, decimal: 6).description
+        }
+        if let low = dictionary["last_low"] as? NSString {
+            lastLow = NumberFormat(value: low.doubleValue, decimal: 6).description
+        } else {
+            lastLow = NumberFormat(value: dictionary["last_low"] as! Double, decimal: 6).description
+        }
+        
         coin1 = dictionary["coin1"] as? String
         coin2 = dictionary["coin2"] as? String
         

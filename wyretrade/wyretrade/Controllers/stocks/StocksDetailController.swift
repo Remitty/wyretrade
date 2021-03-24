@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AnyChartiOS
 
 class StocksDetailController: UIViewController {
     
@@ -21,6 +22,7 @@ class StocksDetailController: UIViewController {
     @IBOutlet weak var imgProfit: UIImageView!
     
     @IBOutlet weak var viewChart: UIView!
+    @IBOutlet weak var chartTab: UISegmentedControl!
     @IBOutlet weak var viewCompany: UIView!
     @IBOutlet weak var viewFirst: UIView!
     @IBOutlet weak var viewSecond: UIView!
@@ -37,6 +39,18 @@ class StocksDetailController: UIViewController {
     var stocksBalance = 0.0
     var company = CompanyModel.init(fromDictionary: ["description": "", "industry": "", "website": ""])
     let companyView = Company().loadView() as! Company
+    var chartData: Array<DataEntry> = []
+    
+    var chartDayData = [ChartModel]()
+    var chartWeekData = [ChartModel]()
+    var chartMonthData = [ChartModel]()
+    var chartMonth6Data = [ChartModel]()
+    var chartYearData = [ChartModel]()
+    var chartAllData = [ChartModel]()
+    var chartTempData = [ChartModel]()
+    
+    var series1Mapping: anychart.data.View!
+    var set: anychart.data.Set!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +84,8 @@ class StocksDetailController: UIViewController {
         
         self.configCompany()
         
+        initTradeChart()
+        
     }
     
     private func configCompany() {
@@ -85,12 +101,7 @@ class StocksDetailController: UIViewController {
             
             self.stocksBalance = dictionary["stock_balance"] as! Double
 
-            var chartDayData = [ChartModel]()
-            var chartWeekData = [ChartModel]()
-            var chartMonthData = [ChartModel]()
-            var chartMonth6Data = [ChartModel]()
-            var chartYearData = [ChartModel]()
-            var chartAllData = [ChartModel]()
+            
             
             var chart : ChartModel!
             
@@ -98,7 +109,7 @@ class StocksDetailController: UIViewController {
                 
                 for item in data {
                     chart = ChartModel(fromDictionary: item)
-                    chartDayData.append(chart)
+                    self.chartDayData.append(chart)
                 }
                 
             }
@@ -107,7 +118,7 @@ class StocksDetailController: UIViewController {
                 
                 for item in data {
                     chart = ChartModel(fromDictionary: item)
-                    chartWeekData.append(chart)
+                    self.chartWeekData.append(chart)
                 }
                 
             }
@@ -116,7 +127,7 @@ class StocksDetailController: UIViewController {
                 
                 for item in data {
                     chart = ChartModel(fromDictionary: item)
-                    chartMonthData.append(chart)
+                    self.chartMonthData.append(chart)
                 }
                 
             }
@@ -125,7 +136,7 @@ class StocksDetailController: UIViewController {
                 
                 for item in data {
                     chart = ChartModel(fromDictionary: item)
-                    chartMonth6Data.append(chart)
+                    self.chartMonth6Data.append(chart)
                 }
                 
             }
@@ -134,7 +145,7 @@ class StocksDetailController: UIViewController {
                 
                 for item in data {
                     chart = ChartModel(fromDictionary: item)
-                    chartYearData.append(chart)
+                    self.chartYearData.append(chart)
                 }
                 
             }
@@ -143,10 +154,14 @@ class StocksDetailController: UIViewController {
                 
                 for item in data {
                     chart = ChartModel(fromDictionary: item)
-                    chartAllData.append(chart)
+                    self.chartAllData.append(chart)
                 }
                 
             }
+            
+            self.chartTempData = self.chartDayData
+            self.updateChartData()
+//            self.initTradeChart()
             
             guard let company = dictionary["company"] else {
                 return
@@ -162,6 +177,52 @@ class StocksDetailController: UIViewController {
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
+    }
+    
+    func initTradeChart() {
+        
+        
+        let anyChartView = AnyChartView()
+        self.viewChart.addSubview(anyChartView)
+        
+        anyChartView.translatesAutoresizingMaskIntoConstraints = false
+        anyChartView.centerXAnchor.constraint(equalTo: self.viewChart.centerXAnchor).isActive = true
+        anyChartView.centerYAnchor.constraint(equalTo: self.viewChart.centerYAnchor).isActive = true
+        anyChartView.widthAnchor.constraint(equalTo: self.viewChart.widthAnchor).isActive = true
+        anyChartView.heightAnchor.constraint(equalTo: self.viewChart.heightAnchor).isActive = true
+        
+        let chart = AnyChart.line()
+        chart.animation(settings: true)
+        chart.xAxis(settings: false)
+        chart.yAxis(settings: false)
+        chart.yGrid(settings: true)
+        chart.yGrid(index: 3.0)
+        
+        set = anychart.data.Set().instantiate()
+        
+        
+        series1Mapping = set.mapAs(mapping: "{x: 'x', value: 'value'}")
+        
+        
+        let series1 = chart.line(data: series1Mapping)
+//        series1.name(name: "Ask")
+//        series1.stroke(settings: "0 #ee204d");
+//        series1.color(color: "#ee204d");
+        
+        
+        anyChartView.setChart(chart: chart)
+        
+    }
+    
+    func updateChartData() {
+        
+        for item in self.chartTempData.reversed() {
+            
+            self.chartData.append(CustomDataEntry(x: item.date, value: item.value))
+
+        }
+        
+        set.data(data: self.chartData)
     }
 
     @IBAction func actionBuy(_ sender: Any) {
@@ -180,5 +241,26 @@ class StocksDetailController: UIViewController {
         buyController.stocksBalance = self.stocksBalance
         buyController.side = "sell"
         self.navigationController?.pushViewController(buyController, animated: true)
+    }
+    
+    @IBAction func indexChanged(_ sender: Any) {
+        switch chartTab.selectedSegmentIndex {
+        case 0:
+            chartTempData = chartDayData
+        case 1:
+            chartTempData = chartWeekData
+        case 2:
+            chartTempData = chartMonthData
+        case 3:
+            chartTempData = chartMonth6Data
+        case 4:
+            chartTempData = chartYearData
+        case 5:
+            chartTempData = chartAllData
+        default:
+            break
+        }
+        
+        updateChartData()
     }
 }

@@ -66,7 +66,7 @@ extension TradeTokenHistoryController: UITableViewDelegate, UITableViewDataSourc
         let cell: TokenHistoryItem = tableView.dequeueReusableCell(withIdentifier: "TokenHistoryItem", for: indexPath) as! TokenHistoryItem
         let item = historyList[indexPath.row]
         cell.lbDate.text = item.date
-        cell.lbPrice.text = item.price
+        cell.lbPrice.text = "\(item.price!)"
         cell.lbQty.text = item.qty
         cell.lbType.text = item.type
         return cell

@@ -20,8 +20,8 @@ struct PriceFormat: Codable {
 enum Currency: String, Codable {
     case eur
     case usd
-    case sek
-    case pln
+    case gbp
+    case sgd
 }
 
 extension NumberFormat: CustomStringConvertible {

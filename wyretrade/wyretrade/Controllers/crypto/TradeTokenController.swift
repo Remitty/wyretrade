@@ -7,11 +7,19 @@
 
 import Foundation
 import UIKit
+import AnyChartiOS
+import DropDown
 
 class TradeTokenController: UIViewController {
     
     @IBOutlet weak var tradingView: UIView!
     @IBOutlet weak var chartView: UIView!
+    
+    @IBOutlet weak var spinnerView: UIView!
+    @IBOutlet weak var btnPair: UIButton!
+    
+    @IBOutlet weak var chartTab: UISegmentedControl!
+    
     
     @IBOutlet weak var lbXMTBalance: UILabel!
     @IBOutlet weak var lbBtcBalance: UILabel!
@@ -70,20 +78,104 @@ class TradeTokenController: UIViewController {
     var askList = [Ask]()
     var bidList = [Ask]()
     
+    var askAggregates = [TokenOrderModel]()
+    var bidAggregates = [TokenOrderModel]()
+    var askAggregatesDay = [TokenOrderModel]()
+    var bidAggregatesDay = [TokenOrderModel]()
+    var askAggregatesWeek = [TokenOrderModel]()
+    var bidAggregatesWeek = [TokenOrderModel]()
+    var askAggregatesMonth = [TokenOrderModel]()
+    var bidAggregatesMonth = [TokenOrderModel]()
+    var askAggregatesAll = [TokenOrderModel]()
+    var bidAggregatesAll = [TokenOrderModel]()
+    
+    let dropdown = DropDown()
+    
+    var chartData: Array<DataEntry> = []
+    var set: anychart.data.Set!
+    
+    
     var selectedPair = "XMT-BTC"
     var pairs = [TokenTradePair]()
     
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
-        
         self.addTradeView()
         
+        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(TradeTokenController.update), userInfo: nil, repeats: true)
+        
+//        self.updateChartData()
+        initTradeChart()
+//        dropdown.anchorView = view//self.spinnerView
+        dropdown.selectionAction = {  (index: Int, item: String) in print(index)}
+        
         self.loadData()
-//        self.loadPairs()
+        self.loadPairs()
     }
+    
+    @objc func update() {
+        
+        self.loadData()
+    }
+    
+    func initTradeChart() {
+        
+        
+        let anyChartView = AnyChartView()
+        self.chartView.addSubview(anyChartView)
+        
+        anyChartView.translatesAutoresizingMaskIntoConstraints = false
+        anyChartView.centerXAnchor.constraint(equalTo: self.chartView.centerXAnchor).isActive = true
+        anyChartView.centerYAnchor.constraint(equalTo: self.chartView.centerYAnchor).isActive = true
+        anyChartView.widthAnchor.constraint(equalTo: self.chartView.widthAnchor).isActive = true
+        anyChartView.heightAnchor.constraint(equalTo: self.chartView.heightAnchor).isActive = true
+        
+        let chart = AnyChart.area()
+        chart.animation(settings: true)
+        chart.xAxis(settings: false)
+        chart.yAxis(settings: false)
+        chart.yGrid(settings: true)
+        chart.yGrid(index: 3.0)
+        chart.yScale().stackMode(value: anychart.enums.ScaleStackMode.VALUE)
+        
+        set = anychart.data.Set().instantiate()
+        set.data(data: self.chartData)
+        
+       var series1Mapping = set.mapAs(mapping: "{x: 'x', value: 'value'}")
+        var series2Mapping = set.mapAs(mapping: "{x: 'x', value: 'value2'}")
+        
+        let series1 = chart.area(data: series1Mapping)
+        series1.name(name: "Ask")
+        series1.stroke(settings: "1 #ee204d");
+        series1.color(color: "#ee204d");
+        let series2 = chart.area(data: series2Mapping)
+        series2.name(name: "Bid")
+        series1.stroke(settings: "1 #3AE57F");
+        series1.color(color: "#3AE57F");
+        
+        anyChartView.setChart(chart: chart)
+        
+    }
+    
+    func updateChartData() {
+        
+        for (index, item) in self.askAggregates.enumerated() {
+            
+            self.chartData.append(CustomDataEntry(x: "Q\(index)", value: item.price))
+        }
+        
+        for (index, item) in self.bidAggregates.enumerated() {
+            self.chartData.append(CustomDataEntry2(x: "Q\(index)", value: item.price))
+        }
+        
+        set.data(data: self.chartData)
+        
+    }
+
     
     func addTradeView() {
         let tradeVC = storyboard!.instantiateViewController(withIdentifier: "TradeTokenPagerVC")
@@ -98,6 +190,7 @@ class TradeTokenController: UIViewController {
     
     func loadData() {
         let param : [String : Any] = ["pair": self.selectedPair]
+        self.btnPair.setTitle(self.selectedPair, for: .normal)
                 RequestHandler.xmtTradeData(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
@@ -119,6 +212,14 @@ class TradeTokenController: UIViewController {
                     self.lbBidAmount.text = data.bidsTotal
                     self.lbXMTBalance.text = "\(data.coin2Balance!) \(data.coin2!)"
                     self.lbBtcBalance.text = "\(data.coin1Balance!) \(data.coin1!)"
+                    
+                    self.askAggregates = data.askAggregates
+                    self.bidAggregates = data.bidAggregates
+                    
+                    self.updateChartData()
+                    
+                    
+                    
                     NotificationCenter.default.post(name: .didUpdateBalance, object: data)
                     }) { (error) in
                         let alert = Alert.showBasicAlert(message: error.message)
@@ -139,6 +240,7 @@ class TradeTokenController: UIViewController {
                         for item in dictionary {
                             pair = TokenTradePair(fromDictionary: item)
                             self.pairs.append(pair)
+//                            self.dropdown.dataSource.append("\(pair.symbol!)")
                         }
                         
                     
@@ -154,6 +256,34 @@ class TradeTokenController: UIViewController {
         detailController.pair = self.selectedPair
         self.navigationController?.pushViewController(detailController, animated: true)
     }
+  
+    @IBAction func indexChanged(_ sender: Any) {
+        switch chartTab.selectedSegmentIndex {
+        case 0:
+            self.updateChartData()
+            
+        default:
+            break
+        }
+        
+//        self.updateChartData()
+    }
+    
+    @IBAction func actionPair(_ sender: Any) {
+        let alertController = UIAlertController(title: "Select pair", message: "", preferredStyle: .alert)
+        for item in self.pairs {
+            
+            let action = UIAlertAction(title: item.symbol, style: .default) { (_) in
+                self.selectedPair = item.symbol!
+                self.loadData()
+            }
+            alertController.addAction(action)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        self.presentVC(alertController);
+    }
+    
     
 }
 
@@ -183,7 +313,7 @@ extension TradeTokenController: UITableViewDelegate, UITableViewDataSource {
             let item = orderList[indexPath.row]
             cell.lbPair.text = item.pair
             cell.lbQty.text = item.qty
-            cell.lbPrice.text = item.price
+            cell.lbPrice.text = "\(item.price!)"
             cell.lbType.text = item.type
             return cell
         case askTable:
@@ -210,7 +340,18 @@ extension TradeTokenController: UITableViewDelegate, UITableViewDataSource {
         
     }
 }
-extension Notification.Name {
-    static let didUpdateBalance = Notification.Name("didUpdateBalance")
-    
+
+class CustomDataEntry: ValueDataEntry {
+    init(x: String, value: Double) {
+        super.init(x: x, value: value)
+        
+    }
+}
+
+class CustomDataEntry2: ValueDataEntry {
+    init(x: String, value: Double) {
+        super.init(x: x, value: value)
+        setValue(key: "value2", value: value)
+        
+    }
 }
