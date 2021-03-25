@@ -17,6 +17,7 @@ target 'wyretrade' do
     pod 'DLRadioButton', '~> 1.4'
     pod 'AnyChartiOS', '~> 1.0.3'
     pod 'DropDown'
+    pod 'RadioGroup'
     
     pod 'DeviceKit'
     

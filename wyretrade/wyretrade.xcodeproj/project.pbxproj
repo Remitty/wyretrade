@@ -172,6 +172,10 @@
 		D371A38D2608D76800C5ECEE /* BankContactItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A38C2608D76800C5ECEE /* BankContactItem.swift */; };
 		D371A39926093C7400C5ECEE /* BankContactItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D371A39826093C7400C5ECEE /* BankContactItem.xib */; };
 		D371A3A12609748200C5ECEE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3A02609748200C5ECEE /* Notification.swift */; };
+		D371A3D9260B6FC700C5ECEE /* PredictAssetListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3D8260B6FC500C5ECEE /* PredictAssetListController.swift */; };
+		D371A3DF260B755B00C5ECEE /* PredictionAssetItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D371A3DE260B755B00C5ECEE /* PredictionAssetItem.xib */; };
+		D371A3E4260B757D00C5ECEE /* PredictionAssetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3E3260B757D00C5ECEE /* PredictionAssetItem.swift */; };
+		D371A3E9260B7CA300C5ECEE /* PredictAssetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3E8260B7CA200C5ECEE /* PredictAssetModel.swift */; };
 		D3CD1EBC25FE662B00255A89 /* StocksWithdrawModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */; };
 		D3CD1EC225FE694000255A89 /* StocksWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */; };
 		D3CD1EC725FE697A00255A89 /* StocksWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */; };
@@ -368,6 +372,10 @@
 		D371A38C2608D76800C5ECEE /* BankContactItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankContactItem.swift; sourceTree = "<group>"; };
 		D371A39826093C7400C5ECEE /* BankContactItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BankContactItem.xib; sourceTree = "<group>"; };
 		D371A3A02609748200C5ECEE /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		D371A3D8260B6FC500C5ECEE /* PredictAssetListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictAssetListController.swift; sourceTree = "<group>"; };
+		D371A3DE260B755B00C5ECEE /* PredictionAssetItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PredictionAssetItem.xib; sourceTree = "<group>"; };
+		D371A3E3260B757D00C5ECEE /* PredictionAssetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionAssetItem.swift; sourceTree = "<group>"; };
+		D371A3E8260B7CA200C5ECEE /* PredictAssetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictAssetModel.swift; sourceTree = "<group>"; };
 		D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawModel.swift; sourceTree = "<group>"; };
 		D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawItem.swift; sourceTree = "<group>"; };
 		D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StocksWithdrawItem.xib; sourceTree = "<group>"; };
@@ -403,20 +411,18 @@
 			isa = PBXGroup;
 			children = (
 				D371A38B2608D73B00C5ECEE /* BankContactItem */,
-				D371A35F2604887E00C5ECEE /* TokenAskItem */,
-				D34C4D492603A200000B32D2 /* TokenHistoryItem */,
-				D34C4D382603969E000B32D2 /* TokenOrderItem */,
 				D34C4CF82601A1A0000B32D2 /* CoinDepositItem */,
-				D34C4CBD2600F01D000B32D2 /* CoinSelectItem */,
-				D34C4CB12600ED76000B32D2 /* Modal */,
 				7B6CA00925EF263E00D11EB5 /* CoinItem */,
+				D34C4CBD2600F01D000B32D2 /* CoinSelectItem */,
 				7BDD29F025F28F73007A6921 /* CoinWithdrawItem */,
 				7BDD29BC25F25C42007A6921 /* CompanyProfile */,
 				7B76AEA225F62E1E00C9FE5A /* LeftMenu */,
 				7B6D922725F0BA7A00B1E466 /* LinkWalletItem */,
+				D34C4CB12600ED76000B32D2 /* Modal */,
 				7BDD295A25F17D32007A6921 /* MtnItem */,
 				7B05703325EEEBBA001E4D24 /* News */,
 				7B68494325F3C5FC0075BB79 /* PaymentUser */,
+				D371A3DD260B74AF00C5ECEE /* PredictionAssetItem */,
 				7BDD294225F17907007A6921 /* PredictionItem */,
 				7B6D921725F0B4A200B1E466 /* StakeCoin */,
 				7B6D91F225F0AEE500B1E466 /* StakeHistoryItem */,
@@ -426,6 +432,9 @@
 				7BDD29D625F2771A007A6921 /* StocksOrderItem */,
 				D3CD1EC025FE691C00255A89 /* StocksWithdrawItem */,
 				7B6D91E425F0AC9400B1E466 /* SwapHistoryItem */,
+				D371A35F2604887E00C5ECEE /* TokenAskItem */,
+				D34C4D492603A200000B32D2 /* TokenHistoryItem */,
+				D34C4D382603969E000B32D2 /* TokenOrderItem */,
 				7B68496025F3D08A0075BB79 /* USDCPaymentItem */,
 			);
 			path = Components;
@@ -541,12 +550,21 @@
 		7B6C9FFB25EF226A00D11EB5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D371A35A2604824700C5ECEE /* Ask.swift */,
+				D34C4C9D26001A98000B32D2 /* BankModel.swift */,
+				D34C4C9826000758000B32D2 /* CashTransactionModel.swift */,
+				D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */,
+				D34C4CF326019D18000B32D2 /* CoinDepositModel.swift */,
 				7B6CA00425EF247F00D11EB5 /* CoinModel.swift */,
 				7BDD29EB25F28D2B007A6921 /* CoinWithdrawModel.swift */,
+				D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */,
+				D34C4CA226002205000B32D2 /* CurrencyModel.swift */,
 				7B6D922225F0B97000B1E466 /* LinkAccountModel.swift */,
+				D34C4CCE260151BD000B32D2 /* LinkAssetModel.swift */,
 				7BDD295525F17C15007A6921 /* MtnModel.swift */,
 				7B6C9FFC25EF22C800D11EB5 /* NewsModel.swift */,
 				7B68495325F3C92A0075BB79 /* PaymentUserModel.swift */,
+				D371A3E8260B7CA200C5ECEE /* PredictAssetModel.swift */,
 				7BDD293D25F177AC007A6921 /* PredictionModel.swift */,
 				7B6D921225F0B3F700B1E466 /* StakeCoinModel.swift */,
 				7B6D920825F0B1B300B1E466 /* StakeModel.swift */,
@@ -554,23 +572,15 @@
 				7BDD29B225F20C2C007A6921 /* StocksDepositModel.swift */,
 				7BDD297425F19327007A6921 /* StocksModel.swift */,
 				7BDD29D125F275DB007A6921 /* StocksOrderModel.swift */,
+				D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */,
 				7B28B88C25F02B3000C5F4C3 /* SwapModel.swift */,
+				D34C4D332603902D000B32D2 /* TokenOrderModel.swift */,
+				D371A355260473A500C5ECEE /* TokenTradeDataModel.swift */,
+				D371A3502604707700C5ECEE /* TokenTradePair.swift */,
 				7B68495B25F3D02F0075BB79 /* USDCPaymentModel.swift */,
 				7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */,
 				7B68494E25F3C6460075BB79 /* UserModel.swift */,
-				D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */,
-				D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */,
-				D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */,
-				D34C4C9826000758000B32D2 /* CashTransactionModel.swift */,
-				D34C4C9D26001A98000B32D2 /* BankModel.swift */,
-				D34C4CA226002205000B32D2 /* CurrencyModel.swift */,
 				D34C4CA726005C5B000B32D2 /* UserProfileModel.swift */,
-				D34C4CCE260151BD000B32D2 /* LinkAssetModel.swift */,
-				D34C4CF326019D18000B32D2 /* CoinDepositModel.swift */,
-				D34C4D332603902D000B32D2 /* TokenOrderModel.swift */,
-				D371A3502604707700C5ECEE /* TokenTradePair.swift */,
-				D371A355260473A500C5ECEE /* TokenTradeDataModel.swift */,
-				D371A35A2604824700C5ECEE /* Ask.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -837,6 +847,7 @@
 				7BDD292E25F17328007A6921 /* PredictListController.swift */,
 				7BDD293825F17383007A6921 /* PredictOwnerController.swift */,
 				7BDD293325F1736A007A6921 /* PredictResultsController.swift */,
+				D371A3D8260B6FC500C5ECEE /* PredictAssetListController.swift */,
 			);
 			path = predict;
 			sourceTree = "<group>";
@@ -938,6 +949,15 @@
 				D371A39826093C7400C5ECEE /* BankContactItem.xib */,
 			);
 			path = BankContactItem;
+			sourceTree = "<group>";
+		};
+		D371A3DD260B74AF00C5ECEE /* PredictionAssetItem */ = {
+			isa = PBXGroup;
+			children = (
+				D371A3DE260B755B00C5ECEE /* PredictionAssetItem.xib */,
+				D371A3E3260B757D00C5ECEE /* PredictionAssetItem.swift */,
+			);
+			path = PredictionAssetItem;
 			sourceTree = "<group>";
 		};
 		D3CD1EC025FE691C00255A89 /* StocksWithdrawItem */ = {
@@ -1080,6 +1100,7 @@
 				D34C4D3A260396DC000B32D2 /* TokenOrderItem.xib in Resources */,
 				D34C4D022601A1EA000B32D2 /* CoinDepositItem.xib in Resources */,
 				D34C4CBF2600F03E000B32D2 /* CoinSelectItem.xib in Resources */,
+				D371A3DF260B755B00C5ECEE /* PredictionAssetItem.xib in Resources */,
 				7B6D91F925F0AFB300B1E466 /* StakeItem.xib in Resources */,
 				D3CD1EC725FE697A00255A89 /* StocksWithdrawItem.xib in Resources */,
 				D371A36E260489BA00C5ECEE /* TokenAskItem.xib in Resources */,
@@ -1163,6 +1184,7 @@
 				7BDD298D25F1AACE007A6921 /* StocksWithdrawController.swift in Sources */,
 				7B6D91E025F07CB100B1E466 /* ProfileEditController.swift in Sources */,
 				7B6D920E25F0B31F00B1E466 /* StakeListController.swift in Sources */,
+				D371A3E4260B757D00C5ECEE /* PredictionAssetItem.swift in Sources */,
 				7B6D921925F0B4CA00B1E466 /* StakeCoin.swift in Sources */,
 				D371A35B2604824800C5ECEE /* Ask.swift in Sources */,
 				7B68495425F3C92A0075BB79 /* PaymentUserModel.swift in Sources */,
@@ -1269,6 +1291,7 @@
 				7BDD298825F1AA05007A6921 /* StocksDepositController.swift in Sources */,
 				7B68495C25F3D02F0075BB79 /* USDCPaymentModel.swift in Sources */,
 				7B6CA01525EFB70300D11EB5 /* StockPositionModel.swift in Sources */,
+				D371A3D9260B6FC700C5ECEE /* PredictAssetListController.swift in Sources */,
 				7B68496C25F3E1E20075BB79 /* CashAddBankController.swift in Sources */,
 				7BDD29DD25F27744007A6921 /* StocksOrderItem.swift in Sources */,
 				7BDD29B325F20C2C007A6921 /* StocksDepositModel.swift in Sources */,
@@ -1276,6 +1299,7 @@
 				7B9AED0C25F36C3A00068775 /* SigninController.swift in Sources */,
 				7B4D8F0125ECDAEB00557F92 /* CoinsController.swift in Sources */,
 				7B68492B25F3AE910075BB79 /* ForgotPasswordController.swift in Sources */,
+				D371A3E9260B7CA300C5ECEE /* PredictAssetModel.swift in Sources */,
 				D34C4D502603A27A000B32D2 /* TokenHistoryItem.swift in Sources */,
 				7B68497625F3E2870075BB79 /* CashItemListController.swift in Sources */,
 				7B76AE9425F629B100C9FE5A /* DepositHistoryController.swift in Sources */,

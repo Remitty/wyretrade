@@ -14,7 +14,8 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
     var newList = [PredictionModel]()
     var ownerList = [PredictionModel]()
     var resultList = [PredictionModel]()
-    
+    var assetList = [PredictAssetModel]()
+    var usdcBalance = ""
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -29,6 +30,8 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(newPost))
 
         let child1 = self.storyboard?.instantiateViewController(withIdentifier: "PredictListController") as! PredictListController
         let child3 = self.storyboard?.instantiateViewController(withIdentifier: "PredictOwnerController") as! PredictOwnerController
@@ -39,22 +42,24 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
         child3.predictList = ownerList
         
         
-        guard isReload else {
+//        guard isReload else {
             return [child1, child2, child3]
-        }
+//        }
+//
+//        var childVCs = [child1, child2, child3]
+//        let count = childVCs.count
+//
+//        for index in childVCs.indices {
+//            let nElements = count - index
+//            let n = (Int(arc4random()) % nElements) + index
+//            if n != index {
+//                childVCs.swapAt(index, n)
+//            }
+//        }
+//        let nItems = 1 + (arc4random() % 4)
+//        return Array(childVCs.prefix(Int(nItems)))
         
-        var childVCs = [child1, child2, child3]
-        let count = childVCs.count
         
-        for index in childVCs.indices {
-            let nElements = count - index
-            let n = (Int(arc4random()) % nElements) + index
-            if n != index {
-                childVCs.swapAt(index, n)
-            }
-        }
-        let nItems = 1 + (arc4random() % 4)
-        return Array(childVCs.prefix(Int(nItems)))
     }
     
     func looadData() {
@@ -102,12 +107,65 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
             }
     }
     
+    func loadPredictable(param: NSDictionary) {
+        RequestHandler.getPredictableList(parameter: param as NSDictionary, success: { (successResponse) in
+        //                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            var asset : PredictAssetModel!
+            
+            if let historyData = dictionary["data"] as? [[String:Any]] {
+                self.assetList = [PredictAssetModel]()
+                for item in historyData {
+                    asset = PredictAssetModel(fromDictionary: item)
+                    self.assetList.append(asset)
+                }
+                
+            }
+            
+            if let usdc_balance = dictionary["usdc_balance"] as? NSString {
+                self.usdcBalance = NumberFormat(value: usdc_balance.doubleValue, decimal: 4).description
+            } else {
+                self.usdcBalance = NumberFormat(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
+            }
+            
+            let detailController = self.storyboard?.instantiateViewController(withIdentifier: "PredictAssetListController") as! PredictAssetListController
+            detailController.assetList = self.assetList
+            detailController.usdcBalance = self.usdcBalance
+            self.navigationController?.pushViewController(detailController, animated: true)
+            
+            }) { (error) in
+                let alert = Alert.showBasicAlert(message: error.message)
+                        self.presentVC(alert)
+            }
+    }
+    
+    @objc func newPost() {
+
+        let alertController = UIAlertController(title: "Select", message: "", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Crypto", style: .default) { (_) in
+            let param: NSDictionary = ["type": 0]
+            self.loadPredictable(param: param)
+        }
+        let action2 = UIAlertAction(title: "Stocks", style: .default) { action in
+            let param: NSDictionary = ["type": 1]
+            self.loadPredictable(param: param)
+        }
+        
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        self.presentVC(alertController);
+    }
+    
     @IBAction func reloadTapped(_ sender: UIBarButtonItem) {
             isReload = true
             pagerBehaviour = .common(skipIntermediateViewControllers: arc4random() % 2 == 0)
             reloadPagerTabStripView()
         }
-    @IBAction func actionPredict(_ sender: Any) {
-    }
+    
 }
 

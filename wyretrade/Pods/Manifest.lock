@@ -170,7 +170,10 @@ PODS:
   - NVActivityIndicatorView/Base (5.1.1)
   - PopupDialog (1.1.1):
     - DynamicBlurView (~> 4.0)
+  - RadioGroup (1.4.3):
+    - SweeterSwift
   - SlideMenuControllerSwift (5.0.0)
+  - SweeterSwift (1.1.4)
   - "UITextField+Shake (1.2.1)"
   - XLPagerTabStrip (9.0.0)
 
@@ -187,6 +190,7 @@ DEPENDENCIES:
   - MaterialComponents/NavigationDrawer
   - NVActivityIndicatorView
   - PopupDialog (~> 1.1)
+  - RadioGroup
   - SlideMenuControllerSwift (from `https://github.com/AtomicSLLC/SlideMenuControllerSwift.git`, branch `swift5`)
   - "UITextField+Shake"
   - XLPagerTabStrip (~> 9.0)
@@ -204,6 +208,8 @@ SPEC REPOS:
     - MDFTextAccessibility
     - NVActivityIndicatorView
     - PopupDialog
+    - RadioGroup
+    - SweeterSwift
     - "UITextField+Shake"
     - XLPagerTabStrip
 
@@ -229,10 +235,12 @@ SPEC CHECKSUMS:
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
+  RadioGroup: 7015c71759c90dbaae7050f33cfbc1de780e27a7
   SlideMenuControllerSwift: d740ea24105a658fe6a8c256f2bf5832fee7c047
+  SweeterSwift: 8a90cf3156f5a1b6f39785c479369a16633b5ea9
   "UITextField+Shake": 298ac5a0f239d731bdab999b19b628c956ca0ac3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 21a23c1c14b9348f6ef927097d3f3725aa27073a
+PODFILE CHECKSUM: 79d24779b9a816d47c36237463749009ccd18899
 
 COCOAPODS: 1.10.1
