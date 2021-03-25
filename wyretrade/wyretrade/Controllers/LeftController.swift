@@ -145,6 +145,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func changeMenu(_ other: MainMenu) {
+        self.slideMenuController()?.closeLeft()
         switch other {
 //        case .home:
 //            self.slideMenuController()?.changeMainViewController(self.viewHome, close: true)

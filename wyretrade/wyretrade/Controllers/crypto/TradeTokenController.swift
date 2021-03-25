@@ -98,7 +98,7 @@ class TradeTokenController: UIViewController {
     var selectedPair = "XMT-BTC"
     var pairs = [TokenTradePair]()
     
-        
+    var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +106,7 @@ class TradeTokenController: UIViewController {
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         self.addTradeView()
         
-        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(TradeTokenController.update), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(TradeTokenController.update), userInfo: nil, repeats: true)
         
 //        self.updateChartData()
         initTradeChart()
@@ -115,6 +115,13 @@ class TradeTokenController: UIViewController {
         
         self.loadData()
         self.loadPairs()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+       super.viewWillDisappear(animated)
+        timer?.invalidate()
+       dismiss(animated: true, completion: nil)
+        
     }
     
     @objc func update() {

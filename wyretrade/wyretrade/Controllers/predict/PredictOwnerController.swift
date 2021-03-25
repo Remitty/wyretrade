@@ -54,9 +54,8 @@ extension PredictOwnerController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+//        return UITableView.automaticDimension
     }
-
-    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PredictionItem = tableView.dequeueReusableCell(withIdentifier: "PredictionItem", for: indexPath) as! PredictionItem
@@ -68,8 +67,10 @@ extension PredictOwnerController: UITableViewDelegate, UITableViewDataSource {
         cell.lbStatus.text = item.result
         cell.lbPayout.text = item.payout
         cell.lbContent.text = item.content
+        cell.remainingTime = item.remainTime
         cell.answerView.isHidden = true
         cell.betView.isHidden = true
+        cell.precessTimer()
 
         return cell
     }

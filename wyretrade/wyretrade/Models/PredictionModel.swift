@@ -18,6 +18,7 @@ struct PredictionModel {
     var bidder: String!
     var id: String!
     
+    
     init(fromDictionary dictionary: [String: Any]) {
         content = dictionary["content"] as? String
         
