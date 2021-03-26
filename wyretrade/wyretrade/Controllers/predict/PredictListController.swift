@@ -65,7 +65,7 @@ extension PredictListController: UITableViewDelegate, UITableViewDataSource {
         cell.id = item.id
         cell.lbAsset.text = item.asset
         cell.lbPrice.text = item.price
-        cell.lbStatus.text = item.result
+        cell.lbStatus.text = item.status
         cell.lbPayout.text = item.payout
         cell.lbContent.text = item.content
         cell.answerView.isHidden = true

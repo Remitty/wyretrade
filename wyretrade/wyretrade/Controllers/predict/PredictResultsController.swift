@@ -52,7 +52,7 @@ extension PredictResultsController: UITableViewDelegate, UITableViewDataSource {
         let item = predictList[indexPath.row]
         cell.lbAsset.text = item.asset
         cell.lbPrice.text = item.price
-        cell.lbStatus.text = item.result
+        cell.lbStatus.text = item.status
         cell.lbPayout.text = item.payout
         cell.lbContent.text = item.content
         cell.betView.isHidden = true

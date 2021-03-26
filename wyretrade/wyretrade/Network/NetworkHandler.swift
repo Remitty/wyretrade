@@ -30,10 +30,10 @@ class NetworkHandler {
                     "Accept": "application/json"
                     ]
             }
-            print(headers)
+//            print(headers)
             let manager = Alamofire.Session.default
             manager.session.configuration.timeoutIntervalForRequest = Constants.NetworkError.timeOutInterval
-            print(Parameters.self)
+            print(parameters)
             manager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<600).responseJSON
                 { (response) -> Void in
                     
@@ -135,10 +135,10 @@ class NetworkHandler {
                     ]
             }
         
-        manager.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) -> Void in
+        manager.request(url, method: .get, parameters: parameters, headers: headers).responseJSON { (response) -> Void in
       
             debugPrint(response)
-            print(response)
+//            print(response)
             guard let statusCode = response.response?.statusCode else {
                 var networkError = NetworkError()
                 

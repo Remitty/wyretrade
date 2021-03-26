@@ -35,7 +35,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="kzs-M3-fp5" firstAttribute="top" secondItem="ICr-eb-24t" secondAttribute="top" id="5oh-2f-1GT"/>
                                     <constraint firstAttribute="height" constant="15" id="APT-JU-lnM"/>
@@ -60,7 +59,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Kzu-3P-jdw" firstAttribute="leading" secondItem="Bo7-nq-bEX" secondAttribute="leading" id="ACl-OB-kEb"/>
                                     <constraint firstAttribute="trailing" secondItem="TGj-Ic-ugL" secondAttribute="trailing" id="IUr-9c-995"/>
@@ -76,7 +74,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Bo7-nq-bEX" firstAttribute="top" secondItem="ICr-eb-24t" secondAttribute="bottom" constant="5" id="8Va-e7-CQm"/>
                             <constraint firstItem="wHN-Ei-UJ1" firstAttribute="leading" secondItem="fnm-df-an8" secondAttribute="leading" id="ESi-9R-Waf"/>
@@ -108,9 +105,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

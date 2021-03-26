@@ -23,11 +23,13 @@ class StocksController: UIViewController, UISearchBarDelegate {
     
     var stocksList = [StockPositionModel]()
     var query = ""
+    var usdcBalance = ""
+    var isPredict = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        txtSearch.showsScopeBar = true
+//        txtSearch.showsScopeBar = true
         txtSearch.delegate = self
         
         self.loadData()
@@ -53,6 +55,8 @@ class StocksController: UIViewController, UISearchBarDelegate {
                 }
                 self.stocksTable.reloadData()
             }
+            
+            
                 
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)
@@ -60,10 +64,15 @@ class StocksController: UIViewController, UISearchBarDelegate {
             }
     }
     
-    func searchBarSearchButtonClicked( searchBar: UISearchBar!)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar!)
     {
+        
         self.query = searchBar.text!
         self.loadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
     }
 
     override func didReceiveMemoryWarning()
@@ -88,11 +97,24 @@ extension StocksController: UITableViewDelegate, UITableViewDataSource {
         let section = indexPath.section
         
         let item = stocksList[indexPath.row]
+        if self.isPredict {
+            let detailController = storyboard?.instantiateViewController(withIdentifier: "PredictionPostController") as! PredictionPostController
+            detailController.usdcBalance = self.usdcBalance
+    //        detailController.asset = item
+            detailController.symbol = item.ticker
+            detailController.name = item.name
+            detailController.price = item.price
+            detailController.kind = 1
+    //        detailController.id = item.id
+            
+            self.navigationController?.pushViewController(detailController, animated: true)
+        } else {
+            let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
+            detailController.stocks = item
+            
+            self.navigationController?.pushViewController(detailController, animated: true)
+        }
         
-        let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
-        detailController.stocks = item
-        
-        self.navigationController?.pushViewController(detailController, animated: true)
 
     }
 

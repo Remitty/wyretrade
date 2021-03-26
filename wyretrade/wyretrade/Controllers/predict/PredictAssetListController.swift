@@ -49,8 +49,12 @@ extension PredictAssetListController: UITableViewDelegate, UITableViewDataSource
         
         let detailController = storyboard?.instantiateViewController(withIdentifier: "PredictionPostController") as! PredictionPostController
         detailController.usdcBalance = self.usdcBalance
-        detailController.asset = item
-        detailController.id = item.id
+//        detailController.asset = item
+        detailController.symbol = item.symbol
+        detailController.name = item.name
+        detailController.price = item.price
+        detailController.kind = 0
+//        detailController.id = item.id
         
         self.navigationController?.pushViewController(detailController, animated: true)
 

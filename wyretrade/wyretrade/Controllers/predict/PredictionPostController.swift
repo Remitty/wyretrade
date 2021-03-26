@@ -13,8 +13,12 @@ class PredictionPostController: UIViewController, UITextFieldDelegate {
     
     
     var usdcBalance = ""
-    var id = ""
-    var asset: PredictAssetModel!
+//    var id = ""
+//    var asset: PredictAssetModel!
+    var symbol = ""
+    var name = ""
+    var price = ""
+    var kind = 0
     var duration = 7
     var type = 2
     
@@ -44,9 +48,9 @@ class PredictionPostController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         lbUSDCBalance.text = usdcBalance
-        lbSymbol.text = asset.symbol
-        lbName.text = asset.name
-        lbPrice.text = asset.price
+        lbSymbol.text = symbol
+        lbName.text = name
+        lbPrice.text = price
         
         radioGroup = RadioGroup(titles: ["Higher than", "Not changed", "Less than"])
         radioGroup.isVertical = false
@@ -109,9 +113,10 @@ class PredictionPostController: UIViewController, UITextFieldDelegate {
         let param: NSDictionary = [
             "est_price": price,
             "bet_price": amount,
-            "symbol": id,
+            "symbol": symbol,
             "type": type,
-            "duration": duration
+            "duration": duration,
+            "kind": kind
         ]
         let alert = Alert.showConfirmAlert(message: "Are you sure creating this prediction?", handler: {
             (_) in self.submitPost(param: param)

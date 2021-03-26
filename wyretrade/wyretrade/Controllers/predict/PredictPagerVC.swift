@@ -26,7 +26,13 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
         self.looadData()
+       
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
@@ -129,10 +135,19 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
                 self.usdcBalance = NumberFormat(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
             }
             
-            let detailController = self.storyboard?.instantiateViewController(withIdentifier: "PredictAssetListController") as! PredictAssetListController
-            detailController.assetList = self.assetList
-            detailController.usdcBalance = self.usdcBalance
-            self.navigationController?.pushViewController(detailController, animated: true)
+            if param["type"] as! Int == 0 {
+                let detailController = self.storyboard?.instantiateViewController(withIdentifier: "PredictAssetListController") as! PredictAssetListController
+                detailController.assetList = self.assetList
+                detailController.usdcBalance = self.usdcBalance
+                self.navigationController?.pushViewController(detailController, animated: true)
+            } else {
+                let detailController = self.storyboard?.instantiateViewController(withIdentifier: "StocksController") as! StocksController
+                detailController.isPredict = true
+                detailController.usdcBalance = self.usdcBalance
+                self.navigationController?.pushViewController(detailController, animated: true)
+            }
+            
+            
             
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)

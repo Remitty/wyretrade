@@ -6502,7 +6502,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search any stock quote" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-pQ-jZB">
+                            <searchBar contentMode="redraw" placeholder="Search stock quote" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-pQ-jZB">
                                 <rect key="frame" x="0.0" y="98" width="390" height="56"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <textInputTraits key="textInputTraits"/>
