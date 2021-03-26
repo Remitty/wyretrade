@@ -114,18 +114,19 @@ class CoinsController: UIViewController {
             
             var address = dictionary["address"] as! String
             
-            let base = "https://checkout.xanpool.com/"
-            let apiKey = "?apiKey=\(self.xanpoolApiKey!)"
-            let wallet = "&owallet=\(address)"
-            let symbol = "&cryptoCurrency=\(param["symbol"]!)"
-            let transactionType = "&transactionType="
-            let isWebview = "&isWebview=true"
-            let partner = "&partnerData=88824d8683434f4e"
-             let url = base + apiKey + wallet + symbol + transactionType + isWebview + partner
+            var configuration = Ramp.Configuration(url: "https://widget-instant.ramp.network/")
+            configuration.userAddress = address
+            configuration.swapAsset = param["symbol"] as? String
+//            configuration.fiatValue = "2"
+//            configuration.swapAsset = "BTC"
+//            configuration.finalUrl = "rampexample://ramp.purchase.complete"
+            let rampWidgetUrl = configuration.composeUrl()
             
-            let webviewController = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC
-            webviewController.url = url
-            self.navigationController?.pushViewController(webviewController, animated: true)
+            let rampVC = SFSafariViewController(url: rampWidgetUrl)
+            rampVC.modalPresentationStyle = .overFullScreen
+            self.present(rampVC, animated: true)
+            
+            
             
         }) {
             (error) in
@@ -139,18 +140,14 @@ class CoinsController: UIViewController {
             let dictionary = successResponse as! [String: Any]
             
             var address = dictionary["address"] as! String
+            let symbol = param["symbol"] as! String
+            let excludeCryptos = "&excludeCryptos=EOS,USDT,XLM,BUSD,GUSD,HUSD,PAX,USDS"
+            let coin_address = "&defaultAddrs=" + symbol + ":" + address
+            let url = "https://widget.onramper.com?color=1d2d50&apiKey=\(self.onramperApiKey!)&defaultCrypto=\(symbol)\(excludeCryptos)\(coin_address)&onlyCryptos=\(self.onRamperCoins)&isAddressEditable=false"
             
-            var configuration = Ramp.Configuration(url: "https://widget-instant.ramp.network/")
-            configuration.userAddress = address
-            configuration.swapAsset = param["symbol"] as? String
-//            configuration.fiatValue = "2"
-//            configuration.swapAsset = "BTC"
-//            configuration.finalUrl = "rampexample://ramp.purchase.complete"
-            let rampWidgetUrl = configuration.composeUrl()
-            
-            let rampVC = SFSafariViewController(url: rampWidgetUrl)
-            rampVC.modalPresentationStyle = .overFullScreen
-            self.present(rampVC, animated: true)
+            let webviewController = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC
+            webviewController.url = url
+            self.navigationController?.pushViewController(webviewController, animated: true)
             
         }) {
             (error) in
@@ -219,23 +216,24 @@ extension CoinsController: CoinViewParameterDelegate {
 //        self.presentVC(popup)
         
         let alertController = UIAlertController(title: "Buy / Sell", message: "Select option to buy cryptocurrencies with over 40 fiat currencies", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Buy / Sell(INR, MYR, HKD, PHP, TBH, VND, SGD, RP) \n Pwered by xanpool", style: .default) { (_) in
+        let action1 = UIAlertAction(title: "Buy / Sell \n (INR, MYR, HKD, PHP, TBH, VND, SGD, RP) \n Powered by xanpool", style: .default) { (_) in
             self.actionXanpool(param: param)
         }
-        let action2 = UIAlertAction(title: "Buy only(USD, EUR) \n Pwered by Ramp", style: .default) { action in
+        let action2 = UIAlertAction(title: "Buy only(USD, EUR) \n Powered by Ramp", style: .default) { action in
             self.actionRamp(param: param)
         }
-        let action3 = UIAlertAction(title: "Buy only(Global) \n Pwered by onramp", style: .default) { action in
+        let action3 = UIAlertAction(title: "Buy only(Global) \n Powered by onramp", style: .default) { action in
             self.actionOnramp(param: param)
+        }
+        if (param["buyType"] as! Int) > 1 {
+            alertController.addAction(action1)
         }
         alertController.addAction(action2)
         if (param["buyType"] as! Int) > 2 {
             alertController.addAction(action3)
         }
-        if (param["buyType"] as! Int) > 1 {
-            alertController.addAction(action1)
-        }
-        UILabel.appearance(whenContainedInInstancesOf:[UIAlertController.self]).numberOfLines = 2
+        
+        UILabel.appearance(whenContainedInInstancesOf:[UIAlertController.self]).numberOfLines = 3
         
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

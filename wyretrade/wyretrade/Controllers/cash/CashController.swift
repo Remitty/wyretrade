@@ -16,9 +16,15 @@ class CashController: UIViewController {
     @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var historyTable: UITableView!
     
+    @IBOutlet weak var btnRight: UIButton!
+    @IBOutlet weak var btnLeft: UIButton!
+    @IBOutlet weak var lbBalance: UILabel!
+    @IBOutlet weak var lbCurrency: UILabel!
+    
     var historyLis = [CashTransactionModel]()
     var bankList = [BankModel]()
     var itemList = [BankModel]()
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +32,9 @@ class CashController: UIViewController {
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
         historyTable.isHidden = true
+        
+        btnLeft.isHidden = true
+        btnRight.isHidden = true
         
         // Do any additional setup after loading the view.
         accountView.isUserInteractionEnabled = true
@@ -48,7 +57,13 @@ class CashController: UIViewController {
         let tap5 = UITapGestureRecognizer(target: self, action: #selector(CashController.contactClick))
         contactView.addGestureRecognizer(tap5)
         
-//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+       
+        loadData()
+       
     }
     
     func loadData() {
@@ -56,7 +71,26 @@ class CashController: UIViewController {
         
         RequestHandler.getBankDetail(parameter: param , success: { (successResponse) in
 //                        self.stopAnimating()
-            let dictionary = successResponse as! [String: Any] 
+            let dictionary = successResponse as! [String: Any]
+            
+            var bank : BankModel!
+                        
+            if let currencies = dictionary["currencies"] as? [[String:Any]] {
+                self.bankList = [BankModel]()
+                for item in currencies {
+                    bank = BankModel(fromDictionary: item)
+                    self.bankList.append(bank)
+                }
+            }
+            
+            if self.bankList.count > 0 {
+                self.lbBalance.text = "\(self.bankList[0].balance!)"
+                self.lbCurrency.text = self.bankList[0].currency.currency
+            }
+            
+            if self.bankList.count > 1 {
+                self.btnRight.isHidden = false
+            }
             
         }) { (error) in
             let alert = Alert.showBasicAlert(message: error.message)
@@ -125,6 +159,10 @@ class CashController: UIViewController {
     }
     
     @objc func sendClick(sender: UITapGestureRecognizer) {
+        if self.bankList.count == 0 {
+            self.showToast(message: "You have no wallet")
+            return
+        }
         let param: NSDictionary = [:]
         RequestHandler.getBankFriendList(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
@@ -141,6 +179,8 @@ class CashController: UIViewController {
             }
             let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CashItemListController") as! CashItemListController
             detailController.itemList = self.itemList
+            detailController.currency = self.bankList[self.index].currency.currency
+            detailController.currencyId = self.bankList[self.index].currency.id
             self.navigationController?.pushViewController(detailController, animated: true)
         }
                 
@@ -213,7 +253,29 @@ class CashController: UIViewController {
                     self.presentVC(alert)
         }
     }
-
+    
+    @IBAction func actionRight(_ sender: Any) {
+        btnLeft.isHidden = false
+        index += 1
+        self.lbBalance.text = "\(self.bankList[index].balance!)"
+        self.lbCurrency.text = self.bankList[index].currency.currency
+        
+        if bankList.count == (index+1) {
+            btnRight.isHidden = true
+        }
+    }
+    
+    @IBAction func actionLeft(_ sender: Any) {
+        btnRight.isHidden = false
+        index -= 1
+        self.lbBalance.text = "\(self.bankList[index].balance!)"
+        self.lbCurrency.text = self.bankList[index].currency.currency
+        
+        if index == 0 {
+            btnLeft.isHidden = true
+        }
+    }
+    
 }
 
 //extension CashController: UITableViewDelegate, UITableViewDataSource {

@@ -663,7 +663,7 @@ class RequestHandler {
     class func getBankCurrencyRate(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
         let url = Constants.URL.REQUEST_CONVERSION_RATE
         print(url)
-        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+        NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             
             success(successResponse)
         }) { (error) in

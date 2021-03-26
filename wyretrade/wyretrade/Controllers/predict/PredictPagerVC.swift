@@ -27,6 +27,7 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
         // Do any additional setup after loading the view.
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

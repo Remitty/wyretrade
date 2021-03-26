@@ -256,29 +256,66 @@
                             <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRT-7H-8ss">
                                 <rect key="frame" x="20" y="128" width="350" height="120"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zk2-Xo-QLY">
-                                        <rect key="frame" x="40" y="30" width="270" height="60"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5Z-rp-7T5">
+                                        <rect key="frame" x="151.66666666666666" y="0.0" width="47" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iT7-bP-10H" userLabel="wallet view">
+                                        <rect key="frame" x="100" y="30.333333333333343" width="150" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5Z-rp-7T5">
-                                                <rect key="frame" x="0.0" y="0.0" width="270" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUD-Uw-acl">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="26.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iT7-bP-10H">
-                                                <rect key="frame" x="0.0" y="20.333333333333339" width="270" height="39.666666666666657"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIv-ev-0NL">
+                                                <rect key="frame" x="0.0" y="31.333333333333314" width="150" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="dIv-ev-0NL" firstAttribute="leading" secondItem="iT7-bP-10H" secondAttribute="leading" id="7eD-LX-bSE"/>
+                                            <constraint firstItem="xUD-Uw-acl" firstAttribute="leading" secondItem="iT7-bP-10H" secondAttribute="leading" id="Aap-Xr-aSX"/>
+                                            <constraint firstAttribute="trailing" secondItem="dIv-ev-0NL" secondAttribute="trailing" id="DqD-HW-ycb"/>
+                                            <constraint firstAttribute="width" constant="150" id="Lou-Ws-zrH"/>
+                                            <constraint firstItem="dIv-ev-0NL" firstAttribute="top" secondItem="xUD-Uw-acl" secondAttribute="bottom" constant="5" id="aMX-MB-hBz"/>
+                                            <constraint firstAttribute="height" constant="50" id="daY-iB-li7"/>
+                                            <constraint firstItem="xUD-Uw-acl" firstAttribute="top" secondItem="iT7-bP-10H" secondAttribute="top" id="ntp-qQ-Y0s"/>
+                                            <constraint firstAttribute="trailing" secondItem="xUD-Uw-acl" secondAttribute="trailing" id="qRn-zr-lnU"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvh-DD-90H" userLabel="right">
+                                        <rect key="frame" x="265" y="48" width="24" height="24"/>
+                                        <state key="normal" image="ic_arrow_right"/>
+                                        <connections>
+                                            <action selector="actionRight:" destination="1vk-Kh-TiM" eventType="primaryActionTriggered" id="NLg-3x-nfn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDe-SQ-WiN" userLabel="left">
+                                        <rect key="frame" x="61" y="48" width="24" height="24"/>
+                                        <state key="normal" image="ic_arrow_left"/>
+                                        <connections>
+                                            <action selector="actionLeft:" destination="1vk-Kh-TiM" eventType="primaryActionTriggered" id="sdF-y2-jXQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="zk2-Xo-QLY" firstAttribute="leading" secondItem="zRT-7H-8ss" secondAttribute="leading" constant="40" id="9Zj-md-rYW"/>
+                                    <constraint firstItem="R5Z-rp-7T5" firstAttribute="centerX" secondItem="zRT-7H-8ss" secondAttribute="centerX" id="Dxs-6W-q2o"/>
+                                    <constraint firstItem="iT7-bP-10H" firstAttribute="top" secondItem="R5Z-rp-7T5" secondAttribute="bottom" constant="10" id="PyH-ZZ-tYa"/>
+                                    <constraint firstItem="PDe-SQ-WiN" firstAttribute="centerY" secondItem="zRT-7H-8ss" secondAttribute="centerY" id="Qgk-iT-WaD"/>
+                                    <constraint firstItem="Yvh-DD-90H" firstAttribute="centerY" secondItem="zRT-7H-8ss" secondAttribute="centerY" id="QkA-pS-IQf"/>
+                                    <constraint firstItem="iT7-bP-10H" firstAttribute="leading" secondItem="PDe-SQ-WiN" secondAttribute="trailing" constant="15" id="WNd-d1-RP8"/>
                                     <constraint firstAttribute="height" constant="120" id="Wcp-MQ-a4C"/>
-                                    <constraint firstItem="zk2-Xo-QLY" firstAttribute="top" secondItem="zRT-7H-8ss" secondAttribute="top" constant="30" id="dOc-TX-pvB"/>
-                                    <constraint firstAttribute="trailing" secondItem="zk2-Xo-QLY" secondAttribute="trailing" constant="40" id="eDI-Im-bsz"/>
-                                    <constraint firstAttribute="bottom" secondItem="zk2-Xo-QLY" secondAttribute="bottom" constant="30" id="wve-hm-hZ5"/>
+                                    <constraint firstItem="Yvh-DD-90H" firstAttribute="leading" secondItem="iT7-bP-10H" secondAttribute="trailing" constant="15" id="f1x-B2-bMX"/>
+                                    <constraint firstItem="R5Z-rp-7T5" firstAttribute="top" secondItem="zRT-7H-8ss" secondAttribute="top" id="hFZ-W7-diz"/>
+                                    <constraint firstItem="iT7-bP-10H" firstAttribute="centerX" secondItem="zRT-7H-8ss" secondAttribute="centerX" id="kAU-H8-C7s"/>
                                 </constraints>
                             </view>
                             <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0C-8l-fvB">
@@ -490,8 +527,12 @@
                         <outlet property="accountView" destination="M7L-sl-gPL" id="9md-mC-gtR"/>
                         <outlet property="addView" destination="caP-Mz-VI6" id="WQG-3n-laq"/>
                         <outlet property="bankView" destination="gEA-xu-lDk" id="Idx-aV-SGC"/>
+                        <outlet property="btnLeft" destination="PDe-SQ-WiN" id="244-an-eTz"/>
+                        <outlet property="btnRight" destination="Yvh-DD-90H" id="afZ-ae-K6b"/>
                         <outlet property="contactView" destination="BSz-zn-njT" id="8Se-y1-bTk"/>
                         <outlet property="historyTable" destination="6V1-mq-Xl7" id="9tO-e0-lmf"/>
+                        <outlet property="lbBalance" destination="xUD-Uw-acl" id="QOk-tm-bgw"/>
+                        <outlet property="lbCurrency" destination="dIv-ev-0NL" id="MT4-PA-ojh"/>
                         <outlet property="sendView" destination="0vd-gt-NvO" id="SC7-wR-5M7"/>
                     </connections>
                 </viewController>
@@ -1212,7 +1253,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b5h-vw-EXy">
                                                         <rect key="frame" x="0.0" y="38.999999999999972" width="130" height="38"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1D-Hl-bHS">
                                                         <rect key="frame" x="0.0" y="91.999999999999972" width="130" height="18"/>
@@ -1274,6 +1315,9 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="actionSend:" destination="gNo-ur-ppZ" eventType="primaryActionTriggered" id="mfd-wu-BJU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1297,6 +1341,13 @@
                             <constraint firstItem="BrR-Fy-pzf" firstAttribute="top" secondItem="Uzg-ch-cgV" secondAttribute="top" constant="30" id="jN7-lH-i7S"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lbGetterCurrency" destination="ndm-xm-e3A" id="bHk-7L-6fj"/>
+                        <outlet property="lbGettingAmount" destination="rZu-Db-a94" id="qnf-2f-Ono"/>
+                        <outlet property="lbName" destination="fxn-lS-2Wb" id="xyh-10-5aw"/>
+                        <outlet property="lbSendingCurrency" destination="O1D-Hl-bHS" id="WJd-Pn-vkN"/>
+                        <outlet property="txtSendingAmount" destination="b5h-vw-EXy" id="4X6-20-yGV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ku-V5-4vx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -10340,6 +10391,7 @@
         <image name="help_mail" width="209" height="209"/>
         <image name="ic_accounting" width="21" height="21"/>
         <image name="ic_add" width="20" height="24"/>
+        <image name="ic_arrow_left" width="24" height="24"/>
         <image name="ic_arrow_right" width="24" height="24"/>
         <image name="ic_bank" width="21" height="21"/>
         <image name="ic_bank_plus" width="25" height="25"/>

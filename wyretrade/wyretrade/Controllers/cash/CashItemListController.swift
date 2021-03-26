@@ -22,6 +22,8 @@ class CashItemListController: UIViewController {
     }
     
     var itemList = [BankModel]()
+    var currency = ""
+    var currencyId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,9 @@ extension CashItemListController: UITableViewDelegate, UITableViewDataSource {
         
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CashSendController") as! CashSendController
 //        detailController.itemList = self.itemList
+        detailController.currency = currency
+        detailController.currencyId = currencyId
+        detailController.getter = item
         self.navigationController?.pushViewController(detailController, animated: true)
     }
 
