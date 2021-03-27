@@ -156,6 +156,26 @@ class CoinsController: UIViewController {
         }
     }
    
+    @IBAction func actionDeposit(_ sender: Any) {
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
+        detailController.delegate = self
+        detailController.coinList = self.coinList
+        self.navigationController?.pushViewController(detailController, animated: true)
+    }
+    
+    @IBAction func actionBuy(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeController") as! CoinTradeController
+        vc.coinList = self.coinList
+        vc.onRamperCoins = self.onRamperCoins
+        vc.onramperApiKey = self.onramperApiKey
+        vc.xanpoolApiKey = self.xanpoolApiKey
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func actionWithdraw(_ sender: Any) {
+        let coinwithdrawView = storyboard?.instantiateViewController(withIdentifier: "CoinWithdrawController") as! CoinWithdrawController
+        self.navigationController?.pushViewController(coinwithdrawView, animated: true)
+    }
 }
  
 extension CoinsController: UITableViewDataSource, UITableViewDelegate {
@@ -164,7 +184,7 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 130
+            return 80
         }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -243,11 +263,21 @@ extension CoinsController: CoinViewParameterDelegate {
     
     func depositParamData(param: NSDictionary) {
         
-        RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+        
+    }
+}
+
+extension CoinsController: CoinSelectControllerDelegate {
+    func selectCoin(param: CoinModel) {
+        let param1: NSDictionary = [
+            "coin": param.id!,
+            "symbol": param.symbol!
+        ]
+        RequestHandler.coinDeposit(parameter: param1, success: {(successResponse) in
             let dictionary = successResponse as! [String: Any]
             
-            var address = dictionary["address"] as! String
-            let alertController = UIAlertController(title: "Only send \(param["symbol"]!)", message: nil, preferredStyle: .alert)
+            let address = dictionary["address"] as! String
+            let alertController = UIAlertController(title: "Only send \(param1["symbol"]!)", message: nil, preferredStyle: .alert)
             let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
                 let pasteboard = UIPasteboard.general
                 pasteboard.string = address
