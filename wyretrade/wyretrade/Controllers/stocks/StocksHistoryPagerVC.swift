@@ -37,22 +37,7 @@ class StocksHistoryPagerVC: SegmentedPagerTabStripViewController {
         child2.historyList = self.historyList
         
         
-        guard isReload else {
-            return [child1, child2]
-        }
-        
-        var childVCs = [child1, child2]
-        let count = childVCs.count
-        
-        for index in childVCs.indices {
-            let nElements = count - index
-            let n = (Int(arc4random()) % nElements) + index
-            if n != index {
-                childVCs.swapAt(index, n)
-            }
-        }
-        let nItems = 1 + (arc4random() % 4)
-        return Array(childVCs.prefix(Int(nItems)))
+        return [child1, child2]
     }
     
     func loadHistoryData() {
@@ -113,7 +98,7 @@ class StocksHistoryPagerVC: SegmentedPagerTabStripViewController {
                 for item in data {
                     deposit = StocksOrderModel(fromDictionary: item)
                     self.historyList.append(deposit)
-                    self.orderList.append(deposit)
+//                    self.orderList.append(deposit)
                 }
                 
             }

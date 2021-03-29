@@ -9,9 +9,13 @@ import Foundation
 import UIKit
 import AnyChartiOS
 import DropDown
+import XLPagerTabStrip
 
-class TradeTokenController: UIViewController {
+class TradeTokenController: UIViewController, IndicatorInfoProvider {
     
+    var itemInfo: IndicatorInfo = "Token"
+    let scrollViewContentHeight = 1200 as CGFloat
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tradingView: UIView!
     @IBOutlet weak var chartView: UIView!
     
@@ -106,6 +110,10 @@ class TradeTokenController: UIViewController {
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         self.addTradeView()
         
+        scrollView.contentSize.height = scrollViewContentHeight
+        scrollView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
+        scrollView.delegate = self
+        
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(TradeTokenController.update), userInfo: nil, repeats: true)
         
 //        self.updateChartData()
@@ -122,6 +130,10 @@ class TradeTokenController: UIViewController {
         timer?.invalidate()
        dismiss(animated: true, completion: nil)
         
+    }
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return itemInfo
     }
     
     @objc func update() {

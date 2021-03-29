@@ -9,6 +9,10 @@ import Foundation
 import XLPagerTabStrip
 
 class TradeTokenPagerVC: SegmentedPagerTabStripViewController {
+    
+    
+   
+    
     var isReload = false
     var depositFromBankList = [StocksDepositModel]()
     var depositFromCoinList = [StocksDepositModel]()
@@ -95,7 +99,7 @@ class TradeTokenPagerVC: SegmentedPagerTabStripViewController {
             
             self.usdBalance = dictionary["bank_usd_balance"] as! String
             
-            self.reloadPagerTabStripView()
+//            self.reloadPagerTabStripView()
    
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)

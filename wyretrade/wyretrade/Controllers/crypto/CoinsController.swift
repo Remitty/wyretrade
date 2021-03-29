@@ -164,7 +164,7 @@ class CoinsController: UIViewController {
     }
     
     @IBAction func actionBuy(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeController") as! CoinTradeController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradePagerVC") as! CoinTradePagerVC
         vc.coinList = self.coinList
         vc.onRamperCoins = self.onRamperCoins
         vc.onramperApiKey = self.onramperApiKey
@@ -184,18 +184,18 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 80
+            return 60
         }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CoinView = tableView.dequeueReusableCell(withIdentifier: "CoinView", for: indexPath) as! CoinView
         cell.delegate = self
         let coin = coinList[indexPath.row]
-        cell.lbName.text = coin.name
+        cell.lbName.text = coin.symbol
         cell.imgIcon.load(url: URL(string: coin.icon)!)
         cell.lbPrice.text = coin.price
         cell.lbHolding.text = coin.holding
-        cell.lbBalance.text = "\(coin.balance!) \(coin.symbol!)"
+        cell.lbBalance.text = "\(coin.balance!)"
         cell.lbChangePercent.text = "\(coin.changeToday!) %"
         cell.buyType = coin.buyType
         if coin.buyType == 0 || coin.buyType == 100 {

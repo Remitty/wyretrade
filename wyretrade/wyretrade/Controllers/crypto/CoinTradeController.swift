@@ -9,8 +9,11 @@ import Foundation
 import UIKit
 import MaterialComponents.MDCCard
 import SafariServices
+import XLPagerTabStrip
 
-class CoinTradeController: UIViewController {
+class CoinTradeController: UIViewController, IndicatorInfoProvider {
+    
+    var itemInfo: IndicatorInfo = "Fiat"
     
     @IBOutlet weak var viewXanpool: MDCCard!
     @IBOutlet weak var viewRamp: MDCCard!
@@ -40,6 +43,10 @@ class CoinTradeController: UIViewController {
         viewOnramp.isUserInteractionEnabled = true
         let tap3 = UITapGestureRecognizer(target: self, action: #selector(CoinTradeController.onrampClick))
         viewOnramp.addGestureRecognizer(tap3)
+    }
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return itemInfo
     }
     
     @objc func xanpoolClick(sender: UITapGestureRecognizer) {

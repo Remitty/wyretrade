@@ -180,6 +180,7 @@
 		D3CD1EC225FE694000255A89 /* StocksWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */; };
 		D3CD1EC725FE697A00255A89 /* StocksWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */; };
 		D3F845EC260F28290026DA1E /* CoinTradeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F845EB260F28290026DA1E /* CoinTradeController.swift */; };
+		D3F8462D26116D4F0026DA1E /* CoinTradePagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8462C26116D4F0026DA1E /* CoinTradePagerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,6 +382,7 @@
 		D3CD1EC125FE694000255A89 /* StocksWithdrawItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawItem.swift; sourceTree = "<group>"; };
 		D3CD1EC625FE697900255A89 /* StocksWithdrawItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StocksWithdrawItem.xib; sourceTree = "<group>"; };
 		D3F845EB260F28290026DA1E /* CoinTradeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTradeController.swift; sourceTree = "<group>"; };
+		D3F8462C26116D4F0026DA1E /* CoinTradePagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTradePagerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -838,6 +840,7 @@
 				D371A3462603F3A900C5ECEE /* TokenBuyController.swift */,
 				D371A34B2603F3C400C5ECEE /* TokenSellController.swift */,
 				D3F845EB260F28290026DA1E /* CoinTradeController.swift */,
+				D3F8462C26116D4F0026DA1E /* CoinTradePagerVC.swift */,
 			);
 			path = crypto;
 			sourceTree = "<group>";
@@ -1192,6 +1195,7 @@
 				D371A35B2604824800C5ECEE /* Ask.swift in Sources */,
 				7B68495425F3C92A0075BB79 /* PaymentUserModel.swift in Sources */,
 				D371A34C2603F3C500C5ECEE /* TokenSellController.swift in Sources */,
+				D3F8462D26116D4F0026DA1E /* CoinTradePagerVC.swift in Sources */,
 				7B68497125F3E2450075BB79 /* CashAddContactController.swift in Sources */,
 				7B6D922925F0BA9A00B1E466 /* AccountView.swift in Sources */,
 				7B4D8F1525ECDB4300557F92 /* MenuController.swift in Sources */,
@@ -1489,7 +1493,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8FH8PKCQ84;
 				INFOPLIST_FILE = wyretrade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1497,6 +1503,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyretrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "wyretrade app store";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1508,7 +1515,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8FH8PKCQ84;
 				INFOPLIST_FILE = wyretrade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1516,6 +1525,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyretrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "wyretrade app store";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
