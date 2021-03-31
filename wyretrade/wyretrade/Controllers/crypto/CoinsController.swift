@@ -36,10 +36,14 @@ class CoinsController: UIViewController {
         // Do any additional setup after loading the view.
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
-        self.loadData()
+        
     }
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+        self.loadData()
+       
+    }
     
     func loadData() {
         let param : [String : Any] = [:]

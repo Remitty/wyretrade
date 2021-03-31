@@ -30,11 +30,14 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
             txtPhone.delegate = self
         }
     }
-    @IBOutlet weak var txtDob: UITextField! {
-        didSet {
-            txtDob.delegate = self
-        }
-    }
+//    @IBOutlet weak var txtDob: UITextField! {
+//        didSet {
+//            txtDob.delegate = self
+//        }
+//    }
+    
+    @IBOutlet weak var dobPicker: UIDatePicker!
+    
     @IBOutlet weak var txtAddress1: UITextField! {
         didSet {
             txtAddress1.delegate = self
@@ -69,6 +72,8 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        
         self.loadProfile()
     }
     
@@ -87,7 +92,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
                 self.txtLastName.text = user.last_name
                 self.txtEmail.text = user.email
                 self.txtCity.text = user.city
-                self.txtDob.text = user.dob
+                self.dobPicker.setDate(from: user.dob)
                 self.txtPhone.text = user.phone
                 self.txtCountry.text = user.country
                 self.txtNationality.text = user.national
@@ -102,7 +107,13 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
                     self.presentVC(alert)
         }
     }
-
+    
+    
+    @IBAction func changedDate(_ sender: UIDatePicker) {
+        print(sender.description)
+        sender.setDate(from: sender.description)
+    }
+    
 
     @IBAction func actionUpdate(_ sender: Any) {
         if txtFirstName.text == "" {
@@ -121,10 +132,10 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
             txtPhone.shake(6, withDelta: 10, speed: 0.06)
             return
         }
-        if txtDob.text == "" {
-            txtDob.shake(6, withDelta: 10, speed: 0.06)
-            return
-        }
+//        if txtDob.text == "" {
+//            txtDob.shake(6, withDelta: 10, speed: 0.06)
+//            return
+//        }
         if txtAddress1.text == "" {
             txtAddress1.shake(6, withDelta: 10, speed: 0.06)
             return
@@ -150,7 +161,8 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let param = [
+       
+        let param: [String: Any] = [
             "first_name": txtFirstName.text,
             "last_name": txtLastName.text,
             "email": txtEmail.text,
@@ -160,9 +172,9 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
             "country": txtCountry.text,
             "city": txtCity.text,
             "region": txtNationality.text,
-            "dob": txtDob.text,
+            "dob": dobPicker.description,
             "postalcode": txtPostalCode.text
-        ] as! NSDictionary
+        ]
         
         RequestHandler.profileUpdate(parameter: param as NSDictionary, success: { (successResponse) in
 //                        self.stopAnimating()

@@ -123,10 +123,10 @@ class NetworkHandler {
             let data = UserDefaults.standard.object(forKey: "userAuthData")
             let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
             let userAuth = UserAuthModel(fromDictionary: objUser)
-            var userAuthToken = userAuth.access_token!
+            let userAuthToken = userAuth.access_token
             headers = [
                 "Accept": "application/json",
-                "Authorization": "Bearer \(userAuthToken)",
+                "Authorization": "Bearer \(userAuthToken!)",
                 ]
             } else {
 

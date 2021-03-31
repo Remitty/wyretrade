@@ -20,12 +20,14 @@ class SplashController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.checkLogin()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        
+        self.checkLogin()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,6 +42,10 @@ class SplashController: UIViewController {
             var data = defaults.object(forKey: "userAuthData")
             let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
             let userAuth = UserAuthModel(fromDictionary: objUser)
+            guard let token = userAuth.access_token else {
+                self.moveToLogin()
+                return
+            }
             if userAuth.isCompleteProfile {
                 self.moveToMain()
             }

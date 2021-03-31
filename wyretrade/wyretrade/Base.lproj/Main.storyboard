@@ -6270,8 +6270,8 @@
                                 <rect key="frame" x="10" y="180.66666666666669" width="370" height="570.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEI-Le-yW4">
-                                        <rect key="frame" x="20" y="20" width="115" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <rect key="frame" x="20" y="20" width="94" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -6309,12 +6309,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8B-aT-a38">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="w8B-aT-a38" secondAttribute="trailing" id="O0E-IS-2GE"/>
                                                     <constraint firstItem="w8B-aT-a38" firstAttribute="leading" secondItem="Twt-nQ-D1v" secondAttribute="leading" id="qqJ-IE-qM2"/>
@@ -6359,12 +6358,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5GC-17-kC4">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstItem="5GC-17-kC4" firstAttribute="centerY" secondItem="IR5-PO-0zv" secondAttribute="centerY" id="5mx-pK-ybR"/>
                                                     <constraint firstItem="5GC-17-kC4" firstAttribute="leading" secondItem="IR5-PO-0zv" secondAttribute="leading" id="AQB-fu-0Vg"/>
@@ -6409,12 +6407,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JOt-8z-5Mk">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstItem="JOt-8z-5Mk" firstAttribute="centerY" secondItem="uYN-Vi-lcf" secondAttribute="centerY" id="Q5o-jo-Y1A"/>
                                                     <constraint firstAttribute="trailing" secondItem="JOt-8z-5Mk" secondAttribute="trailing" id="gRv-xP-bwF"/>
@@ -6459,12 +6456,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MB6-ed-hLJ">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstItem="MB6-ed-hLJ" firstAttribute="centerY" secondItem="evj-Id-oP4" secondAttribute="centerY" id="S1F-Q8-2sp"/>
                                                     <constraint firstAttribute="trailing" secondItem="MB6-ed-hLJ" secondAttribute="trailing" id="SHv-6V-Voh"/>
@@ -6507,18 +6503,21 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLj-jX-3AG">
                                                 <rect key="frame" x="150" y="0.0" width="180" height="40"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="dob" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b30-06-N5b">
-                                                        <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="tjs-4r-nZ1">
+                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="40"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="tintColor" systemColor="labelColor"/>
+                                                        <connections>
+                                                            <action selector="changedDate:" destination="tZe-5U-0dk" eventType="valueChanged" id="lqH-Jo-fn3"/>
+                                                        </connections>
+                                                    </datePicker>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
-                                                    <constraint firstItem="b30-06-N5b" firstAttribute="centerY" secondItem="zLj-jX-3AG" secondAttribute="centerY" id="2hc-OM-HiA"/>
-                                                    <constraint firstItem="b30-06-N5b" firstAttribute="leading" secondItem="zLj-jX-3AG" secondAttribute="leading" id="LQ2-3G-xNk"/>
-                                                    <constraint firstAttribute="trailing" secondItem="b30-06-N5b" secondAttribute="trailing" id="guH-6r-fGK"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tjs-4r-nZ1" secondAttribute="trailing" id="FLT-72-RnT"/>
+                                                    <constraint firstItem="tjs-4r-nZ1" firstAttribute="leading" secondItem="zLj-jX-3AG" secondAttribute="leading" id="JLF-zY-chl"/>
+                                                    <constraint firstItem="tjs-4r-nZ1" firstAttribute="top" secondItem="zLj-jX-3AG" secondAttribute="top" id="Y9c-nn-vzp"/>
+                                                    <constraint firstItem="tjs-4r-nZ1" firstAttribute="leading" secondItem="zLj-jX-3AG" secondAttribute="leading" id="ncn-yp-CtO"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tjs-4r-nZ1" secondAttribute="bottom" id="qvT-do-3RY"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -6559,12 +6558,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="street address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ngg-ej-Uqd">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="ngg-ej-Uqd" secondAttribute="trailing" id="6vS-v5-Ogz"/>
                                                     <constraint firstItem="ngg-ej-Uqd" firstAttribute="centerY" secondItem="h1n-K4-Lbs" secondAttribute="centerY" id="SKk-Fd-8m0"/>
@@ -6609,12 +6607,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="address2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zdd-oN-JQZ">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstItem="zdd-oN-JQZ" firstAttribute="leading" secondItem="taY-w0-A12" secondAttribute="leading" id="BR2-5p-kdm"/>
                                                     <constraint firstAttribute="trailing" secondItem="zdd-oN-JQZ" secondAttribute="trailing" id="hjT-Gf-KQN"/>
@@ -6659,12 +6656,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPW-cr-b5K">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="iPW-cr-b5K" secondAttribute="trailing" id="3g0-7g-QJa"/>
                                                     <constraint firstItem="iPW-cr-b5K" firstAttribute="centerY" secondItem="4d9-Pw-I0H" secondAttribute="centerY" id="Eo3-Ax-oqv"/>
@@ -6709,12 +6705,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A2L-3e-4Cx">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="A2L-3e-4Cx" secondAttribute="trailing" id="LLN-yB-Taw"/>
                                                     <constraint firstItem="A2L-3e-4Cx" firstAttribute="leading" secondItem="JDH-dc-O9J" secondAttribute="leading" id="rc0-zn-9gb"/>
@@ -6759,12 +6754,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="nationality" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48x-Tt-ujv">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstItem="48x-Tt-ujv" firstAttribute="centerY" secondItem="z79-Ww-05F" secondAttribute="centerY" id="3A7-Ow-Qh1"/>
                                                     <constraint firstAttribute="trailing" secondItem="48x-Tt-ujv" secondAttribute="trailing" id="Bv7-gD-7gw"/>
@@ -6809,12 +6803,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="postal code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJh-3N-fMV">
                                                         <rect key="frame" x="0.0" y="3" width="180" height="34"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" red="0.86082474229999995" green="0.86082474229999995" blue="0.86082474229999995" alpha="0.69803921570000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstItem="gJh-3N-fMV" firstAttribute="centerY" secondItem="znd-Tb-4yg" secondAttribute="centerY" id="CbD-3o-KRQ"/>
                                                     <constraint firstItem="gJh-3N-fMV" firstAttribute="leading" secondItem="znd-Tb-4yg" secondAttribute="leading" id="SzK-tq-gTi"/>
@@ -6908,11 +6901,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="OGG-si-icf"/>
                     <connections>
+                        <outlet property="dobPicker" destination="tjs-4r-nZ1" id="Y0f-tp-Rbd"/>
                         <outlet property="txtAddress1" destination="ngg-ej-Uqd" id="gan-Dg-ORZ"/>
                         <outlet property="txtAddress2" destination="zdd-oN-JQZ" id="RJD-mM-Chd"/>
                         <outlet property="txtCity" destination="iPW-cr-b5K" id="kqD-n4-ezK"/>
                         <outlet property="txtCountry" destination="A2L-3e-4Cx" id="eyW-56-l4n"/>
-                        <outlet property="txtDob" destination="b30-06-N5b" id="ypN-IM-Trj"/>
                         <outlet property="txtEmail" destination="JOt-8z-5Mk" id="l7g-pS-jyg"/>
                         <outlet property="txtFirstName" destination="w8B-aT-a38" id="7ZX-qT-CBz"/>
                         <outlet property="txtLastName" destination="5GC-17-kC4" id="gK4-tw-c8m"/>

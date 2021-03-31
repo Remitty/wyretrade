@@ -127,6 +127,7 @@
 		7BDD29F225F28F95007A6921 /* CoinWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BDD29F125F28F95007A6921 /* CoinWithdrawItem.xib */; };
 		7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29F625F28FB7007A6921 /* CoinWithdrawItem.swift */; };
 		7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29FB25F29949007A6921 /* SupportController.swift */; };
+		D334AB5E26137F8C00FBB0B5 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */; };
 		D34C4C4125FE9CB8000B32D2 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */; };
 		D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */; };
 		D34C4C5625FF08D5000B32D2 /* StocksTradeSelectModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C5525FF08D5000B32D2 /* StocksTradeSelectModal.swift */; };
@@ -329,6 +330,7 @@
 		918040A114F91B22508A5AD5 /* Pods-wyretrade.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.debug.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.debug.xcconfig"; sourceTree = "<group>"; };
 		93A6C30EBBBA3C80D50430A6 /* Pods-wyretrade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.release.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.release.xcconfig"; sourceTree = "<group>"; };
 		BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wyretrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 		D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 		D34C4C5525FF08D5000B32D2 /* StocksTradeSelectModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTradeSelectModal.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				7B11933925FAFE6F00E8FDED /* NumberFormatter.swift */,
 				7B11933E25FB0C0900E8FDED /* URLImage.swift */,
 				7B11939325FC34A900E8FDED /* Alert.swift */,
+				D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -1269,6 +1272,7 @@
 				D371A356260473A500C5ECEE /* TokenTradeDataModel.swift in Sources */,
 				7B7AB50425F7015400860D82 /* Network.swift in Sources */,
 				7BA7726725F9A2E400EAC761 /* UserAuthModel.swift in Sources */,
+				D334AB5E26137F8C00FBB0B5 /* DatePicker.swift in Sources */,
 				7B6C9FFD25EF22C800D11EB5 /* NewsModel.swift in Sources */,
 				7B68494F25F3C6460075BB79 /* UserModel.swift in Sources */,
 				7BA7729425F9BC1100EAC761 /* StringValidate.swift in Sources */,

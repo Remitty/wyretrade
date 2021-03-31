@@ -36,7 +36,13 @@ class PortfolioController: UIViewController {
         // Do any additional setup after loading the view.
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
         self.loadData()
+       
     }
 
     func loadData() {
