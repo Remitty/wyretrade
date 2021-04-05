@@ -53,8 +53,16 @@ class HomeController: UIViewController {
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(HomeController.contactCardClick))
         contactCard.addGestureRecognizer(tap2)
         
-        self.loadData()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+//       self.navigationController?.isNavigationBarHidden = true
+       
+       self.loadData()
+       
     }
     
     func loadData() {

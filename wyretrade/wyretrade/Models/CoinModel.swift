@@ -19,6 +19,7 @@ struct CoinModel {
     var withdrawFee: Double!
     var buyType: Int!
     var exchangeRate: Double!
+    var type: String!
     
     init?(fromDictionary dictionary: [String: Any]) {
         id = "\(dictionary["id"] as! Int)"
@@ -55,6 +56,8 @@ struct CoinModel {
         }
         
         buyType = dictionary["buy_now"] as? Int
+        
+        type = dictionary["type"] as? String
         
     }
    

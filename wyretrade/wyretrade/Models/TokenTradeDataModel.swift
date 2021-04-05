@@ -96,7 +96,10 @@ struct TokenTradeDataModel {
         } else {
             changeVol = PriceFormat.init(amount: dictionary["change_volume"] as! Double, currency: Currency.usd).description
         }
-        maxBid = Ask(fromDictionary: dictionary["max_bid"] as! [String: Any])
+        if let max = dictionary["max_bid"] as? [String: Any] {
+            maxBid = Ask(fromDictionary: max)
+        }
+        
         if let aggregates = dictionary["aggregates"] as? [String: Any] {
             if let data = aggregates["ask"] as? [[String: Any]] {
                 for item in data {

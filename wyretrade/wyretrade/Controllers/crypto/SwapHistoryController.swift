@@ -1,14 +1,15 @@
 //
-//  DepositHistoryController.swift
+//  SwapHistoryController.swift
 //  wyretrade
 //
-//  Created by maxus on 3/8/21.
+//  Created by brian on 4/4/21.
 //
 
 import Foundation
+import Foundation
 import UIKit
 
-class DepositHistoryController: UIViewController {
+class SwapHistoryController: UIViewController {
 
     @IBOutlet weak var historyTable: UITableView! {
         didSet {
@@ -17,11 +18,11 @@ class DepositHistoryController: UIViewController {
             historyTable.showsVerticalScrollIndicator = false
             historyTable.separatorColor = UIColor.darkGray
             historyTable.separatorStyle = .singleLineEtched
-            historyTable.register(UINib(nibName: "CoinDepositItem", bundle: nil), forCellReuseIdentifier: "CoinDepositItem")
+            historyTable.register(UINib(nibName: "SwapItem", bundle: nil), forCellReuseIdentifier: "SwapItem")
         }
     }
     
-    var historyList = [CoinDepositModel]()
+    var historyList = [SwapModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,16 +40,16 @@ class DepositHistoryController: UIViewController {
     
     func loadData() {
         let param : [String : Any] = [:]
-                RequestHandler.getCoinDepositList(parameter: param as NSDictionary, success: { (successResponse) in
+                RequestHandler.getCoinExchangeList(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
-                    var history : CoinDepositModel!
+                    var history : SwapModel!
                     
                     if let historyData = dictionary["data"] as? [[String:Any]] {
-                        self.historyList = [CoinDepositModel]()
+                        self.historyList = [SwapModel]()
                         for item in historyData {
-                            history = CoinDepositModel(fromDictionary: item)
+                            history = SwapModel(fromDictionary: item)
                             self.historyList.append(history)
                         }
                         self.historyTable.reloadData()
@@ -64,18 +65,18 @@ class DepositHistoryController: UIViewController {
 
 
 }
-extension DepositHistoryController: UITableViewDelegate, UITableViewDataSource {
+extension SwapHistoryController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return historyList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CoinDepositItem = tableView.dequeueReusableCell(withIdentifier: "CoinDepositItem", for: indexPath) as! CoinDepositItem
+        let cell: SwapItem = tableView.dequeueReusableCell(withIdentifier: "SwapItem", for: indexPath) as! SwapItem
         let item = historyList[indexPath.row]
-        cell.imgIcon.load(url: URL(string: item.icon)!)
-        cell.lbSymbol.text = item.symbol
-        cell.lbAmount.text = item.amount
+        cell.lbSend.text = "\(item.amount!) \(item.sendSymbol!)"
+        cell.lbGet.text = "\(item.receiveAmount!) \(item.getSymbol!)"
         cell.lbDate.text = item.date
+        cell.lbStatus.text = item.status
         
         return cell
     }

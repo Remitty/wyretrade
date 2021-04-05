@@ -31,13 +31,13 @@ class CoinTradePagerVC: SegmentedPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 
-        let child1 = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeController") as! CoinTradeController
-        let child2 = self.storyboard?.instantiateViewController(withIdentifier: "TradeTokenController") as! TradeTokenController
+        let child2 = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeController") as! CoinTradeController
+        let child1 = self.storyboard?.instantiateViewController(withIdentifier: "TradeTokenController") as! TradeTokenController
         
-        child1.coinList = self.coinList
-        child1.onRamperCoins = self.onRamperCoins
-        child1.onramperApiKey = self.onramperApiKey
-        child1.xanpoolApiKey = self.xanpoolApiKey
+        child2.coinList = self.coinList
+        child2.onRamperCoins = self.onRamperCoins
+        child2.onramperApiKey = self.onramperApiKey
+        child2.xanpoolApiKey = self.xanpoolApiKey
  
         return [child1, child2]
         

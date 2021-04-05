@@ -14,46 +14,98 @@ class SwapController: UIViewController, UITextFieldDelegate {
             txtSellAmount.delegate = self
         }
     }
-    @IBOutlet weak var lbSellingCoinBalance: UILabel!
-    @IBOutlet weak var lbBuyCoinBalance: UILabel!
+    @IBOutlet weak var lbSendCoinBalance: UILabel!
+//    @IBOutlet weak var lbBuyCoinBalance: UILabel!
     @IBOutlet weak var lbBuyEstAmount: UILabel!
     @IBOutlet weak var lbSwapRate: UILabel!
+    @IBOutlet weak var lbSendingLimit: UILabel!
     
-    @IBOutlet weak var historyTable: UITableView!{
+    @IBOutlet weak var lbFee: UILabel!
+    
+    @IBOutlet weak var sendingIcon: UIImageView!
+    @IBOutlet weak var receiveIcon: UIImageView!
+    
+    @IBOutlet weak var btnSendCoin: UIButton! {
         didSet {
-            historyTable.delegate = self
-            historyTable.dataSource = self
-            historyTable.showsVerticalScrollIndicator = false
-            historyTable.separatorColor = UIColor.darkGray
-            historyTable.separatorStyle = .singleLineEtched
-            historyTable.register(UINib(nibName: "SwapItem", bundle: nil), forCellReuseIdentifier: "SwapItem")
+            btnSendCoin.semanticContentAttribute = .forceRightToLeft
+        }
+    }
+    @IBOutlet weak var btnReceiveCoin: UIButton! {
+        didSet {
+            btnReceiveCoin.semanticContentAttribute = .forceRightToLeft
         }
     }
     
-    var historyList = [SwapModel]()
-    var sendCoinList = [CoinModel]()
-    var buyCoinList = [CoinModel]()
     
-    var buyCoinId = ""
-    var sellCoinId = ""
-    var sellAmount = 0.0
+    
+//    @IBOutlet weak var historyTable: UITableView!{
+//        didSet {
+//            historyTable.delegate = self
+//            historyTable.dataSource = self
+//            historyTable.showsVerticalScrollIndicator = false
+//            historyTable.separatorColor = UIColor.darkGray
+//            historyTable.separatorStyle = .singleLineEtched
+//            historyTable.register(UINib(nibName: "SwapItem", bundle: nil), forCellReuseIdentifier: "SwapItem")
+//        }
+//    }
+    
+//    var historyList = [SwapModel]()
+    var coinList = [CoinModel]()
+    var rateModel: SwapRateModel!
+//    var buyCoinList = [CoinModel]()
+    var sendCoin: CoinModel!
+    var receiveCoin: CoinModel!
+    
+    var sellAmount = 0.1
+    var receiveAmount = 0.0
     var selectedType = "buy"
-    var buyCoin = "BTC"
-    var sellCoin = "BTC"
-    var exchangeRate = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         txtSellAmount.addTarget(self, action: #selector(StocksBuyController.amountTextFieldDidChange), for: .editingChanged)
-        
-        self.loadHistory()
+        self.loadData()
+//        self.loadHistory()
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let next = segue.destination as! CoinSelectController
-//        next.delegate = self
-//    }
+    
+    
+    
+    func loadData() {
+        let param : [String : Any] = [:]
+        RequestHandler.getCoinExchange(parameter: param as NSDictionary, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            var coin : CoinModel!
+            
+            if let coins = dictionary["coins"] as? [[String:Any]] {
+                self.coinList = [CoinModel]()
+                for item in coins {
+                    coin = CoinModel(fromDictionary: item)
+                    self.coinList.append(coin)
+                }
+                
+            }
+            
+            
+            self.rateModel = SwapRateModel(fromDictionary: dictionary["rate"] as! [String : Any])
+            self.sendCoin = CoinModel(fromDictionary: dictionary["sendCoin"] as! [String : Any])
+            self.receiveCoin = CoinModel(fromDictionary: dictionary["receiveCoin"] as! [String : Any])
+            
+            self.lbSendCoinBalance.text = self.sendCoin.balance
+            self.receiveIcon.load(url: URL(string: self.receiveCoin.icon)!)
+            self.btnReceiveCoin.setTitle(self.receiveCoin.symbol, for: .normal)
+            
+            self.displayEstCost()
+            self.displayExchangeRate()
+            
+            }) { (error) in
+                let alert = Alert.showBasicAlert(message: error.message)
+                        self.presentVC(alert)
+            }
+    }
+    
     
     @objc func amountTextFieldDidChange(_ textField: UITextField) {
         guard let amount = self.txtSellAmount.text else {
@@ -62,43 +114,46 @@ class SwapController: UIViewController, UITextFieldDelegate {
         
         if amount == "" {
             self.sellAmount = 0.0
+        } else {
+            self.sellAmount = Double(amount)!
         }
-        self.sellAmount = Double(amount)!
+        
         self.displayEstCost()
     }
     
-    func loadHistory() {
-        let param : [String : Any] = [:]
-        RequestHandler.getCoinExchangeList(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
-            let dictionary = successResponse as! [String: Any]
-            
-            var history : SwapModel!
-            
-            if let historyData = dictionary["data"] as? [[String:Any]] {
-                self.historyList = [SwapModel]()
-                for item in historyData {
-                    history = SwapModel(fromDictionary: item)
-                    self.historyList.append(history)
-                }
-                self.historyTable.reloadData()
-            }
-                    
-            
-            }) { (error) in
-                let alert = Alert.showBasicAlert(message: error.message)
-                        self.presentVC(alert)
-            }
-    }
+//    func loadHistory() {
+//        let param : [String : Any] = [:]
+//        RequestHandler.getCoinExchangeList(parameter: param as NSDictionary, success: { (successResponse) in
+////                        self.stopAnimating()
+//            let dictionary = successResponse as! [String: Any]
+//
+//            var history : SwapModel!
+//
+//            if let historyData = dictionary["data"] as? [[String:Any]] {
+//                self.historyList = [SwapModel]()
+//                for item in historyData {
+//                    history = SwapModel(fromDictionary: item)
+//                    self.historyList.append(history)
+//                }
+//                self.historyTable.reloadData()
+//            }
+//
+//
+//            }) { (error) in
+//                let alert = Alert.showBasicAlert(message: error.message)
+//                        self.presentVC(alert)
+//            }
+//    }
     
     func submitExchange() {
         
         
         
             let param : [String : Any] = [
-                "buy_coin_id" : self.buyCoinId,
-                "sell_coin_id": self.sellCoinId,
-                "sell_amount" : self.sellAmount,
+                "sendCoin" : self.sendCoin.symbol!,
+                "receiveCoin": self.receiveCoin.symbol!,
+                "send_amount" : self.sellAmount,
+                "receive_amount": self.receiveAmount
             ]
             
 //                    self.showLoader()
@@ -106,18 +161,21 @@ class SwapController: UIViewController, UITextFieldDelegate {
 //                        self.stopAnimating()
                 let dictionary = successResponse as! [String: Any]
                 
-                var history : SwapModel!
+//                var history : SwapModel!
                 
-                self.showToast(message: dictionary["message"] as! String)
+//                self.showToast(message: dictionary["message"] as! String)
+                self.showToast(message: "Requested successfully")
                 
-                if let historyData = dictionary["history"] as? [[String:Any]] {
-                    self.historyList = [SwapModel]()
-                    for item in historyData {
-                        history = SwapModel(fromDictionary: item)
-                        self.historyList.append(history)
-                    }
-                    self.historyTable.reloadData()
-                }
+                self.sendCoin = CoinModel(fromDictionary: dictionary["sendCoin"] as! [String : Any])
+                self.lbSendCoinBalance.text = self.sendCoin.balance
+//                if let historyData = dictionary["history"] as? [[String:Any]] {
+//                    self.historyList = [SwapModel]()
+//                    for item in historyData {
+//                        history = SwapModel(fromDictionary: item)
+//                        self.historyList.append(history)
+//                    }
+//                    self.historyTable.reloadData()
+//                }
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
@@ -126,7 +184,7 @@ class SwapController: UIViewController, UITextFieldDelegate {
     }
     
     func getBuyCoins() {
-        let param : [String : Any] = ["send_coin_id": self.sellCoinId]
+        let param : [String : Any] = ["send_coin_id": self.sendCoin.id!]
         
 //                    self.showLoader()
         RequestHandler.coinExchangeBuyAssets(parameter: param as NSDictionary, success: { (successResponse) in
@@ -135,17 +193,17 @@ class SwapController: UIViewController, UITextFieldDelegate {
             
             var coin : CoinModel!
             
-            if let coins = dictionary["assets"] as? [[String:Any]] {
-                self.buyCoinList = [CoinModel]()
-                for item in coins {
-                    coin = CoinModel(fromDictionary: item)
-                    self.buyCoinList.append(coin)
-                }
-                let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
-                detailController.delegate = self
-                detailController.coinList = self.buyCoinList
-                self.navigationController?.pushViewController(detailController, animated: true)
-            }
+//            if let coins = dictionary["assets"] as? [[String:Any]] {
+//                self.buyCoinList = [CoinModel]()
+//                for item in coins {
+//                    coin = CoinModel(fromDictionary: item)
+//                    self.buyCoinList.append(coin)
+//                }
+//                let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
+//                detailController.delegate = self
+//                detailController.coinList = self.buyCoinList
+//                self.navigationController?.pushViewController(detailController, animated: true)
+//            }
         }) { (error) in
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
@@ -163,15 +221,15 @@ class SwapController: UIViewController, UITextFieldDelegate {
             var coin : CoinModel!
             
             if let coins = dictionary["assets"] as? [[String:Any]] {
-                self.sendCoinList = [CoinModel]()
-                for item in coins {
-                    coin = CoinModel(fromDictionary: item)
-                    self.sendCoinList.append(coin)
-                }
-                let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
-                detailController.delegate = self
-                detailController.coinList = self.sendCoinList
-                self.navigationController?.pushViewController(detailController, animated: true)
+////                self.sendCoinList = [CoinModel]()
+////                for item in coins {
+////                    coin = CoinModel(fromDictionary: item)
+////                    self.sendCoinList.append(coin)
+////                }
+//                let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
+//                detailController.delegate = self
+//                detailController.coinList = self.sendCoinList
+//                self.navigationController?.pushViewController(detailController, animated: true)
             }
         }) { (error) in
             let alert = Alert.showBasicAlert(message: error.message)
@@ -179,80 +237,121 @@ class SwapController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func getRate() {
+        let param : [String : Any] = [
+            "sendCoin": self.sendCoin.symbol!,
+            "receiveCoin": self.receiveCoin.symbol!
+        ]
+        
+//                    self.showLoader()
+        RequestHandler.getCoinExchangeRate(parameter: param as NSDictionary, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            self.rateModel = SwapRateModel(fromDictionary: dictionary["rate"] as! [String: Any])
+            
+            self.displayEstCost()
+            self.displayExchangeRate()
+            
+        }) { (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
+    }
+    
     func displayExchangeRate() {
-        self.lbSwapRate.text = "1 \(self.sellCoin) ± \(self.exchangeRate) \(self.buyCoin)"
+        self.lbSwapRate.text = "1 \(self.sendCoin.symbol!) ± \(self.rateModel.rate!) \(self.receiveCoin.symbol!)"
+        self.lbSendingLimit.text = "\(self.rateModel.min!) - \(self.rateModel.max!)"
+        self.lbFee.text = "\(self.rateModel.fee!)"
     }
     
     func displayEstCost() {
-        self.lbBuyEstAmount.text = "\(self.sellAmount * self.exchangeRate)"
+        self.receiveAmount = self.sellAmount * self.rateModel.rate
+        self.lbBuyEstAmount.text = NumberFormat(value: self.sellAmount * self.rateModel.rate - self.rateModel.fee, decimal: 4).description
     }
 
     @IBAction func actionSelectSellCoin(_ sender: Any) {
         self.selectedType = "sell"
-        self.getSellCoins()
+//        self.getSellCoins()
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
+        detailController.delegate = self
+        detailController.coinList = self.coinList
+        self.navigationController?.pushViewController(detailController, animated: true)
+    }
+    
+    @IBAction func actionSelectBuyCoin(_ sender: Any) {
+//        if self.sellCoinId == "" {
+//            self.showToast(message: "Please select selling coin")
+//            return
+//        }
+        self.selectedType = "buy"
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
+        detailController.delegate = self
+        detailController.coinList = self.coinList
+        self.navigationController?.pushViewController(detailController, animated: true)
+//        self.getBuyCoins()
     }
     
     @IBAction func actionSubmit(_ sender: Any) {
-        if self.sellCoinId == "" {
-            self.showToast(message: "Please select selling coin")
-            return
-        }
-        if self.buyCoinId == "" {
-            self.showToast(message: "Please select buying coin")
-            return
-        }
+        
         if self.sellAmount == 0 {
             self.txtSellAmount.shake(6, withDelta: 10, speed: 0.06)
             return
         }
         
-        let alert = Alert.showConfirmAlert(message: "Are you sure selling \(self.sellAmount) \(self.sellCoin) ?", handler: {
+        if self.sellAmount > Double(self.sendCoin.balance)! {
+            self.showToast(message: "Insufficient balance")
+            return
+        }
+        
+        let alert = Alert.showConfirmAlert(message: "Are you sure swap \(self.sellAmount) \(self.sendCoin.symbol!) ?", handler: {
             (_) in self.submitExchange()
         })
         self.presentVC(alert)
     }
     
-    @IBAction func actionSelectBuyCoin(_ sender: Any) {
-        if self.sellCoinId == "" {
-            self.showToast(message: "Please select selling coin")
-            return
-        }
-        self.selectedType = "buy"
-        self.getBuyCoins()
+
+    
+    @IBAction func actionViewHistory(_ sender: Any) {
+        let detailController = self.storyboard?.instantiateViewController(withIdentifier: "SwapHistoryController") as! SwapHistoryController
+        self.navigationController?.pushViewController(detailController, animated: true)
     }
+    
 }
 
-extension SwapController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SwapItem = tableView.dequeueReusableCell(withIdentifier: "SwapItem", for: indexPath) as! SwapItem
-        let item = historyList[indexPath.row]
-        cell.lbSend.text = "\(item.amount!) \(item.sendSymbol!)"
-        cell.lbGet.text = item.getSymbol
-        cell.lbDate.text = item.date
-        cell.lbStatus.text = item.status
-        
-        return cell
-    }
-}
+//extension SwapController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return historyList.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell: SwapItem = tableView.dequeueReusableCell(withIdentifier: "SwapItem", for: indexPath) as! SwapItem
+//        let item = historyList[indexPath.row]
+//        cell.lbSend.text = "\(item.amount!) \(item.sendSymbol!)"
+//        cell.lbGet.text = item.getSymbol
+//        cell.lbDate.text = item.date
+//        cell.lbStatus.text = item.status
+//
+//        return cell
+//    }
+//}
 
 extension SwapController: CoinSelectControllerDelegate {
     func selectCoin(param: CoinModel) {
         if self.selectedType == "buy" {
-            self.buyCoinId = param.id
-            self.lbBuyCoinBalance.text = param.balance
-            self.buyCoin = param.symbol
-            self.exchangeRate = param.exchangeRate
-            self.displayExchangeRate()
-            self.displayEstCost()
+            self.receiveCoin = param
+            self.receiveIcon.load(url: URL(string: param.icon)!)
+//            self.lbBuyCoinBalance.text = param.balance
+            self.btnReceiveCoin.setTitle(param.symbol, for: UIControl.State.normal)
+
         } else {
-            self.sellCoinId = param.id
-            self.lbSellingCoinBalance.text = param.balance
-            self.sellCoin = param.symbol
-            self.displayExchangeRate()
+            self.sendCoin = param
+            self.lbSendCoinBalance.text = param.balance
+            self.sendingIcon.load(url: URL(string: param.icon)!)
+            self.btnSendCoin.setTitle(param.symbol, for: UIControl.State.normal)
+            
         }
+        
+        self.getRate()
     }
 }

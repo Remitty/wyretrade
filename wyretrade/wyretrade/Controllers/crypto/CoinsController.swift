@@ -27,6 +27,7 @@ class CoinsController: UIViewController {
     }
     
     var coinList = [CoinModel]()
+    var depositList = [CoinModel]()
     var onramperApiKey: String!
     var xanpoolApiKey: String!
     var onRamperCoins = ""
@@ -55,9 +56,13 @@ class CoinsController: UIViewController {
             
             if let coinData = dictionary["coins"] as? [[String:Any]] {
                 self.coinList = [CoinModel]()
+                self.depositList = [CoinModel]()
                 for item in coinData {
                     coin = CoinModel(fromDictionary: item)
                     self.coinList.append(coin)
+                    if coin.type != "Token" {
+                        self.depositList.append(coin)
+                    }
                     self.onRamperCoins += coin.symbol + ","
                 }
                 self.coinTable.reloadData()
@@ -163,7 +168,7 @@ class CoinsController: UIViewController {
     @IBAction func actionDeposit(_ sender: Any) {
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
         detailController.delegate = self
-        detailController.coinList = self.coinList
+        detailController.coinList = self.depositList
         self.navigationController?.pushViewController(detailController, animated: true)
     }
     
@@ -281,7 +286,7 @@ extension CoinsController: CoinSelectControllerDelegate {
             let dictionary = successResponse as! [String: Any]
             
             let address = dictionary["address"] as! String
-            let alertController = UIAlertController(title: "Only send \(param1["symbol"]!)", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Send \(param1["symbol"]!) only this address", message: nil, preferredStyle: .alert)
             let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
                 let pasteboard = UIPasteboard.general
                 pasteboard.string = address
@@ -292,6 +297,11 @@ extension CoinsController: CoinSelectControllerDelegate {
                 textField.text = address
             }
             alertController.addAction(copyAction)
+            
+            let constraintWidth = NSLayoutConstraint(
+                  item: alertController.view!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute:
+                  NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 400)
+            alertController.view.addConstraint(constraintWidth)
             
             self.present(alertController, animated: true, completion: nil)
         

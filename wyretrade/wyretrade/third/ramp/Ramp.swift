@@ -33,6 +33,7 @@ struct Ramp {
         var userEmailAddress: String? = nil
         var url: String
         var finalUrl: String? = nil
+        var webhookStatusUrl: String? = nil
         var variant: String? = nil
         var hostApiKey: String? = nil
         
@@ -48,6 +49,7 @@ struct Ramp {
             urlComponents.appendQueryItem(name: "hostAppName", value: hostAppName)
             urlComponents.appendQueryItem(name: "userEmailAddress", value: userEmailAddress)
             urlComponents.appendQueryItem(name: "finalUrl", value: finalUrl)
+            urlComponents.appendQueryItem(name: "webhookStatusUrl", value: webhookStatusUrl)
             urlComponents.appendQueryItem(name: "variant", value: variant)
             urlComponents.appendQueryItem(name: "hostApiKey", value: hostApiKey)
             

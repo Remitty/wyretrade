@@ -13,7 +13,7 @@ import XLPagerTabStrip
 
 class CoinTradeController: UIViewController, IndicatorInfoProvider {
     
-    var itemInfo: IndicatorInfo = "Fiat"
+    var itemInfo: IndicatorInfo = "Fiat payment"
     
     @IBOutlet weak var viewXanpool: MDCCard!
     @IBOutlet weak var viewRamp: MDCCard!
@@ -51,7 +51,7 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider {
     
     @objc func xanpoolClick(sender: UITapGestureRecognizer) {
         kind = 0
-        
+        assetList = [CoinModel]()
         for item in coinList {
             if item.buyType > 1 && item.buyType < 100 {
                 assetList.append(item)
@@ -66,6 +66,7 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider {
     
     @objc func rampClick(sender: UITapGestureRecognizer) {
         kind = 1
+        assetList = [CoinModel]()
         for item in coinList {
             if item.buyType > 0 && item.buyType < 100 {
                 assetList.append(item)
@@ -81,6 +82,7 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider {
     
     @objc func onrampClick(sender: UITapGestureRecognizer) {
         kind = 2
+        assetList = [CoinModel]()
         for item in coinList {
             if item.buyType > 2 && item.buyType < 100 {
                 assetList.append(item)
@@ -97,14 +99,15 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider {
     func doXanpool() {
         
         
-        let base = "https://checkout.xanpool.com/"
+        let base = "https://checkout.sandbox.xanpool.com/"
         let apiKey = "?apiKey=\(self.xanpoolApiKey!)"
         let wallet = "&owallet=\(self.address)"
         let symbol = "&cryptoCurrency=\(self.symbol)"
-        let transactionType = "&transactionType="
+        let autoSelling = "&autoSelling=true"
+//        let transactionType = "&transactionType="
         let isWebview = "&isWebview=true"
         let partner = "&partnerData=88824d8683434f4e"
-         let url = base + apiKey + wallet + symbol + transactionType + isWebview + partner
+         let url = base + apiKey + wallet + symbol + autoSelling + isWebview + partner
         
         let webviewController = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC
         webviewController.url = url
@@ -113,14 +116,12 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider {
     
     func doRamp() {
         
-        
-        
         var configuration = Ramp.Configuration(url: "https://widget-instant.ramp.network/")
         configuration.userAddress = self.address
         configuration.swapAsset = self.symbol
 //            configuration.fiatValue = "2"
 //            configuration.swapAsset = "BTC"
-//            configuration.finalUrl = "rampexample://ramp.purchase.complete"
+        configuration.webhookStatusUrl = "https://joiintapp.com/api/coinstock/ramp/webhook"
         let rampWidgetUrl = configuration.composeUrl()
         
         let rampVC = SFSafariViewController(url: rampWidgetUrl)

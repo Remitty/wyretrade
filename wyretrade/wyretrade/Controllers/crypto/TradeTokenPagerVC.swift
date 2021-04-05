@@ -11,8 +11,6 @@ import XLPagerTabStrip
 class TradeTokenPagerVC: SegmentedPagerTabStripViewController {
     
     
-   
-    
     var isReload = false
     var depositFromBankList = [StocksDepositModel]()
     var depositFromCoinList = [StocksDepositModel]()

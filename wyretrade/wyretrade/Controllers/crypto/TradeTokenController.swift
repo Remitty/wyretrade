@@ -11,18 +11,40 @@ import AnyChartiOS
 import DropDown
 import XLPagerTabStrip
 
-class TradeTokenController: UIViewController, IndicatorInfoProvider {
+class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfoProvider {
     
-    var itemInfo: IndicatorInfo = "Token"
+    var itemInfo: IndicatorInfo = "Exchange"
     let scrollViewContentHeight = 1200 as CGFloat
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tradingView: UIView!
     @IBOutlet weak var chartView: UIView!
     
     @IBOutlet weak var spinnerView: UIView!
-    @IBOutlet weak var btnPair: UIButton!
+    @IBOutlet weak var btnPair: UIButton! {
+        didSet{
+            btnPair.semanticContentAttribute = .forceRightToLeft
+        }
+    }
     
     @IBOutlet weak var chartTab: UISegmentedControl!
+    
+    @IBOutlet weak var btnBuy: UIButton!
+    @IBOutlet weak var btnSell: UIButton!
+    @IBOutlet weak var lbTopBtcBalance: UILabel!
+    @IBOutlet weak var txtQty: UITextField! {
+        didSet {
+            txtQty.delegate = self
+        }
+    }
+    @IBOutlet weak var txtPrice: UITextField! {
+        didSet {
+            txtPrice.delegate = self
+        }
+    }
+    @IBOutlet weak var lbEstPrice: UILabel!
+    @IBOutlet weak var lbTotalCost: UILabel!
+    @IBOutlet weak var btnTrade: UIButton!
+    
     
     
     @IBOutlet weak var lbXMTBalance: UILabel!
@@ -61,6 +83,7 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
             askTable.register(UINib(nibName: "TokenAskItem", bundle: nil), forCellReuseIdentifier: "TokenAskItem")
         }
     }
+    @IBOutlet weak var askTableHegihtLayout: NSLayoutConstraint!
     
     @IBOutlet weak var bidTable: UITableView! {
         didSet {
@@ -73,10 +96,11 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
             bidTable.register(UINib(nibName: "TokenBidItem", bundle: nil), forCellReuseIdentifier: "TokenBidItem")
         }
     }
+    @IBOutlet weak var bidTableHeightLayout: NSLayoutConstraint!
     
     
     @IBOutlet weak var lbHighQty: UILabel!
-    @IBOutlet weak var lbHighAmount: UILabel!
+    @IBOutlet weak var lbHighPrice: UILabel!
     
     var orderList = [TokenOrderModel]()
     var askList = [Ask]()
@@ -98,9 +122,16 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
     var chartData: Array<DataEntry> = []
     var set: anychart.data.Set!
     
+//    var pair = ""
+    var qty = 0.0
+    var price = 0.0
+    var btcPrice = 0.0
     
-    var selectedPair = "XMT-BTC"
+    var selectedPair = "PEPE-BTC"
+    var selectedType = "Buy"
+    var selectedCoin = "PEPE"
     var pairs = [TokenTradePair]()
+    
     
     var timer: Timer!
     
@@ -108,27 +139,50 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
-        self.addTradeView()
+//        self.addTradeView()
         
         scrollView.contentSize.height = scrollViewContentHeight
         scrollView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
         scrollView.delegate = self
         
+       
+//        dropdown.anchorView = view//self.spinnerView
+        dropdown.selectionAction = {  (index: Int, item: String) in print(index)}
+        
+//        self.loadData()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+//       self.navigationController?.isNavigationBarHidden = true
+        
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(TradeTokenController.update), userInfo: nil, repeats: true)
         
 //        self.updateChartData()
         initTradeChart()
-//        dropdown.anchorView = view//self.spinnerView
-        dropdown.selectionAction = {  (index: Int, item: String) in print(index)}
-        
-        self.loadData()
+       
+       self.loadData()
         self.loadPairs()
+        
+//        var tableViewHeight:CGFloat = 0;
+//        for var i in (tableView(self.tableView , numberOfRowsInSection: 0) ) {
+//            tableViewHeight = height + tableView(self.askTable, heightForRowAtIndexPath: NSIndexPath(forRow: i, inSection: 0) )
+//        }
+//        askTableHegihtLayout.constant = tableViewHeight
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
        super.viewWillDisappear(animated)
         timer?.invalidate()
        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let next = segue.destination as! TradeTokenOrdersController
+        next.orderList = self.orderList
         
     }
     
@@ -184,11 +238,11 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
         
         for (index, item) in self.askAggregates.enumerated() {
             
-            self.chartData.append(CustomDataEntry(x: "Q\(index)", value: item.price))
+            self.chartData.append(CustomDataEntry(x: "Q\(index)", value: Double(item.price)!))
         }
         
         for (index, item) in self.bidAggregates.enumerated() {
-            self.chartData.append(CustomDataEntry2(x: "Q\(index)", value: item.price))
+            self.chartData.append(CustomDataEntry2(x: "Q\(index)", value: Double(item.price)!))
         }
         
         set.data(data: self.chartData)
@@ -209,7 +263,7 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
     
     func loadData() {
         let param : [String : Any] = ["pair": self.selectedPair]
-        self.btnPair.setTitle(self.selectedPair, for: .normal)
+        self.btnPair.setTitle("\(self.selectedCoin)/BTC", for: .normal)
                 RequestHandler.xmtTradeData(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
@@ -221,16 +275,27 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
                     self.orderTable.reloadData()
                     self.askTable.reloadData()
                     self.bidTable.reloadData()
-                    self.lbThQty.text = "Qty(\(data.coin2!))"
-                    self.lbLowRate.text = data.lastLow + data.coin2
-                    self.lbHighRate.text = data.lastHigh + data.coin2
-                    self.lbHighQty.text = data.maxBid.qty
-                    self.lbHighAmount.text = data.maxBid.price
+                    self.askTable.invalidateIntrinsicContentSize()
+                    self.bidTable.invalidateIntrinsicContentSize()
+//                    self.lbThQty.text = "Qty(\(data.coin2!))"
+                    self.lbLowRate.text = data.lastLow + data.coin1
+                    self.lbHighRate.text = data.lastHigh + data.coin1
+                    if data.maxBid != nil {
+                        self.lbHighQty.text = data.maxBid.qty
+                        self.lbHighPrice.text = data.maxBid.price
+                    }
+                    
                     self.lbVolAmount.text = data.changeVol
                     self.lbAskAmount.text = data.asksTotal
                     self.lbBidAmount.text = data.bidsTotal
                     self.lbXMTBalance.text = "\(data.coin2Balance!) \(data.coin2!)"
                     self.lbBtcBalance.text = "\(data.coin1Balance!) \(data.coin1!)"
+                    
+                    
+                    self.lbTopBtcBalance.text = "\(data.coin1Balance!) \(data.coin1!)"
+                    
+                    self.btcPrice = data.btcPrice
+                    
                     
                     self.askAggregates = data.askAggregates
                     self.bidAggregates = data.bidAggregates
@@ -270,6 +335,17 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
                     }
     }
     
+    func submitTrade(param: NSDictionary!) {
+        RequestHandler.xmtTrade(parameter: param as NSDictionary, success: { (successResponse) in
+        //                        self.stopAnimating()
+                    let dictionary = successResponse as! [String: Any]
+            self.showToast(message: "Request successfully")
+                    }) { (error) in
+                        let alert = Alert.showBasicAlert(message: error.message)
+                                self.presentVC(alert)
+                    }
+    }
+    
     @IBAction func actionViewHistory(_ sender: Any) {
         let detailController = storyboard?.instantiateViewController(withIdentifier: "TradeTokenHistoryController") as! TradeTokenHistoryController
         detailController.pair = self.selectedPair
@@ -294,6 +370,7 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
             
             let action = UIAlertAction(title: item.symbol, style: .default) { (_) in
                 self.selectedPair = item.symbol!
+                self.selectedCoin = item.tradeSymbol!
                 self.loadData()
             }
             alertController.addAction(action)
@@ -301,6 +378,78 @@ class TradeTokenController: UIViewController, IndicatorInfoProvider {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
         self.presentVC(alertController);
+    }
+    
+    @IBAction func actionSelectedBuy(_ sender: Any) {
+        selectedType = "Buy"
+        btnBuy.setTitleColor(.systemGreen, for: .normal)
+        btnSell.setTitleColor(.lightGray, for: .normal)
+        btnTrade.setTitle("Buy \(selectedCoin)", for: .normal)
+        btnTrade.backgroundColor = .systemGreen
+    }
+    @IBAction func actionSelectedSell(_ sender: Any) {
+        selectedType = "Sell"
+        btnSell.setTitleColor(.systemGreen, for: .normal)
+        btnBuy.setTitleColor(.lightGray, for: .normal)
+        btnTrade.setTitle("Sell \(selectedCoin)", for: .normal)
+        btnTrade.backgroundColor = .systemRed
+    }
+    @IBAction func changedQty(_ sender: UITextField) {
+        guard let amount = sender.text else {
+            return
+        }
+        
+        if  amount == "" {
+            return
+        }
+        
+        qty = Double(amount)!
+        
+        self.lbTotalCost.text = NumberFormat(value: qty*price, decimal: 6).description + " BTC"
+    }
+    @IBAction func changedPrice(_ sender: UITextField) {
+        guard let amount = sender.text else {
+            return
+        }
+        
+        if  amount == "" {
+            return
+        }
+        
+        price = Double(amount)!
+        
+        self.lbTotalCost.text = NumberFormat(value: qty*price, decimal: 6).description + " BTC"
+        lbEstPrice.text = PriceFormat(amount: btcPrice*price, currency: Currency.usd).description
+    }
+    
+    @IBAction func actionTrade(_ sender: UIButton) {
+        guard let qty = txtQty.text else{
+            return
+        }
+        
+        guard let price = txtPrice.text else{
+            return
+        }
+        
+        if qty == "" {
+            txtQty.shake(6, withDelta: 10, speed: 0.06)
+            return
+        }
+        
+        if price == "" {
+            txtPrice.shake(6, withDelta: 10, speed: 0.06)
+            return
+        }
+        
+        let param = [
+            "quantity": qty,
+            "price": price,
+            "pair": selectedPair,
+            "type": selectedType
+        ] as! NSDictionary
+        
+        let alert = Alert.showConfirmAlert(message: "Are you sure buying \(qty)?", handler: { (_) in self.submitTrade(param: param)})
+        self.presentVC(alert)
     }
     
     
@@ -313,10 +462,12 @@ extension TradeTokenController: UITableViewDelegate, UITableViewDataSource {
             
             return orderList.count
         case askTable:
-            
+            tableView.estimatedRowHeight = 15
+            askTableHegihtLayout.constant = CGFloat( Double(askList.count) * 15.0)
             return askList.count
         case bidTable:
-            
+            tableView.estimatedRowHeight = 15
+            bidTableHeightLayout.constant = CGFloat( Double(bidList.count) * 15.0)
             return bidList.count
         default:
             print("default")
