@@ -15,3 +15,4 @@ ${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framewor
 ${BUILT_PRODUCTS_DIR}/SweeterSwift/SweeterSwift.framework
 ${BUILT_PRODUCTS_DIR}/UITextField+Shake/UITextField_Shake.framework
 ${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework
+${BUILT_PRODUCTS_DIR}/stellar-ios-mac-sdk/stellarsdk.framework

@@ -173,6 +173,7 @@ PODS:
   - RadioGroup (1.4.3):
     - SweeterSwift
   - SlideMenuControllerSwift (5.0.0)
+  - stellar-ios-mac-sdk (1.8.6)
   - SweeterSwift (1.1.4)
   - "UITextField+Shake (1.2.1)"
   - XLPagerTabStrip (9.0.0)
@@ -192,6 +193,7 @@ DEPENDENCIES:
   - PopupDialog (~> 1.1)
   - RadioGroup
   - SlideMenuControllerSwift (from `https://github.com/AtomicSLLC/SlideMenuControllerSwift.git`, branch `swift5`)
+  - stellar-ios-mac-sdk (~> 1.8.5)
   - "UITextField+Shake"
   - XLPagerTabStrip (~> 9.0)
 
@@ -209,6 +211,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PopupDialog
     - RadioGroup
+    - stellar-ios-mac-sdk
     - SweeterSwift
     - "UITextField+Shake"
     - XLPagerTabStrip
@@ -237,10 +240,11 @@ SPEC CHECKSUMS:
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   RadioGroup: 7015c71759c90dbaae7050f33cfbc1de780e27a7
   SlideMenuControllerSwift: d740ea24105a658fe6a8c256f2bf5832fee7c047
+  stellar-ios-mac-sdk: dafb41d4c16e928dd846729bb7ed222955dc7b2c
   SweeterSwift: 8a90cf3156f5a1b6f39785c479369a16633b5ea9
   "UITextField+Shake": 298ac5a0f239d731bdab999b19b628c956ca0ac3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 79d24779b9a816d47c36237463749009ccd18899
+PODFILE CHECKSUM: fa46f54c2f3776fbd7e687cfa36f631fe582c41d
 
 COCOAPODS: 1.10.1

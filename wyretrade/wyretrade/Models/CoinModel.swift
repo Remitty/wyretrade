@@ -14,6 +14,7 @@ struct CoinModel {
     var icon: String!
     var price: String!
     var balance: String!
+    var address: String!
     var holding: String!
     var changeToday: Double!
     var withdrawFee: Double!
@@ -53,6 +54,10 @@ struct CoinModel {
         
         if let exchange = dictionary["exchange_rate"] as? NSString {
             exchangeRate = exchange.doubleValue
+        }
+        
+        if let addressTemp = dictionary["address"] as? String {
+            address = addressTemp
         }
         
         buyType = dictionary["buy_now"] as? Int

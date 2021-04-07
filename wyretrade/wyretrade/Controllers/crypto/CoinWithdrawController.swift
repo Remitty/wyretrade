@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import stellarsdk
 
 class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtAmount: UITextField! {
@@ -20,6 +21,13 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
             txtAddress.delegate = self
         }
     }
+    @IBOutlet weak var imgIcon: UIImageView!
+    @IBOutlet weak var btnCoin: UIButton! {
+        didSet{
+            btnCoin.semanticContentAttribute = .forceRightToLeft
+        }
+    }
+    
     @IBOutlet weak var lbFee: UILabel!
     @IBOutlet weak var lbEstGet: UILabel!
     @IBOutlet weak var historyTable: UITableView! {
@@ -35,11 +43,12 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     
     var historyList = [CoinWithdrawModel]()
     var coinList = [CoinModel]()
-    var coin: CoinModel!
+    var selectedCoin: CoinModel!
     var withdrawFee = 0.0
-    var symbol = ""
-    var coinId = ""
+    var symbol = "BTC"
+    var coinId = "1"
     var balance = 0.0
+    var stellarBaseSecret: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +71,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
         
         var est: Double = Double(amount)! - self.withdrawFee
         
-        self.lbEstGet.text = "\(est) \(self.symbol)"
+        self.lbEstGet.text = "\(est)"
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -129,6 +138,85 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
                         self.presentVC(alert)
             }
     }
+    
+    func sendStellar() {
+        let sdk = StellarSDK()
+//        let sourceAccountKeyPair = try! KeyPair(accountId: self.selectedCoin.address)
+        let sourceAccountKeyPair = try! KeyPair(secretSeed:"SDNIIQSKKGWCBJTC4DEKDYDQO3ZTEEJWFXFU3PDJMSTPQ6LKUOGV6Q4B")
+//        GBX45RRD5XKFNBPSQEA44VMP75Q34QQLIF53M5S3PWFFZVV6ID6TIHXU
+        let address = txtAddress.text
+        // destination account
+        let destinationAccountKeyPair = try! KeyPair(accountId: address!)
+        let amount = txtAmount.text
+        
+        print("Source account Id: " + sourceAccountKeyPair.accountId)
+        
+        
+        print("Destination account Id: " + destinationAccountKeyPair.accountId)
+//        print("Destination secret seed: " + destinationAccountKeyPair.secretSeed)
+        
+        sdk.accounts.getAccountDetails(accountId: address!) { (response) -> (Void) in
+            switch response {
+            case .success(_):
+                
+                sdk.accounts.getAccountDetails(accountId: self.selectedCoin.address) { (response) -> (Void) in
+                    switch response {
+                        case .success(let accountResponse):
+                            
+                        do {
+                            
+                            
+//                            let paymentOperation = PaymentOperation(destination: destinationAccountKeyPair,
+//                                                                    asset: Asset(type: type)!,
+//                                                                    amount: Decimal(string: amount!)!)
+                            var paymentOperation = try PaymentOperation(sourceAccountId: self.selectedCoin.address, destinationAccountId: address!, asset: Asset(type: AssetType.ASSET_TYPE_NATIVE)!, amount: Decimal(string: amount!)!)
+                            if self.selectedCoin.type != "Stellar" {
+//
+                                paymentOperation = try PaymentOperation(sourceAccountId: self.selectedCoin.address, destinationAccountId: address!, asset: Asset(type: AssetType.ASSET_TYPE_CREDIT_ALPHANUM4, code: self.selectedCoin.symbol!, issuer: sourceAccountKeyPair)!, amount: Decimal(string: amount!)!)
+                            }
+                            print("created payment operation")
+                            // build the transaction containing our payment operation.
+                            let transaction = try Transaction(sourceAccount: accountResponse,
+                                                              operations: [paymentOperation],
+                                                              memo: Memo.none,
+                                                              timeBounds:nil)
+                            print("created payment transaction")
+                            // sign the transaction
+                            try transaction.sign(keyPair: sourceAccountKeyPair, network: .testnet)
+                            print("passed sign")
+                            // submit the transaction.
+                            try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
+                                switch response {
+                                case .success(_):
+                                    print("stellar withdraw Success")
+                                    let param = [
+                                        "coin_id": self.coinId,
+                                        "amount": amount,
+                                        "address": address
+                                    ] as! NSDictionary
+                                    self.submitWithdraw(param: param)
+                                case .failure(let error):
+                                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"stellar withdraw fail", horizonRequestError:error)
+                                default:
+                                    print("stellar withdraw no data")
+                                }
+                            }
+                        } catch {
+                            print("here catch")
+                            //...
+                        }
+                        case .failure(let error):
+                            StellarSDKLog.printHorizonRequestErrorMessage(tag:"SRP Test", horizonRequestError:error)
+                    }
+                }
+            case .failure(let error):
+                StellarSDKLog.printHorizonRequestErrorMessage(tag: "Destination account error", horizonRequestError: error)
+            }
+        }
+        
+        // get the account data to be sure that we have the current sequence number.
+        
+    }
 
     @IBAction func actionWithdraw(_ sender: Any) {
         guard let amount = txtAmount.text else {
@@ -158,8 +246,18 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
         ] as! NSDictionary
         
         let alert = Alert.showConfirmAlert(message: "Are you sure withdraw \(amount) \(symbol) to \(address) ?", handler: {
-            (_) in self.submitWithdraw(param: param)
+            (_) in
+            if self.selectedCoin != nil {
+                if self.selectedCoin.type == "Token" || self.selectedCoin.type == "Stellar" {
+                    self.sendStellar()
+                } else {
+                    self.submitWithdraw(param: param)
+                }
+            } else {
+                self.submitWithdraw(param: param)
+            }
         })
+        self.presentVC(alert)
     }
     
     @IBAction func actionSelectCoin(_ sender: Any) {
@@ -213,10 +311,12 @@ extension CoinWithdrawController: UITableViewDelegate, UITableViewDataSource {
 
 extension CoinWithdrawController: CoinSelectControllerDelegate {
     func selectCoin(param: CoinModel) {
-        self.coin = param
+        self.selectedCoin = param
         self.lbBalance.text = param.balance
         self.balance = Double(param.balance)!
-        self.lbFee.text = "\(param.withdrawFee!) \(param.symbol!)"
+        self.imgIcon.load(url: URL(string: param.icon)!)
+        self.btnCoin.setTitle(param.symbol!, for: .normal)
+        self.lbFee.text = "\(param.withdrawFee!)"
         self.symbol = param.symbol
         self.withdrawFee = param.withdrawFee
         self.coinId = param.id

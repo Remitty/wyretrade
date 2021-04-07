@@ -50,9 +50,11 @@ class SwapController: UIViewController, UITextFieldDelegate {
 //    }
     
 //    var historyList = [SwapModel]()
-    var coinList = [CoinModel]()
+    var sendCoinList = [CoinModel]()
+    var receiveCoinList = [CoinModel]()
+    
     var rateModel: SwapRateModel!
-//    var buyCoinList = [CoinModel]()
+    
     var sendCoin: CoinModel!
     var receiveCoin: CoinModel!
     
@@ -80,10 +82,14 @@ class SwapController: UIViewController, UITextFieldDelegate {
             var coin : CoinModel!
             
             if let coins = dictionary["coins"] as? [[String:Any]] {
-                self.coinList = [CoinModel]()
+                self.sendCoinList = [CoinModel]()
+                self.receiveCoinList = [CoinModel]()
                 for item in coins {
                     coin = CoinModel(fromDictionary: item)
-                    self.coinList.append(coin)
+                    if coin.type == "Other" {
+                        self.sendCoinList.append(coin)
+                    }
+                    self.receiveCoinList.append(coin)
                 }
                 
             }
@@ -269,14 +275,27 @@ class SwapController: UIViewController, UITextFieldDelegate {
         self.receiveAmount = self.sellAmount * self.rateModel.rate
         self.lbBuyEstAmount.text = NumberFormat(value: self.sellAmount * self.rateModel.rate - self.rateModel.fee, decimal: 4).description
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let next = segue.destination as! CoinSelectController
+        next.delegate = self
+        if self.selectedType == "sell" {
+            next.coinList = self.sendCoinList
+        } else {
+            next.coinList = self.receiveCoinList
+        }
+        
+        
+    }
 
     @IBAction func actionSelectSellCoin(_ sender: Any) {
         self.selectedType = "sell"
 //        self.getSellCoins()
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
         detailController.delegate = self
-        detailController.coinList = self.coinList
+        detailController.coinList = self.sendCoinList
         self.navigationController?.pushViewController(detailController, animated: true)
+//        performSegue(withIdentifier: "swapcoinlist", sender: sender)
     }
     
     @IBAction func actionSelectBuyCoin(_ sender: Any) {
@@ -287,9 +306,10 @@ class SwapController: UIViewController, UITextFieldDelegate {
         self.selectedType = "buy"
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
         detailController.delegate = self
-        detailController.coinList = self.coinList
+        detailController.coinList = self.receiveCoinList
         self.navigationController?.pushViewController(detailController, animated: true)
 //        self.getBuyCoins()
+//        performSegue(withIdentifier: "swapcoinlist", sender: sender)
     }
     
     @IBAction func actionSubmit(_ sender: Any) {

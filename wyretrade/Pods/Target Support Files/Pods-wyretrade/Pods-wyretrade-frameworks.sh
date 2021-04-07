@@ -191,6 +191,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SweeterSwift/SweeterSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UITextField+Shake/UITextField_Shake.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/stellar-ios-mac-sdk/stellarsdk.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
@@ -209,6 +210,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SweeterSwift/SweeterSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UITextField+Shake/UITextField_Shake.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/stellar-ios-mac-sdk/stellarsdk.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

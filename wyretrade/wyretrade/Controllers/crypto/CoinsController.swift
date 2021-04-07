@@ -8,6 +8,7 @@
 import UIKit
 import PopupDialog
 import SafariServices
+import stellarsdk
 
 class CoinsController: UIViewController {
     
@@ -31,6 +32,9 @@ class CoinsController: UIViewController {
     var onramperApiKey: String!
     var xanpoolApiKey: String!
     var onRamperCoins = ""
+    var stellarBaseSecret: String!
+    
+    let sdk = StellarSDK()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +64,10 @@ class CoinsController: UIViewController {
                 for item in coinData {
                     coin = CoinModel(fromDictionary: item)
                     self.coinList.append(coin)
-                    if coin.type != "Token" {
-                        self.depositList.append(coin)
-                    }
+//                    if coin.type != "Token" {
+//
+//                    }
+                    self.depositList.append(coin)
                     self.onRamperCoins += coin.symbol + ","
                 }
                 self.coinTable.reloadData()
@@ -83,7 +88,7 @@ class CoinsController: UIViewController {
             
             self.onramperApiKey = dictionary["onramper_api_key"] as? String
             self.xanpoolApiKey = dictionary["xanpool_api_key"] as? String
-                    
+            self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
                 
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)
@@ -164,6 +169,154 @@ class CoinsController: UIViewController {
             self.presentVC(alert)
         }
     }
+    
+    func showAddressAlert(symbol : String, address: String) {
+        let alertController = UIAlertController(title: "Send \(symbol) only this address", message: nil, preferredStyle: .alert)
+        let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
+            let pasteboard = UIPasteboard.general
+            pasteboard.string = address
+            self.showToast(message: "Copied successfully")
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.text = address
+        }
+        alertController.addAction(copyAction)
+        
+//            let constraintWidth = NSLayoutConstraint(
+//                  item: alertController.view!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute:
+//                  NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 400)
+//            alertController.view.addConstraint(constraintWidth)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func generateStellarAddress(param: CoinModel) {
+        
+        
+//        let sourceAccountKeyPair = try! KeyPair(secretSeed:"SAQLGANA5JIN7SXOBGO4UB53XDBI7K2SCFKIOLAN3LVUIGE7W6RBYS34")
+        let sourceAccountKeyPair = try! KeyPair(secretSeed: self.stellarBaseSecret)
+        print("Source account Id: " + sourceAccountKeyPair.accountId)
+        // generate a random keypair representing the new account to be created.
+        let destinationKeyPair = try! KeyPair.generateRandomKeyPair()
+        print("Destination account Id: " + destinationKeyPair.accountId)
+        print("Destination secret seed: " + destinationKeyPair.secretSeed)
+
+        // load the source account from horizon to be sure that we have the current sequence number.
+        self.sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            switch response {
+                case .success(let accountResponse): // source account successfully loaded.
+                    do {
+                    // build a create account operation.
+                        let createAccount = CreateAccountOperation(sourceAccountId: sourceAccountKeyPair.accountId, destination: destinationKeyPair, startBalance: 1.0)
+
+                        // build a transaction that contains the create account operation.
+                    let transaction = try Transaction(sourceAccount: accountResponse,
+                                        operations: [createAccount],
+                                        memo: Memo.none,
+                                        timeBounds:nil)
+
+                    // sign the transaction.
+                    try! transaction.sign(keyPair: sourceAccountKeyPair, network: .testnet)
+
+                        // submit the transaction to the stellar network.
+                    try self.sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
+                        switch response {
+                        case .success(_):
+                            print("Account successfully created.")
+                            let parameter: NSDictionary = [
+                                "coin": param.id!,
+                                "symbol": param.symbol!,
+                                "address": destinationKeyPair.accountId
+                            ]
+                            self.submitDeposit(param: parameter)
+                        case .failure(let error):
+                            StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create account error", horizonRequestError: error)
+                        default:
+                            print("stelalr depost no data")
+                        }
+                    }
+                } catch {
+                    // ...
+                }
+            case .failure(let error): // error loading account details
+                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"Account detail Error:", horizonRequestError: error)
+            }
+        }
+        
+//        self.sdk.accounts.createTestAccount(accountId: destinationKeyPair.accountId) { (response) -> (Void) in
+//            switch response {
+//            case .success(let details):
+//                print(details)
+//                let parameter: NSDictionary = [
+//                    "coin": param.id!,
+//                    "symbol": param.symbol!,
+//                    "address": destinationKeyPair.accountId
+//                ]
+//                self.submitDeposit(param: parameter)
+//            case .failure(let error):
+//                StellarSDKLog.printHorizonRequestErrorMessage(tag:"Error:", horizonRequestError: error)
+//            }
+//        }
+    }
+    
+    func stellarStreamForPayment(param: CoinModel) {
+        sdk.payments.stream(for: .paymentsForAccount(account: param.address, cursor: "now")).onReceive { (response) -> (Void) in
+            switch response {
+            case .open:
+                break
+            case .response(let id, let operationResponse):
+                if let paymentResponse = operationResponse as? PaymentOperationResponse {
+                    switch paymentResponse.assetType {
+                    case AssetTypeAsString.NATIVE:
+                        print("Payment of \(paymentResponse.amount) XLM from \(paymentResponse.sourceAccount) received -  id \(id)" )
+                    case AssetTypeAsString.CREDIT_ALPHANUM4:
+                        print("Payment of \(paymentResponse.amount) Asset from \(paymentResponse.sourceAccount) received -  id \(id)" )
+                    default:
+                        print("Payment of \(paymentResponse.amount) \(paymentResponse.assetCode!) from \(paymentResponse.sourceAccount) received -  id \(id)" )
+                    }
+                    
+                    self.submitStellarFunds(param: param, amount: paymentResponse.amount)
+                }
+            case .error(let error):
+                if let horizonRequestError = error as? HorizonRequestError {
+                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"Receive payment", horizonRequestError:horizonRequestError)
+                } else {
+                    print("Error \(error?.localizedDescription ?? "")") // Other error like e.g. streaming error, you may want to ignore this.
+                }
+            }
+        }
+    }
+    
+    func submitStellarFunds(param: CoinModel, amount: String) {
+        let parameter: NSDictionary = [
+            "coin": param.symbol!,
+            "amount": amount
+        ]
+        RequestHandler.coinStellarDeposit(parameter: parameter, success: {(successResponse) in
+            let dictionary = successResponse as! [String: Any]
+            print("deposited \(amount) \(param.symbol!)")
+        }) {
+            (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+            self.presentVC(alert)
+        }
+    }
+    
+    func submitDeposit(param: NSDictionary) {
+        RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            let dictionary = successResponse as! [String: Any]
+            
+            let address = dictionary["address"] as! String
+            self.showAddressAlert(symbol: param["symbol"] as! String, address: address)
+            
+            
+        }) {
+            (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+            self.presentVC(alert)
+        }
+    }
    
     @IBAction func actionDeposit(_ sender: Any) {
         let detailController = self.storyboard?.instantiateViewController(withIdentifier: "CoinSelectController") as! CoinSelectController
@@ -183,6 +336,7 @@ class CoinsController: UIViewController {
     
     @IBAction func actionWithdraw(_ sender: Any) {
         let coinwithdrawView = storyboard?.instantiateViewController(withIdentifier: "CoinWithdrawController") as! CoinWithdrawController
+        coinwithdrawView.stellarBaseSecret = self.stellarBaseSecret
         self.navigationController?.pushViewController(coinwithdrawView, animated: true)
     }
 }
@@ -278,37 +432,24 @@ extension CoinsController: CoinViewParameterDelegate {
 
 extension CoinsController: CoinSelectControllerDelegate {
     func selectCoin(param: CoinModel) {
-        let param1: NSDictionary = [
-            "coin": param.id!,
-            "symbol": param.symbol!
-        ]
-        RequestHandler.coinDeposit(parameter: param1, success: {(successResponse) in
-            let dictionary = successResponse as! [String: Any]
-            
-            let address = dictionary["address"] as! String
-            let alertController = UIAlertController(title: "Send \(param1["symbol"]!) only this address", message: nil, preferredStyle: .alert)
-            let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
-                let pasteboard = UIPasteboard.general
-                pasteboard.string = address
-                self.showToast(message: "Copied successfully")
+        if param.address == "" {
+            if param.type == "Token" || param.type == "Stellar" {
+                self.generateStellarAddress(param: param)
+            } else {
+                let parameter: NSDictionary = [
+                    "coin": param.id!,
+                    "symbol": param.symbol!
+                ]
+                self.submitDeposit(param: parameter)
             }
             
-            alertController.addTextField { (textField) in
-                textField.text = address
+        } else {
+            if param.type == "Token" || param.type == "Stellar" {
+                self.stellarStreamForPayment(param: param)
+            } else {
+                self.showAddressAlert(symbol: param.symbol, address: param.address)
             }
-            alertController.addAction(copyAction)
-            
-            let constraintWidth = NSLayoutConstraint(
-                  item: alertController.view!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute:
-                  NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 400)
-            alertController.view.addConstraint(constraintWidth)
-            
-            self.present(alertController, animated: true, completion: nil)
-        
-        }) {
-            (error) in
-            let alert = Alert.showBasicAlert(message: error.message)
-            self.presentVC(alert)
         }
+        
     }
 }

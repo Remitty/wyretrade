@@ -32,6 +32,7 @@ class Constants {
              static  let GET_USER_BALANCES = REDIRECT_URL + "balances";
 
              static  let COIN_DEPOSIT = REDIRECT_URL + "coin/deposit";
+             static  let COIN_STELLAR_DEPOSIT = REDIRECT_URL + "coin/deposit/stellar";
              static  let COIN_WITHDRAW = REDIRECT_URL + "coin/withdraw";
              static  let COIN_EXCHANGE = REDIRECT_URL + "coin/exchange";
              static  let COIN_EXCHANGE_LIST = REDIRECT_URL + "coin/exchange/list";

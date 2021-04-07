@@ -18,6 +18,7 @@ target 'wyretrade' do
     pod 'AnyChartiOS', '~> 1.0.3'
     pod 'DropDown'
     pod 'RadioGroup'
+    pod 'stellar-ios-mac-sdk', '~> 1.8.5'
     
     pod 'DeviceKit'
     
