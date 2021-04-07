@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import stellarsdk
 
 class ProfileEditController: UIViewController, UITextFieldDelegate {
     
@@ -69,12 +70,23 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    var hasStellar: Bool = false
+    var stellarBaseSecret: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         
-        self.loadProfile()
+//        self.loadProfile()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+//       self.navigationController?.isNavigationBarHidden = true
+       
+       self.loadProfile()
+       
     }
     
     func loadProfile() {
@@ -83,9 +95,12 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
 //                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
+            self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
+            self.hasStellar = dictionary["has_stellar"] as! Bool
+            
             var user : UserModel!
             
-            if let userData = dictionary as? [String:Any] {
+            if let userData = dictionary["user"] as? [String:Any] {
                 
                 user = UserModel(fromDictionary: userData)
                 self.txtFirstName.text = user.first_name
@@ -99,12 +114,97 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
                 self.txtAddress1.text = user.address
                 self.txtAddress2.text = user.address2
                 self.txtPostalCode.text = user.postal_code
+                
+                
             }
                 
             
         }) { (error) in
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
+        }
+    }
+    
+    func submitUpdate(param: NSDictionary) {
+        RequestHandler.profileUpdate(parameter: param, success: { (successResponse) in
+//                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            let success = dictionary["success"] as! Bool
+//            var user : UserAuthModel!
+            if success {
+                
+                self.showToast(message: "Updated successfully.")
+            } else {
+                let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
+                self.presentVC(alert)
+            }
+        }) { (error) in
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
+    }
+    
+    func createStellarAccount() {
+        let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
+        let sourceAccountKeyPair = try! KeyPair(secretSeed: self.stellarBaseSecret)
+//        let sourceAccountKeyPair = try! KeyPair(accountId: "GCRR74O62OV7E7WJSIEIWRKGBIDYNPBMN72QPIL6ZCNQ37VJELC6VG5E")
+        print("Source account Id: " + sourceAccountKeyPair.accountId)
+        // generate a random keypair representing the new account to be created.
+        let destinationKeyPair = try! KeyPair.generateRandomKeyPair()
+        print("Destination account Id: " + destinationKeyPair.accountId)
+        print("Destination secret seed: " + destinationKeyPair.secretSeed)
+
+        // load the source account from horizon to be sure that we have the current sequence number.
+        sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            switch response {
+                case .success(let accountResponse): // source account successfully loaded.
+                    do {
+                    // build a create account operation.
+                        let createAccount = CreateAccountOperation(sourceAccountId: sourceAccountKeyPair.accountId, destination: destinationKeyPair, startBalance: 10.0)
+                        
+
+                        // build a transaction that contains the create account operation.
+                    let transaction = try Transaction(sourceAccount: accountResponse,
+                                        operations: [createAccount],
+                                        memo: Memo.none,
+                                        timeBounds:nil)
+
+                    // sign the transaction.
+                    try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
+
+                        // submit the transaction to the stellar network.
+                    try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
+                        switch response {
+                        case .success(_):
+                            print("Account successfully created.")
+                            let param: NSDictionary = [
+                                "first_name": self.txtFirstName.text!,
+                                "last_name": self.txtLastName.text!,
+                                "email": self.txtEmail.text!,
+                                "mobile": self.txtPhone.text!,
+                                "address": self.txtAddress1.text!,
+                                "address2": self.txtAddress2.text!,
+                                "country": self.txtCountry.text!,
+                                "city": self.txtCity.text!,
+                                "region": self.txtNationality.text!,
+                                "dob": self.dobPicker.description,
+                                "postalcode": self.txtPostalCode.text!,
+                                "stellar_account_id": destinationKeyPair.accountId,
+                                "stellar_secret_seed": destinationKeyPair.secretSeed!
+                            ]
+                            self.submitUpdate(param: param)
+                        case .failure(let error):
+                            StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create account error", horizonRequestError: error)
+                        default:
+                            print("stelalr depost no data")
+                        }
+                    }
+                } catch {
+                    // ...
+                }
+            case .failure(let error): // error loading account details
+                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"Account detail Error:", horizonRequestError: error)
+            }
         }
     }
     
@@ -161,37 +261,25 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
             return
         }
         
-       
-        let param: [String: Any] = [
-            "first_name": txtFirstName.text,
-            "last_name": txtLastName.text,
-            "email": txtEmail.text,
-            "mobile": txtPhone.text,
-            "address": txtAddress1.text,
-            "address2": txtAddress2.text,
-            "country": txtCountry.text,
-            "city": txtCity.text,
-            "region": txtNationality.text,
-            "dob": dobPicker.description,
-            "postalcode": txtPostalCode.text
-        ]
-        
-        RequestHandler.profileUpdate(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
-            let dictionary = successResponse as! [String: Any]
-            let success = dictionary["success"] as! Bool
-            var user : UserAuthModel!
-            if success {
-                
-                self.showToast(message: "Updated successfully.")
-            } else {
-                let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
-                self.presentVC(alert)
-            }
-        }) { (error) in
-            let alert = Alert.showBasicAlert(message: error.message)
-                    self.presentVC(alert)
+        if hasStellar {
+            let param: NSDictionary = [
+                "first_name": txtFirstName.text!,
+                "last_name": txtLastName.text!,
+                "email": txtEmail.text!,
+                "mobile": txtPhone.text!,
+                "address": txtAddress1.text!,
+                "address2": txtAddress2.text!,
+                "country": txtCountry.text!,
+                "city": txtCity.text!,
+                "region": txtNationality.text!,
+                "dob": dobPicker.description,
+                "postalcode": txtPostalCode.text!
+            ]
+            self.submitUpdate(param: param)
+        } else {
+            createStellarAccount()
         }
+        
         
     }
 }

@@ -21,6 +21,7 @@ struct CoinModel {
     var buyType: Int!
     var exchangeRate: Double!
     var type: String!
+    var secretSeed: String!
     
     init?(fromDictionary dictionary: [String: Any]) {
         id = "\(dictionary["id"] as! Int)"
@@ -58,6 +59,10 @@ struct CoinModel {
         
         if let addressTemp = dictionary["address"] as? String {
             address = addressTemp
+        }
+        
+        if let secret = dictionary["stellar_secret"] as? String {
+            secretSeed = secret
         }
         
         buyType = dictionary["buy_now"] as? Int

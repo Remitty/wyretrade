@@ -121,9 +121,9 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
                     self.historyTable.reloadData()
                 }
                 
-                var result = CoinModel(fromDictionary: dictionary["result"] as! [String : Any])!
-                self.balance = Double(result.balance)!
-                self.lbBalance.text = result.balance
+                let result = dictionary["result"] as! String
+                self.balance = Double(result)!
+                self.lbBalance.text = result
                 
                 self.showToast(message: dictionary["message"] as! String)
             } else {
@@ -140,9 +140,9 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     }
     
     func sendStellar() {
-        let sdk = StellarSDK()
-//        let sourceAccountKeyPair = try! KeyPair(accountId: self.selectedCoin.address)
-        let sourceAccountKeyPair = try! KeyPair(secretSeed:"SDNIIQSKKGWCBJTC4DEKDYDQO3ZTEEJWFXFU3PDJMSTPQ6LKUOGV6Q4B")
+        let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
+//        let sourceAccountKeyPair = try! KeyPair(secretSeed: self.selectedCoin.secretSeed)
+        let sourceAccountKeyPair = try! KeyPair(secretSeed:"SAQLGANA5JIN7SXOBGO4UB53XDBI7K2SCFKIOLAN3LVUIGE7W6RBYS34")
 //        GBX45RRD5XKFNBPSQEA44VMP75Q34QQLIF53M5S3PWFFZVV6ID6TIHXU
         let address = txtAddress.text
         // destination account
@@ -182,7 +182,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
                                                               timeBounds:nil)
                             print("created payment transaction")
                             // sign the transaction
-                            try transaction.sign(keyPair: sourceAccountKeyPair, network: .testnet)
+                            try transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
                             print("passed sign")
                             // submit the transaction.
                             try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in

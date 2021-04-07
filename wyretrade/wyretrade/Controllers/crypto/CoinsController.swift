@@ -33,15 +33,18 @@ class CoinsController: UIViewController {
     var xanpoolApiKey: String!
     var onRamperCoins = ""
     var stellarBaseSecret: String!
+    var stellarAccountId: String!
     
-    let sdk = StellarSDK()
+    let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
-        
+        if self.stellarAccountId != "" {
+            self.stellarStreamForPayment()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +92,8 @@ class CoinsController: UIViewController {
             self.onramperApiKey = dictionary["onramper_api_key"] as? String
             self.xanpoolApiKey = dictionary["xanpool_api_key"] as? String
             self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
+            self.stellarAccountId = dictionary["stellar_account_id"] as? String
+            
                 
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)
@@ -196,6 +201,7 @@ class CoinsController: UIViewController {
         
 //        let sourceAccountKeyPair = try! KeyPair(secretSeed:"SAQLGANA5JIN7SXOBGO4UB53XDBI7K2SCFKIOLAN3LVUIGE7W6RBYS34")
         let sourceAccountKeyPair = try! KeyPair(secretSeed: self.stellarBaseSecret)
+//        let sourceAccountKeyPair = try! KeyPair(accountId: "GCRR74O62OV7E7WJSIEIWRKGBIDYNPBMN72QPIL6ZCNQ37VJELC6VG5E")
         print("Source account Id: " + sourceAccountKeyPair.accountId)
         // generate a random keypair representing the new account to be created.
         let destinationKeyPair = try! KeyPair.generateRandomKeyPair()
@@ -209,6 +215,7 @@ class CoinsController: UIViewController {
                     do {
                     // build a create account operation.
                         let createAccount = CreateAccountOperation(sourceAccountId: sourceAccountKeyPair.accountId, destination: destinationKeyPair, startBalance: 1.0)
+                        
 
                         // build a transaction that contains the create account operation.
                     let transaction = try Transaction(sourceAccount: accountResponse,
@@ -217,7 +224,7 @@ class CoinsController: UIViewController {
                                         timeBounds:nil)
 
                     // sign the transaction.
-                    try! transaction.sign(keyPair: sourceAccountKeyPair, network: .testnet)
+                    try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
 
                         // submit the transaction to the stellar network.
                     try self.sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
@@ -227,7 +234,8 @@ class CoinsController: UIViewController {
                             let parameter: NSDictionary = [
                                 "coin": param.id!,
                                 "symbol": param.symbol!,
-                                "address": destinationKeyPair.accountId
+                                "address": destinationKeyPair.accountId,
+                                "stellar_secret": destinationKeyPair.secretSeed!
                             ]
                             self.submitDeposit(param: parameter)
                         case .failure(let error):
@@ -260,23 +268,37 @@ class CoinsController: UIViewController {
 //        }
     }
     
-    func stellarStreamForPayment(param: CoinModel) {
-        sdk.payments.stream(for: .paymentsForAccount(account: param.address, cursor: "now")).onReceive { (response) -> (Void) in
+    func stellarStreamForPayment() {
+        print("stellar stream \(self.stellarAccountId!)")
+        sdk.payments.stream(for: .paymentsForAccount(account: self.stellarAccountId, cursor: "now")).onReceive { (response) -> (Void) in
+            print("stellar stream start")
             switch response {
             case .open:
+                print("stellar stream open")
                 break
             case .response(let id, let operationResponse):
                 if let paymentResponse = operationResponse as? PaymentOperationResponse {
                     switch paymentResponse.assetType {
                     case AssetTypeAsString.NATIVE:
                         print("Payment of \(paymentResponse.amount) XLM from \(paymentResponse.sourceAccount) received -  id \(id)" )
+                        let param : NSDictionary = [
+                            "coin": "XLM",
+                            "amount": paymentResponse.amount
+                        ]
+                        self.submitStellarFunds(param: param)
                     case AssetTypeAsString.CREDIT_ALPHANUM4:
                         print("Payment of \(paymentResponse.amount) Asset from \(paymentResponse.sourceAccount) received -  id \(id)" )
+                        
+                        let param : NSDictionary = [
+                            "coin": "PEPE", //paymentResponse.assetCode
+                            "amount": paymentResponse.amount
+                        ]
+                        self.submitStellarFunds(param: param)
                     default:
                         print("Payment of \(paymentResponse.amount) \(paymentResponse.assetCode!) from \(paymentResponse.sourceAccount) received -  id \(id)" )
                     }
                     
-                    self.submitStellarFunds(param: param, amount: paymentResponse.amount)
+                    
                 }
             case .error(let error):
                 if let horizonRequestError = error as? HorizonRequestError {
@@ -288,14 +310,11 @@ class CoinsController: UIViewController {
         }
     }
     
-    func submitStellarFunds(param: CoinModel, amount: String) {
-        let parameter: NSDictionary = [
-            "coin": param.symbol!,
-            "amount": amount
-        ]
-        RequestHandler.coinStellarDeposit(parameter: parameter, success: {(successResponse) in
-            let dictionary = successResponse as! [String: Any]
-            print("deposited \(amount) \(param.symbol!)")
+    func submitStellarFunds(param: NSDictionary) {
+        
+        RequestHandler.coinStellarDeposit(parameter: param, success: {(successResponse) in
+//            let dictionary = successResponse as! [String: Any]
+            print("deposited \(param["amount"]!) \(param["coin"]!)")
         }) {
             (error) in
             let alert = Alert.showBasicAlert(message: error.message)
@@ -444,11 +463,9 @@ extension CoinsController: CoinSelectControllerDelegate {
             }
             
         } else {
-            if param.type == "Token" || param.type == "Stellar" {
-                self.stellarStreamForPayment(param: param)
-            } else {
-                self.showAddressAlert(symbol: param.symbol, address: param.address)
-            }
+            
+            self.showAddressAlert(symbol: param.symbol, address: param.address)
+            
         }
         
     }
