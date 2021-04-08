@@ -50,6 +50,8 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     var balance = 0.0
     var stellarBaseSecret: String!
     
+    let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
@@ -69,7 +71,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        var est: Double = Double(amount)! - self.withdrawFee
+        let est: Double = Double(amount)! - self.withdrawFee
         
         self.lbEstGet.text = "\(est)"
     }
@@ -107,7 +109,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
 //                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            var success: Bool = dictionary["success"] as! Bool
+            let success: Bool = dictionary["success"] as! Bool
             
             if success {
                 var history : CoinWithdrawModel!
@@ -120,8 +122,12 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
                     }
                     self.historyTable.reloadData()
                 }
-                
-                let result = dictionary["result"] as! String
+                var result: String!
+                if let resultTemp = dictionary["result"] as? NSString {
+                    result = NumberFormat(value: resultTemp.doubleValue, decimal: 6).description
+                } else {
+                    result = NumberFormat(value: dictionary["result"] as! Double, decimal: 6).description
+                }
                 self.balance = Double(result)!
                 self.lbBalance.text = result
                 
@@ -140,82 +146,127 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     }
     
     func sendStellar() {
-        let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
-//        let sourceAccountKeyPair = try! KeyPair(secretSeed: self.selectedCoin.secretSeed)
-        let sourceAccountKeyPair = try! KeyPair(secretSeed:"SAQLGANA5JIN7SXOBGO4UB53XDBI7K2SCFKIOLAN3LVUIGE7W6RBYS34")
-//        GBX45RRD5XKFNBPSQEA44VMP75Q34QQLIF53M5S3PWFFZVV6ID6TIHXU
+        
         let address = txtAddress.text
         // destination account
         let destinationAccountKeyPair = try! KeyPair(accountId: address!)
+        
+        self.createStellarPayment(keyPair: destinationAccountKeyPair)
+//        if self.selectedCoin.type == "Stellar" {
+//            self.createStellarPayment(keyPair: destinationAccountKeyPair)
+//        } else {
+//            self.createTrustLineForDest(keyPair: destinationAccountKeyPair)
+//        }
+        
+    }
+    
+    func createTrustLineForDest(keyPair: KeyPair) {
+        let sourceAccountKeyPair = keyPair
+        
+        let issuer = try! KeyPair(accountId: "GAH2T6DSKIIWTDRVGTFSYDIVQTJG4ZVUTQ6COFRUWSVFHHUBU5UDT7DO")
+
+        // load the source account from horizon to be sure that we have the current sequence number.
+        sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            switch response {
+                case .success(let accountResponse): // source account successfully loaded.
+                    do {
+                    // build a add trustline operation.
+                        
+                        
+                        let changeTrust = ChangeTrustOperation(sourceAccountId: sourceAccountKeyPair.accountId, asset: Asset(type: AssetType.ASSET_TYPE_CREDIT_ALPHANUM4, code: self.selectedCoin.symbol, issuer: issuer)!)
+                        // build a transaction that contains the create trustline operation.
+                        let transaction = try Transaction(sourceAccount: accountResponse,
+                                        operations: [changeTrust],
+                                        memo: Memo.none,
+                                        timeBounds:nil)
+
+                        // sign the transaction.
+                        try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
+
+                            // submit the transaction to the stellar network.
+                        try self.sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
+                            switch response {
+                                case .success(_):
+                                    print("Created trustline successfully.")
+                                    self.createTrustLineForDest(keyPair: keyPair)
+                                case .failure(let error):
+                                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create trustline error", horizonRequestError: error)
+                                default:
+                                    print("stellar trustline no data")
+                            }
+                        }
+                    } catch {
+                        // ...
+                        print("create stellar trustline exception")
+                    }
+                case .failure(let error): // error loading account details
+                        StellarSDKLog.printHorizonRequestErrorMessage(tag:"Account detail Error:", horizonRequestError: error)
+                }
+        }
+    }
+    
+    func createStellarPayment(keyPair: KeyPair) {
         let amount = txtAmount.text
         
-        print("Source account Id: " + sourceAccountKeyPair.accountId)
+        let issuer = try! KeyPair(accountId: "GAH2T6DSKIIWTDRVGTFSYDIVQTJG4ZVUTQ6COFRUWSVFHHUBU5UDT7DO")
         
+        let sourceAccountKeyPair = try! KeyPair(secretSeed: self.selectedCoin.secretSeed)
+        let destinationAccountKeyPair = keyPair
         
-        print("Destination account Id: " + destinationAccountKeyPair.accountId)
-//        print("Destination secret seed: " + destinationAccountKeyPair.secretSeed)
-        
-        sdk.accounts.getAccountDetails(accountId: address!) { (response) -> (Void) in
+        sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
             switch response {
-            case .success(_):
-                
-                sdk.accounts.getAccountDetails(accountId: self.selectedCoin.address) { (response) -> (Void) in
-                    switch response {
-                        case .success(let accountResponse):
-                            
-                        do {
-                            
-                            
-//                            let paymentOperation = PaymentOperation(destination: destinationAccountKeyPair,
-//                                                                    asset: Asset(type: type)!,
-//                                                                    amount: Decimal(string: amount!)!)
-                            var paymentOperation = try PaymentOperation(sourceAccountId: self.selectedCoin.address, destinationAccountId: address!, asset: Asset(type: AssetType.ASSET_TYPE_NATIVE)!, amount: Decimal(string: amount!)!)
-                            if self.selectedCoin.type != "Stellar" {
-//
-                                paymentOperation = try PaymentOperation(sourceAccountId: self.selectedCoin.address, destinationAccountId: address!, asset: Asset(type: AssetType.ASSET_TYPE_CREDIT_ALPHANUM4, code: self.selectedCoin.symbol!, issuer: sourceAccountKeyPair)!, amount: Decimal(string: amount!)!)
-                            }
-                            print("created payment operation")
-                            // build the transaction containing our payment operation.
-                            let transaction = try Transaction(sourceAccount: accountResponse,
-                                                              operations: [paymentOperation],
-                                                              memo: Memo.none,
-                                                              timeBounds:nil)
-                            print("created payment transaction")
-                            // sign the transaction
-                            try transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
-                            print("passed sign")
-                            // submit the transaction.
-                            try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
-                                switch response {
-                                case .success(_):
-                                    print("stellar withdraw Success")
-                                    let param = [
-                                        "coin_id": self.coinId,
-                                        "amount": amount,
-                                        "address": address
-                                    ] as! NSDictionary
-                                    self.submitWithdraw(param: param)
-                                case .failure(let error):
-                                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"stellar withdraw fail", horizonRequestError:error)
-                                default:
-                                    print("stellar withdraw no data")
-                                }
-                            }
-                        } catch {
-                            print("here catch")
-                            //...
-                        }
-                        case .failure(let error):
-                            StellarSDKLog.printHorizonRequestErrorMessage(tag:"SRP Test", horizonRequestError:error)
+                case .success(let accountResponse):
+                    
+                do {
+                    
+                    var transaction: Transaction!
+                    
+                    if self.selectedCoin.type == "Stellar" {
+                        
+                        let paymentOperation = try PaymentOperation(sourceAccountId: sourceAccountKeyPair.accountId, destinationAccountId: destinationAccountKeyPair.accountId, asset: Asset(type: AssetType.ASSET_TYPE_NATIVE)!, amount: Decimal(string: amount!)!)
+                        
+                        transaction = try Transaction(sourceAccount: accountResponse,
+                                                          operations: [paymentOperation],
+                                                          memo: Memo.none,
+                                                          timeBounds:nil)
+                    } else {
+                        
+                        let paymentOperation = try PaymentOperation(sourceAccountId: sourceAccountKeyPair.accountId, destinationAccountId: destinationAccountKeyPair.accountId, asset: Asset(type: AssetType.ASSET_TYPE_CREDIT_ALPHANUM4, code: self.selectedCoin.symbol!, issuer: issuer)!, amount: Decimal(string: amount!)!)
+                        
+                        transaction = try Transaction(sourceAccount: accountResponse,
+                                                          operations: [paymentOperation],
+                                                          memo: Memo.none,
+                                                          timeBounds:nil)
                     }
+                    
+                    // sign the transaction
+                    try transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
+                    print("passed sign")
+                    // submit the transaction.
+                    try self.sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
+                        switch response {
+                        case .success(_):
+                            print("stellar withdraw Success")
+                            let param = [
+                                "coin_id": self.coinId,
+                                "amount": amount,
+                                "address": destinationAccountKeyPair.accountId
+                            ] as! NSDictionary
+                            self.submitWithdraw(param: param)
+                        case .failure(let error):
+                            StellarSDKLog.printHorizonRequestErrorMessage(tag:"stellar withdraw fail", horizonRequestError:error)
+                        default:
+                            print("stellar withdraw no data")
+                        }
+                    }
+                } catch {
+                    print("here catch")
+                    //...
                 }
-            case .failure(let error):
-                StellarSDKLog.printHorizonRequestErrorMessage(tag: "Destination account error", horizonRequestError: error)
+                case .failure(let error):
+                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"SRP Test", horizonRequestError:error)
             }
         }
-        
-        // get the account data to be sure that we have the current sequence number.
-        
     }
 
     @IBAction func actionWithdraw(_ sender: Any) {

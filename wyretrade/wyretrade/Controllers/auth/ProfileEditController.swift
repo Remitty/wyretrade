@@ -153,6 +153,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
         let destinationKeyPair = try! KeyPair.generateRandomKeyPair()
         print("Destination account Id: " + destinationKeyPair.accountId)
         print("Destination secret seed: " + destinationKeyPair.secretSeed)
+        
 
         // load the source account from horizon to be sure that we have the current sequence number.
         sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
@@ -160,44 +161,28 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
                 case .success(let accountResponse): // source account successfully loaded.
                     do {
                     // build a create account operation.
-                        let createAccount = CreateAccountOperation(sourceAccountId: sourceAccountKeyPair.accountId, destination: destinationKeyPair, startBalance: 10.0)
+                        let createAccount = CreateAccountOperation(sourceAccountId: sourceAccountKeyPair.accountId, destination: destinationKeyPair, startBalance: 5.0)
                         
-
                         // build a transaction that contains the create account operation.
-                    let transaction = try Transaction(sourceAccount: accountResponse,
+                        let transaction = try Transaction(sourceAccount: accountResponse,
                                         operations: [createAccount],
                                         memo: Memo.none,
                                         timeBounds:nil)
 
-                    // sign the transaction.
-                    try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
+                        // sign the transaction.
+                        try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
 
-                        // submit the transaction to the stellar network.
-                    try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
-                        switch response {
-                        case .success(_):
-                            print("Account successfully created.")
-                            let param: NSDictionary = [
-                                "first_name": self.txtFirstName.text!,
-                                "last_name": self.txtLastName.text!,
-                                "email": self.txtEmail.text!,
-                                "mobile": self.txtPhone.text!,
-                                "address": self.txtAddress1.text!,
-                                "address2": self.txtAddress2.text!,
-                                "country": self.txtCountry.text!,
-                                "city": self.txtCity.text!,
-                                "region": self.txtNationality.text!,
-                                "dob": self.dobPicker.description,
-                                "postalcode": self.txtPostalCode.text!,
-                                "stellar_account_id": destinationKeyPair.accountId,
-                                "stellar_secret_seed": destinationKeyPair.secretSeed!
-                            ]
-                            self.submitUpdate(param: param)
-                        case .failure(let error):
-                            StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create account error", horizonRequestError: error)
-                        default:
-                            print("stelalr depost no data")
-                        }
+                            // submit the transaction to the stellar network.
+                        try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
+                            switch response {
+                                case .success(_):
+                                    print("Account successfully created.")
+                                    self.addTrustLine(keyPair: destinationKeyPair)
+                                case .failure(let error):
+                                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create account error", horizonRequestError: error)
+                                default:
+                                    print("stelalr depost no data")
+                            }
                     }
                 } catch {
                     // ...
@@ -208,6 +193,67 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func addTrustLine(keyPair: KeyPair) {
+        let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
+        let sourceAccountKeyPair = keyPair
+        print("Source account Id: " + sourceAccountKeyPair.accountId)
+
+        let issuer = try! KeyPair(accountId: "GAH2T6DSKIIWTDRVGTFSYDIVQTJG4ZVUTQ6COFRUWSVFHHUBU5UDT7DO")
+        
+        let param: NSDictionary = [
+            "first_name": self.txtFirstName.text!,
+            "last_name": self.txtLastName.text!,
+            "email": self.txtEmail.text!,
+            "mobile": self.txtPhone.text!,
+            "address": self.txtAddress1.text!,
+            "address2": self.txtAddress2.text!,
+            "country": self.txtCountry.text!,
+            "city": self.txtCity.text!,
+            "region": self.txtNationality.text!,
+            "dob": self.dobPicker.description,
+            "postalcode": self.txtPostalCode.text!,
+            "stellar_account_id": keyPair.accountId,
+            "stellar_secret_seed": keyPair.secretSeed!
+        ]
+
+        // load the source account from horizon to be sure that we have the current sequence number.
+        sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            switch response {
+                case .success(let accountResponse): // source account successfully loaded.
+                    do {
+                    // build a add trustline operation.
+                        
+                        let changeTrust = ChangeTrustOperation(sourceAccountId: sourceAccountKeyPair.accountId, asset: Asset(type: AssetType.ASSET_TYPE_CREDIT_ALPHANUM4, code: "PEPE", issuer: issuer)!)
+                        // build a transaction that contains the create account operation.
+                        let transaction = try Transaction(sourceAccount: accountResponse,
+                                        operations: [changeTrust],
+                                        memo: Memo.none,
+                                        timeBounds:nil)
+
+                        // sign the transaction.
+                        try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
+
+                            // submit the transaction to the stellar network.
+                        try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
+                            switch response {
+                                case .success(_):
+                                    print("Created trustline successfully.")
+                                    
+                                    self.submitUpdate(param: param)
+                                case .failure(let error):
+                                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create trustline error", horizonRequestError: error)
+                                default:
+                                    print("stelalr trustline no data")
+                            }
+                    }
+                } catch {
+                    // ...
+                }
+            case .failure(let error): // error loading account details
+                    StellarSDKLog.printHorizonRequestErrorMessage(tag:"Account detail Error:", horizonRequestError: error)
+            }
+        }
+    }
     
     @IBAction func changedDate(_ sender: UIDatePicker) {
         print(sender.description)
@@ -267,7 +313,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
                 "last_name": txtLastName.text!,
                 "email": txtEmail.text!,
                 "mobile": txtPhone.text!,
-                "address": txtAddress1.text!,
+                "address1": txtAddress1.text!,
                 "address2": txtAddress2.text!,
                 "country": txtCountry.text!,
                 "city": txtCity.text!,
@@ -279,6 +325,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
         } else {
             createStellarAccount()
         }
+        
         
         
     }

@@ -42,9 +42,7 @@ class CoinsController: UIViewController {
         // Do any additional setup after loading the view.
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
-        if self.stellarAccountId != "" {
-            self.stellarStreamForPayment()
-        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,7 +91,9 @@ class CoinsController: UIViewController {
             self.xanpoolApiKey = dictionary["xanpool_api_key"] as? String
             self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
             self.stellarAccountId = dictionary["stellar_account_id"] as? String
-            
+            if self.stellarAccountId != "" {
+                self.stellarStreamForPayment()
+            }
                 
             }) { (error) in
                 let alert = Alert.showBasicAlert(message: error.message)
