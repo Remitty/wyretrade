@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import MessageUI
+import NVActivityIndicatorView
 
-class SupportController: UIViewController, MFMailComposeViewControllerDelegate {
+class SupportController: UIViewController, MFMailComposeViewControllerDelegate, NVActivityIndicatorViewable {
     
     var supportEmail = ""
 
@@ -17,13 +18,18 @@ class SupportController: UIViewController, MFMailComposeViewControllerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
-        self.loadData()
+//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = [:]
                 RequestHandler.getSupport(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
                     self.supportEmail = dictionary["contact_email"] as! String

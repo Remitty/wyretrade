@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class StocksController: UIViewController, UISearchBarDelegate {
+class StocksController: UIViewController, UISearchBarDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txtSearch: UISearchBar!
     @IBOutlet weak var stocksTable: UITableView!{
@@ -32,6 +33,11 @@ class StocksController: UIViewController, UISearchBarDelegate {
 //        txtSearch.showsScopeBar = true
         txtSearch.delegate = self
         
+//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.loadData()
     }
 
@@ -40,9 +46,9 @@ class StocksController: UIViewController, UISearchBarDelegate {
         if query != "" {
             param = [ "search": self.query]
         }
-        
+        self.startAnimating()
         RequestHandler.searchStocks(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var stocks : StockPositionModel!

@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-
-class LinkAccountController: UIViewController {
+class LinkAccountController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var accountTable: UITableView! {
         didSet {
@@ -31,14 +31,14 @@ class LinkAccountController: UIViewController {
         // Do any additional setup after loading the view.
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
-        self.loadData()
+//        self.loadData()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//       super.viewWillAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
 //       self.navigationController?.isNavigationBarHidden = true
-//
-//   }
+        self.loadData()
+   }
 //
 //   override func viewWillDisappear(_ animated: Bool) {
 //       super.viewWillDisappear(animated)
@@ -46,9 +46,10 @@ class LinkAccountController: UIViewController {
 //   }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = [:]
                 RequestHandler.getZaboAccounts(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
                     var account : LinkAccountModel!

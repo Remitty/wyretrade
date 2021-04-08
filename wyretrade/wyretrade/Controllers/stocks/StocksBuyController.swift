@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import PopupDialog
+import NVActivityIndicatorView
 
-class StocksBuyController: UIViewController, UITextFieldDelegate {
+class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var lbStocksSymbol: UILabel!
     @IBOutlet weak var lbStocksName: UILabel!
@@ -176,8 +177,9 @@ class StocksBuyController: UIViewController, UITextFieldDelegate {
     }
     
     func createOrder(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.createStocksOrder(parameter: param , success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.stocksBalance = (dictionary["stock_balance"] as! NSString).doubleValue
@@ -196,8 +198,9 @@ class StocksBuyController: UIViewController, UITextFieldDelegate {
     }
     
     func replaceOrder(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.replaceStocksOrder(parameter: param , success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.stocksBalance = (dictionary["stock_balance"] as! NSString).doubleValue

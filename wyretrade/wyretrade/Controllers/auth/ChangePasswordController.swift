@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class ChangePasswordController: UIViewController, UITextFieldDelegate {
+class ChangePasswordController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var txtOldPw: UITextField! {
         didSet {
@@ -52,8 +53,9 @@ class ChangePasswordController: UIViewController, UITextFieldDelegate {
             "old_password": txtOldPw.text
         ] as! NSDictionary
         
+        self.startAnimating()
         RequestHandler.changePassword(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             self.showToast(message: "Changed successfully")
             
         }) { (error) in

@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 import MaterialComponents
 import UITextField_Shake
+import NVActivityIndicatorView
 
-class SigninController: UIViewController, UITextFieldDelegate {
+class SigninController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txtEmail: UITextField! {
         didSet {
@@ -66,8 +67,9 @@ class SigninController: UIViewController, UITextFieldDelegate {
             ]
             
 //                    self.showLoader()
+            self.startAnimating()
             RequestHandler.loginUser(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
                 let dictionary = successResponse as! [String: Any]
                 let success = dictionary["success"] as! Bool
                 var user : UserAuthModel!

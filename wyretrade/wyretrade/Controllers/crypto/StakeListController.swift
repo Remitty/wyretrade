@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class StakeListController: UIViewController {
+class StakeListController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var stakeCoinTable: UITableView! {
         didSet {
@@ -27,13 +28,19 @@ class StakeListController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 //        //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
+//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.loadData()
     }
     
     func loadData() {
         let param : [String : Any] = [:]
+        self.startAnimating()
         RequestHandler.getStakeList(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var coin : StakeCoinModel!

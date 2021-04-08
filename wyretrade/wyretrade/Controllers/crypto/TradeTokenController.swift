@@ -10,8 +10,9 @@ import UIKit
 import AnyChartiOS
 import DropDown
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfoProvider {
+class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfoProvider, NVActivityIndicatorViewable {
     
     var itemInfo: IndicatorInfo = "Exchange"
     let scrollViewContentHeight = 1200 as CGFloat
@@ -263,6 +264,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     
     func loadData() {
         let param : [String : Any] = ["pair": self.selectedPair]
+        
         self.btnPair.setTitle("\(self.selectedCoin)/BTC", for: .normal)
                 RequestHandler.xmtTradeData(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
@@ -336,8 +338,9 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     }
     
     func submitTrade(param: NSDictionary!) {
+        self.startAnimating()
         RequestHandler.xmtTrade(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
             self.showToast(message: "Request successfully")
                     }) { (error) in

@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class StakeController: UIViewController, UITextFieldDelegate {
+class StakeController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var lbSymbol: UILabel!
     @IBOutlet weak var lbYearlyRewardPercent: UILabel!
@@ -42,7 +43,7 @@ class StakeController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.loadData()
+//        self.loadData()
         
         lbSymbol.text = self.symbol
         lbSymbol2.text = self.symbol
@@ -51,9 +52,10 @@ class StakeController: UIViewController, UITextFieldDelegate {
     }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = ["id": self.coinId]
         RequestHandler.getStakeBalance(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var coin : StakeModel!
@@ -100,17 +102,20 @@ class StakeController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
        self.navigationController?.isNavigationBarHidden = true
-
+        self.loadData()
    }
 
    override func viewWillDisappear(_ animated: Bool) {
        super.viewWillDisappear(animated)
        self.navigationController?.isNavigationBarHidden = false
+    
+//        self.loadData()
    }
     
     func submitStaking(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.stake(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             let success = dictionary["success"] as? Bool
@@ -162,8 +167,9 @@ class StakeController: UIViewController, UITextFieldDelegate {
     }
     
     func submitUnStaking(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.stakeRelease(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             let success = dictionary["success"] as? Bool

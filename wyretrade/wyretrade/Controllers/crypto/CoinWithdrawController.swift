@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import stellarsdk
+import NVActivityIndicatorView
 
-class CoinWithdrawController: UIViewController, UITextFieldDelegate {
+class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     @IBOutlet weak var txtAmount: UITextField! {
         didSet {
             txtAmount.delegate = self
@@ -58,6 +59,11 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         txtAmount.addTarget(self, action: #selector(CoinWithdrawController.amountTextFiledDidChange), for: .editingChanged)
         
+//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.loadData()
     }
     
@@ -83,8 +89,9 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
     
     func loadData() {
             let param : [String : Any] = [:]
+        self.startAnimating()
             RequestHandler.getCoinWithdrawList(parameter: param as NSDictionary, success: { (successResponse) in
-    //                        self.stopAnimating()
+                            self.stopAnimating()
                 let dictionary = successResponse as! [String: Any]
                 
                 var history : CoinWithdrawModel!
@@ -105,8 +112,9 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
         }
     
     func submitWithdraw(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinWithdraw(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             let success: Bool = dictionary["success"] as! Bool
@@ -212,8 +220,9 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate {
         
         let sourceAccountKeyPair = try! KeyPair(secretSeed: self.selectedCoin.secretSeed)
         let destinationAccountKeyPair = keyPair
-        
+        self.startAnimating()
         sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            self.stopAnimating()
             switch response {
                 case .success(let accountResponse):
                     

@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class CashBankController: UIViewController {
+class CashBankController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var itemTable: UITableView! {
         didSet {
@@ -29,8 +30,9 @@ class CashBankController: UIViewController {
     }
     
     func submitDelete(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.removeBankFriend(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
         let dictionary = successResponse as! [String: Any]
         
         var bank : BankModel!
@@ -56,8 +58,9 @@ class CashBankController: UIViewController {
     }
     
     func submitAdd(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.addBankFriend(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
         let dictionary = successResponse as! [String: Any]
         
         var bank : BankModel!

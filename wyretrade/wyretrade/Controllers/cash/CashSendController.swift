@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class CashSendController: UIViewController, UITextFieldDelegate {
+class CashSendController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
     var getter: BankModel!
     var currency = ""
@@ -69,8 +70,9 @@ class CashSendController: UIViewController, UITextFieldDelegate {
             "sender_currency": currency,
             "getter_currency": getter.currency.currency!
         ]
+        self.startAnimating()
         RequestHandler.getBankCurrencyRate(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             let success = dictionary["success"] as! Bool
             if success {
@@ -98,8 +100,9 @@ class CashSendController: UIViewController, UITextFieldDelegate {
             "amount": sendingAmount,
             "type": getter.type
         ]
+        self.startAnimating()
         RequestHandler.sendBankMoney(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.showToast(message: dictionary["message"] as! String)

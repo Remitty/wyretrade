@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class PredictOwnerController: UIViewController, IndicatorInfoProvider {
+class PredictOwnerController: UIViewController, IndicatorInfoProvider, NVActivityIndicatorViewable {
     var itemInfo: IndicatorInfo = "Owner"
     
     @IBOutlet weak var predictTable: UITableView! {
@@ -35,8 +36,9 @@ class PredictOwnerController: UIViewController, IndicatorInfoProvider {
     }
     
     func submitCancel(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.cancelPredict(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
             self.showToast(message: "Cancelled successfully")

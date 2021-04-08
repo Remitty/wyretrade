@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class StocksReplaceController: UIViewController {
+class StocksReplaceController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var lbStocksSymbol: UILabel!
     @IBOutlet weak var lbStocksName: UILabel!
@@ -36,10 +37,15 @@ class StocksReplaceController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        self.loadData()
+//        self.loadData()
         
 //        self.configCompany()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
     }
     
     private func configCompany() {
@@ -48,9 +54,10 @@ class StocksReplaceController: UIViewController {
     }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = ["ticker": self.order.ticker]
         RequestHandler.getStockDetail(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.stocksBalance = dictionary["stock_balance"] as! Double

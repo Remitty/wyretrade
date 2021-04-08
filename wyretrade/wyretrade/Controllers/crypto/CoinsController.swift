@@ -9,8 +9,9 @@ import UIKit
 import PopupDialog
 import SafariServices
 import stellarsdk
+import NVActivityIndicatorView
 
-class CoinsController: UIViewController {
+class CoinsController: UIViewController, NVActivityIndicatorViewable {
     
     
     @IBOutlet weak var lbHolding: UILabel!
@@ -52,9 +53,10 @@ class CoinsController: UIViewController {
     }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = [:]
         RequestHandler.getCoins(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var coin : CoinModel!
@@ -102,7 +104,9 @@ class CoinsController: UIViewController {
     }
     
     func actionXanpool(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var address = dictionary["address"] as! String
@@ -128,7 +132,9 @@ class CoinsController: UIViewController {
     }
     
     func actionRamp(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var address = dictionary["address"] as! String
@@ -155,7 +161,9 @@ class CoinsController: UIViewController {
     }
     
     func actionOnramp(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var address = dictionary["address"] as! String
@@ -207,9 +215,11 @@ class CoinsController: UIViewController {
         let destinationKeyPair = try! KeyPair.generateRandomKeyPair()
         print("Destination account Id: " + destinationKeyPair.accountId)
         print("Destination secret seed: " + destinationKeyPair.secretSeed)
-
+        
         // load the source account from horizon to be sure that we have the current sequence number.
+        self.startAnimating()
         self.sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            self.stopAnimating()
             switch response {
                 case .success(let accountResponse): // source account successfully loaded.
                     do {
@@ -311,8 +321,9 @@ class CoinsController: UIViewController {
     }
     
     func submitStellarFunds(param: NSDictionary) {
-        
+        self.startAnimating()
         RequestHandler.coinStellarDeposit(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
 //            let dictionary = successResponse as! [String: Any]
             print("deposited \(param["amount"]!) \(param["coin"]!)")
         }) {
@@ -323,7 +334,9 @@ class CoinsController: UIViewController {
     }
     
     func submitDeposit(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinDeposit(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             let address = dictionary["address"] as! String

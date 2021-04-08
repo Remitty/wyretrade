@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import RadioGroup
+import NVActivityIndicatorView
 
-class PredictionPostController: UIViewController, UITextFieldDelegate {
+class PredictionPostController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
     
     var usdcBalance = ""
@@ -79,8 +80,9 @@ class PredictionPostController: UIViewController, UITextFieldDelegate {
     }
     
     func submitPost(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.predict(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
                     
             self.showToast(message: "Posted successfully")

@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class PredictListController: UIViewController, IndicatorInfoProvider {
+class PredictListController: UIViewController, IndicatorInfoProvider , NVActivityIndicatorViewable{
     var itemInfo: IndicatorInfo = "Predict"
     
     @IBOutlet weak var predictTable: UITableView! {
@@ -34,8 +35,9 @@ class PredictListController: UIViewController, IndicatorInfoProvider {
     }
     
     func submitBet(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.bidPredict(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
             self.showToast(message: "Cancelled successfully")

@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import UITextField_Shake
+import NVActivityIndicatorView
 
-class ResetPasswordController: UIViewController, UITextFieldDelegate {
+class ResetPasswordController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txtOtp: UITextField! {
         didSet {
@@ -64,9 +65,9 @@ class ResetPasswordController: UIViewController, UITextFieldDelegate {
             "id": user.id!
        ]
         print(param)
-//        self.showLoader()
+        self.startAnimating()
         RequestHandler.resetPassword(parameter: param as NSDictionary, success: { (successResponse) in
-//            self.stopAnimating()
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             self.showToast(message: dictionary["message"] as! String)
             

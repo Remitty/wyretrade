@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class StocksDepositBankController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate {
+class StocksDepositBankController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     var itemInfo: IndicatorInfo = "Bank"
     
@@ -56,8 +57,9 @@ class StocksDepositBankController: UIViewController, IndicatorInfoProvider, UITe
     }
     
     func submitTransfer(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.depositStocks(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var deposit : StocksDepositModel!

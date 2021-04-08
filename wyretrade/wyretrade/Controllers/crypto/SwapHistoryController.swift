@@ -8,8 +8,9 @@
 import Foundation
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class SwapHistoryController: UIViewController {
+class SwapHistoryController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var historyTable: UITableView! {
         didSet {
@@ -39,9 +40,10 @@ class SwapHistoryController: UIViewController {
     }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = [:]
                 RequestHandler.getCoinExchangeList(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
                     var history : SwapModel!

@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import AnyChartiOS
+import NVActivityIndicatorView
 
-class StocksDetailController: UIViewController {
+class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var lbStocksSymbol: UILabel!
     @IBOutlet weak var lbStocksName: UILabel!
@@ -79,13 +80,18 @@ class StocksDetailController: UIViewController {
             self.viewFirst.isHidden = false
             self.viewSecond.isHidden = false
         }
-        
-        self.loadData()
+//
+//        self.loadData()
         
         self.configCompany()
         
         initTradeChart()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
     }
     
     private func configCompany() {
@@ -94,9 +100,10 @@ class StocksDetailController: UIViewController {
     }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = ["ticker": self.stocks.ticker]
         RequestHandler.getStockDetail(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.stocksBalance = dictionary["stock_balance"] as! Double

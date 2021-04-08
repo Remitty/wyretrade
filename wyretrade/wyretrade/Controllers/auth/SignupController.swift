@@ -10,7 +10,7 @@ import UIKit
 import MaterialComponents
 import NVActivityIndicatorView
 
-class SignupController: UIViewController, UITextFieldDelegate {
+class SignupController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txtFirstName: UITextField! {
         didSet {
@@ -103,9 +103,9 @@ class SignupController: UIViewController, UITextFieldDelegate {
                 "device_token": "ios"
             ]
             
-//            self.showLoader()
+            self.startAnimating()
         RequestHandler.registerUser(parameter: param as NSDictionary, success: { (successResponse) in
-//            self.stopAnimating()
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             let success = dictionary["success"] as! Bool
             var user : UserAuthModel!

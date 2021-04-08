@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class MtnController: UIViewController {
+class MtnController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var transactionView: UIView!
     @IBOutlet weak var lbBalance: UILabel!
@@ -21,14 +22,14 @@ class MtnController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
-        self.loadData()
+//        self.loadData()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//       super.viewWillAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
 //       self.navigationController?.isNavigationBarHidden = true
-//
-//   }
+        self.loadData()
+   }
 //
 //   override func viewWillDisappear(_ animated: Bool) {
 //       super.viewWillDisappear(animated)
@@ -36,9 +37,10 @@ class MtnController: UIViewController {
 //   }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = [:]
                 RequestHandler.getMtnService(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
                     var history : MtnModel!
@@ -76,8 +78,9 @@ class MtnController: UIViewController {
     }
     
     func submitWithdraw(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.payMtn(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var history : MtnModel!
@@ -108,8 +111,9 @@ class MtnController: UIViewController {
     }
     
     func submitCollection(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.topupMtn(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var history : MtnModel!
@@ -140,8 +144,9 @@ class MtnController: UIViewController {
     }
     
     func submitConvert(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.convertMtn(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var history : MtnModel!

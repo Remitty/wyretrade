@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import UITextField_Shake
+import NVActivityIndicatorView
 
-class ForgotPasswordController: UIViewController, UITextFieldDelegate {
+class ForgotPasswordController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txtEmail: UITextField! {
         didSet {
@@ -50,9 +51,9 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
         let param : [String: Any] = [
            "email": email
        ]
-//        self.showLoader()
+        self.startAnimating()
         RequestHandler.forgotPassword(parameter: param as NSDictionary, success: { (successResponse) in
-//            self.stopAnimating()
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.showToast(message: dictionary["message"] as! String)

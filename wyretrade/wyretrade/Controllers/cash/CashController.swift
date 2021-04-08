@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class CashController: UIViewController {
+class CashController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var accountView: UIView!
     @IBOutlet weak var addView: UIView!
@@ -68,9 +69,9 @@ class CashController: UIViewController {
     
     func loadData() {
         let param = [:] as! NSDictionary
-        
+        self.startAnimating()
         RequestHandler.getBankDetail(parameter: param , success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var bank : BankModel!
@@ -99,8 +100,9 @@ class CashController: UIViewController {
     }
     
     func submitAdd(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.addBank(parameter: param , success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.showToast(message: "Added successfully")
@@ -164,8 +166,9 @@ class CashController: UIViewController {
             return
         }
         let param: NSDictionary = [:]
+        self.startAnimating()
         RequestHandler.getBankFriendList(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
         let dictionary = successResponse as! [String: Any]
         
         var bank : BankModel!
@@ -194,8 +197,9 @@ class CashController: UIViewController {
     
     @objc func bankClick(sender: UITapGestureRecognizer) {
         let param: NSDictionary = [:]
+        self.startAnimating()
         RequestHandler.getBankFriendList(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
         let dictionary = successResponse as! [String: Any]
         
         var bank : BankModel!
@@ -224,8 +228,9 @@ class CashController: UIViewController {
     
     @objc func contactClick(sender: UITapGestureRecognizer) {
         let param: NSDictionary = [:]
+        self.startAnimating()
         RequestHandler.getBankFriendList(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
         let dictionary = successResponse as! [String: Any]
         
         var bank : BankModel!

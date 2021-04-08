@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, PaymentUserParameterDelegate {
+class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, PaymentUserParameterDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txtName: UITextField! {
         didSet {
@@ -38,6 +39,11 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+//        self.loadPaymentUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.loadPaymentUsers()
     }
     
@@ -57,9 +63,10 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableVi
     }
     
     func loadPaymentUsers() {
+        self.startAnimating()
         let param : [String : Any] = [:]
         RequestHandler.coinTransferList(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var user : PaymentUserModel!
@@ -81,7 +88,9 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableVi
     }
     
     func paramData(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinTransferRemoveContact(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var user : PaymentUserModel!
@@ -103,7 +112,9 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, UITableVi
     }
     
     func addContact(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinTransferAddContact(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var user : PaymentUserModel!

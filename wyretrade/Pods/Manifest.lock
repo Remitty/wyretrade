@@ -1,12 +1,12 @@
 PODS:
-  - Alamofire (5.4.1)
+  - Alamofire (5.4.2)
   - AnyChartiOS (1.0.4)
   - DeviceKit (4.3.0)
   - DLRadioButton (1.4.12)
   - DropDown (2.3.13)
   - DynamicBlurView (4.1.0)
-  - MaterialComponents/AnimationTiming (123.0.0)
-  - MaterialComponents/AppBar (123.0.0):
+  - MaterialComponents/AnimationTiming (124.1.1)
+  - MaterialComponents/AppBar (124.1.1):
     - MaterialComponents/FlexibleHeader
     - MaterialComponents/HeaderStackView
     - MaterialComponents/NavigationBar
@@ -17,15 +17,15 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - "MaterialComponents/AppBar+Theming (123.0.0)":
+  - "MaterialComponents/AppBar+Theming (124.1.1)":
     - MaterialComponents/AppBar
     - MaterialComponents/schemes/Container
-  - MaterialComponents/Availability (123.0.0)
-  - MaterialComponents/ButtonBar (123.0.0):
+  - MaterialComponents/Availability (124.1.1)
+  - MaterialComponents/ButtonBar (124.1.1):
     - MaterialComponents/Buttons
     - MaterialComponents/private/Application
     - MDFInternationalization
-  - MaterialComponents/Buttons (123.0.0):
+  - MaterialComponents/Buttons (124.1.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -37,7 +37,7 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Cards (123.0.0):
+  - MaterialComponents/Cards (124.1.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Icons/ic_check_circle
@@ -45,7 +45,7 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Shapes
-  - MaterialComponents/CollectionCells (123.0.0):
+  - MaterialComponents/CollectionCells (124.1.1):
     - MaterialComponents/CollectionLayoutAttributes
     - MaterialComponents/Ink
     - MaterialComponents/Palettes
@@ -59,8 +59,8 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (123.0.0)
-  - MaterialComponents/Collections (123.0.0):
+  - MaterialComponents/CollectionLayoutAttributes (124.1.1)
+  - MaterialComponents/Collections (124.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/CollectionCells
     - MaterialComponents/CollectionLayoutAttributes
@@ -70,11 +70,11 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
-  - MaterialComponents/Elevation (123.0.0):
+  - MaterialComponents/Elevation (124.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/FlexibleHeader (123.0.0):
+  - MaterialComponents/FlexibleHeader (124.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/Elevation
     - "MaterialComponents/FlexibleHeader+ShiftBehavior"
@@ -85,89 +85,89 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MDFTextAccessibility
-  - "MaterialComponents/FlexibleHeader+ShiftBehavior (123.0.0)"
-  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (123.0.0)":
+  - "MaterialComponents/FlexibleHeader+ShiftBehavior (124.1.1)"
+  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (124.1.1)":
     - "MaterialComponents/FlexibleHeader+ShiftBehavior"
-  - MaterialComponents/HeaderStackView (123.0.0)
-  - MaterialComponents/Ink (123.0.0):
+  - MaterialComponents/HeaderStackView (124.1.1)
+  - MaterialComponents/Ink (124.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/NavigationBar (123.0.0):
+  - MaterialComponents/NavigationBar (124.1.1):
     - MaterialComponents/ButtonBar
     - MaterialComponents/Elevation
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/NavigationDrawer (123.0.0):
+  - MaterialComponents/NavigationDrawer (124.1.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Palettes
     - MaterialComponents/private/Math
     - MaterialComponents/private/UIMetrics
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Palettes (123.0.0)
-  - MaterialComponents/private/Application (123.0.0)
-  - MaterialComponents/private/Color (123.0.0):
+  - MaterialComponents/Palettes (124.1.1)
+  - MaterialComponents/private/Application (124.1.1)
+  - MaterialComponents/private/Color (124.1.1):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Icons/Base (123.0.0)
-  - MaterialComponents/private/Icons/ic_arrow_back (123.0.0):
+  - MaterialComponents/private/Icons/Base (124.1.1)
+  - MaterialComponents/private/Icons/ic_arrow_back (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check (123.0.0):
+  - MaterialComponents/private/Icons/ic_check (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check_circle (123.0.0):
+  - MaterialComponents/private/Icons/ic_check_circle (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (123.0.0):
+  - MaterialComponents/private/Icons/ic_chevron_right (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (123.0.0):
+  - MaterialComponents/private/Icons/ic_info (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (123.0.0):
+  - MaterialComponents/private/Icons/ic_radio_button_unchecked (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (123.0.0):
+  - MaterialComponents/private/Icons/ic_reorder (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (123.0.0)
-  - MaterialComponents/private/UIMetrics (123.0.0):
+  - MaterialComponents/private/Math (124.1.1)
+  - MaterialComponents/private/UIMetrics (124.1.1):
     - MaterialComponents/private/Application
-  - MaterialComponents/Ripple (123.0.0):
+  - MaterialComponents/Ripple (124.1.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (123.0.0):
+  - MaterialComponents/schemes/Color (124.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
-  - MaterialComponents/schemes/Container (123.0.0):
+  - MaterialComponents/schemes/Container (124.1.1):
     - MaterialComponents/schemes/Color
     - MaterialComponents/schemes/Shape
     - MaterialComponents/schemes/Typography
-  - MaterialComponents/schemes/Shape (123.0.0):
+  - MaterialComponents/schemes/Shape (124.1.1):
     - MaterialComponents/ShapeLibrary
     - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (123.0.0):
+  - MaterialComponents/schemes/Typography (124.1.1):
     - "MaterialComponents/schemes/Typography+BasicFontScheme"
     - "MaterialComponents/schemes/Typography+Scheming"
     - MaterialComponents/Typography
-  - "MaterialComponents/schemes/Typography+BasicFontScheme (123.0.0)"
-  - "MaterialComponents/schemes/Typography+Scheming (123.0.0)"
-  - MaterialComponents/ShadowElevations (123.0.0)
-  - MaterialComponents/ShadowLayer (123.0.0):
+  - "MaterialComponents/schemes/Typography+BasicFontScheme (124.1.1)"
+  - "MaterialComponents/schemes/Typography+Scheming (124.1.1)"
+  - MaterialComponents/ShadowElevations (124.1.1)
+  - MaterialComponents/ShadowLayer (124.1.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (123.0.0):
+  - MaterialComponents/ShapeLibrary (124.1.1):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (123.0.0):
+  - MaterialComponents/Shapes (124.1.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (123.0.0):
+  - MaterialComponents/Typography (124.1.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
   - MDFInternationalization (2.0.0)
-  - MDFTextAccessibility (2.0.0)
-  - NVActivityIndicatorView (5.1.1):
-    - NVActivityIndicatorView/Base (= 5.1.1)
+  - MDFTextAccessibility (2.0.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - NVActivityIndicatorView/Extended (5.1.1):
+    - NVActivityIndicatorView/Base
   - PopupDialog (1.1.1):
     - DynamicBlurView (~> 4.0)
   - RadioGroup (1.4.3):
@@ -189,7 +189,7 @@ DEPENDENCIES:
   - MaterialComponents/Cards
   - MaterialComponents/Collections
   - MaterialComponents/NavigationDrawer
-  - NVActivityIndicatorView
+  - NVActivityIndicatorView/Extended
   - PopupDialog (~> 1.1)
   - RadioGroup
   - SlideMenuControllerSwift (from `https://github.com/AtomicSLLC/SlideMenuControllerSwift.git`, branch `swift5`)
@@ -227,15 +227,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/AtomicSLLC/SlideMenuControllerSwift.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
   AnyChartiOS: 7ce3964cb1ed0918410423beb0856ec0c2606d8f
   DeviceKit: 7decde449c308ac7e816e2184ded1c7c596fb885
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
-  MaterialComponents: 7a40e33dc8726359d12e667b74a4007d87e4abd4
+  MaterialComponents: b9f58f24bf74588a83b2dce05802a11aaed5257d
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
-  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+  MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   RadioGroup: 7015c71759c90dbaae7050f33cfbc1de780e27a7
@@ -245,6 +245,6 @@ SPEC CHECKSUMS:
   "UITextField+Shake": 298ac5a0f239d731bdab999b19b628c956ca0ac3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: fa46f54c2f3776fbd7e687cfa36f631fe582c41d
+PODFILE CHECKSUM: 6fdd8bf92f28a5ed5262b3e4b734b37ae050a2da
 
 COCOAPODS: 1.10.1

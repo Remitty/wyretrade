@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class CashAccountInfoController: UIViewController {
+class CashAccountInfoController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var lbEURAccountId: UILabel!
     @IBOutlet weak var lbEURIban: UILabel!
@@ -28,13 +29,20 @@ class CashAccountInfoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.loadData()
     }
     
     func loadData() {
         let param = [:] as! NSDictionary
+        self.startAnimating()
         RequestHandler.getBankDetail(parameter: param , success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var bank : BankModel!
@@ -125,8 +133,9 @@ class CashAccountInfoController: UIViewController {
     
     @IBAction func actionAssignIban(_ sender: Any) {
         let param = [:] as! NSDictionary
+        self.startAnimating()
         RequestHandler.addIBAN(parameter: param , success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             let success = dictionary["success"] as! Bool

@@ -7,9 +7,10 @@
 
 import UIKit
 import MaterialComponents
+import NVActivityIndicatorView
 //import SlideMenuControllerSwift
 
-class HomeController: UIViewController {
+class HomeController: UIViewController, NVActivityIndicatorViewable {
     
     
     @IBOutlet weak var userName: UILabel!
@@ -67,11 +68,11 @@ class HomeController: UIViewController {
     
     func loadData() {
         
-                    
+        self.startAnimating()
 //                    self.showLoader()
         let param : [String : Any] = [:]
         RequestHandler.getHome(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var news : NewsModel!

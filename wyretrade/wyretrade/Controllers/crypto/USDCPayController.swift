@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class USDCPayController: UIViewController, UITextFieldDelegate {
+class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var balance: UILabel!
     @IBOutlet weak var txtAmount: UITextField! {
@@ -37,13 +38,20 @@ class USDCPayController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+//        self.loadTransaction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.loadTransaction()
     }
     
     func loadTransaction() {
+        self.startAnimating()
         let param : [String : Any] = [:]
         RequestHandler.coinTransferList(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var history : USDCPaymentModel!
@@ -66,7 +74,9 @@ class USDCPayController: UIViewController, UITextFieldDelegate {
     }
     
     func pay(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.coinTransferAddContact(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var history : USDCPaymentModel!

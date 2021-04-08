@@ -9,7 +9,7 @@ target 'wyretrade' do
     #Network
     pod 'Alamofire'
     
-    pod 'NVActivityIndicatorView'
+    pod 'NVActivityIndicatorView/Extended'
     pod 'SlideMenuControllerSwift', :git => 'https://github.com/AtomicSLLC/SlideMenuControllerSwift.git', :branch => 'swift5'
     pod 'UITextField+Shake'
     pod 'XLPagerTabStrip', '~> 9.0'

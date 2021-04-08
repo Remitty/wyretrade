@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate {
+class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate, NVActivityIndicatorViewable {
     
     var itemInfo: IndicatorInfo = "Coin"
     
@@ -47,8 +48,9 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
     }
     
     func submitTransfer(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.depositStocks(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var deposit : StocksDepositModel!

@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class StocksWithdrawController: UIViewController, UITextFieldDelegate {
+class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txAmount: UITextField!
     @IBOutlet weak var lbBalance: UILabel!
@@ -30,13 +31,20 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.loadData()
     }
     
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = [:]
         RequestHandler.withdrawStocksList(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var history : StocksWithdrawModel!
@@ -64,8 +72,9 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate {
             "currency": "USDC",
             "amount": amount
         ]
+        self.startAnimating()
         RequestHandler.withdrawStocks(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var history : StocksWithdrawModel!

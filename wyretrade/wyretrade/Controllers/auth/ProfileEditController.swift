@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import stellarsdk
+import NVActivityIndicatorView
 
-class ProfileEditController: UIViewController, UITextFieldDelegate {
+class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var txtFirstName: UITextField! {
         didSet {
@@ -90,9 +91,10 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
     }
     
     func loadProfile() {
+        self.startAnimating()
         let param = [:] as! NSDictionary
         RequestHandler.getProfile(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
@@ -126,8 +128,9 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
     }
     
     func submitUpdate(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.profileUpdate(parameter: param, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             let success = dictionary["success"] as! Bool
 //            var user : UserAuthModel!
@@ -156,7 +159,9 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
         
 
         // load the source account from horizon to be sure that we have the current sequence number.
+        self.startAnimating()
         sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            self.stopAnimating()
             switch response {
                 case .success(let accountResponse): // source account successfully loaded.
                     do {
@@ -217,7 +222,9 @@ class ProfileEditController: UIViewController, UITextFieldDelegate {
         ]
 
         // load the source account from horizon to be sure that we have the current sequence number.
+        self.startAnimating()
         sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
+            self.stopAnimating()
             switch response {
                 case .success(let accountResponse): // source account successfully loaded.
                     do {

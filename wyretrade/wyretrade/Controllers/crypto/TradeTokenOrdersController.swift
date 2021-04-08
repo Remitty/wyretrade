@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class TradeTokenOrdersController: UIViewController {
+class TradeTokenOrdersController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var orderTable: UITableView! {
         didSet {
@@ -31,8 +32,9 @@ class TradeTokenOrdersController: UIViewController {
     }
     
     func submitRemove(param: NSDictionary, index: Int) {
+        self.startAnimating()
         RequestHandler.xmtTradeCancel(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
         
             self.orderList.remove(at: index)
         

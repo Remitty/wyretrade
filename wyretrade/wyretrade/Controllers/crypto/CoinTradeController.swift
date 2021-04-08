@@ -10,8 +10,9 @@ import UIKit
 import MaterialComponents.MDCCard
 import SafariServices
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class CoinTradeController: UIViewController, IndicatorInfoProvider {
+class CoinTradeController: UIViewController, IndicatorInfoProvider, NVActivityIndicatorViewable {
     
     var itemInfo: IndicatorInfo = "Fiat payment"
     
@@ -147,7 +148,9 @@ extension CoinTradeController: CoinSelectControllerDelegate {
             "coin": param.id!,
             "symbol": param.symbol!
         ]
+        self.startAnimating()
         RequestHandler.coinDeposit(parameter: param1, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.address = dictionary["address"] as! String

@@ -7,8 +7,9 @@
 
 import Foundation
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class TokenBuyController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate {
+class TokenBuyController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate, NVActivityIndicatorViewable {
     var itemInfo: IndicatorInfo = "Buy"
     
     @IBOutlet weak var lbBTCBalance: UILabel!
@@ -93,8 +94,9 @@ class TokenBuyController: UIViewController, IndicatorInfoProvider, UITextFieldDe
     }
     
     func submitBuy(param: NSDictionary!) {
+        self.startAnimating()
         RequestHandler.xmtTrade(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
             self.showToast(message: "Request successfully")
                     }) { (error) in

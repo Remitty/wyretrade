@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class TradeTokenHistoryController: UIViewController {
+class TradeTokenHistoryController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var historyTable: UITableView!{
         didSet {
@@ -27,13 +28,19 @@ class TradeTokenHistoryController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.loadData()
     }
     
     func loadData() {
         let param : [String : Any] = ["pair": self.pair]
+        self.startAnimating()
                 RequestHandler.xmtTradeHistory(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
                     var history : TokenOrderModel!

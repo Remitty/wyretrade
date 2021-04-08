@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class PortfolioController: UIViewController {
+class PortfolioController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var lbBalance: UILabel!
     @IBOutlet weak var lbPortfolio: UILabel!
@@ -46,9 +47,10 @@ class PortfolioController: UIViewController {
     }
 
     func loadData() {
+        self.startAnimating()
         let param : [String : Any] = [:]
         RequestHandler.getInvestedStocks(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var stocks : StockPositionModel!

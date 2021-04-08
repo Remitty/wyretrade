@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class SwapController: UIViewController, UITextFieldDelegate {
+class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var txtSellAmount: UITextField! {
         didSet {
@@ -67,16 +68,21 @@ class SwapController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         txtSellAmount.addTarget(self, action: #selector(StocksBuyController.amountTextFieldDidChange), for: .editingChanged)
-        self.loadData()
+//        self.loadData()
 //        self.loadHistory()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
+    }
     
     
     func loadData() {
         let param : [String : Any] = [:]
+        self.startAnimating()
         RequestHandler.getCoinExchange(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var coin : CoinModel!
@@ -162,9 +168,9 @@ class SwapController: UIViewController, UITextFieldDelegate {
                 "receive_amount": self.receiveAmount
             ]
             
-//                    self.showLoader()
+                    self.startAnimating()
             RequestHandler.coinExchange(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
                 let dictionary = successResponse as! [String: Any]
                 
 //                var history : SwapModel!
@@ -192,9 +198,9 @@ class SwapController: UIViewController, UITextFieldDelegate {
     func getBuyCoins() {
         let param : [String : Any] = ["send_coin_id": self.sendCoin.id!]
         
-//                    self.showLoader()
+        self.startAnimating()
         RequestHandler.coinExchangeBuyAssets(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var coin : CoinModel!
@@ -219,9 +225,9 @@ class SwapController: UIViewController, UITextFieldDelegate {
     func getSellCoins() {
         let param : [String : Any] = [:]
         
-//                    self.showLoader()
+        self.startAnimating()
         RequestHandler.coinExchangeSendAssets(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var coin : CoinModel!
@@ -249,9 +255,9 @@ class SwapController: UIViewController, UITextFieldDelegate {
             "receiveCoin": self.receiveCoin.symbol!
         ]
         
-//                    self.showLoader()
+        self.startAnimating()
         RequestHandler.getCoinExchangeRate(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.rateModel = SwapRateModel(fromDictionary: dictionary["rate"] as! [String: Any])

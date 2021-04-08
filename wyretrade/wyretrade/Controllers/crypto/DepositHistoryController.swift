@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class DepositHistoryController: UIViewController {
+class DepositHistoryController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var historyTable: UITableView! {
         didSet {
@@ -39,8 +40,9 @@ class DepositHistoryController: UIViewController {
     
     func loadData() {
         let param : [String : Any] = [:]
+        self.startAnimating()
                 RequestHandler.getCoinDepositList(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
                     var history : CoinDepositModel!

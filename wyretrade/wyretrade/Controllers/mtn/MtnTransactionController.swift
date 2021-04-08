@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class MtnTransactionController: UIViewController {
+class MtnTransactionController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var historyTable: UITableView! {
         didSet {
@@ -26,23 +27,25 @@ class MtnTransactionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.loadData()
+//        self.loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
        self.navigationController?.isNavigationBarHidden = true
-       
+        self.loadData()
    }
 
    override func viewWillDisappear(_ animated: Bool) {
        super.viewWillDisappear(animated)
        self.navigationController?.isNavigationBarHidden = false
    }
+    
     func loadData() {
+        self.startAnimating()
             let param : [String : Any] = [:]
             RequestHandler.getMtnTransactions(parameter: param as NSDictionary, success: { (successResponse) in
-    //                        self.stopAnimating()
+                            self.stopAnimating()
                 let dictionary = successResponse as! [String: Any]
                 
                 var history : MtnModel!

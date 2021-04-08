@@ -10,7 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 import SlideMenuControllerSwift
 
-class SplashController: UIViewController {
+class SplashController: UIViewController, NVActivityIndicatorViewable {
     
     var window: UIWindow?
     
@@ -36,7 +36,7 @@ class SplashController: UIViewController {
     }
     
     func checkLogin() {
-
+        self.startAnimating()
         if defaults.bool(forKey: "isLogin") {
 //            self.appDelegate.moveToMain()
             var data = defaults.object(forKey: "userAuthData")
@@ -60,7 +60,7 @@ class SplashController: UIViewController {
     }
     
     func moveToMain() {
-
+        self.stopAnimating()
         let mainVC = storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
          let leftVC = storyboard?.instantiateViewController(withIdentifier: "LeftController") as! LeftController
 //         let navi : UINavigationController = UINavigationController(rootViewController: mainVC)
@@ -72,7 +72,7 @@ class SplashController: UIViewController {
     }
     
     func moveToLogin() {
-
+        self.stopAnimating()
         let loginVC = storyboard?.instantiateViewController(withIdentifier: "SigninController") as! SigninController
 //        let nav: UINavigationController = UINavigationController(rootViewController: loginVC)
 //        self.window?.rootViewController = nav
@@ -81,7 +81,7 @@ class SplashController: UIViewController {
     }
 
     func moveToCompleteProfile() {
-
+        self.stopAnimating()
         let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
 //        let nav: UINavigationController = UINavigationController(rootViewController: profileVC)
 //        self.window?.rootViewController = nav

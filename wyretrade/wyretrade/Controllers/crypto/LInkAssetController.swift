@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import NVActivityIndicatorView
 
-class LinkAssetController: UIViewController {
+class LinkAssetController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var assetTable: UITableView! {
         didSet {
@@ -27,13 +28,13 @@ class LinkAssetController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.dataLoad()
+//        self.dataLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
        self.navigationController?.isNavigationBarHidden = true
-       
+        self.dataLoad()
    }
 
    override func viewWillDisappear(_ animated: Bool) {
@@ -42,9 +43,10 @@ class LinkAssetController: UIViewController {
    }
     
     func dataLoad() {
+        self.startAnimating()
         let param : [String : Any] = ["id": self.accountId]
                 RequestHandler.getZaboAccountDetail(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
                     var asset : LinkAssetModel!
@@ -104,8 +106,9 @@ extension LinkAssetController: UITableViewDelegate, UITableViewDataSource {
 extension LinkAssetController: AssetViewParameterDelegate {
     
     func depositParamData(param: NSDictionary) {
-        print(param)
+        self.startAnimating()
         RequestHandler.createZaboDeposit(parameter: param, success: {(successResponse) in
+            self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var address = dictionary["address"] as! String
