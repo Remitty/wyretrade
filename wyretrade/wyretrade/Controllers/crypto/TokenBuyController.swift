@@ -100,6 +100,7 @@ class TokenBuyController: UIViewController, IndicatorInfoProvider, UITextFieldDe
                     let dictionary = successResponse as! [String: Any]
             self.showToast(message: "Request successfully")
                     }) { (error) in
+                        self.stopAnimating()
                         let alert = Alert.showBasicAlert(message: error.message)
                                 self.presentVC(alert)
                     }

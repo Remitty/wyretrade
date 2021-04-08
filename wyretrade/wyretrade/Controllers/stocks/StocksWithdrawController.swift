@@ -62,6 +62,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
             self.lbEstBalance.text = PriceFormat.init(amount: (dictionary["stock_balance"] as! NSString).doubleValue, currency: Currency.usd).description
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -93,6 +94,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
             
             self.showToast(message: dictionary["message"] as! String)
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }

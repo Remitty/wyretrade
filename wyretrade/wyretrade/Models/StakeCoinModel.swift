@@ -11,8 +11,11 @@ struct StakeCoinModel {
     var balance: String!
     var staking: String!
     var symbol: String!
+    var type: String!
     var icon: String!
     var id: String!
+    var rewardYearlyPercent: String!
+    var dailyReward: String!
     
     init(fromDictionary dictionary: [String: Any]) {
         
@@ -28,7 +31,20 @@ struct StakeCoinModel {
             staking = NumberFormat.init(value: dictionary["amount"] as! Double, decimal: 4).description
         }
         
+        if let yearly = (dictionary["stake_reward_yearly_percent"] as? NSString)?.doubleValue {
+            rewardYearlyPercent = NumberFormat.init(value: yearly, decimal: 4).description
+        } else {
+            rewardYearlyPercent = NumberFormat.init(value: dictionary["stake_reward_yearly_percent"] as! Double, decimal: 4).description
+        }
+        
+        if let daily = (dictionary["daily_reward"] as? NSString)?.doubleValue {
+            dailyReward = NumberFormat.init(value: daily, decimal: 4).description
+        } else {
+            dailyReward = NumberFormat.init(value: dictionary["daily_reward"] as! Double, decimal: 4).description
+        }
+        
         symbol = dictionary["symbol"] as? String
+        type = dictionary["type"] as? String
         icon = dictionary["icon"] as? String
         if !icon.starts(with: "http") {
             icon = Constants.URL.base + icon

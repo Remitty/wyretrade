@@ -122,6 +122,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                 
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
@@ -142,6 +143,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                 self.presentVC(alert)
             }
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
@@ -161,7 +163,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
         // load the source account from horizon to be sure that we have the current sequence number.
         self.startAnimating()
         sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
-            self.stopAnimating()
+            
             switch response {
                 case .success(let accountResponse): // source account successfully loaded.
                     do {
@@ -175,7 +177,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                                         timeBounds:nil)
 
                         // sign the transaction.
-                        try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
+                        try transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
 
                             // submit the transaction to the stellar network.
                         try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
@@ -185,15 +187,19 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                                     self.addTrustLine(keyPair: destinationKeyPair)
                                 case .failure(let error):
                                     StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create account error", horizonRequestError: error)
+                                    self.stopAnimating()
                                 default:
                                     print("stelalr depost no data")
                             }
                     }
                 } catch {
                     // ...
+                    print("stellar account create exception")
+                    self.stopAnimating()
                 }
             case .failure(let error): // error loading account details
                     StellarSDKLog.printHorizonRequestErrorMessage(tag:"Account detail Error:", horizonRequestError: error)
+                self.stopAnimating()
             }
         }
     }
@@ -224,7 +230,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
         // load the source account from horizon to be sure that we have the current sequence number.
         self.startAnimating()
         sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
-            self.stopAnimating()
+            
             switch response {
                 case .success(let accountResponse): // source account successfully loaded.
                     do {
@@ -238,7 +244,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                                         timeBounds:nil)
 
                         // sign the transaction.
-                        try! transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
+                        try transaction.sign(keyPair: sourceAccountKeyPair, network: .public)
 
                             // submit the transaction to the stellar network.
                         try sdk.transactions.submitTransaction(transaction: transaction) { (response) -> (Void) in
@@ -249,15 +255,19 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                                     self.submitUpdate(param: param)
                                 case .failure(let error):
                                     StellarSDKLog.printHorizonRequestErrorMessage(tag:"Create trustline error", horizonRequestError: error)
+                                    self.stopAnimating()
                                 default:
                                     print("stelalr trustline no data")
                             }
                     }
                 } catch {
                     // ...
+                    print("stellar create trustline exception")
+                    self.stopAnimating()
                 }
             case .failure(let error): // error loading account details
                     StellarSDKLog.printHorizonRequestErrorMessage(tag:"Account detail Error:", horizonRequestError: error)
+                self.stopAnimating()
             }
         }
     }

@@ -23,6 +23,8 @@ class StakeListController: UIViewController, NVActivityIndicatorViewable {
     }
     
     var coinList = [StakeCoinModel]()
+    var baseStellar: StellarAccount!
+    var userStellar: StellarAccount!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,9 @@ class StakeListController: UIViewController, NVActivityIndicatorViewable {
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
+            self.baseStellar = StellarAccount(fromDictionary: dictionary["base_stellar"] as! [String: Any])
+            self.userStellar = StellarAccount(fromDictionary: dictionary["user_stellar"] as! [String: Any])
+            
             var coin : StakeCoinModel!
             
             if let coinData = dictionary["stakes"] as? [[String:Any]] {
@@ -55,6 +60,7 @@ class StakeListController: UIViewController, NVActivityIndicatorViewable {
             }
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -68,20 +74,19 @@ extension StakeListController: UITableViewDelegate, UITableViewDataSource {
         return coinList.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         
         let item = coinList[indexPath.row]
         
-        let detailController = storyboard?.instantiateViewController(withIdentifier: "StakeController") as! StakeController
-        detailController.coinId = item.id
-        detailController.symbol = item.symbol
+        let vc = storyboard?.instantiateViewController(withIdentifier: "StakeController") as! StakeController
+        vc.coin = item
+        vc.baseStellar = self.baseStellar
+        vc.userStellar = self.userStellar
         
-        self.navigationController?.pushViewController(detailController, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
 
     }
 

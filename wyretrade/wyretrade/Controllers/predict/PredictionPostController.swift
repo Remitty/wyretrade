@@ -87,6 +87,7 @@ class PredictionPostController: UIViewController, UITextFieldDelegate, NVActivit
                     
             self.showToast(message: "Posted successfully")
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }

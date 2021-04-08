@@ -7,8 +7,9 @@
 
 import Foundation
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class StocksHistoryPagerVC: SegmentedPagerTabStripViewController {
+class StocksHistoryPagerVC: SegmentedPagerTabStripViewController, NVActivityIndicatorViewable {
     var isReload = false
     var orderList = [StocksOrderModel]()
     var historyList = [StocksOrderModel]()
@@ -42,8 +43,9 @@ class StocksHistoryPagerVC: SegmentedPagerTabStripViewController {
     
     func loadHistoryData() {
         let param : [String : Any] = [:]
+        self.startAnimating()
         RequestHandler.getAllOrderStocks(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var deposit : StocksOrderModel!
@@ -66,6 +68,7 @@ class StocksHistoryPagerVC: SegmentedPagerTabStripViewController {
             self.reloadPagerTabStripView()
    
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -107,6 +110,7 @@ class StocksHistoryPagerVC: SegmentedPagerTabStripViewController {
             self.reloadPagerTabStripView()
    
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }

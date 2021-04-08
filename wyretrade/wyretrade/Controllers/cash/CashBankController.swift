@@ -52,6 +52,7 @@ class CashBankController: UIViewController, NVActivityIndicatorViewable {
             self.showToast(message: "Removed successfully")
         
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
@@ -80,6 +81,7 @@ class CashBankController: UIViewController, NVActivityIndicatorViewable {
             self.showToast(message: "Added successfully")
         
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }

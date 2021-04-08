@@ -75,6 +75,7 @@ class ResetPasswordController: UIViewController, UITextFieldDelegate, NVActivity
                 self.navigationController?.pushViewController(confirmationVC, animated: true)
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }

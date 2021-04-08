@@ -88,6 +88,7 @@ class CashSendController: UIViewController, UITextFieldDelegate, NVActivityIndic
             
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
@@ -108,6 +109,7 @@ class CashSendController: UIViewController, UITextFieldDelegate, NVActivityIndic
             self.showToast(message: dictionary["message"] as! String)
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }

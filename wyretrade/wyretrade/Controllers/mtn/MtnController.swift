@@ -72,6 +72,7 @@ class MtnController: UIViewController, NVActivityIndicatorViewable {
                     self.transactionView.addSubview(cell)
                     
                     }) { (error) in
+                        self.stopAnimating()
                         let alert = Alert.showBasicAlert(message: error.message)
                                 self.presentVC(alert)
                     }
@@ -105,6 +106,7 @@ class MtnController: UIViewController, NVActivityIndicatorViewable {
             self.lbCurrency.text = dictionary["currency"] as! String
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -138,6 +140,7 @@ class MtnController: UIViewController, NVActivityIndicatorViewable {
             self.lbCurrency.text = dictionary["currency"] as! String
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -171,6 +174,7 @@ class MtnController: UIViewController, NVActivityIndicatorViewable {
             self.lbCurrency.text = dictionary["currency"] as! String
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }

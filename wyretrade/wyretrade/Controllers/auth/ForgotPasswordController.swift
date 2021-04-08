@@ -71,6 +71,7 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate, NVActivit
             
            
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }

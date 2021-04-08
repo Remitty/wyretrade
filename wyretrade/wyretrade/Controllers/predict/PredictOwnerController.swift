@@ -44,6 +44,7 @@ class PredictOwnerController: UIViewController, IndicatorInfoProvider, NVActivit
             self.showToast(message: "Cancelled successfully")
                     
                     }) { (error) in
+                        self.stopAnimating()
                         let alert = Alert.showBasicAlert(message: error.message)
                                 self.presentVC(alert)
                     }    }

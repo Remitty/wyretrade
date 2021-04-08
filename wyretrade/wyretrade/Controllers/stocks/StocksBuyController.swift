@@ -192,6 +192,7 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
             
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
@@ -213,6 +214,7 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
             
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }

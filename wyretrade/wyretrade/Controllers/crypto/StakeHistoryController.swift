@@ -1,4 +1,12 @@
 //
+//  StakeHistoryController.swift
+//  wyretrade
+//
+//  Created by brian on 4/8/21.
+//
+
+import Foundation
+//
 //  DepositHistoryController.swift
 //  wyretrade
 //
@@ -9,7 +17,7 @@ import Foundation
 import UIKit
 import NVActivityIndicatorView
 
-class DepositHistoryController: UIViewController, NVActivityIndicatorViewable {
+class StakeHistoryController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var historyTable: UITableView! {
         didSet {
@@ -18,11 +26,12 @@ class DepositHistoryController: UIViewController, NVActivityIndicatorViewable {
             historyTable.showsVerticalScrollIndicator = false
             historyTable.separatorColor = UIColor.darkGray
             historyTable.separatorStyle = .singleLineEtched
-            historyTable.register(UINib(nibName: "CoinDepositItem", bundle: nil), forCellReuseIdentifier: "CoinDepositItem")
+            historyTable.register(UINib(nibName: "StakeItem", bundle: nil), forCellReuseIdentifier: "StakeItem")
         }
     }
     
-    var historyList = [CoinDepositModel]()
+    var historyList = [StakeModel]()
+    var coin: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,18 +48,18 @@ class DepositHistoryController: UIViewController, NVActivityIndicatorViewable {
     }
     
     func loadData() {
-        let param : [String : Any] = [:]
+        let param : [String : Any] = ["coin": self.coin!]
         self.startAnimating()
-                RequestHandler.getCoinDepositList(parameter: param as NSDictionary, success: { (successResponse) in
+                RequestHandler.getStakeHistory(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
-                    var history : CoinDepositModel!
+                    var history : StakeModel!
                     
-                    if let historyData = dictionary["data"] as? [[String:Any]] {
-                        self.historyList = [CoinDepositModel]()
+                    if let historyData = dictionary["history"] as? [[String:Any]] {
+                        self.historyList = [StakeModel]()
                         for item in historyData {
-                            history = CoinDepositModel(fromDictionary: item)
+                            history = StakeModel(fromDictionary: item)
                             self.historyList.append(history)
                         }
                         self.historyTable.reloadData()
@@ -60,6 +69,7 @@ class DepositHistoryController: UIViewController, NVActivityIndicatorViewable {
                     
                     }) { (error) in
                         self.stopAnimating()
+                        self.stopAnimating()
                         let alert = Alert.showBasicAlert(message: error.message)
                                 self.presentVC(alert)
                     }
@@ -67,17 +77,17 @@ class DepositHistoryController: UIViewController, NVActivityIndicatorViewable {
 
 
 }
-extension DepositHistoryController: UITableViewDelegate, UITableViewDataSource {
+extension StakeHistoryController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return historyList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CoinDepositItem = tableView.dequeueReusableCell(withIdentifier: "CoinDepositItem", for: indexPath) as! CoinDepositItem
+        let cell: StakeItem = tableView.dequeueReusableCell(withIdentifier: "StakeItem", for: indexPath) as! StakeItem
         let item = historyList[indexPath.row]
-        cell.imgIcon.load(url: URL(string: item.icon)!)
-        cell.lbSymbol.text = item.symbol
-        cell.lbAmount.text = item.amount
+        cell.lbActivity.text = item.type
+        cell.lbToken.text = item.token
+        cell.lbQty.text = item.qty
         cell.lbDate.text = item.date
         
         return cell

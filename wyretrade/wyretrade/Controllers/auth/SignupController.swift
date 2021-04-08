@@ -121,6 +121,7 @@ class SignupController: UIViewController, UITextFieldDelegate, NVActivityIndicat
                 self.presentVC(alert)
             }
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }

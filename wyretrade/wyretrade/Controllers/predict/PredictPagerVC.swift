@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class PredictPagerVC: SegmentedPagerTabStripViewController {
+class PredictPagerVC: SegmentedPagerTabStripViewController, NVActivityIndicatorViewable {
     var isReload = false
     var newList = [PredictionModel]()
     var ownerList = [PredictionModel]()
@@ -92,8 +93,9 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
     
     func looadData() {
         let param : [String : Any] = [:]
+        self.startAnimating()
         RequestHandler.getPredictionList(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var predict : PredictionModel!
@@ -130,14 +132,16 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
             self.reloadPagerTabStripView()
    
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
     }
     
     func loadPredictable(param: NSDictionary) {
+        self.startAnimating()
         RequestHandler.getPredictableList(parameter: param as NSDictionary, success: { (successResponse) in
-        //                        self.stopAnimating()
+                                self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var asset : PredictAssetModel!
@@ -172,6 +176,7 @@ class PredictPagerVC: SegmentedPagerTabStripViewController {
             
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }

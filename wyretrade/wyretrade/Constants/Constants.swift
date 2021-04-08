@@ -83,6 +83,7 @@ class Constants {
 
              static  let GET_STAKE_BALANCE = REDIRECT_URL + "stake/balance";
              static  let GET_STAKE_LIST = REDIRECT_URL + "stake/list";
+             static  let GET_STAKE_HISTORY = REDIRECT_URL + "stake/history";
              static  let REQUEST_STAKE = REDIRECT_URL + "stake";
              static  let REQUEST_STAKE_RELEASE = REDIRECT_URL + "stake/release";
 

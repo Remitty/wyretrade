@@ -68,6 +68,7 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
             self.balance.text = NumberFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -94,6 +95,7 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
         
         }) {
             (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }

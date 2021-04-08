@@ -308,6 +308,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
                     
                     NotificationCenter.default.post(name: .didUpdateBalance, object: data)
                     }) { (error) in
+                        self.stopAnimating()
                         let alert = Alert.showBasicAlert(message: error.message)
                                 self.presentVC(alert)
                     }
@@ -332,6 +333,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
                     
                     
                     }) { (error) in
+                        self.stopAnimating()
                         let alert = Alert.showBasicAlert(message: error.message)
                                 self.presentVC(alert)
                     }
@@ -344,6 +346,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
                     let dictionary = successResponse as! [String: Any]
             self.showToast(message: "Request successfully")
                     }) { (error) in
+                        self.stopAnimating()
                         let alert = Alert.showBasicAlert(message: error.message)
                                 self.presentVC(alert)
                     }

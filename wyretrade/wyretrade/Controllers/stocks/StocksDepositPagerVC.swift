@@ -7,8 +7,9 @@
 
 import Foundation
 import XLPagerTabStrip
+import NVActivityIndicatorView
 
-class StocksDepositPagerVC: SegmentedPagerTabStripViewController {
+class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndicatorViewable {
     var isReload = false
     var depositFromBankList = [StocksDepositModel]()
     var depositFromCoinList = [StocksDepositModel]()
@@ -60,8 +61,9 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController {
     
     func looadData() {
         let param : [String : Any] = [:]
+        self.startAnimating()
         RequestHandler.getUserBalance(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var deposit : StocksDepositModel!
@@ -96,6 +98,7 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController {
             self.reloadPagerTabStripView()
    
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }

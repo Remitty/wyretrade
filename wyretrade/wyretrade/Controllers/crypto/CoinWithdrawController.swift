@@ -106,6 +106,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
                 }
                 
                 }) { (error) in
+                        self.stopAnimating()
                     let alert = Alert.showBasicAlert(message: error.message)
                             self.presentVC(alert)
                 }
@@ -148,6 +149,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -222,7 +224,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
         let destinationAccountKeyPair = keyPair
         self.startAnimating()
         sdk.accounts.getAccountDetails(accountId: sourceAccountKeyPair.accountId) { (response) -> (Void) in
-            self.stopAnimating()
+            
             switch response {
                 case .success(let accountResponse):
                     
@@ -264,16 +266,19 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
                             self.submitWithdraw(param: param)
                         case .failure(let error):
                             StellarSDKLog.printHorizonRequestErrorMessage(tag:"stellar withdraw fail", horizonRequestError:error)
+                            self.stopAnimating()
                         default:
                             print("stellar withdraw no data")
                         }
                     }
                 } catch {
-                    print("here catch")
+                    print("stellarwithdraw catch")
+                    self.stopAnimating()
                     //...
                 }
                 case .failure(let error):
                     StellarSDKLog.printHorizonRequestErrorMessage(tag:"SRP Test", horizonRequestError:error)
+                    self.stopAnimating()
             }
         }
     }
@@ -342,6 +347,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             }
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }

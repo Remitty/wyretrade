@@ -59,6 +59,7 @@ class ChangePasswordController: UIViewController, UITextFieldDelegate, NVActivit
             self.showToast(message: "Changed successfully")
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }

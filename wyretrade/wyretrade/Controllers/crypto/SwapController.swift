@@ -113,6 +113,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             self.displayExchangeRate()
             
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -152,6 +153,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
 //
 //
 //            }) { (error) in
+//                        self.stopAnimating()
 //                let alert = Alert.showBasicAlert(message: error.message)
 //                        self.presentVC(alert)
 //            }
@@ -189,6 +191,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
 //                    self.historyTable.reloadData()
 //                }
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -217,6 +220,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
 //                self.navigationController?.pushViewController(detailController, animated: true)
 //            }
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
@@ -244,6 +248,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
 //                self.navigationController?.pushViewController(detailController, animated: true)
             }
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }
@@ -266,6 +271,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             self.displayExchangeRate()
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }

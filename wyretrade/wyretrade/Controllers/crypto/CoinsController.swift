@@ -98,6 +98,7 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             }
                 
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
@@ -126,6 +127,7 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             
         }) {
             (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
@@ -155,6 +157,7 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             
         }) {
             (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
@@ -178,6 +181,7 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             
         }) {
             (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
@@ -328,6 +332,7 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             print("deposited \(param["amount"]!) \(param["coin"]!)")
         }) {
             (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
@@ -345,6 +350,7 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             
         }) {
             (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }

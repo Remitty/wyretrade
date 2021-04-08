@@ -138,6 +138,7 @@ class StocksReplaceController: UIViewController, NVActivityIndicatorViewable {
 //            self.companyView.lbDate.text = self.company.site
             
         }) { (error) in
+                        self.stopAnimating()
             let alert = Alert.showBasicAlert(message: error.message)
                     self.presentVC(alert)
         }

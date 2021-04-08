@@ -25,6 +25,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -42,6 +43,7 @@ class RequestHandler {
             }
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -53,6 +55,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -64,6 +67,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -75,6 +79,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -86,6 +91,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -104,6 +110,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -114,6 +121,7 @@ class RequestHandler {
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -124,6 +132,7 @@ class RequestHandler {
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -135,6 +144,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -146,6 +156,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -157,6 +168,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -168,6 +180,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -179,6 +192,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -190,6 +204,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                    
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -201,6 +216,7 @@ class RequestHandler {
            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -212,6 +228,7 @@ class RequestHandler {
            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -223,6 +240,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -234,6 +252,7 @@ class RequestHandler {
            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -249,6 +268,7 @@ class RequestHandler {
             // let objRegister = Any?(fromDictionary: dictionary)
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -264,6 +284,7 @@ class RequestHandler {
             // let objRegister = Any?(fromDictionary: dictionary)
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -279,6 +300,7 @@ class RequestHandler {
             // let objRegister = Any?(fromDictionary: dictionary)
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -294,6 +316,7 @@ class RequestHandler {
             // let objRegister = Any?(fromDictionary: dictionary)
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -302,13 +325,10 @@ class RequestHandler {
         let url = Constants.URL.COIN_REALEXCHANGE_LIST
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -317,13 +337,10 @@ class RequestHandler {
         let url = Constants.URL.COIN_REALEXCHANGE_DATA
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -332,13 +349,10 @@ class RequestHandler {
         let url = Constants.URL.COIN_REALEXCHANGE_HISTORY_DATA
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -347,13 +361,10 @@ class RequestHandler {
         let url = Constants.URL.COIN_REALEXCHANGE_CANCEL
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -362,13 +373,10 @@ class RequestHandler {
         let url = Constants.URL.GET_USDC_BALANCE
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -377,13 +385,10 @@ class RequestHandler {
         let url = Constants.URL.TRANSFER_COIN
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
-            // let dictionary = successResponse as! [String: Any]
-            // let data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
-            // UserDefaults.standard.set(data, forKey: "userData")
-            // UserDefaults.standard.synchronize()
-            // let objRegister = Any?(fromDictionary: dictionary)
+            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -394,6 +399,7 @@ class RequestHandler {
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -404,6 +410,7 @@ class RequestHandler {
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -414,6 +421,7 @@ class RequestHandler {
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -425,6 +433,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -436,6 +445,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -447,6 +457,19 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
+    
+    class func getStakeHistory(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.GET_STAKE_HISTORY
+        print(url)
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            
+            success(successResponse)
+        }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -458,6 +481,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -469,6 +493,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -480,6 +505,7 @@ class RequestHandler {
            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -491,6 +517,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -502,6 +529,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -513,6 +541,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -524,6 +553,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -535,6 +565,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -546,6 +577,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -557,6 +589,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -568,6 +601,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -579,6 +613,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -590,6 +625,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -601,6 +637,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -612,6 +649,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -623,6 +661,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -634,6 +673,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -645,6 +685,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -656,6 +697,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -667,6 +709,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -678,6 +721,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -689,6 +733,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -700,6 +745,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -711,6 +757,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -722,6 +769,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -733,6 +781,7 @@ class RequestHandler {
            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -744,6 +793,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -755,6 +805,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -766,6 +817,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -777,6 +829,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -788,6 +841,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -799,6 +853,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -810,6 +865,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -821,6 +877,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -832,6 +889,7 @@ class RequestHandler {
            
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -843,6 +901,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -854,6 +913,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -865,6 +925,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
@@ -876,6 +937,7 @@ class RequestHandler {
             
             success(successResponse)
         }) { (error) in
+                        
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }

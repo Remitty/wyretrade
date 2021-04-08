@@ -65,6 +65,7 @@ class StocksController: UIViewController, UISearchBarDelegate, NVActivityIndicat
             
                 
             }) { (error) in
+                        self.stopAnimating()
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }

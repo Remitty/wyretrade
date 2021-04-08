@@ -61,6 +61,7 @@ class MtnTransactionController: UIViewController, NVActivityIndicatorViewable {
                         
                 
                 }) { (error) in
+                        self.stopAnimating()
                     let alert = Alert.showBasicAlert(message: error.message)
                             self.presentVC(alert)
                 }
