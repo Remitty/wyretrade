@@ -14,8 +14,6 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
     
     var window: UIWindow?
     
-    
-    
     var defaults = UserDefaults.standard
 
     override func viewDidLoad() {
@@ -39,10 +37,10 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
         self.startAnimating()
         if defaults.bool(forKey: "isLogin") {
 //            self.appDelegate.moveToMain()
-            var data = defaults.object(forKey: "userAuthData")
+            let data = defaults.object(forKey: "userAuthData")
             let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
             let userAuth = UserAuthModel(fromDictionary: objUser)
-            guard let token = userAuth.access_token else {
+            guard let token = defaults.object(forKey: "access_token") as? String else {
                 self.moveToLogin()
                 return
             }

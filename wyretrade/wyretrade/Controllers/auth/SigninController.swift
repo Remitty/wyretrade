@@ -78,16 +78,20 @@ class SigninController: UIViewController, UITextFieldDelegate, NVActivityIndicat
                         
                         user = UserAuthModel(fromDictionary: userData)
                     }
-                    if user.isCompleteProfile == false {
-                        let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
-                        self.navigationController?.pushViewController(completeVC, animated: true)
-                    } else {
-                        self.defaults.set(true, forKey: "isLogin")
-                        self.defaults.synchronize()
-                        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
-                        self.navigationController?.pushViewController(mainVC, animated: true)
-                        // self.appDelegate.moveToHome()
-                    }
+//                    if user.isCompleteProfile == false {
+//                        let completeVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
+//                        self.navigationController?.pushViewController(completeVC, animated: true)
+//                    } else {
+//                        self.defaults.set(true, forKey: "isLogin")
+//                        self.defaults.synchronize()
+//                        let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainController") as! MainController
+//                        self.navigationController?.pushViewController(mainVC, animated: true)
+//                        // self.appDelegate.moveToHome()
+//                    }
+                    self.defaults.set(true, forKey: "isLogin")
+                    self.defaults.synchronize()
+                    let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "SplashController") as! SplashController
+                    self.navigationController?.pushViewController(mainVC, animated: true)
                 } else {
                     let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
                     self.presentVC(alert)

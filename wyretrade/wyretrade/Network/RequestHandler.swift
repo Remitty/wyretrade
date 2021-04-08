@@ -17,7 +17,8 @@ class RequestHandler {
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth: false, success: { (successResponse) in
             let dictionary = successResponse as! [String: Any]
             if let userData = dictionary["user"] as? [String:Any] {
-                
+                let accessToken = userData["access_token"] as! String
+                UserDefaults.standard.set(accessToken, forKey: "access_token")
                 let data = NSKeyedArchiver.archivedData(withRootObject: userData)
                 UserDefaults.standard.set(data, forKey: "userAuthData")
                 UserDefaults.standard.synchronize()
@@ -36,7 +37,8 @@ class RequestHandler {
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:false, success: { (successResponse) in
             let dictionary = successResponse as! [String: Any]
             if let userData = dictionary["data"] as? [String:Any] {
-                
+                let accessToken = userData["access_token"] as! String
+                UserDefaults.standard.set(accessToken, forKey: "access_token")
                 let data = NSKeyedArchiver.archivedData(withRootObject: userData)
                 UserDefaults.standard.set(data, forKey: "userAuthData")
                 UserDefaults.standard.synchronize()

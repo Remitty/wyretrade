@@ -113,7 +113,10 @@ class SignupController: UIViewController, UITextFieldDelegate, NVActivityIndicat
                 
                     self.defaults.set(true, forKey: "isLogin")
                     self.defaults.synchronize()
-                    self.moveToCompleteProfile()
+//                    self.moveToCompleteProfile()
+                
+                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "SplashController") as! SplashController
+                self.navigationController?.pushViewController(mainVC, animated: true)
                 
             }
             else {

@@ -2191,7 +2191,7 @@
         <!--Splash Controller-->
         <scene sceneID="jcQ-Ln-2ps">
             <objects>
-                <viewController id="5BZ-7H-y0l" customClass="SplashController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashController" id="5BZ-7H-y0l" customClass="SplashController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pmb-hX-8B0">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

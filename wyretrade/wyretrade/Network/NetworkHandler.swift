@@ -16,10 +16,8 @@ class NetworkHandler {
             var headers: HTTPHeaders
             if isAuth {
                 
-                let data = UserDefaults.standard.object(forKey: "userAuthData")
-                let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
-                let userAuth = UserAuthModel(fromDictionary: objUser)
-                var userAuthToken = userAuth.access_token!
+                let userAuthToken = UserDefaults.standard.object(forKey: "access_token") as! String
+                
                 headers = [
                 "Accept": "application/json",
                 "Authorization": "Bearer \(userAuthToken)"
@@ -120,13 +118,10 @@ class NetworkHandler {
         
        var headers: HTTPHeaders
         if isAuth {
-            let data = UserDefaults.standard.object(forKey: "userAuthData")
-            let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
-            let userAuth = UserAuthModel(fromDictionary: objUser)
-            let userAuthToken = userAuth.access_token
+            let userAuthToken = UserDefaults.standard.object(forKey: "access_token") as! String
             headers = [
                 "Accept": "application/json",
-                "Authorization": "Bearer \(userAuthToken!)",
+                "Authorization": "Bearer \(userAuthToken)",
                 ]
             } else {
 
