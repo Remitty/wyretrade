@@ -28,5 +28,7 @@ target 'wyretrade' do
   pod 'MaterialComponents/Collections'
   pod 'MaterialComponents/Cards'
   pod 'MaterialComponents/NavigationDrawer'
+  
+  pod 'Firebase/Auth'
     
 end
