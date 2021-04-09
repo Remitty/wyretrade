@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PopupDialog
 import SafariServices
 import stellarsdk
 import NVActivityIndicatorView

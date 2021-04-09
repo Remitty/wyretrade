@@ -13,21 +13,22 @@ target 'wyretrade' do
     pod 'SlideMenuControllerSwift', :git => 'https://github.com/AtomicSLLC/SlideMenuControllerSwift.git', :branch => 'swift5'
     pod 'UITextField+Shake'
     pod 'XLPagerTabStrip', '~> 9.0'
-    pod 'PopupDialog', '~> 1.1'
+
     pod 'DLRadioButton', '~> 1.4'
     pod 'AnyChartiOS', '~> 1.0.3'
     pod 'DropDown'
     pod 'RadioGroup'
     pod 'stellar-ios-mac-sdk', '~> 1.8.5'
+    pod 'PhoneNumberKit'
+    pod 'FlagPhoneNumber'
+    pod 'SwiftyCodeView/RxSwift'
     
     pod 'DeviceKit'
     
 # Pods for MDC-Tutorial
-  pod 'MaterialComponents/AppBar+Theming'
-  pod 'MaterialComponents/Buttons'
-  pod 'MaterialComponents/Collections'
+  
   pod 'MaterialComponents/Cards'
-  pod 'MaterialComponents/NavigationDrawer'
+  
   
   pod 'Firebase/Auth'
     

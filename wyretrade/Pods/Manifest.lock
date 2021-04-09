@@ -4,7 +4,6 @@ PODS:
   - DeviceKit (4.3.0)
   - DLRadioButton (1.4.12)
   - DropDown (2.3.13)
-  - DynamicBlurView (4.1.0)
   - Firebase/Auth (7.10.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 7.10.0)
@@ -24,6 +23,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30908.0)
+  - FlagPhoneNumber (0.8.0):
+    - FlagPhoneNumber/libPhoneNumberiOS (= 0.8.0)
+  - FlagPhoneNumber/libPhoneNumberiOS (0.8.0)
   - GoogleDataTransport (8.4.0):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
@@ -45,37 +47,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
   - MaterialComponents/AnimationTiming (124.1.1)
-  - MaterialComponents/AppBar (124.1.1):
-    - MaterialComponents/FlexibleHeader
-    - MaterialComponents/HeaderStackView
-    - MaterialComponents/NavigationBar
-    - MaterialComponents/private/Application
-    - MaterialComponents/private/Icons/ic_arrow_back
-    - MaterialComponents/private/UIMetrics
-    - MaterialComponents/ShadowElevations
-    - MaterialComponents/ShadowLayer
-    - MaterialComponents/Typography
-    - MDFInternationalization
-  - "MaterialComponents/AppBar+Theming (124.1.1)":
-    - MaterialComponents/AppBar
-    - MaterialComponents/schemes/Container
   - MaterialComponents/Availability (124.1.1)
-  - MaterialComponents/ButtonBar (124.1.1):
-    - MaterialComponents/Buttons
-    - MaterialComponents/private/Application
-    - MDFInternationalization
-  - MaterialComponents/Buttons (124.1.1):
-    - MaterialComponents/Elevation
-    - MaterialComponents/Ink
-    - MaterialComponents/private/Math
-    - MaterialComponents/Ripple
-    - MaterialComponents/ShadowElevations
-    - MaterialComponents/ShadowLayer
-    - MaterialComponents/ShapeLibrary
-    - MaterialComponents/Shapes
-    - MaterialComponents/Typography
-    - MDFInternationalization
-    - MDFTextAccessibility
   - MaterialComponents/Cards (124.1.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
@@ -84,126 +56,32 @@ PODS:
     - MaterialComponents/Ripple
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Shapes
-  - MaterialComponents/CollectionCells (124.1.1):
-    - MaterialComponents/CollectionLayoutAttributes
-    - MaterialComponents/Ink
-    - MaterialComponents/Palettes
-    - MaterialComponents/private/Icons/ic_check
-    - MaterialComponents/private/Icons/ic_check_circle
-    - MaterialComponents/private/Icons/ic_chevron_right
-    - MaterialComponents/private/Icons/ic_info
-    - MaterialComponents/private/Icons/ic_radio_button_unchecked
-    - MaterialComponents/private/Icons/ic_reorder
-    - MaterialComponents/private/Math
-    - MaterialComponents/Ripple
-    - MaterialComponents/Typography
-    - MDFInternationalization
-  - MaterialComponents/CollectionLayoutAttributes (124.1.1)
-  - MaterialComponents/Collections (124.1.1):
-    - MaterialComponents/Availability
-    - MaterialComponents/CollectionCells
-    - MaterialComponents/CollectionLayoutAttributes
-    - MaterialComponents/Ink
-    - MaterialComponents/Palettes
-    - MaterialComponents/Ripple
-    - MaterialComponents/ShadowElevations
-    - MaterialComponents/ShadowLayer
-    - MaterialComponents/Typography
   - MaterialComponents/Elevation (124.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/FlexibleHeader (124.1.1):
-    - MaterialComponents/Availability
-    - MaterialComponents/Elevation
-    - "MaterialComponents/FlexibleHeader+ShiftBehavior"
-    - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar"
-    - MaterialComponents/private/Application
-    - MaterialComponents/private/Math
-    - MaterialComponents/private/UIMetrics
-    - MaterialComponents/ShadowElevations
-    - MaterialComponents/ShadowLayer
-    - MDFTextAccessibility
-  - "MaterialComponents/FlexibleHeader+ShiftBehavior (124.1.1)"
-  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (124.1.1)":
-    - "MaterialComponents/FlexibleHeader+ShiftBehavior"
-  - MaterialComponents/HeaderStackView (124.1.1)
   - MaterialComponents/Ink (124.1.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/NavigationBar (124.1.1):
-    - MaterialComponents/ButtonBar
-    - MaterialComponents/Elevation
-    - MaterialComponents/private/Math
-    - MaterialComponents/Typography
-    - MDFInternationalization
-    - MDFTextAccessibility
-  - MaterialComponents/NavigationDrawer (124.1.1):
-    - MaterialComponents/Elevation
-    - MaterialComponents/Palettes
-    - MaterialComponents/private/Math
-    - MaterialComponents/private/UIMetrics
-    - MaterialComponents/ShadowLayer
-  - MaterialComponents/Palettes (124.1.1)
-  - MaterialComponents/private/Application (124.1.1)
   - MaterialComponents/private/Color (124.1.1):
     - MaterialComponents/Availability
   - MaterialComponents/private/Icons/Base (124.1.1)
-  - MaterialComponents/private/Icons/ic_arrow_back (124.1.1):
-    - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_check (124.1.1):
-    - MaterialComponents/private/Icons/Base
   - MaterialComponents/private/Icons/ic_check_circle (124.1.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_chevron_right (124.1.1):
-    - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_info (124.1.1):
-    - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_radio_button_unchecked (124.1.1):
-    - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Icons/ic_reorder (124.1.1):
-    - MaterialComponents/private/Icons/Base
   - MaterialComponents/private/Math (124.1.1)
-  - MaterialComponents/private/UIMetrics (124.1.1):
-    - MaterialComponents/private/Application
   - MaterialComponents/Ripple (124.1.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/schemes/Color (124.1.1):
-    - MaterialComponents/Availability
-    - MaterialComponents/private/Color
-  - MaterialComponents/schemes/Container (124.1.1):
-    - MaterialComponents/schemes/Color
-    - MaterialComponents/schemes/Shape
-    - MaterialComponents/schemes/Typography
-  - MaterialComponents/schemes/Shape (124.1.1):
-    - MaterialComponents/ShapeLibrary
-    - MaterialComponents/Shapes
-  - MaterialComponents/schemes/Typography (124.1.1):
-    - "MaterialComponents/schemes/Typography+BasicFontScheme"
-    - "MaterialComponents/schemes/Typography+Scheming"
-    - MaterialComponents/Typography
-  - "MaterialComponents/schemes/Typography+BasicFontScheme (124.1.1)"
-  - "MaterialComponents/schemes/Typography+Scheming (124.1.1)"
   - MaterialComponents/ShadowElevations (124.1.1)
   - MaterialComponents/ShadowLayer (124.1.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (124.1.1):
-    - MaterialComponents/private/Math
-    - MaterialComponents/Shapes
   - MaterialComponents/Shapes (124.1.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (124.1.1):
-    - MaterialComponents/private/Application
-    - MaterialComponents/private/Math
-    - MDFTextAccessibility
-  - MDFInternationalization (2.0.0)
-  - MDFTextAccessibility (2.0.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -212,14 +90,29 @@ PODS:
   - NVActivityIndicatorView/Base (5.1.1)
   - NVActivityIndicatorView/Extended (5.1.1):
     - NVActivityIndicatorView/Base
-  - PopupDialog (1.1.1):
-    - DynamicBlurView (~> 4.0)
+  - PhoneNumberKit (3.3.3):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.3.3)
+    - PhoneNumberKit/UIKit (= 3.3.3)
+  - PhoneNumberKit/PhoneNumberKitCore (3.3.3)
+  - PhoneNumberKit/UIKit (3.3.3):
+    - PhoneNumberKit/PhoneNumberKitCore
   - PromisesObjC (1.2.12)
   - RadioGroup (1.4.3):
     - SweeterSwift
+  - RxCocoa (6.1.0):
+    - RxRelay (= 6.1.0)
+    - RxSwift (= 6.1.0)
+  - RxRelay (6.1.0):
+    - RxSwift (= 6.1.0)
+  - RxSwift (6.1.0)
   - SlideMenuControllerSwift (5.0.0)
   - stellar-ios-mac-sdk (1.8.6)
   - SweeterSwift (1.1.4)
+  - SwiftyCodeView/Core (0.3.6)
+  - SwiftyCodeView/RxSwift (0.3.6):
+    - RxCocoa
+    - RxSwift
+    - SwiftyCodeView/Core
   - "UITextField+Shake (1.2.1)"
   - XLPagerTabStrip (9.0.0)
 
@@ -230,16 +123,14 @@ DEPENDENCIES:
   - DLRadioButton (~> 1.4)
   - DropDown
   - Firebase/Auth
-  - "MaterialComponents/AppBar+Theming"
-  - MaterialComponents/Buttons
+  - FlagPhoneNumber
   - MaterialComponents/Cards
-  - MaterialComponents/Collections
-  - MaterialComponents/NavigationDrawer
   - NVActivityIndicatorView/Extended
-  - PopupDialog (~> 1.1)
+  - PhoneNumberKit
   - RadioGroup
   - SlideMenuControllerSwift (from `https://github.com/AtomicSLLC/SlideMenuControllerSwift.git`, branch `swift5`)
   - stellar-ios-mac-sdk (~> 1.8.5)
+  - SwiftyCodeView/RxSwift
   - "UITextField+Shake"
   - XLPagerTabStrip (~> 9.0)
 
@@ -250,24 +141,26 @@ SPEC REPOS:
     - DeviceKit
     - DLRadioButton
     - DropDown
-    - DynamicBlurView
     - Firebase
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FlagPhoneNumber
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
     - MaterialComponents
-    - MDFInternationalization
-    - MDFTextAccessibility
     - nanopb
     - NVActivityIndicatorView
-    - PopupDialog
+    - PhoneNumberKit
     - PromisesObjC
     - RadioGroup
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - stellar-ios-mac-sdk
     - SweeterSwift
+    - SwiftyCodeView
     - "UITextField+Shake"
     - XLPagerTabStrip
 
@@ -287,28 +180,30 @@ SPEC CHECKSUMS:
   DeviceKit: 7decde449c308ac7e816e2184ded1c7c596fb885
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
-  DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   Firebase: fffddd0bab8677d07376538365faa93ff3889b39
   FirebaseAuth: 675f2c4eb4426e7c58a78a89965a6530e7863535
   FirebaseCore: ec566d917b2195fc2610aeb148dae99f57a788f9
   FirebaseCoreDiagnostics: 5662a3823ffcc0acbaa9a21ba5ed302fac634705
+  FlagPhoneNumber: 3712455b95f66cb0f2016fef7d9e34cddf8c7f9a
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   MaterialComponents: b9f58f24bf74588a83b2dce05802a11aaed5257d
-  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
-  MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
-  PopupDialog: 720c92befd8bc23c13442254945213db5612f149
+  PhoneNumberKit: 4ce83273551c4d2ae10b7361162f4283dd02835f
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RadioGroup: 7015c71759c90dbaae7050f33cfbc1de780e27a7
+  RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
+  RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
+  RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
   SlideMenuControllerSwift: d740ea24105a658fe6a8c256f2bf5832fee7c047
   stellar-ios-mac-sdk: dafb41d4c16e928dd846729bb7ed222955dc7b2c
   SweeterSwift: 8a90cf3156f5a1b6f39785c479369a16633b5ea9
+  SwiftyCodeView: 0252e3520749a3fda1a9b141873401f8e6c570ad
   "UITextField+Shake": 298ac5a0f239d731bdab999b19b628c956ca0ac3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: a5b504c55120bca5f7eb4a138c316551d3216ca9
+PODFILE CHECKSUM: a9da8cd8b677b7876cc090a88b958210ebb4558a
 
 COCOAPODS: 1.10.1

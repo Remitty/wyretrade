@@ -119,11 +119,15 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NewsView = tableView.dequeueReusableCell(withIdentifier: "NewsView", for: indexPath) as! NewsView
+        
         let news = newsList[indexPath.row]
         cell.title.text = news.title
         cell.summary.text = news.description
         cell.date.text = news.date
-        cell.logo.load(url: URL(string:news.image)!)
+        if let image = news.image{
+            cell.logo.load(url: URL(string:image)!)
+        }
+        
         
         return cell
     }
