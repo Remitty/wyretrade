@@ -61,6 +61,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
     
     var sellAmount = 0.1
     var receiveAmount = 0.0
+    var fee = 0.0
     var selectedType = "buy"
     
     override func viewDidLoad() {
@@ -68,13 +69,13 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
         // Do any additional setup after loading the view.
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         txtSellAmount.addTarget(self, action: #selector(StocksBuyController.amountTextFieldDidChange), for: .editingChanged)
-//        self.loadData()
+        self.loadData()
 //        self.loadHistory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.loadData()
+//        self.loadData()
     }
     
     
@@ -92,9 +93,9 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
                 self.receiveCoinList = [CoinModel]()
                 for item in coins {
                     coin = CoinModel(fromDictionary: item)
-                    if coin.type == "Other" {
+//                    if coin.type == "Other" {
                         self.sendCoinList.append(coin)
-                    }
+//                    }
                     self.receiveCoinList.append(coin)
                 }
                 
@@ -109,6 +110,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             self.receiveIcon.load(url: URL(string: self.receiveCoin.icon)!)
             self.btnReceiveCoin.setTitle(self.receiveCoin.symbol, for: .normal)
             
+            self.displayFee()
             self.displayEstCost()
             self.displayExchangeRate()
             
@@ -131,6 +133,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             self.sellAmount = Double(amount)!
         }
         
+        self.displayFee()
         self.displayEstCost()
     }
     
@@ -267,6 +270,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             
             self.rateModel = SwapRateModel(fromDictionary: dictionary["rate"] as! [String: Any])
             
+            self.displayFee()
             self.displayEstCost()
             self.displayExchangeRate()
             
@@ -280,12 +284,18 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
     func displayExchangeRate() {
         self.lbSwapRate.text = "1 \(self.sendCoin.symbol!) ± \(self.rateModel.rate!) \(self.receiveCoin.symbol!)"
         self.lbSendingLimit.text = "\(self.rateModel.min!) - \(self.rateModel.max!)"
-        self.lbFee.text = "\(self.rateModel.fee!)"
+        
     }
     
     func displayEstCost() {
-        self.receiveAmount = self.sellAmount * self.rateModel.rate
-        self.lbBuyEstAmount.text = NumberFormat(value: self.sellAmount * self.rateModel.rate - self.rateModel.fee, decimal: 4).description
+        
+        self.lbBuyEstAmount.text = NumberFormat(value: self.receiveAmount - self.fee, decimal: 4).description
+    }
+    
+    func displayFee() {
+        self.receiveAmount = self.sellAmount * (1 - self.rateModel.sendFee) * self.rateModel.rate
+        self.fee = self.receiveAmount * self.rateModel.fee
+        self.lbFee.text = NumberFormat(value: self.fee, decimal: 6).description
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
