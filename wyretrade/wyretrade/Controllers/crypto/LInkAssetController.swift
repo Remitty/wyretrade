@@ -33,7 +33,7 @@ class LinkAssetController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
-       self.navigationController?.isNavigationBarHidden = true
+//       self.navigationController?.isNavigationBarHidden = true
         self.dataLoad()
    }
 
@@ -77,7 +77,7 @@ extension LinkAssetController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 110
     }
 
 

@@ -37,11 +37,11 @@ class Constants {
              static  let COIN_EXCHANGE = REDIRECT_URL + "coin/exchange";
              static  let COIN_EXCHANGE_LIST = REDIRECT_URL + "coin/exchange/list";
              static  let COIN_EXCHANGE_RATE = REDIRECT_URL + "coin/exchange/rate";
-             static  let COIN_REALEXCHANGE = REDIRECT_URL + "coin/realexchange";
-             static  let COIN_REALEXCHANGE_LIST = REDIRECT_URL + "coin/realexchangelist";
-             static  let COIN_REALEXCHANGE_DATA = REDIRECT_URL + "coin/realexchangedata";
-             static  let COIN_REALEXCHANGE_HISTORY_DATA = REDIRECT_URL + "coin/realexchangedata/history";
-             static  let COIN_REALEXCHANGE_CANCEL = REDIRECT_URL + "coin/realexchangecancel";
+             static  let COIN_TRADE = REDIRECT_URL + "coin/trade";
+             static  let COIN_TRADE_LIST = REDIRECT_URL + "coin/tradablelist";
+             static  let COIN_TRADE_DATA = REDIRECT_URL + "coin/trade/data";
+             static  let COIN_TRADE_HISTORY_DATA = REDIRECT_URL + "coin/trade/history";
+             static  let COIN_TRADE_CANCEL = REDIRECT_URL + "coin/trade/cancel";
              static  let GET_ALL_COINS = REDIRECT_URL + "coins";
              static  let GET_BUY_COIN_ASSETS = REDIRECT_URL + "coin/buy_assets";
              static  let GET_SEND_COIN_ASSETS = REDIRECT_URL + "coin/send_assets";

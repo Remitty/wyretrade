@@ -411,12 +411,19 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             return
         }
         
+        let param = [
+            "coin_id": coinId,
+            "amount": self.txtAmount.text!,
+            "address": self.txtAddress.text!
+        ] as! NSDictionary
+        
         let alert = Alert.showConfirmAlert(message: "Are you sure withdraw \(self.sendingAmount) \(symbol) to \(address) ?", handler: {
             (_) in
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyPhoneNumberController") as! VerifyPhoneNumberController
-            vc.delegate = self
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyPhoneNumberController") as! VerifyPhoneNumberController
+//            vc.delegate = self
+//            self.navigationController?.pushViewController(vc, animated: true)
             
+            self.submitWithdraw(param: param)
             
         })
         self.presentVC(alert)
@@ -502,16 +509,16 @@ extension CoinWithdrawController: VerifyCodeControllerDelegate {
             "address": self.txtAddress.text!
         ] as! NSDictionary
         
-        if self.selectedCoin != nil {
-            if self.selectedCoin.type == "Token" || self.selectedCoin.type == "Stellar" {
-                self.sendStellar()
-            } else {
-                self.submitWithdraw(param: param)
-            }
-        } else {
-            self.submitWithdraw(param: param)
-        }
-        
+//        if self.selectedCoin != nil {
+//            if self.selectedCoin.type == "Token" || self.selectedCoin.type == "Stellar" {
+//                self.sendStellar()
+//            } else {
+//                self.submitWithdraw(param: param)
+//            }
+//        } else {
+//            self.submitWithdraw(param: param)
+//        }
+        self.submitWithdraw(param: param)
         
     }
 }

@@ -39,7 +39,7 @@ class TradeTokenHistoryController: UIViewController, NVActivityIndicatorViewable
     func loadData() {
         let param : [String : Any] = ["pair": self.pair]
         self.startAnimating()
-                RequestHandler.xmtTradeHistory(parameter: param as NSDictionary, success: { (successResponse) in
+                RequestHandler.coinTradeHistory(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     

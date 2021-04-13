@@ -3,24 +3,23 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountView" id="sK0-3a-6Qs" customClass="AccountView" customModule="wyretrade" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountView" rowHeight="77" id="sK0-3a-6Qs" customClass="AccountView" customModule="wyretrade" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="454" height="77"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sK0-3a-6Qs" id="0LA-cZ-dFk">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="454" height="77"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exV-ae-9gE">
-                        <rect key="frame" x="10" y="10" width="394" height="24"/>
+                        <rect key="frame" x="10" y="10" width="434" height="57"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vk1-Sq-gTk" userLabel="first">
-                                <rect key="frame" x="0.0" y="0.0" width="394" height="15"/>
+                                <rect key="frame" x="0.0" y="0.0" width="434" height="15"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Binance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKe-GF-GtY">
                                         <rect key="frame" x="0.0" y="0.0" width="55.5" height="17"/>
@@ -29,13 +28,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$23432.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhi-fW-Qpc">
-                                        <rect key="frame" x="330.5" y="0.0" width="63.5" height="17"/>
+                                        <rect key="frame" x="370.5" y="0.0" width="63.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="gKe-GF-GtY" firstAttribute="top" secondItem="vk1-Sq-gTk" secondAttribute="top" id="1L8-92-EnJ"/>
                                     <constraint firstAttribute="trailing" secondItem="fhi-fW-Qpc" secondAttribute="trailing" id="GNM-EE-GXw"/>
@@ -45,7 +43,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TH3-Eq-7U5">
-                                <rect key="frame" x="0.0" y="20" width="394" height="15"/>
+                                <rect key="frame" x="0.0" y="20" width="434" height="15"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cryptocurrency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcq-CB-uwO">
                                         <rect key="frame" x="0.0" y="0.0" width="101" height="17"/>
@@ -54,13 +52,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="4 Assets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F0-kf-Zan">
-                                        <rect key="frame" x="338" y="0.0" width="56" height="17"/>
+                                        <rect key="frame" x="378" y="0.0" width="56" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="7F0-kf-Zan" firstAttribute="top" secondItem="TH3-Eq-7U5" secondAttribute="top" id="VYe-d1-aAJ"/>
                                     <constraint firstItem="Vcq-CB-uwO" firstAttribute="top" secondItem="TH3-Eq-7U5" secondAttribute="top" id="dRI-zD-5cO"/>
@@ -92,12 +89,7 @@
                 <outlet property="lbAssetCnt" destination="7F0-kf-Zan" id="GTt-F2-2O7"/>
                 <outlet property="lbBalance" destination="fhi-fW-Qpc" id="hxt-J5-4E5"/>
             </connections>
-            <point key="canvasLocation" x="-526" y="142"/>
+            <point key="canvasLocation" x="-497.10144927536237" y="153.01339285714286"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

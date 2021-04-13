@@ -299,8 +299,8 @@ class RequestHandler {
         }
     }
 
-    class func xmtTrade(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
-        let url = Constants.URL.COIN_REALEXCHANGE
+    class func coinTrade(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.COIN_TRADE
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             
@@ -311,8 +311,8 @@ class RequestHandler {
         }
     }
 
-    class func xmtTradeList(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
-        let url = Constants.URL.COIN_REALEXCHANGE_LIST
+    class func coinTradeList(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.COIN_TRADE_LIST
         print(url)
         NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             
@@ -323,8 +323,8 @@ class RequestHandler {
         }
     }
 
-    class func xmtTradeData(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
-        let url = Constants.URL.COIN_REALEXCHANGE_DATA
+    class func coinTradeData(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.COIN_TRADE_DATA
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             
@@ -335,8 +335,8 @@ class RequestHandler {
         }
     }
 
-    class func xmtTradeHistory(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
-        let url = Constants.URL.COIN_REALEXCHANGE_HISTORY_DATA
+    class func coinTradeHistory(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.COIN_TRADE_HISTORY_DATA
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             
@@ -347,8 +347,8 @@ class RequestHandler {
         }
     }
 
-    class func xmtTradeCancel(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
-        let url = Constants.URL.COIN_REALEXCHANGE_CANCEL
+    class func coinTradeCancel(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.COIN_TRADE_CANCEL
         print(url)
         NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             

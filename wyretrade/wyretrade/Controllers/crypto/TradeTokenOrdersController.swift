@@ -33,7 +33,7 @@ class TradeTokenOrdersController: UIViewController, NVActivityIndicatorViewable 
     
     func submitRemove(param: NSDictionary, index: Int) {
         self.startAnimating()
-        RequestHandler.xmtTradeCancel(parameter: param as NSDictionary, success: { (successResponse) in
+        RequestHandler.coinTradeCancel(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
         
             self.orderList.remove(at: index)

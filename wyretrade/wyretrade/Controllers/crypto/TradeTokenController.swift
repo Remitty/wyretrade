@@ -269,7 +269,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
         let param : [String : Any] = ["pair": self.selectedPair]
         
         
-                RequestHandler.xmtTradeData(parameter: param as NSDictionary, success: { (successResponse) in
+                RequestHandler.coinTradeData(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                    let data = TokenTradeDataModel(fromDictionary: dictionary)
@@ -323,7 +323,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     
     func loadPairs() {
         let param : [String : Any] = [:]
-                RequestHandler.xmtTradeList(parameter: param as NSDictionary, success: { (successResponse) in
+                RequestHandler.coinTradeList(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
                     let dictionary = successResponse as! [[String: Any]]
                    
@@ -348,7 +348,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     
     func submitTrade(param: NSDictionary!) {
         self.startAnimating()
-        RequestHandler.xmtTrade(parameter: param as NSDictionary, success: { (successResponse) in
+        RequestHandler.coinTrade(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
             self.showToast(message: "Request successfully")
