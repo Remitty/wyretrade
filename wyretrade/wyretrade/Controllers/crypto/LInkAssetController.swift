@@ -22,6 +22,9 @@ class LinkAssetController: UIViewController, NVActivityIndicatorViewable {
         }
     }
     
+    @IBOutlet weak var tableHeightLayout: NSLayoutConstraint!
+    
+    
     var assetList = [LinkAssetModel]()
     var accountId = ""
     
@@ -73,6 +76,8 @@ class LinkAssetController: UIViewController, NVActivityIndicatorViewable {
 
 extension LinkAssetController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.estimatedRowHeight = 110
+        tableHeightLayout.constant = CGFloat(Double(assetList.count) * 110)
         return assetList.count
     }
 

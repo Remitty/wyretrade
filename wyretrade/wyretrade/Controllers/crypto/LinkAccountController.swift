@@ -22,6 +22,9 @@ class LinkAccountController: UIViewController, NVActivityIndicatorViewable {
         }
     }
     
+    @IBOutlet weak var tableHeightLayout: NSLayoutConstraint!
+    
+    
     var accountList = [LinkAccountModel]()
     var clientId = ""
     
@@ -77,11 +80,11 @@ class LinkAccountController: UIViewController, NVActivityIndicatorViewable {
     @IBAction func actionConnect(_ sender: Any) {
         let base = "https://connect.zabo.com/connect"
         let apiKey = "?client_id=\(clientId)"
-        let origin = "&origin=localhost"
-        let env = "&zabo_env=sandbox"
+        let origin = "&origin=wyretrade.com"
+        let env = "&zabo_env=live"
         let version = "&zabo_version=latest"
-        let redirect = "&redirect_url=\(Constants.URL.ZABO_REDIRECT)"
-         let url = base + apiKey + origin + env + version + redirect
+//        let redirect = "&redirect_url=\(Constants.URL.ZABO_REDIRECT)"
+         let url = base + apiKey + origin + env + version
         
         let webviewController = storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC
         webviewController.url = url
@@ -92,6 +95,8 @@ class LinkAccountController: UIViewController, NVActivityIndicatorViewable {
 
 extension LinkAccountController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.estimatedRowHeight = 60
+        tableHeightLayout.constant = CGFloat(Double(accountList.count) * 60)
         return accountList.count
     }
 

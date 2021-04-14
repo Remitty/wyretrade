@@ -66,10 +66,16 @@ class MtnController: UIViewController, NVActivityIndicatorViewable {
                     var item = MtnModel(fromDictionary: dictionary["transaction"] as! [String: Any]) as! MtnModel
                     let cell = Bundle.main.loadNibNamed("MtnItem", owner: self, options: nil)?[0] as! MtnItem
                     cell.lbToPhone.text = item.toPhone
-                    cell.lbAmount.text = item.amount
+                    cell.lbAmount.text = item.amount+"XAF"
                     cell.lbStatus.text = item.status
                     cell.lbDate.text = item.date
+                    cell.lbType.text = item.type
                     self.transactionView.addSubview(cell)
+                    cell.translatesAutoresizingMaskIntoConstraints = false
+                    cell.centerXAnchor.constraint(equalTo: self.transactionView.centerXAnchor).isActive = true
+                    cell.centerYAnchor.constraint(equalTo: self.transactionView.centerYAnchor).isActive = true
+                    cell.widthAnchor.constraint(equalTo: self.transactionView.widthAnchor).isActive = true
+                    cell.heightAnchor.constraint(equalTo: self.transactionView.heightAnchor).isActive = true
                     
                     }) { (error) in
                         self.stopAnimating()
