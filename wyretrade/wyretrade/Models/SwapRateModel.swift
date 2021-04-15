@@ -11,30 +11,37 @@ struct SwapRateModel {
     var min: String!
     var rate: Double!
     var fee: Double!
+    var sendFee: Double!
     
     init(fromDictionary dictionary: [String: Any]) {
-        if let depostMax = dictionary["depositMax"] as? NSString {
+        if let depostMax = dictionary["max"] as? NSString {
             max = NumberFormat(value: depostMax.doubleValue, decimal: 3).description
         } else {
-            max = NumberFormat(value: dictionary["depositMax"] as! Double, decimal: 3).description
+            max = NumberFormat(value: dictionary["max"] as! Double, decimal: 3).description
         }
         
-        if let depositMin = dictionary["depositMin"] as? NSString {
+        if let depositMin = dictionary["min"] as? NSString {
             min = NumberFormat(value: depositMin.doubleValue, decimal: 3).description
         } else {
-            min = NumberFormat(value: dictionary["depositMin"] as! Double, decimal: 3).description
+            min = NumberFormat(value: dictionary["min"] as! Double, decimal: 3).description
         }
         
-        if let instantRate = dictionary["instantRate"] as? NSString {
+        if let instantRate = dictionary["rate"] as? NSString {
             rate = instantRate.doubleValue
         } else {
-            rate = dictionary["instantRate"] as? Double
+            rate = dictionary["rate"] as? Double
         }
         
-        if let receiveCoinFee = dictionary["receiveCoinFee"] as? NSString {
+        if let receiveCoinFee = dictionary["receiveFee"] as? NSString {
             fee = receiveCoinFee.doubleValue
         } else {
-            fee = dictionary["receiveCoinFee"] as? Double
+            fee = dictionary["receiveFee"] as? Double
+        }
+        
+        if let minerFee = dictionary["sendFee"] as? NSString {
+            sendFee = minerFee.doubleValue
+        } else {
+            sendFee = dictionary["sendFee"] as? Double
         }
         
     }

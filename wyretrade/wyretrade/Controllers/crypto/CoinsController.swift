@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PopupDialog
 import SafariServices
 import stellarsdk
 import NVActivityIndicatorView
@@ -93,9 +92,9 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             self.xanpoolApiKey = dictionary["xanpool_api_key"] as? String
             self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
             self.stellarAccountId = dictionary["stellar_account_id"] as? String
-            if self.stellarAccountId != "" {
-                self.stellarStreamForPayment()
-            }
+//            if self.stellarAccountId != "" {
+//                self.stellarStreamForPayment()
+//            }
                 
             }) { (error) in
                         self.stopAnimating()
@@ -188,7 +187,7 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
     }
     
     func showAddressAlert(symbol : String, address: String) {
-        let alertController = UIAlertController(title: "Send \(symbol) only this address", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Send only \(symbol) to this address", message: nil, preferredStyle: .alert)
         let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
             let pasteboard = UIPasteboard.general
             pasteboard.string = address
@@ -199,11 +198,38 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             textField.text = address
         }
         alertController.addAction(copyAction)
-        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 //            let constraintWidth = NSLayoutConstraint(
 //                  item: alertController.view!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute:
 //                  NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 400)
 //            alertController.view.addConstraint(constraintWidth)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func stellarWarningAlert() {
+        
+        let data = UserDefaults.standard.object(forKey: "userAuthData")
+        let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
+        let userAuth = UserAuthModel(fromDictionary: objUser)
+        
+        let message = "This address is system address. Please deposit 1 XLM at least to this address to activate your wallet. And then you will get your real wallet address. Please input \(userAuth.id!) into your payment memo."
+        let alertController = UIAlertController(title: "Send only XLM to this address", message: message, preferredStyle: .alert)
+        let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
+            let pasteboard = UIPasteboard.general
+            pasteboard.string = self.stellarBaseSecret
+            
+            
+            self.showToast(message: "Copied successfully")
+        }
+        
+        
+        alertController.addTextField { (textField) in
+            textField.text = self.stellarBaseSecret // it is really base address
+        }
+
+        alertController.addAction(copyAction)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         self.present(alertController, animated: true, completion: nil)
     }
@@ -345,7 +371,11 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             let dictionary = successResponse as! [String: Any]
             
             let address = dictionary["address"] as! String
-            self.showAddressAlert(symbol: param["symbol"] as! String, address: address)
+            if address != self.stellarBaseSecret {
+                self.showAddressAlert(symbol: param["symbol"] as! String, address: address)
+            } else {
+                self.stellarWarningAlert()
+            }
             
             
         }) {
@@ -470,22 +500,10 @@ extension CoinsController: CoinViewParameterDelegate {
 
 extension CoinsController: CoinSelectControllerDelegate {
     func selectCoin(param: CoinModel) {
-        if param.address == "" {
-            if param.type == "Token" || param.type == "Stellar" {
-                self.generateStellarAddress(param: param)
-            } else {
-                let parameter: NSDictionary = [
-                    "coin": param.id!,
-                    "symbol": param.symbol!
-                ]
-                self.submitDeposit(param: parameter)
-            }
-            
-        } else {
-            
-            self.showAddressAlert(symbol: param.symbol, address: param.address)
-            
-        }
-        
+        let parameter: NSDictionary = [
+            "coin": param.id!,
+            "symbol": param.symbol!
+        ]
+        self.submitDeposit(param: parameter)
     }
 }

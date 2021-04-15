@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import stellarsdk
 import NVActivityIndicatorView
+import PhoneNumberKit
+import FirebaseAuth
 
 class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     @IBOutlet weak var txtAmount: UITextField! {
@@ -29,6 +31,11 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
         }
     }
     
+    
+    @IBOutlet weak var lbWeeklyLimit: UILabel!
+    
+    
+    @IBOutlet weak var lbGasFee: UILabel!
     @IBOutlet weak var lbFee: UILabel!
     @IBOutlet weak var lbEstGet: UILabel!
     @IBOutlet weak var historyTable: UITableView! {
@@ -49,7 +56,9 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
     var symbol = "BTC"
     var coinId = "1"
     var balance = 0.0
+    var sendingAmount = 0.0
     var stellarBaseSecret: String!
+    var gasFee: String!
     
     let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
     
@@ -59,12 +68,12 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
         // Do any additional setup after loading the view.
         txtAmount.addTarget(self, action: #selector(CoinWithdrawController.amountTextFiledDidChange), for: .editingChanged)
         
-//        self.loadData()
+        self.loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.loadData()
+//        self.loadData()
     }
     
     
@@ -74,12 +83,21 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
         }
         
         if  amount == "" {
+            self.sendingAmount = 0.0
             return
         }
         
-        let est: Double = Double(amount)! - self.withdrawFee
-        
-        self.lbEstGet.text = "\(est)"
+        self.sendingAmount = Double(amount)!
+        self.displayEstGet()
+    }
+    
+    func displayEstGet() {
+        var est: Double!
+        est = self.sendingAmount  - self.withdrawFee
+        if self.sendingAmount == 0 {
+            est = 0.0
+        }
+        self.lbEstGet.text = NumberFormat(value: est, decimal: 6).description
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -93,6 +111,19 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             RequestHandler.getCoinWithdrawList(parameter: param as NSDictionary, success: { (successResponse) in
                             self.stopAnimating()
                 let dictionary = successResponse as! [String: Any]
+                
+                self.lbWeeklyLimit.text = "Weekly withdrawal limit =  $\(dictionary["weekly_withdraw_limit"]!)"
+                self.gasFee = "\(dictionary["coin_withdraw_gas_fee"]!)ETH"
+                self.selectedCoin = CoinModel(fromDictionary: dictionary["coin"] as! [String : Any])
+                
+                self.lbBalance.text = self.selectedCoin.balance
+                self.balance = Double(self.selectedCoin.balance)!
+                self.imgIcon.load(url: URL(string: self.selectedCoin.icon)!)
+                self.btnCoin.setTitle(self.selectedCoin.symbol!, for: .normal)
+                self.lbFee.text = NumberFormat(value: self.selectedCoin.withdrawFee, decimal: 4).description
+                self.symbol = self.selectedCoin.symbol
+                self.withdrawFee = self.selectedCoin.withdrawFee
+                self.coinId = self.selectedCoin.id
                 
                 var history : CoinWithdrawModel!
                 
@@ -141,6 +172,8 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
                 self.lbBalance.text = result
                 
                 self.showToast(message: dictionary["message"] as! String)
+                
+                self.completeWithdraw()
             } else {
                 let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
                         self.presentVC(alert)
@@ -282,15 +315,89 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             }
         }
     }
+    
+    func showPhoneAlert() {
+        let phoneNumberKit = PhoneNumberKit()
+//        phoneNumberKit.allCountries()
+        
+        let alertController = UIAlertController(title: "Phone Verify", message: "", preferredStyle: .alert)
+        
+        let containerViewWidth = 250
+            let containerViewHeight = 120
+            let containerFrame = CGRect(x:10, y: 70, width: CGFloat(containerViewWidth), height: CGFloat(containerViewHeight));
+            let containerView: UIView = UIView(frame: containerFrame);
+
+        alertController.view.addSubview(containerView)
+
+            // now add some constraints to make sure that the alert resizes itself
+            let cons:NSLayoutConstraint = NSLayoutConstraint(item: alertController.view, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual, toItem: containerView, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1.00, constant: 130)
+
+        alertController.view.addConstraint(cons)
+
+            let cons2:NSLayoutConstraint = NSLayoutConstraint(item: alertController.view, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual, toItem: containerView, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1.00, constant: 20)
+
+        alertController.view.addConstraint(cons2)
+//
+        let phoneTextFiled = PhoneNumberTextField()
+        phoneTextFiled.delegate = self
+        phoneTextFiled.withFlag = true
+        phoneTextFiled.withPrefix = true
+        phoneTextFiled.withExamplePlaceholder = true
+//        phoneTextFiled.becomeFirstResponder()
+        phoneTextFiled.withDefaultPickerUI = true
+        alertController.view.addSubview(phoneTextFiled)
+        
+        
+        
+        phoneTextFiled.translatesAutoresizingMaskIntoConstraints = false
+        phoneTextFiled.centerXAnchor.constraint(equalTo: alertController.view.centerXAnchor).isActive = true
+        phoneTextFiled.centerYAnchor.constraint(equalTo: alertController.view.centerYAnchor).isActive = true
+        phoneTextFiled.widthAnchor.constraint(equalToConstant: 200.0)
+        phoneTextFiled.heightAnchor.constraint(equalToConstant: 50.0)
+//        phoneTextFiled.widthAnchor.constraint(equalTo: alertController.view.widthAnchor).isActive = true
+//        phoneTextFiled.heightAnchor.constraint(equalTo: alertController.view.heightAnchor).isActive = true
+        
+        let action = UIAlertAction(title: "Send", style: .default) { (_) in
+            do {
+//                let textField1 = alertController.textFields?.first as! UITextField
+                let phone = phoneTextFiled.text!
+                if phone != "" {
+                    let phoneNumber = try phoneNumberKit.parse(phone)
+                    phoneNumberKit.format(phoneNumber, toType: .e164, withPrefix: true)
+                    print(phoneNumber.numberString)
+                    print(phoneNumber.countryCode)
+                    print(phoneNumber.nationalNumber)
+                    print(phoneNumber.numberExtension)
+                    print(phoneNumber.type)
+                }
+            } catch {
+                print("phone exception")
+            }
+        }
+        alertController.addAction(action)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        self.presentVC(alertController);
+    }
+    
+    func completeWithdraw() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CompleteWithdrawController") as! CompleteWithdrawController
+        if self.selectedCoin != nil {
+            vc.icon = self.selectedCoin.icon
+            vc.symbol = self.selectedCoin.symbol
+        }
+        vc.amount = self.txtAmount.text
+        vc.address = self.txtAddress.text
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     @IBAction func actionWithdraw(_ sender: Any) {
-        guard let amount = txtAmount.text else {
-            return
-        }
+
         guard let address = txtAddress.text else {
             return
         }
-        if amount == "" {
+        if self.sendingAmount == 0 {
             txtAmount.shake(6, withDelta:10, speed: 0.06)
             return
         }
@@ -299,36 +406,34 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             return
         }
         
-        if Double(amount)! > balance {
+        if self.sendingAmount > balance {
             self.showToast(message: "Insufficient balance")
             return
         }
         
         let param = [
             "coin_id": coinId,
-            "amount": amount,
-            "address": address
+            "amount": self.txtAmount.text!,
+            "address": self.txtAddress.text!
         ] as! NSDictionary
         
-        let alert = Alert.showConfirmAlert(message: "Are you sure withdraw \(amount) \(symbol) to \(address) ?", handler: {
+        let alert = Alert.showConfirmAlert(message: "Are you sure withdraw \(self.sendingAmount) \(symbol) to \(address) ?", handler: {
             (_) in
-            if self.selectedCoin != nil {
-                if self.selectedCoin.type == "Token" || self.selectedCoin.type == "Stellar" {
-                    self.sendStellar()
-                } else {
-                    self.submitWithdraw(param: param)
-                }
-            } else {
-                self.submitWithdraw(param: param)
-            }
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyPhoneNumberController") as! VerifyPhoneNumberController
+//            vc.delegate = self
+//            self.navigationController?.pushViewController(vc, animated: true)
+            
+            self.submitWithdraw(param: param)
+            
         })
         self.presentVC(alert)
     }
     
     @IBAction func actionSelectCoin(_ sender: Any) {
         let param : [String : Any] = [:]
+        self.startAnimating()
         RequestHandler.getCoinWithdrawableAssets(parameter: param as NSDictionary, success: { (successResponse) in
-//                        self.stopAnimating()
+                        self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             var coin : CoinModel!
@@ -382,9 +487,38 @@ extension CoinWithdrawController: CoinSelectControllerDelegate {
         self.balance = Double(param.balance)!
         self.imgIcon.load(url: URL(string: param.icon)!)
         self.btnCoin.setTitle(param.symbol!, for: .normal)
-        self.lbFee.text = "\(param.withdrawFee!)"
+        self.lbFee.text = NumberFormat(value: param.withdrawFee, decimal: 4).description
         self.symbol = param.symbol
         self.withdrawFee = param.withdrawFee
         self.coinId = param.id
+        self.displayEstGet()
+        if param.type == "ERC20" {
+            self.lbGasFee.text = self.gasFee
+        } else {
+            self.lbGasFee.text = "0"
+        }
+    }
+    
+}
+
+extension CoinWithdrawController: VerifyCodeControllerDelegate {
+    func passVerify() {
+        let param = [
+            "coin_id": coinId,
+            "amount": self.txtAmount.text!,
+            "address": self.txtAddress.text!
+        ] as! NSDictionary
+        
+//        if self.selectedCoin != nil {
+//            if self.selectedCoin.type == "Token" || self.selectedCoin.type == "Stellar" {
+//                self.sendStellar()
+//            } else {
+//                self.submitWithdraw(param: param)
+//            }
+//        } else {
+//            self.submitWithdraw(param: param)
+//        }
+        self.submitWithdraw(param: param)
+        
     }
 }

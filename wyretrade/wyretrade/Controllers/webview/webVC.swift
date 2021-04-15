@@ -29,9 +29,13 @@ class webVC: UIViewController, WKNavigationDelegate {
         progressView.sizeToFit()
         let progressButton = UIBarButtonItem(customView: progressView)
         toolbarItems = [progressButton]
-        let request = URLRequest(url: URL(string: url)!)
+        let request = URLRequest(url: URL(string: self.url)!)
         webView.load(request)
         webView.allowsBackForwardNavigationGestures = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -43,7 +47,7 @@ class webVC: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         let url = webView.url
-        print(url as Any) // this will print url address as option field
+        print("zabo finish url: \(url!)") // this will print url address as option field
         
     }
 }

@@ -82,9 +82,11 @@ extension MtnTransactionController: UITableViewDelegate, UITableViewDataSource {
         let cell: MtnItem = tableView.dequeueReusableCell(withIdentifier: "MtnItem", for: indexPath) as! MtnItem
         let item = historyList[indexPath.row]
         cell.lbToPhone.text = item.toPhone
-        cell.lbAmount.text = item.amount
+        cell.lbAmount.text = item.amount+"XAF"
         cell.lbStatus.text = item.status
         cell.lbDate.text = item.date
+        cell.lbType.text = item.type
+        
 
 
         return cell

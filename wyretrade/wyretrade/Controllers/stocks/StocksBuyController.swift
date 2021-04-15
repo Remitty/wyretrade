@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import PopupDialog
 import NVActivityIndicatorView
 
 class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
@@ -144,21 +143,21 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
     }
     
     func showTradingOptionModal() {
-        let cointradecontroller: StocksTradeSelectModal = self.storyboard?.instantiateViewController(withIdentifier: "StocksTradeSelectModal") as! StocksTradeSelectModal
-        let popup = PopupDialog(viewController: cointradecontroller,
-                                buttonAlignment: .horizontal,
-                                transitionStyle: .bounceDown,
-                                tapGestureDismissal: true,
-                                panGestureDismissal: true)
-        let buttonTwo = DefaultButton(title: "Select", height: 30) {
-                    print("here")
-                }
-        popup.addButton(buttonTwo)
-        
-//        let overlayAppearance = PopupDialogOverlayView.appearance()
-//        overlayAppearance.opacity = 0.3
-        
-        self.presentVC(popup)
+//        let cointradecontroller: StocksTradeSelectModal = self.storyboard?.instantiateViewController(withIdentifier: "StocksTradeSelectModal") as! StocksTradeSelectModal
+//        let popup = PopupDialog(viewController: cointradecontroller,
+//                                buttonAlignment: .horizontal,
+//                                transitionStyle: .bounceDown,
+//                                tapGestureDismissal: true,
+//                                panGestureDismissal: true)
+//        let buttonTwo = DefaultButton(title: "Select", height: 30) {
+//                    print("here")
+//                }
+//        popup.addButton(buttonTwo)
+//
+////        let overlayAppearance = PopupDialogOverlayView.appearance()
+////        overlayAppearance.opacity = 0.3
+//
+//        self.presentVC(popup)
     }
     @objc
     func marketClick(sender: UITapGestureRecognizer) {

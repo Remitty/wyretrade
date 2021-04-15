@@ -22,6 +22,9 @@ class LinkAssetController: UIViewController, NVActivityIndicatorViewable {
         }
     }
     
+    @IBOutlet weak var tableHeightLayout: NSLayoutConstraint!
+    
+    
     var assetList = [LinkAssetModel]()
     var accountId = ""
     
@@ -33,7 +36,7 @@ class LinkAssetController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
-       self.navigationController?.isNavigationBarHidden = true
+//       self.navigationController?.isNavigationBarHidden = true
         self.dataLoad()
    }
 
@@ -73,11 +76,13 @@ class LinkAssetController: UIViewController, NVActivityIndicatorViewable {
 
 extension LinkAssetController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.estimatedRowHeight = 110
+        tableHeightLayout.constant = CGFloat(Double(assetList.count) * 110)
         return assetList.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 110
     }
 
 

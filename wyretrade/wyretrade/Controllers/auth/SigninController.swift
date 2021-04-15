@@ -20,7 +20,7 @@ class SigninController: UIViewController, UITextFieldDelegate, NVActivityIndicat
     }
     @IBOutlet weak var txtPassword: UITextField!
     
-    @IBOutlet weak var btnSubmit: MDCButton!
+    @IBOutlet weak var btnSubmit: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var btnForgotPassword: UIButton!
     

@@ -95,7 +95,7 @@ class TokenBuyController: UIViewController, IndicatorInfoProvider, UITextFieldDe
     
     func submitBuy(param: NSDictionary!) {
         self.startAnimating()
-        RequestHandler.xmtTrade(parameter: param as NSDictionary, success: { (successResponse) in
+        RequestHandler.coinTrade(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
             self.showToast(message: "Request successfully")

@@ -44,6 +44,9 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     }
     @IBOutlet weak var lbEstPrice: UILabel!
     @IBOutlet weak var lbTotalCost: UILabel!
+    
+    @IBOutlet weak var lbTradeSymbol: UILabel!
+    
     @IBOutlet weak var btnTrade: UIButton!
     
     
@@ -128,7 +131,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     var price = 0.0
     var btcPrice = 0.0
     
-    var selectedPair = "PEPE-BTC"
+    var selectedPair = "PEPE-XLM"
     var selectedType = "Buy"
     var selectedCoin = "PEPE"
     var pairs = [TokenTradePair]()
@@ -265,8 +268,8 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     func loadData() {
         let param : [String : Any] = ["pair": self.selectedPair]
         
-        self.btnPair.setTitle("\(self.selectedCoin)/BTC", for: .normal)
-                RequestHandler.xmtTradeData(parameter: param as NSDictionary, success: { (successResponse) in
+        
+                RequestHandler.coinTradeData(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                    let data = TokenTradeDataModel(fromDictionary: dictionary)
@@ -293,6 +296,10 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
                     self.lbXMTBalance.text = "\(data.coin2Balance!) \(data.coin2!)"
                     self.lbBtcBalance.text = "\(data.coin1Balance!) \(data.coin1!)"
                     
+                    self.lbTradeSymbol.text = data.coin1
+                    
+                    self.btnPair.setTitle("\(self.selectedCoin)/\(data.coin1!)", for: .normal)
+                    
                     
                     self.lbTopBtcBalance.text = "\(data.coin1Balance!) \(data.coin1!)"
                     
@@ -316,7 +323,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     
     func loadPairs() {
         let param : [String : Any] = [:]
-                RequestHandler.xmtTradeList(parameter: param as NSDictionary, success: { (successResponse) in
+                RequestHandler.coinTradeList(parameter: param as NSDictionary, success: { (successResponse) in
         //                        self.stopAnimating()
                     let dictionary = successResponse as! [[String: Any]]
                    
@@ -341,7 +348,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     
     func submitTrade(param: NSDictionary!) {
         self.startAnimating()
-        RequestHandler.xmtTrade(parameter: param as NSDictionary, success: { (successResponse) in
+        RequestHandler.coinTrade(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
             self.showToast(message: "Request successfully")
@@ -411,7 +418,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
         
         qty = Double(amount)!
         
-        self.lbTotalCost.text = NumberFormat(value: qty*price, decimal: 6).description + " BTC"
+        self.lbTotalCost.text = NumberFormat(value: qty*price, decimal: 6).description
     }
     @IBAction func changedPrice(_ sender: UITextField) {
         guard let amount = sender.text else {
@@ -424,7 +431,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
         
         price = Double(amount)!
         
-        self.lbTotalCost.text = NumberFormat(value: qty*price, decimal: 6).description + " BTC"
+        self.lbTotalCost.text = NumberFormat(value: qty*price, decimal: 6).description
         lbEstPrice.text = PriceFormat(amount: btcPrice*price, currency: Currency.usd).description
     }
     

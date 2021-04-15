@@ -324,7 +324,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
             return
         }
         
-        if hasStellar {
+//        if hasStellar {
             let param: NSDictionary = [
                 "first_name": txtFirstName.text!,
                 "last_name": txtLastName.text!,
@@ -339,9 +339,9 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                 "postalcode": txtPostalCode.text!
             ]
             self.submitUpdate(param: param)
-        } else {
-            createStellarAccount()
-        }
+//        } else {
+//            createStellarAccount()
+//        }
         
         
         
