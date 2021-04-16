@@ -50,4 +50,9 @@ class webVC: UIViewController, WKNavigationDelegate {
         print("zabo finish url: \(url!)") // this will print url address as option field
         
     }
+    
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        let url = webView.url
+        print("zaboreceive finish url: \(url!)") // this will print url address as option field
+    }
 }

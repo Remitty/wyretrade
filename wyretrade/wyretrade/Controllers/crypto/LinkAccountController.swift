@@ -27,7 +27,7 @@ class LinkAccountController: UIViewController, NVActivityIndicatorViewable {
     
     var accountList = [LinkAccountModel]()
     var clientId = ""
-    
+    var test_mode: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +67,7 @@ class LinkAccountController: UIViewController, NVActivityIndicatorViewable {
                     }
                             
                     self.clientId = dictionary["client_id"] as! String
+                    self.test_mode = dictionary["test_mode"] as! String
                     
                     
                     }) { (error) in
@@ -78,13 +79,17 @@ class LinkAccountController: UIViewController, NVActivityIndicatorViewable {
 
 
     @IBAction func actionConnect(_ sender: Any) {
+        let data = UserDefaults.standard.object(forKey: "userAuthData")
+        let objUser = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [String: Any]
+        let userAuth = UserAuthModel(fromDictionary: objUser)
+        
         let base = "https://connect.zabo.com/connect"
         let apiKey = "?client_id=\(clientId)"
         let origin = "&origin=wyretrade.com"
-        let env = "&zabo_env=live"
+        let env = "&zabo_env=\(self.test_mode!)"
         let version = "&zabo_version=latest"
 //        let redirect = "&redirect_url=\(Constants.URL.ZABO_REDIRECT)"
-         let url = base + apiKey + origin + env + version
+        let url = base + apiKey + origin + env + version + "&\(userAuth.id!)"
         
         let webviewController = storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC
         webviewController.url = url

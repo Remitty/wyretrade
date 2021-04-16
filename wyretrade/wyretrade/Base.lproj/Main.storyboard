@@ -4928,7 +4928,6 @@
                             <constraint firstItem="oxP-fo-rPg" firstAttribute="trailing" secondItem="y3X-5r-WUM" secondAttribute="trailing" id="1Ib-GU-87z"/>
                             <constraint firstItem="y3X-5r-WUM" firstAttribute="top" secondItem="oxP-fo-rPg" secondAttribute="top" id="DHq-BN-0kD"/>
                             <constraint firstItem="y3X-5r-WUM" firstAttribute="leading" secondItem="oxP-fo-rPg" secondAttribute="leading" id="e3M-ib-tpe"/>
-                            <constraint firstItem="oxP-fo-rPg" firstAttribute="bottom" secondItem="y3X-5r-WUM" secondAttribute="bottom" id="gTc-F5-RIh"/>
                         </constraints>
                     </view>
                     <connections>
