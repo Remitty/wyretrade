@@ -43,7 +43,7 @@ struct PredictionModel {
         
         
         payout = "\(dictionary["bet_price"]!) USDC"
-        winner = dictionary["winner"] as? String
+        winner = dictionary["win"] as? String
         bidder = dictionary["bidder"] as? String
         id = "\(dictionary["id"]!)"
     }

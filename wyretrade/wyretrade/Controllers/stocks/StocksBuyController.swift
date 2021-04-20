@@ -34,22 +34,15 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
     @IBOutlet weak var viewCompany: UIView!
     @IBOutlet weak var lbMarket: UILabel!
     @IBOutlet weak var lbLimit: UILabel!
-    
-    var stocks: StockPositionModel = StockPositionModel.init(fromDictionary: ["avg_price" : "2.33",
-                                                                              "change" : "-0.07",
-                                                                              "change_percent" : "-2.88",
-                                                                              "current_price" : "2.36",
-                                                                              "filled_qty" : 12,
-                                                                              "holding" : "28.32",
-                                                                              "name" : "Verastem, Inc.",
-                                                                              "profit" : "-0.84",
-                                                                              "symbol" : "VSTM"])
-    var order = StocksOrderModel.init(fromDictionary: ["ticker": "", "side": "", "type": "", "order_id": "", "est_cost": "", "status": "", "created_at": "2021-01-22 18:34:04", "qty": "", "limit_price": ""])
+
+    var stocks: StockPositionModel!
+    var order: StocksOrderModel!
     
     var stocksBalance = 0.0
     var stocksShares = 0.0
     var estShares = 0.0
-    var company = CompanyModel.init(fromDictionary: ["description": "", "industry": "", "website": ""])
+
+    var company: CompanyModel!
     var side = "buy"
     var isLimit = false
     
@@ -287,10 +280,10 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
         ]
         
         if self.side != "replace" {
-            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction. Trading fees is 0.10 XMT or $0.99. I fyou hold over 100XMT, no trading fee.", handler: {(_) in self.createOrder(param: param as! NSDictionary)})
+            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction.", handler: {(_) in self.createOrder(param: param as! NSDictionary)})
             self.presentVC(alert)
         } else {
-            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction. Trading fees is 0.10 XMT or $0.99. I fyou hold over 100XMT, no trading fee.", handler: {(_) in self.replaceOrder(param: param as! NSDictionary)})
+            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction.", handler: {(_) in self.replaceOrder(param: param as! NSDictionary)})
             self.presentVC(alert)
         }
         

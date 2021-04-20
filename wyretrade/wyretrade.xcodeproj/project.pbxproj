@@ -1551,7 +1551,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyretrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "wyretrade app store";
+				PROVISIONING_PROFILE_SPECIFIER = "appstore dis";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1573,7 +1573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyretrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "wyretrade app store";
+				PROVISIONING_PROFILE_SPECIFIER = "appstore dis";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

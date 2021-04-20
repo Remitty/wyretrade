@@ -40,7 +40,7 @@ class PredictListController: UIViewController, IndicatorInfoProvider , NVActivit
                                 self.stopAnimating()
                     let dictionary = successResponse as! [String: Any]
                     
-            self.showToast(message: "Cancelled successfully")
+            self.showToast(message: "Sent successfully")
                     
                     }) { (error) in
                         self.stopAnimating()
@@ -78,7 +78,7 @@ extension PredictListController: UITableViewDelegate, UITableViewDataSource {
 
 extension PredictListController: PredictionItemParameterDelegate{
     func betParam(param: NSDictionary) {
-        let alert = Alert.showConfirmAlert(message: "Are you sure you want to cancel this predict?", handler: {
+        let alert = Alert.showConfirmAlert(message: "You are about to disagree this predict.", handler: {
             (_) in self.submitBet(param: param)
         })
         self.presentVC(alert)

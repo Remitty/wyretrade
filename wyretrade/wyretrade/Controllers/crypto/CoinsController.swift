@@ -70,7 +70,9 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
 //
 //                    }
                     self.depositList.append(coin)
-                    self.onRamperCoins += coin.symbol + ","
+                    if coin.buyType >= 2 && coin.buyType < 100 {
+                        self.onRamperCoins += coin.symbol + ","
+                    }
                 }
                 self.coinTable.reloadData()
             }

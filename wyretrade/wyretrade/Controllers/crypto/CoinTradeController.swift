@@ -102,7 +102,7 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider, NVActivityIn
         
         let base = "https://checkout.sandbox.xanpool.com/"
         let apiKey = "?apiKey=\(self.xanpoolApiKey!)"
-        let wallet = "&owallet=\(self.address)"
+        let wallet = "&wallet=\(self.address)"
         let symbol = "&cryptoCurrency=\(self.symbol)"
         let autoSelling = "&autoSelling=true"
 //        let transactionType = "&transactionType="

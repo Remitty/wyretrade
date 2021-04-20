@@ -461,7 +461,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
             "type": selectedType
         ] as! NSDictionary
         
-        let alert = Alert.showConfirmAlert(message: "Are you sure buying \(qty)?", handler: { (_) in self.submitTrade(param: param)})
+        let alert = Alert.showConfirmAlert(message: "Are you sure \(selectedType) \(qty) \(selectedCoin)?", handler: { (_) in self.submitTrade(param: param)})
         self.presentVC(alert)
     }
     
