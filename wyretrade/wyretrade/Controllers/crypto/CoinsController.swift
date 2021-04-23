@@ -422,7 +422,7 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CoinView = tableView.dequeueReusableCell(withIdentifier: "CoinView", for: indexPath) as! CoinView
-        cell.delegate = self
+        
         let coin = coinList[indexPath.row]
         cell.lbName.text = coin.symbol
         cell.imgIcon.load(url: URL(string: coin.icon)!)
@@ -430,10 +430,7 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
         cell.lbHolding.text = coin.holding
         cell.lbBalance.text = "\(coin.balance!)"
         cell.lbChangePercent.text = "\(coin.changeToday!) %"
-        cell.buyType = coin.buyType
-        if coin.buyType == 0 || coin.buyType == 100 {
-            cell.btnBuy.isHidden = true
-        }
+        
         if coin.changeToday >= 0 {
             cell.lbChangePercent.textColor = UIColor.green
             cell.imgChange.image = UIImage(named: "ic_up")
@@ -442,61 +439,7 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
             cell.imgChange.image = UIImage(named: "ic_down")
         }
         
-        cell.symbol = coin.symbol
-        cell.id = coin.id ?? "0"
-        
-        
         return cell
-    }
-}
-
-extension CoinsController: CoinViewParameterDelegate {
-    func tradeParamData(param: NSDictionary) {
-//        let cointradecontroller: CoinTradeOptionModal = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeOptionModal") as! CoinTradeOptionModal
-//        let popup = PopupDialog(viewController: cointradecontroller,
-//                                buttonAlignment: .horizontal,
-//                                transitionStyle: .bounceDown,
-//                                tapGestureDismissal: true,
-//                                panGestureDismissal: true)
-//        let buttonTwo = DefaultButton(title: "Select", height: 30) {
-//                    print("here")
-//                }
-//        popup.addButton(buttonTwo)
-//
-////        let overlayAppearance = PopupDialogOverlayView.appearance()
-////        overlayAppearance.opacity = 0.3
-//
-//        self.presentVC(popup)
-        
-        let alertController = UIAlertController(title: "Buy / Sell", message: "Select option to buy cryptocurrencies with over 40 fiat currencies", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Buy / Sell \n (INR, MYR, HKD, PHP, TBH, VND, SGD, RP) \n Powered by xanpool", style: .default) { (_) in
-            self.actionXanpool(param: param)
-        }
-        let action2 = UIAlertAction(title: "Buy only(USD, EUR) \n Powered by Ramp", style: .default) { action in
-            self.actionRamp(param: param)
-        }
-        let action3 = UIAlertAction(title: "Buy only(Global) \n Powered by onramp", style: .default) { action in
-            self.actionOnramp(param: param)
-        }
-        if (param["buyType"] as! Int) > 1 {
-            alertController.addAction(action1)
-        }
-        alertController.addAction(action2)
-        if (param["buyType"] as! Int) > 2 {
-            alertController.addAction(action3)
-        }
-        
-        UILabel.appearance(whenContainedInInstancesOf:[UIAlertController.self]).numberOfLines = 3
-        
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alertController.addAction(cancelAction)
-        self.presentVC(alertController);
-    }
-    
-    func depositParamData(param: NSDictionary) {
-        
-        
     }
 }
 

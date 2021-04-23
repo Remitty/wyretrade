@@ -40,7 +40,9 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
     
     var stocksBalance = 0.0
     var stocksShares = 0.0
-    var estShares = 0.0
+    var estCost = 0.0
+    var price = 0.0
+    var orderShares = 0.0
 
     var company: CompanyModel!
     var side = "buy"
@@ -57,6 +59,7 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
         self.lbStocksShares.text = "\(self.stocks.shares!)"
         self.stocksShares = self.stocks.shares
         self.lbMarketPrice.text = self.stocks.price
+        self.price = self.stocks.dbPrice
         
         
         
@@ -98,36 +101,30 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
         guard let amount = textField.text else {
             return
         }
-        if amount != "" {
-            var price = self.stocks.dbPrice
-            if isLimit {
-                guard let limit = self.txtLimitPrice.text else {
-                    return
-                }
-                price = (limit as! NSString).doubleValue
-            }
-            
-            self.estShares = ((amount as! NSString).doubleValue / price!)
-            self.lbEstCost.text = NumberFormat.init(value: self.estShares, decimal: 4).description
+        if amount.isEmpty || amount == "."{
+            self.orderShares = 0.0
+        } else {
+            self.orderShares = Double(amount)!
         }
+        
+        self.estCost = self.orderShares * price
+        self.lbEstCost.text = NumberFormat.init(value: self.estCost, decimal: 2).description
  
     }
 
     @objc func limitTextFieldDidChange(_ textField: UITextField) {
-        guard let amount = self.txtAmount.text else {
-            return
-        }
-        if amount == "" {
-            return
-        }
+        
         guard let limit = textField.text else {
             return
         }
-        if limit != "" {
-            var price = (limit as! NSString).doubleValue
-            self.estShares = ((amount as! NSString).doubleValue / price)
-            self.lbEstCost.text = NumberFormat.init(value: self.estShares, decimal: 4).description
+        if limit.isEmpty || limit == "." {
+            self.price = 0.0
+        } else {
+            self.price = Double(limit)!
         }
+        
+        self.estCost = self.orderShares * price
+        self.lbEstCost.text = NumberFormat.init(value: self.estCost, decimal: 2).description
     }
     
     private func configCompany() {
@@ -136,36 +133,55 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
     }
     
     func showTradingOptionModal() {
-//        let cointradecontroller: StocksTradeSelectModal = self.storyboard?.instantiateViewController(withIdentifier: "StocksTradeSelectModal") as! StocksTradeSelectModal
-//        let popup = PopupDialog(viewController: cointradecontroller,
-//                                buttonAlignment: .horizontal,
-//                                transitionStyle: .bounceDown,
-//                                tapGestureDismissal: true,
-//                                panGestureDismissal: true)
-//        let buttonTwo = DefaultButton(title: "Select", height: 30) {
-//                    print("here")
-//                }
-//        popup.addButton(buttonTwo)
-//
-////        let overlayAppearance = PopupDialogOverlayView.appearance()
-////        overlayAppearance.opacity = 0.3
-//
-//        self.presentVC(popup)
+        let alert =  UIAlertController.init(title: "Select option", message: "", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction.init(title: "MKT Price", style: .default, handler: { _ in
+            self.doMarket()
+        })
+        let action2 = UIAlertAction.init(title: "Limit Price", style: .default, handler: { _ in
+            self.doLimit()
+        })
+//        let action3 = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(action1)
+        alert.addAction(action2)
+//        alert.addAction(action3)
+        self.presentVC(alert)
     }
     @objc
     func marketClick(sender: UITapGestureRecognizer) {
         
         self.showTradingOptionModal()
-        self.viewLimit.isHidden = true
-        self.viewMarket.isHidden = false
-        self.isLimit = false
+        
     }
     @objc
     func limitClick(sender: UITapGestureRecognizer) {
         self.showTradingOptionModal()
+        
+    }
+    
+    func doMarket() {
+        self.viewLimit.isHidden = true
+        self.viewMarket.isHidden = false
+        self.isLimit = false
+        self.price = self.stocks.dbPrice
+        self.estCost = self.orderShares * price
+        self.lbEstCost.text = NumberFormat.init(value: self.estCost, decimal: 2).description
+    }
+    
+    func doLimit() {
         self.viewLimit.isHidden = false
         self.viewMarket.isHidden = true
         self.isLimit = true
+        guard let limit = self.txtLimitPrice.text else {
+            return
+        }
+        if limit.isEmpty || limit == "." {
+            self.price = 0.0
+        } else {
+            self.price = Double(limit)!
+        }
+        
+        self.estCost = self.orderShares * price
+        self.lbEstCost.text = NumberFormat.init(value: self.estCost, decimal: 2).description
     }
     
     func createOrder(param: NSDictionary) {
@@ -213,36 +229,38 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
     }
 
     @IBAction func actionSubmit(_ sender: Any) {
-        guard let amount = txtAmount.text else {
+       
+        if self.orderShares == 0 {
+             self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
             return
         }
         
-        if amount == "" {
-             self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
+        if self.isLimit && self.price == 0{
+            self.txtLimitPrice.shake(6, withDelta: 10, speed: 0.06)
             return
         }
         
         
         switch self.side {
         case "buy":
-            if (amount as! NSString).doubleValue > self.stocksBalance {
+            if self.estCost > self.stocksBalance {
                 self.showToast(message: "Insufficient balance")
                 return
             }
         case "sell":
-            if self.estShares > self.stocksShares {
+            if self.orderShares > self.stocksShares {
                 self.showToast(message: "Insufficient shares")
                 return
             }
         case "replace":
             switch self.order.side {
             case "buy":
-                if (amount as! NSString).doubleValue > self.stocksBalance {
+                if self.estCost > self.stocksBalance {
                     self.showToast(message: "Insufficient balance")
                     return
                 }
             case "sell":
-                if self.estShares > self.stocksShares {
+                if self.orderShares > self.stocksShares {
                     self.showToast(message: "Insufficient shares")
                     return
                 }
@@ -253,37 +271,23 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
             print("no data")
         }
         
-        var limitPrice = "0"
-        if self.isLimit {
-            guard let limit = txtLimitPrice.text else {
-                return
-            }
-            
-            if limit == "" {
-                 self.txtLimitPrice.shake(6, withDelta: 10, speed: 0.06)
-                return
-            }
-            
-            limitPrice = limit
-        }
-        
-        
+        let defaults = UserDefaults.standard
         
         let param : [String : Any] = [
             
             "ticker": self.stocks.ticker!,
-            "shares": self.estShares,
+            "shares": orderShares,
             "buyorsell": self.side == "replace" ? self.order.side: self.side,
-            "cost": amount,
+            "cost": self.estCost,
             "type": self.isLimit ? "limit": "market",
-            "limit_price": self.isLimit ? limitPrice: 0
+            "limit_price": self.isLimit ? self.price: 0
         ]
         
         if self.side != "replace" {
-            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction.", handler: {(_) in self.createOrder(param: param as! NSDictionary)})
+            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction. \(defaults.string(forKey: "msgStockTradeFeePolicy")!)", handler: {(_) in self.createOrder(param: param as! NSDictionary)})
             self.presentVC(alert)
         } else {
-            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction.", handler: {(_) in self.replaceOrder(param: param as! NSDictionary)})
+            let alert = Alert.showConfirmAlert(message: "Please confirm your transaction. \(defaults.string(forKey: "msgStockTradeFeePolicy")!)", handler: {(_) in self.replaceOrder(param: param as! NSDictionary)})
             self.presentVC(alert)
         }
         

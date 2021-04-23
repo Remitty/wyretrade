@@ -132,7 +132,7 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider, NVActivityIn
     
     func doOnramp() {
         let excludeCryptos = "&excludeCryptos=EOS,USDT,XLM,BUSD,GUSD,HUSD,PAX,USDS"
-        let coin_address = "&defaultAddrs=" + self.symbol + ":" + self.address
+        let coin_address = "&wallets=" + self.symbol + ":" + self.address
         let url = "https://widget.onramper.com?color=1d2d50&apiKey=\(self.onramperApiKey!)&defaultCrypto=\(symbol)\(excludeCryptos)\(coin_address)&onlyCryptos=\(self.onRamperCoins)&isAddressEditable=false"
         
         let webviewController = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! webVC

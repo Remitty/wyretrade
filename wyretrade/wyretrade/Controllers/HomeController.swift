@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 class HomeController: UIViewController, NVActivityIndicatorViewable {
     
     
+    
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var usdcBalance: UILabel!
     
@@ -74,6 +75,12 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
         RequestHandler.getHome(parameter: param as NSDictionary, success: { (successResponse) in
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
+            
+            self.defaults.set(dictionary["msgMarginAccountUsagePolicy"], forKey: "msgMarginAccountUsagePolicy")
+            self.defaults.set(dictionary["msgCoinSwapFeePolicy"], forKey: "msgCoinSwapFeePolicy")
+            self.defaults.set(dictionary["msgStockTradeFeePolicy"], forKey: "msgStockTradeFeePolicy")
+            self.defaults.set(dictionary["msgCoinWithdrawFeePolicy"], forKey: "msgCoinWithdrawFeePolicy")
+            self.defaults.synchronize()
             
             var news : NewsModel!
             

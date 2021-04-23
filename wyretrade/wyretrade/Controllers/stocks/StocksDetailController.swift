@@ -28,17 +28,11 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var viewFirst: UIView!
     @IBOutlet weak var viewSecond: UIView!
     
-    var stocks: StockPositionModel = StockPositionModel.init(fromDictionary: ["avg_price" : "2.33",
-                                                                              "change" : "-0.07",
-                                                                              "change_percent" : "-2.88",
-                                                                              "current_price" : "2.36",
-                                                                              "filled_qty" : 12,
-                                                                              "holding" : "28.32",
-                                                                              "name" : "Verastem, Inc.",
-                                                                              "profit" : "-0.84",
-                                                                              "symbol" : "VSTM"])
+
+    var stocks: StockPositionModel!
     var stocksBalance = 0.0
-    var company = CompanyModel.init(fromDictionary: ["description": "", "industry": "", "website": ""])
+
+    var company: CompanyModel!
     let companyView = Company().loadView() as! Company
     var chartData: Array<DataEntry> = []
     
@@ -223,7 +217,7 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     }
     
     func updateChartData() {
-        
+        self.chartData.removeAll()
         for item in self.chartTempData.reversed() {
             
             self.chartData.append(CustomDataEntry(x: item.date, value: item.value))

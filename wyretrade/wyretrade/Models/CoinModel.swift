@@ -40,9 +40,9 @@ struct CoinModel {
         }
         
         if let balanceTemp = (dictionary["balance"] as? NSString)?.doubleValue {
-            balance = NumberFormat.init(value: balanceTemp, decimal: 6).description
+            balance = NumberFormat.init(value: balanceTemp, decimal: 4).description
         } else {
-            balance = NumberFormat.init(value: dictionary["balance"] as! Double, decimal: 6).description
+            balance = NumberFormat.init(value: dictionary["balance"] as! Double, decimal: 4).description
         }
         
         if let est_usdc = dictionary["est_usdc"] as? NSString {

@@ -26,10 +26,12 @@ class StocksReplaceController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var viewFirst: UIView!
     @IBOutlet weak var viewSecond: UIView!
     
-    var order = StocksOrderModel.init(fromDictionary: ["ticker": "", "side": "", "type": "", "order_id": "", "est_cost": "", "status": "", "created_at": "2021-01-22 18:34:04", "qty": "", "limit_price": ""])
+
+    var order: StocksOrderModel!
     var stocks: StockPositionModel!
     var stocksBalance = 0.0
-    var company = CompanyModel.init(fromDictionary: ["description": "", "industry": "", "website": ""])
+    
+    var company: CompanyModel!
     let companyView = Company().loadView() as! Company
 
     override func viewDidLoad() {
