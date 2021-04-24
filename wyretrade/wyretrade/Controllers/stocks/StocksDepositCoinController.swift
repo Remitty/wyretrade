@@ -14,7 +14,7 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
     
     var itemInfo: IndicatorInfo = "Coin"
     
-    var depositFromCoinList = [StocksDepositModel]()
+    
     var usdcBalance = 0.0
     var stocksBalance = 0.0
 
@@ -25,16 +25,7 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
             txtAmount.delegate = self
         }
     }
-    @IBOutlet weak var historyTable: UITableView! {
-        didSet {
-            historyTable.delegate = self
-            historyTable.dataSource = self
-            historyTable.showsVerticalScrollIndicator = false
-            historyTable.separatorColor = UIColor.darkGray
-            historyTable.separatorStyle = .singleLineEtched
-            historyTable.register(UINib(nibName: "StocksDepositItem", bundle: nil), forCellReuseIdentifier: "StocksDepositItem")
-        }
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,21 +44,6 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            var deposit : StocksDepositModel!
-            
-            if let data = dictionary["stock_transfer"] as? [[String:Any]] {
-                
-                self.depositFromCoinList = [StocksDepositModel]()
-                
-                for item in data {
-                    deposit = StocksDepositModel(fromDictionary: item)
-                    self.depositFromCoinList.append(deposit)
-                }
-                
-                self.historyTable.reloadData()
-                
-
-            }
             
             if let usdcBalance = (dictionary["usdc_balance"] as? NSString)?.doubleValue {
                 self.usdcBalance = usdcBalance
@@ -86,6 +62,11 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
                 let alert = Alert.showBasicAlert(message: error.message)
                         self.presentVC(alert)
             }
+    }
+    
+    @IBAction func actionHistory(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "StocksDepositCoinHistoryController") as! StocksDepositCoinHistoryController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func actionTransfer(_ sender: Any) {
@@ -113,22 +94,5 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
             (_) in self.submitTransfer(param: param)
         })
         self.presentVC(alert)
-    }
-}
-
-extension StocksDepositCoinController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return depositFromCoinList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: StocksDepositItem = tableView.dequeueReusableCell(withIdentifier: "StocksDepositItem", for: indexPath) as! StocksDepositItem
-        let item = depositFromCoinList[indexPath.row]
-        cell.lbRequestAmount.text = item.amount
-        cell.lbReceivedAmount.text = item.received
-        cell.lbStatus.text = item.status
-        cell.lbDate.text = item.date
-        
-        return cell
     }
 }

@@ -128,9 +128,11 @@ extension PortfolioController: UITableViewDelegate, UITableViewDataSource {
         
         if item.changeToday >= 0 {
             cell.lbProfit.textColor = UIColor.green
+            cell.lbStocksChangeToday.textColor = UIColor.green
             cell.imgProfit.image = UIImage(named: "ic_up")
         } else {
             cell.lbProfit.textColor = UIColor.red
+            cell.lbStocksChangeToday.textColor = UIColor.red
             cell.imgProfit.image = UIImage(named: "ic_down")
         }
         

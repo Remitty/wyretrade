@@ -22,18 +22,7 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
             txtUser.delegate = self
         }
     }
-    @IBOutlet weak var historyTable: UITableView! {
-        didSet {
-            historyTable.delegate = self
-            historyTable.dataSource = self
-            historyTable.showsVerticalScrollIndicator = false
-            historyTable.separatorColor = UIColor.darkGray
-            historyTable.separatorStyle = .singleLineEtched
-            historyTable.register(UINib(nibName: "USDCPayment", bundle: nil), forCellReuseIdentifier: "USDCPayment")
-        }
-    }
     
-    var historyList = [USDCPaymentModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,18 +42,7 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
         RequestHandler.coinTransferList(parameter: param as NSDictionary, success: { (successResponse) in
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
-            
-            var history : USDCPaymentModel!
-            
-            if let historyData = dictionary["pay_history"] as? [[String:Any]] {
-                self.historyList = [USDCPaymentModel]()
-                for item in historyData {
-                    history = USDCPaymentModel(fromDictionary: item)
-                    self.historyList.append(history)
-                }
-                self.historyTable.reloadData()
-            }
-                    
+           
             self.balance.text = NumberFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
             
             }) { (error) in
@@ -79,17 +57,7 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
         RequestHandler.coinTransferAddContact(parameter: param, success: {(successResponse) in
             self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
-            
-            var history : USDCPaymentModel!
-            
-            if let historyData = dictionary["pay_history"] as? [[String:Any]] {
-                self.historyList = [USDCPaymentModel]()
-                for item in historyData {
-                    history = USDCPaymentModel(fromDictionary: item)
-                    self.historyList.append(history)
-                }
-                self.historyTable.reloadData()
-            }
+           
             
             self.balance.text = NumberFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
         
@@ -99,6 +67,12 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
             let alert = Alert.showBasicAlert(message: error.message)
             self.presentVC(alert)
         }
+    }
+    
+    
+    @IBAction func actionHistory(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "USDCPayHistoryController") as! USDCPayHistoryController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 
@@ -124,21 +98,5 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
             self.pay(param: param)
         }
         
-    }
-}
-
-extension USDCPayController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: USDCPayment = tableView.dequeueReusableCell(withIdentifier: "USDCPayment", for: indexPath) as! USDCPayment
-        let item = historyList[indexPath.row]
-        cell.to.text = item.to
-        cell.amount.text = item.amount
-        cell.date.text = item.date
-        
-        return cell
     }
 }

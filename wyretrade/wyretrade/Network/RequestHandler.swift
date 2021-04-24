@@ -607,6 +607,30 @@ class RequestHandler {
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
+    
+    class func getStocksDepositCoinHistory(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.GET_DEPOSIT_COIN_STOCK_HISOTRY
+        print(url)
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            
+            success(successResponse)
+        }) { (error) in
+                        
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
+    
+    class func getStocksDepositBankHistory(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.GET_DEPOSIT_BANK_STOCK_HISOTRY
+        print(url)
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            
+            success(successResponse)
+        }) { (error) in
+                        
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
 
     class func withdrawStocks(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
         let url = Constants.URL.STOCK_WITHDRAW

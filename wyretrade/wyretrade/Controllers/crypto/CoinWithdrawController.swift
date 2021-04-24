@@ -38,18 +38,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
     @IBOutlet weak var lbGasFee: UILabel!
     @IBOutlet weak var lbFee: UILabel!
     @IBOutlet weak var lbEstGet: UILabel!
-    @IBOutlet weak var historyTable: UITableView! {
-        didSet {
-                    historyTable.delegate = self
-                    historyTable.dataSource = self
-                    historyTable.showsVerticalScrollIndicator = false
-                    historyTable.separatorColor = UIColor.darkGray
-                    historyTable.separatorStyle = .singleLineEtched
-                    historyTable.register(UINib(nibName: "CoinWithdrawItem", bundle: nil), forCellReuseIdentifier: "CoinWithdrawItem")
-                }
-    }
     
-    var historyList = [CoinWithdrawModel]()
     var coinList = [CoinModel]()
     var selectedCoin: CoinModel!
     var withdrawFee = 0.0
@@ -125,16 +114,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
                 self.withdrawFee = self.selectedCoin.withdrawFee
                 self.coinId = self.selectedCoin.id
                 
-                var history : CoinWithdrawModel!
                 
-                if let historyData = dictionary["history"] as? [[String:Any]] {
-                    self.historyList = [CoinWithdrawModel]()
-                    for item in historyData {
-                        history = CoinWithdrawModel(fromDictionary: item)
-                        self.historyList.append(history)
-                    }
-                    self.historyTable.reloadData()
-                }
                 
                 }) { (error) in
                         self.stopAnimating()
@@ -152,16 +132,7 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             let success: Bool = dictionary["success"] as! Bool
             
             if success {
-                var history : CoinWithdrawModel!
                 
-                if let historyData = dictionary["history"] as? [[String:Any]] {
-                    self.historyList = [CoinWithdrawModel]()
-                    for item in historyData {
-                        history = CoinWithdrawModel(fromDictionary: item)
-                        self.historyList.append(history)
-                    }
-                    self.historyTable.reloadData()
-                }
                 var result: String!
                 if let resultTemp = dictionary["result"] as? NSString {
                     result = NumberFormat(value: resultTemp.doubleValue, decimal: 6).description
@@ -391,6 +362,12 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
         vc.address = self.txtAddress.text
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func actionHistory(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CoinWithdrawHistoryController") as! CoinWithdrawHistoryController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 
     @IBAction func actionWithdraw(_ sender: Any) {
 
@@ -417,7 +394,9 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
             "address": self.txtAddress.text!
         ] as! NSDictionary
         
-        let alert = Alert.showConfirmAlert(message: "Are you sure withdraw \(self.sendingAmount) \(symbol) to \(address) ?", handler: {
+        let defaults = UserDefaults.init()
+        
+        let alert = Alert.showConfirmAlert(message: "Are you sure withdraw \(self.sendingAmount) \(symbol) to \(address) ? \(defaults.string(forKey: "msgCoinWithdrawFeePolicy")!)", handler: {
             (_) in
 //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VerifyPhoneNumberController") as! VerifyPhoneNumberController
 //            vc.delegate = self
@@ -460,24 +439,6 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
     }
     
     
-}
-
-extension CoinWithdrawController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CoinWithdrawItem = tableView.dequeueReusableCell(withIdentifier: "CoinWithdrawItem", for: indexPath) as! CoinWithdrawItem
-        let item = historyList[indexPath.row]
-        cell.lbAsset.text = item.symbol
-        cell.lbAmount.text = item.amount
-        cell.lbStatus.text = item.status
-        cell.lbDate.text = item.date
-        cell.lbAddress.text = item.address
-
-        return cell
-    }
 }
 
 extension CoinWithdrawController: CoinSelectControllerDelegate {

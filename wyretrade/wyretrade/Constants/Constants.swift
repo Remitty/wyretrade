@@ -65,6 +65,8 @@ class Constants {
              static  let GET_STOCK_ORDER = REDIRECT_URL + "stock/order/status/user";
              static  let STOCK_WITHDRAW = REDIRECT_URL + "stock/withdraw";
              static  let REQUEST_DEPOSIT_STOCK = REDIRECT_URL + "stock/deposit";
+            static  let GET_DEPOSIT_COIN_STOCK_HISOTRY = REDIRECT_URL + "stock/deposit/history/coin";
+            static  let GET_DEPOSIT_BANK_STOCK_HISOTRY = REDIRECT_URL + "stock/deposit/history/bank";
 
              static  let GET_BANK_DETAIL = REDIRECT_URL + "bank/detail";
              static  let REQUEST_ADD_BANK = REDIRECT_URL + "bank/add";

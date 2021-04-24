@@ -127,7 +127,7 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             return
         }
         
-        if amount == "" {
+        if amount.isEmpty || amount == "." {
             self.sellAmount = 0.0
         } else {
             self.sellAmount = Double(amount)!
@@ -345,8 +345,8 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             self.showToast(message: "Insufficient balance")
             return
         }
-        
-        let alert = Alert.showConfirmAlert(message: "Are you sure swap \(self.sellAmount) \(self.sendCoin.symbol!) ?", handler: {
+        let defaults = UserDefaults.init()
+        let alert = Alert.showConfirmAlert(message: "Are you sure swap \(self.sellAmount) \(self.sendCoin.symbol!)? \(defaults.string(forKey: "msgCoinSwapFeePolicy")!)", handler: {
             (_) in self.submitExchange()
         })
         self.presentVC(alert)

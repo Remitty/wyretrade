@@ -22,8 +22,8 @@ struct TokenTradeDataModel {
     var asks = [Ask]()
     var asksTotal: String!
     var bidsTotal: String!
-    var askAggregates = [TokenOrderModel]()
-    var bidAggregates = [TokenOrderModel]()
+    var askAggregates = [TokenTradePrice]()
+    var bidAggregates = [TokenTradePrice]()
     
     init(fromDictionary dictionary: [String: Any]) {
         
@@ -103,13 +103,13 @@ struct TokenTradeDataModel {
         if let aggregates = dictionary["aggregates"] as? [String: Any] {
             if let data = aggregates["ask"] as? [[String: Any]] {
                 for item in data {
-                    let order = TokenOrderModel(fromDictionary: item)
+                    let order = TokenTradePrice(fromDictionary: item)
                     askAggregates.append(order)
                 }
             }
             if let data = aggregates["bid"] as? [[String: Any]] {
                 for item in data {
-                    let order = TokenOrderModel(fromDictionary: item)
+                    let order = TokenTradePrice(fromDictionary: item)
                     bidAggregates.append(order)
                 }
             }

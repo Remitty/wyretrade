@@ -28,16 +28,20 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndi
         self.looadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 
         let child1 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositCoinController") as! StocksDepositCoinController
         let child2 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositBankController") as! StocksDepositBankController
         
-        child1.depositFromCoinList = self.depositFromCoinList
+        
         child1.stocksBalance = self.stocksBalance
         child1.usdcBalance = self.usdcBalance
         
-        child2.depositFromBankList = self.depositFromBankList
+        
         child2.stocksBalance = self.stocksBalance
         child2.usdBalance = self.usdBalance
         
@@ -66,20 +70,6 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndi
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            var deposit : StocksDepositModel!
-            
-            if let data = dictionary["coin_stock_transfer"] as? [[String:Any]] {
-                self.depositFromBankList = [StocksDepositModel]()
-                self.depositFromCoinList = [StocksDepositModel]()
-                
-                for item in data {
-                    deposit = StocksDepositModel(fromDictionary: item)
-                    self.depositFromBankList.append(deposit)
-                    self.depositFromCoinList.append(deposit)
-                }
-                
-                
-            }
             
             if let usdcBalance = (dictionary["usdc_balance"] as? NSString)?.doubleValue {
                 self.usdcBalance = usdcBalance

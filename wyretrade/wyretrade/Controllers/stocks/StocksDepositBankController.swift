@@ -27,17 +27,7 @@ class StocksDepositBankController: UIViewController, IndicatorInfoProvider, UITe
             txtAmount.delegate = self
         }
     }
-    @IBOutlet weak var historyTable: UITableView! {
-        didSet {
-            historyTable.delegate = self
-            historyTable.dataSource = self
-            historyTable.showsVerticalScrollIndicator = false
-            historyTable.separatorColor = UIColor.darkGray
-            historyTable.separatorStyle = .singleLineEtched
-            historyTable.register(UINib(nibName: "StocksDepositItem", bundle: nil), forCellReuseIdentifier: "StocksDepositItem")
-        }
-        
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,18 +52,7 @@ class StocksDepositBankController: UIViewController, IndicatorInfoProvider, UITe
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            var deposit : StocksDepositModel!
             
-            if let data = dictionary["stock_transfer"] as? [[String:Any]] {
-                
-                self.depositFromBankList = [StocksDepositModel]()
-                
-                for item in data {
-                    deposit = StocksDepositModel(fromDictionary: item)
-                    self.depositFromBankList.append(deposit)
-                }
-                self.historyTable.reloadData()
-            }
             
             self.usdBalance = dictionary["usd_balance"] as! String
             
@@ -89,6 +68,12 @@ class StocksDepositBankController: UIViewController, IndicatorInfoProvider, UITe
                         self.presentVC(alert)
             }
     }
+    
+    @IBAction func actionHistory(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "StocksDepositBankHistoryController") as! StocksDepositBankHistoryController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 
     @IBAction func actionSubmit(_ sender: Any) {
         guard let amount = txtAmount.text else {
@@ -118,20 +103,3 @@ class StocksDepositBankController: UIViewController, IndicatorInfoProvider, UITe
     }
 }
 
-
-extension StocksDepositBankController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return depositFromBankList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: StocksDepositItem = tableView.dequeueReusableCell(withIdentifier: "StocksDepositItem", for: indexPath) as! StocksDepositItem
-        let item = depositFromBankList[indexPath.row]
-        cell.lbRequestAmount.text = item.amount
-        cell.lbReceivedAmount.text = item.received
-        cell.lbStatus.text = item.status
-        cell.lbDate.text = item.date
-        
-        return cell
-    }
-}
