@@ -424,7 +424,8 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
         let cell: CoinView = tableView.dequeueReusableCell(withIdentifier: "CoinView", for: indexPath) as! CoinView
         
         let coin = coinList[indexPath.row]
-        cell.lbName.text = coin.symbol
+        cell.lbName.text = coin.name
+        cell.lbSymbol.text = coin.symbol
         cell.imgIcon.load(url: URL(string: coin.icon)!)
         cell.lbPrice.text = coin.price
         cell.lbHolding.text = coin.holding

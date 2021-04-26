@@ -46,35 +46,35 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-gb-wA9">
+                                        <rect key="frame" x="160.5" y="8.5" width="25" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="igQ-cb-cvE"/>
+                                            <constraint firstAttribute="height" constant="29" id="uGv-jA-3oT"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_delete_forever"/>
+                                        <connections>
+                                            <action selector="actionDelete:" destination="CTg-IJ-jaX" eventType="primaryActionTriggered" id="JHL-Ga-bcq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="ecj-ZJ-XwH" firstAttribute="centerY" secondItem="tbi-HK-EoW" secondAttribute="centerY" id="ArE-zi-97o"/>
                                     <constraint firstAttribute="width" secondItem="tbi-HK-EoW" secondAttribute="height" multiplier="4:1" id="GAw-f8-5rY"/>
+                                    <constraint firstItem="tOm-gb-wA9" firstAttribute="centerY" secondItem="ecj-ZJ-XwH" secondAttribute="centerY" id="LhV-hm-MzQ"/>
                                     <constraint firstItem="ecj-ZJ-XwH" firstAttribute="leading" secondItem="tbi-HK-EoW" secondAttribute="leading" id="Xdm-tF-Q1M"/>
+                                    <constraint firstAttribute="trailing" secondItem="tOm-gb-wA9" secondAttribute="trailing" id="kWm-le-n6n"/>
                                     <constraint firstAttribute="trailing" secondItem="ecj-ZJ-XwH" secondAttribute="trailing" id="ywn-aH-GfD"/>
                                 </constraints>
                             </view>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-gb-wA9">
-                        <rect key="frame" x="376" y="13.5" width="25" height="29"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="25" id="igQ-cb-cvE"/>
-                            <constraint firstAttribute="height" constant="29" id="uGv-jA-3oT"/>
-                        </constraints>
-                        <state key="normal" image="ic_delete_forever"/>
-                        <connections>
-                            <action selector="actionDelete:" destination="CTg-IJ-jaX" eventType="primaryActionTriggered" id="JHL-Ga-bcq"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="tOm-gb-wA9" firstAttribute="centerY" secondItem="CEP-lQ-Fgw" secondAttribute="centerY" id="5tP-Rd-UF6"/>
                     <constraint firstItem="WEY-6z-gvv" firstAttribute="leading" secondItem="CEP-lQ-Fgw" secondAttribute="leading" id="Trr-g5-AR9"/>
                     <constraint firstItem="WEY-6z-gvv" firstAttribute="top" secondItem="CEP-lQ-Fgw" secondAttribute="top" id="caA-r7-wQ0"/>
                     <constraint firstAttribute="trailing" secondItem="WEY-6z-gvv" secondAttribute="trailing" constant="30" id="nj5-JE-1Rr"/>
-                    <constraint firstAttribute="trailing" secondItem="tOm-gb-wA9" secondAttribute="trailing" id="oSr-CJ-PJd"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

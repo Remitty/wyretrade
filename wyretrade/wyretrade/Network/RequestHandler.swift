@@ -338,7 +338,7 @@ class RequestHandler {
     class func coinTradeHistory(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
         let url = Constants.URL.COIN_TRADE_HISTORY_DATA
         print(url)
-        NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
             
             success(successResponse)
         }) { (error) in

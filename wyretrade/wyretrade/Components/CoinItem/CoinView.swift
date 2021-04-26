@@ -17,4 +17,5 @@ class CoinView: UITableViewCell {
     @IBOutlet weak var lbHolding: UILabel!
     @IBOutlet weak var lbChangePercent: UILabel!
     @IBOutlet weak var imgChange: UIImageView!
+    @IBOutlet weak var lbSymbol: UILabel!
 }

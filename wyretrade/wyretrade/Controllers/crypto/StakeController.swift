@@ -63,7 +63,7 @@ class StakeController: UIViewController, UITextFieldDelegate, NVActivityIndicato
   
         self.lbDailyReward.text = "+" + self.coin.dailyReward + " daily"
         self.lbStakingAmount.text = self.coin.staking
-        self.stakingAmount = Double(self.coin.staking)!
+        self.stakingAmount = self.coin.dbStaking
         
     }
     

@@ -56,7 +56,9 @@ extension PredictResultsController: UITableViewDelegate, UITableViewDataSource {
         cell.lbPayout.text = item.payout
         cell.lbContent.text = item.content
         cell.betView.isHidden = true
-
+        cell.cancelView.isHidden = true
+        cell.remainingTime = item.remainTime
+        cell.precessTimer()
         return cell
     }
 }

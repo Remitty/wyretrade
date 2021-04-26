@@ -43,7 +43,7 @@ class StocksDepositCoinHistoryController: UIViewController, NVActivityIndicatorV
             
             var deposit : StocksDepositModel!
             
-            if let data = dictionary["stock_transfer"] as? [[String:Any]] {
+            if let data = dictionary["transfer_history"] as? [[String:Any]] {
                 
                 self.depositFromCoinList = [StocksDepositModel]()
                 

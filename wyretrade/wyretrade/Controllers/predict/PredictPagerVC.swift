@@ -189,7 +189,7 @@ class PredictPagerVC: SegmentedPagerTabStripViewController, NVActivityIndicatorV
             let param: NSDictionary = ["type": 0]
             self.loadPredictable(param: param)
         }
-        let action2 = UIAlertAction(title: "Stocks", style: .default) { action in
+        let action2 = UIAlertAction(title: "Stocks, ETFs", style: .default) { action in
             let param: NSDictionary = ["type": 1]
             self.loadPredictable(param: param)
         }

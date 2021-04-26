@@ -28,7 +28,9 @@ class PredictionItem: UITableViewCell {
     @IBOutlet weak var lbStatus: UILabel!
     @IBOutlet weak var lbPayout: UILabel!
     
-    @IBOutlet weak var answerView: UIView!
+    @IBOutlet weak var payoutView: UIView!
+    
+    @IBOutlet weak var cancelView: UIView!
     @IBOutlet weak var lbAnswer: UILabel!
     @IBOutlet weak var betView: UIView!
     

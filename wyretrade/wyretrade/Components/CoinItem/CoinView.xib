@@ -32,8 +32,14 @@
                                                     <constraint firstAttribute="height" constant="25" id="EGl-hz-mL4"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spz-Y0-vxO">
-                                                <rect key="frame" x="35" y="10.5" width="40" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spz-Y0-vxO">
+                                                <rect key="frame" x="35" y="20.5" width="33" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWU-Kg-Lca">
+                                                <rect key="frame" x="35" y="2.5" width="40" height="18"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -44,7 +50,9 @@
                                             <constraint firstItem="spz-Y0-vxO" firstAttribute="leading" secondItem="Ohm-oa-C2g" secondAttribute="trailing" constant="10" id="C4D-jw-eQh"/>
                                             <constraint firstItem="Ohm-oa-C2g" firstAttribute="leading" secondItem="ITM-Ls-CZi" secondAttribute="leading" id="EBm-Mm-fph"/>
                                             <constraint firstItem="Ohm-oa-C2g" firstAttribute="centerY" secondItem="ITM-Ls-CZi" secondAttribute="centerY" id="ECv-Of-BuP"/>
-                                            <constraint firstItem="spz-Y0-vxO" firstAttribute="centerY" secondItem="Ohm-oa-C2g" secondAttribute="centerY" id="VHP-ZF-EjJ"/>
+                                            <constraint firstItem="KWU-Kg-Lca" firstAttribute="bottom" secondItem="ITM-Ls-CZi" secondAttribute="centerY" constant="1" id="Hi9-M5-9bo"/>
+                                            <constraint firstItem="spz-Y0-vxO" firstAttribute="top" secondItem="Ohm-oa-C2g" secondAttribute="centerY" constant="1" id="VHP-ZF-EjJ"/>
+                                            <constraint firstItem="KWU-Kg-Lca" firstAttribute="leading" secondItem="Ohm-oa-C2g" secondAttribute="trailing" constant="10" id="VRC-K0-e1e"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y32-P8-UDc" userLabel="middleview">
@@ -146,6 +154,7 @@
                 <outlet property="lbHolding" destination="pZj-wz-6mC" id="TmX-fP-TdG"/>
                 <outlet property="lbName" destination="spz-Y0-vxO" id="VNB-sA-wbX"/>
                 <outlet property="lbPrice" destination="dt0-sC-8mF" id="dV2-xy-mqR"/>
+                <outlet property="lbSymbol" destination="KWU-Kg-Lca" id="Xi0-EL-82G"/>
             </connections>
             <point key="canvasLocation" x="-413.04347826086962" y="88.727678571428569"/>
         </tableViewCell>

@@ -70,9 +70,12 @@ extension PredictOwnerController: UITableViewDelegate, UITableViewDataSource {
         cell.lbStatus.text = item.status
         cell.lbPayout.text = item.payout
         cell.lbContent.text = item.content
-        cell.remainingTime = item.remainTime
-        cell.answerView.isHidden = true
+        
+        if item.status != "Created" {
+            cell.cancelView.isHidden = true
+        }
         cell.betView.isHidden = true
+        cell.remainingTime = item.remainTime
         cell.precessTimer()
 
         return cell

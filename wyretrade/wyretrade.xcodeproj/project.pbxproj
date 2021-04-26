@@ -127,6 +127,7 @@
 		7BDD29F225F28F95007A6921 /* CoinWithdrawItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BDD29F125F28F95007A6921 /* CoinWithdrawItem.xib */; };
 		7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29F625F28FB7007A6921 /* CoinWithdrawItem.swift */; };
 		7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29FB25F29949007A6921 /* SupportController.swift */; };
+		D325177D2636C1BB005EA85E /* USDCRecipientListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D325177C2636C1BB005EA85E /* USDCRecipientListController.swift */; };
 		D334AB5E26137F8C00FBB0B5 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */; };
 		D34C4C4125FE9CB8000B32D2 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */; };
 		D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */; };
@@ -161,7 +162,6 @@
 		D35F57AA2632EDAB003F4008 /* StocksWithdrawHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F57A92632EDAB003F4008 /* StocksWithdrawHistoryController.swift */; };
 		D35F57AF2632EF06003F4008 /* CoinWithdrawHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F57AE2632EF06003F4008 /* CoinWithdrawHistoryController.swift */; };
 		D35F57B72632F095003F4008 /* USDCPayHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F57B62632F095003F4008 /* USDCPayHistoryController.swift */; };
-		D35F57BC2633BB3C003F4008 /* TokenTradePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35F57BB2633BB3C003F4008 /* TokenTradePrice.swift */; };
 		D371A3372603D5B500C5ECEE /* TradeTokenHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3362603D5B500C5ECEE /* TradeTokenHistoryController.swift */; };
 		D371A3422603F37E00C5ECEE /* TradeTokenPagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3412603F37E00C5ECEE /* TradeTokenPagerVC.swift */; };
 		D371A3472603F3A900C5ECEE /* TokenBuyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D371A3462603F3A900C5ECEE /* TokenBuyController.swift */; };
@@ -345,6 +345,7 @@
 		918040A114F91B22508A5AD5 /* Pods-wyretrade.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.debug.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.debug.xcconfig"; sourceTree = "<group>"; };
 		93A6C30EBBBA3C80D50430A6 /* Pods-wyretrade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.release.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.release.xcconfig"; sourceTree = "<group>"; };
 		BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wyretrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D325177C2636C1BB005EA85E /* USDCRecipientListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDCRecipientListController.swift; sourceTree = "<group>"; };
 		D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 		D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
@@ -379,7 +380,6 @@
 		D35F57A92632EDAB003F4008 /* StocksWithdrawHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksWithdrawHistoryController.swift; sourceTree = "<group>"; };
 		D35F57AE2632EF06003F4008 /* CoinWithdrawHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinWithdrawHistoryController.swift; sourceTree = "<group>"; };
 		D35F57B62632F095003F4008 /* USDCPayHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDCPayHistoryController.swift; sourceTree = "<group>"; };
-		D35F57BB2633BB3C003F4008 /* TokenTradePrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTradePrice.swift; sourceTree = "<group>"; };
 		D371A3362603D5B500C5ECEE /* TradeTokenHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTokenHistoryController.swift; sourceTree = "<group>"; };
 		D371A3412603F37E00C5ECEE /* TradeTokenPagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTokenPagerVC.swift; sourceTree = "<group>"; };
 		D371A3462603F3A900C5ECEE /* TokenBuyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBuyController.swift; sourceTree = "<group>"; };
@@ -621,7 +621,6 @@
 				D34C4CA726005C5B000B32D2 /* UserProfileModel.swift */,
 				D39DA878261A44F400F78746 /* SwapRateModel.swift */,
 				D3EB8115261F3FB500FB7502 /* StellarAccount.swift */,
-				D35F57BB2633BB3C003F4008 /* TokenTradePrice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -869,25 +868,26 @@
 				D3F845EB260F28290026DA1E /* CoinTradeController.swift */,
 				D3F8462C26116D4F0026DA1E /* CoinTradePagerVC.swift */,
 				7BDD29E625F28BB9007A6921 /* CoinWithdrawController.swift */,
+				D35F57AE2632EF06003F4008 /* CoinWithdrawHistoryController.swift */,
+				D3EB81DA2620435D00FB7502 /* CompleteWithdrawController.swift */,
 				7B76AE9325F629B100C9FE5A /* DepositHistoryController.swift */,
 				7B76AE9D25F62B6E00C9FE5A /* LinkAccountController.swift */,
 				D34C4CE02601580F000B32D2 /* LInkAssetController.swift */,
 				7B6D920325F0B0F000B1E466 /* StakeController.swift */,
+				D3EB811A261F560100FB7502 /* StakeHistoryController.swift */,
 				7B6D920D25F0B31F00B1E466 /* StakeListController.swift */,
 				7B4D8F0525ECDB1900557F92 /* SwapController.swift */,
+				D39DA8732619FCE400F78746 /* SwapHistoryController.swift */,
 				D371A3462603F3A900C5ECEE /* TokenBuyController.swift */,
 				D371A34B2603F3C400C5ECEE /* TokenSellController.swift */,
 				7B76AE8E25F626F700C9FE5A /* TradeTokenController.swift */,
 				D371A3362603D5B500C5ECEE /* TradeTokenHistoryController.swift */,
+				D39DA86B2616B99A00F78746 /* TradeTokenOrdersController.swift */,
 				D371A3412603F37E00C5ECEE /* TradeTokenPagerVC.swift */,
 				7B68493925F3AF570075BB79 /* USDCAddContactController.swift */,
 				7B68493425F3AF100075BB79 /* USDCPayController.swift */,
-				D39DA86B2616B99A00F78746 /* TradeTokenOrdersController.swift */,
-				D39DA8732619FCE400F78746 /* SwapHistoryController.swift */,
-				D3EB811A261F560100FB7502 /* StakeHistoryController.swift */,
-				D3EB81DA2620435D00FB7502 /* CompleteWithdrawController.swift */,
-				D35F57AE2632EF06003F4008 /* CoinWithdrawHistoryController.swift */,
 				D35F57B62632F095003F4008 /* USDCPayHistoryController.swift */,
+				D325177C2636C1BB005EA85E /* USDCRecipientListController.swift */,
 			);
 			path = crypto;
 			sourceTree = "<group>";
@@ -1275,6 +1275,7 @@
 				D34C4CC72600F05D000B32D2 /* CoinSelectItem.swift in Sources */,
 				7B68493A25F3AF570075BB79 /* USDCAddContactController.swift in Sources */,
 				D34C4D0C2601A97B000B32D2 /* StocksHistoryPagerVC.swift in Sources */,
+				D325177D2636C1BB005EA85E /* USDCRecipientListController.swift in Sources */,
 				7BDD292A25F16F46007A6921 /* PredictPagerVC.swift in Sources */,
 				7B68496725F3D0C00075BB79 /* USDCPayment.swift in Sources */,
 				7BDD299825F1F572007A6921 /* StocksDepositCoinController.swift in Sources */,
@@ -1297,7 +1298,6 @@
 				D371A3372603D5B500C5ECEE /* TradeTokenHistoryController.swift in Sources */,
 				7BDD29C825F25EA1007A6921 /* StocksBuyController.swift in Sources */,
 				D371A3612604893600C5ECEE /* TokenAskItem.swift in Sources */,
-				D35F57BC2633BB3C003F4008 /* TokenTradePrice.swift in Sources */,
 				D371A37A2606EBAF00C5ECEE /* Ramp.swift in Sources */,
 				7BDD297525F19327007A6921 /* StocksModel.swift in Sources */,
 				7B28B88D25F02B3000C5F4C3 /* SwapModel.swift in Sources */,
