@@ -8951,7 +8951,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAX-au-bQ4" customClass="MDCButton">
-                                        <rect key="frame" x="55" y="295" width="240" height="30"/>
+                                        <rect key="frame" x="55" y="285.33333333333331" width="240" height="30"/>
                                         <color key="backgroundColor" red="0.093263645820000005" green="0.84853170379999998" blue="0.26059470280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="etQ-zm-X7L"/>
@@ -8965,11 +8965,12 @@
                                             <action selector="actionSubmit:" destination="3ho-y5-bxb" eventType="primaryActionTriggered" id="BTx-Re-lEh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opf-QF-bVk" customClass="DLRadioButton">
-                                        <rect key="frame" x="0.0" y="259.33333333333331" width="350" height="28"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <state key="normal" title="Select to open a margin trading account">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opf-QF-bVk">
+                                        <rect key="frame" x="0.0" y="259.33333333333331" width="350" height="18.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <state key="normal" title="Select to open a margin trading account" image="squareshape" catalog="system">
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
@@ -8980,13 +8981,17 @@
                                                 <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" systemColor="systemGreenColor"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="image" keyPath="iconSelected" value="checkmark.square" catalog="system"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="squareshape" catalog="system"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionCheckMargin:" destination="3ho-y5-bxb" eventType="primaryActionTriggered" id="5Pt-pq-RPb"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duZ-ie-RIi">
-                                        <rect key="frame" x="122" y="345" width="106" height="30"/>
+                                        <rect key="frame" x="122" y="335.33333333333331" width="106" height="30"/>
                                         <state key="normal" title="Deposit History"/>
                                         <connections>
                                             <action selector="actionHistory:" destination="3ho-y5-bxb" eventType="primaryActionTriggered" id="WCk-eJ-EfE"/>
@@ -9026,6 +9031,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnMarginCheck" destination="Opf-QF-bVk" id="UbC-x1-vzx"/>
                         <outlet property="lbStocksBalance" destination="YO4-3n-E1u" id="EOe-II-ByG"/>
                         <outlet property="lbUSDBalance" destination="e6p-zI-41j" id="fEk-pq-7r1"/>
                         <outlet property="txtAmount" destination="irG-f8-0Ia" id="B3U-ts-BfM"/>
@@ -9479,7 +9485,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDD-Ye-4Pv" customClass="MDCButton">
-                                        <rect key="frame" x="55" y="295" width="240" height="30"/>
+                                        <rect key="frame" x="55" y="285.33333333333331" width="240" height="30"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="Mj9-I4-ilZ"/>
@@ -9493,11 +9499,12 @@
                                             <action selector="actionTransfer:" destination="SX4-rO-KAo" eventType="primaryActionTriggered" id="WOD-Om-1s6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJZ-Rs-yxW" customClass="DLRadioButton">
-                                        <rect key="frame" x="0.0" y="259.33333333333331" width="350" height="28"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <state key="normal" title="Select to open a margin trading account">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJZ-Rs-yxW">
+                                        <rect key="frame" x="0.0" y="259.33333333333331" width="350" height="18.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <state key="normal" title="Select to open a margin trading account" image="squareshape" catalog="system">
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="iconSize">
@@ -9509,12 +9516,16 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="iconSelected" value="checkmark.square" catalog="system"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" systemColor="systemGreenColor"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="squareshape" catalog="system"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionCheckMargin:" destination="SX4-rO-KAo" eventType="primaryActionTriggered" id="0u5-89-vb2"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzz-kS-4Lc">
-                                        <rect key="frame" x="122" y="345" width="106" height="30"/>
+                                        <rect key="frame" x="122" y="335.33333333333331" width="106" height="30"/>
                                         <state key="normal" title="Deposit History"/>
                                         <connections>
                                             <action selector="actionHistory:" destination="SX4-rO-KAo" eventType="touchUpInside" id="GOr-Bx-aP8"/>
@@ -9554,6 +9565,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnMarginCheck" destination="wJZ-Rs-yxW" id="ggj-bk-dl8"/>
                         <outlet property="lbStocksBalance" destination="lj3-BO-ETV" id="erb-GE-fb7"/>
                         <outlet property="lbUSDCBalance" destination="GDm-CI-2F4" id="n8A-Wh-MBO"/>
                         <outlet property="txtAmount" destination="KTp-cM-L5Y" id="fQi-lg-IfL"/>
@@ -12298,6 +12310,7 @@
         <image name="person.fill.badge.plus" catalog="system" width="128" height="124"/>
         <image name="profile2" width="24" height="24"/>
         <image name="send" width="23" height="19"/>
+        <image name="squareshape" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

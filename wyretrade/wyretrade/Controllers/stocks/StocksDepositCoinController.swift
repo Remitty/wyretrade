@@ -17,6 +17,7 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
     
     var usdcBalance = 0.0
     var stocksBalance = 0.0
+    var checkMargin = false
 
     @IBOutlet weak var lbStocksBalance: UILabel!
     @IBOutlet weak var lbUSDCBalance: UILabel!
@@ -25,6 +26,7 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
             txtAmount.delegate = self
         }
     }
+    @IBOutlet weak var btnMarginCheck: UIButton!
     
     
     override func viewDidLoad() {
@@ -64,6 +66,24 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
             }
     }
     
+    func showMarginFeeAlert() {
+        let defaults = UserDefaults.init()
+        let alert = Alert.showBasicAlert(message: defaults.string(forKey: "msgMarginAccountUsagePolicy")!)
+        self.presentVC(alert)
+    }
+    
+    @IBAction func actionCheckMargin(_ sender: Any) {
+        if checkMargin {
+            checkMargin = false
+            btnMarginCheck.setImage(UIImage(systemName: "squareshape"), for: .normal)
+        } else {
+            checkMargin = true
+            btnMarginCheck.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+            showMarginFeeAlert()
+        }
+    }
+    
+    
     @IBAction func actionHistory(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "StocksDepositCoinHistoryController") as! StocksDepositCoinHistoryController
         self.navigationController?.pushViewController(vc, animated: true)
@@ -87,7 +107,7 @@ class StocksDepositCoinController: UIViewController, IndicatorInfoProvider, UITe
         let param = [
             "amount" : amount,
             "type": 0,
-            "check_margin": false
+            "check_margin": checkMargin
         ] as! NSDictionary
         
         let alert = Alert.showConfirmAlert(message: "Are you sure transfer \(amount) USDC ?", handler: {
