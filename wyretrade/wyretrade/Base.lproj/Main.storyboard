@@ -649,7 +649,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRT-7H-8ss">
-                                <rect key="frame" x="20" y="128" width="350" height="120"/>
+                                <rect key="frame" x="20" y="84" width="350" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5Z-rp-7T5">
                                         <rect key="frame" x="151.66666666666666" y="0.0" width="47" height="20.333333333333332"/>
@@ -658,7 +658,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iT7-bP-10H" userLabel="wallet view">
-                                        <rect key="frame" x="100" y="30.333333333333343" width="150" height="50"/>
+                                        <rect key="frame" x="100" y="30.333333333333329" width="150" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUD-Uw-acl">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="26.333333333333332"/>
@@ -667,7 +667,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIv-ev-0NL">
-                                                <rect key="frame" x="0.0" y="31.333333333333314" width="150" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="31.333333333333329" width="150" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -714,7 +714,7 @@
                                 </constraints>
                             </view>
                             <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0C-8l-fvB">
-                                <rect key="frame" x="10" y="288" width="370" height="110"/>
+                                <rect key="frame" x="10" y="244" width="370" height="110"/>
                                 <subviews>
                                     <stackView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ubt-DN-HTw">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="128.33333333333334"/>
@@ -759,7 +759,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSV-9h-Aay">
-                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="108"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_add" translatesAutoresizingMaskIntoConstraints="NO" id="AWU-e3-kdt">
                                                                         <rect key="frame" x="-0.33333333333333331" y="33" width="73" height="60"/>
@@ -769,7 +769,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyf-3B-S1m">
-                                                                <rect key="frame" x="0.0" y="128.33333333333331" width="70" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="108" width="70" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -792,7 +792,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqe-kB-AoU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="108"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_send" translatesAutoresizingMaskIntoConstraints="NO" id="EO4-QS-0J0">
                                                                         <rect key="frame" x="-0.33333333333333331" y="33" width="73.333333333333329" height="60"/>
@@ -802,7 +802,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Send" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyA-wF-pOS">
-                                                                <rect key="frame" x="0.0" y="128.33333333333331" width="70" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="108" width="70" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -825,7 +825,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heq-K1-dyH">
-                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="108"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_bank" translatesAutoresizingMaskIntoConstraints="NO" id="yym-fj-Tio">
                                                                         <rect key="frame" x="-0.66666666666666663" y="36" width="73" height="60"/>
@@ -835,7 +835,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUG-pw-jVt">
-                                                                <rect key="frame" x="0.0" y="128.33333333333331" width="70" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="108" width="70" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -858,7 +858,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJf-Bi-Eg0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="128.33333333333334"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="108"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_contact" translatesAutoresizingMaskIntoConstraints="NO" id="kAm-UO-tNV">
                                                                         <rect key="frame" x="-0.66666666666666663" y="35" width="73.333333333333329" height="60"/>
@@ -868,7 +868,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIk-OQ-RDE">
-                                                                <rect key="frame" x="0.0" y="128.33333333333331" width="70" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="108" width="70" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -897,7 +897,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6V1-mq-Xl7">
-                                <rect key="frame" x="10" y="449" width="370" height="302"/>
+                                <rect key="frame" x="10" y="405" width="370" height="346"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -10572,11 +10572,11 @@
             <objects>
                 <viewController id="Z4B-ky-7s8" customClass="SwapController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Tk-5x-Rpc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VB4-dE-sqj">
-                                <rect key="frame" x="10" y="20" width="370" height="726"/>
+                                <rect key="frame" x="10" y="108" width="370" height="643"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybN-Jn-OHl">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="210"/>
@@ -11893,7 +11893,7 @@
                     <connections>
                         <segue destination="6RC-FC-Taj" kind="relationship" relationship="viewControllers" id="fhV-Id-jkj"/>
                         <segue destination="rHz-zj-IDD" kind="relationship" relationship="viewControllers" id="Xoe-Bw-xLj"/>
-                        <segue destination="dWp-Cg-A1y" kind="relationship" relationship="viewControllers" id="Nyy-zU-YZL"/>
+                        <segue destination="Lcs-mG-LOO" kind="relationship" relationship="viewControllers" id="n7Q-hT-vyU"/>
                         <segue destination="oXb-a8-fiE" kind="relationship" relationship="viewControllers" id="Ezn-Tx-eWw"/>
                     </connections>
                 </tabBarController>
@@ -12580,24 +12580,24 @@
             </objects>
             <point key="canvasLocation" x="3993.8461538461538" y="2130.5687203791467"/>
         </scene>
-        <!--Cash-->
-        <scene sceneID="9kU-5c-OPk">
+        <!--Swap-->
+        <scene sceneID="dgm-iM-FQc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dWp-Cg-A1y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cash" image="ic_cash" id="BdO-XM-KPP"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IZC-k9-Ckg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lcs-mG-LOO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Swap" image="ic_swap" id="c3w-sj-17I"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4w4-nI-2cd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kMZ-nt-3dC">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="1vk-Kh-TiM" kind="relationship" relationship="rootViewController" id="0dK-XA-16b"/>
+                        <segue destination="Z4B-ky-7s8" kind="relationship" relationship="rootViewController" id="tGG-Gf-U37"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oS5-h8-07V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="370.76923076923077" y="775.59241706161129"/>
+            <point key="canvasLocation" x="91" y="-1131"/>
         </scene>
         <!--Stocks-->
         <scene sceneID="9a9-UP-Jwq">
@@ -12638,6 +12638,9 @@
             <point key="canvasLocation" x="1545" y="122"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tGG-Gf-U37"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowdown" width="15" height="13"/>
         <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
@@ -12654,7 +12657,6 @@
         <image name="ic_arrow_right" width="24" height="24"/>
         <image name="ic_bank" width="21" height="21"/>
         <image name="ic_bank_plus" width="25" height="25"/>
-        <image name="ic_cash" width="22" height="17"/>
         <image name="ic_chart" width="25" height="25"/>
         <image name="ic_coin" width="24" height="24"/>
         <image name="ic_contact" width="31" height="31"/>
@@ -12667,6 +12669,7 @@
         <image name="ic_send" width="24" height="24"/>
         <image name="ic_send_usdc" width="35" height="39"/>
         <image name="ic_stock" width="24" height="24"/>
+        <image name="ic_swap" width="24" height="24"/>
         <image name="ic_unlock" width="11" height="12"/>
         <image name="ic_up" width="14" height="13"/>
         <image name="ic_user" width="22" height="21"/>
