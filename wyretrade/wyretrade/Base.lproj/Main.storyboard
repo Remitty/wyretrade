@@ -10572,11 +10572,11 @@
             <objects>
                 <viewController id="Z4B-ky-7s8" customClass="SwapController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Tk-5x-Rpc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VB4-dE-sqj">
-                                <rect key="frame" x="10" y="108" width="370" height="643"/>
+                                <rect key="frame" x="10" y="20" width="370" height="726"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybN-Jn-OHl">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="210"/>
@@ -11893,7 +11893,6 @@
                     <connections>
                         <segue destination="6RC-FC-Taj" kind="relationship" relationship="viewControllers" id="fhV-Id-jkj"/>
                         <segue destination="rHz-zj-IDD" kind="relationship" relationship="viewControllers" id="Xoe-Bw-xLj"/>
-                        <segue destination="Lcs-mG-LOO" kind="relationship" relationship="viewControllers" id="n7Q-hT-vyU"/>
                         <segue destination="dWp-Cg-A1y" kind="relationship" relationship="viewControllers" id="Nyy-zU-YZL"/>
                         <segue destination="oXb-a8-fiE" kind="relationship" relationship="viewControllers" id="Ezn-Tx-eWw"/>
                     </connections>
@@ -12581,25 +12580,6 @@
             </objects>
             <point key="canvasLocation" x="3993.8461538461538" y="2130.5687203791467"/>
         </scene>
-        <!--Swap-->
-        <scene sceneID="dgm-iM-FQc">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lcs-mG-LOO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Swap" image="ic_swap" id="c3w-sj-17I"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kMZ-nt-3dC">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Z4B-ky-7s8" kind="relationship" relationship="rootViewController" id="tGG-Gf-U37"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IZC-k9-Ckg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="91" y="-1131"/>
-        </scene>
         <!--Cash-->
         <scene sceneID="9kU-5c-OPk">
             <objects>
@@ -12658,9 +12638,6 @@
             <point key="canvasLocation" x="1545" y="122"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="tGG-Gf-U37"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowdown" width="15" height="13"/>
         <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
@@ -12690,7 +12667,6 @@
         <image name="ic_send" width="24" height="24"/>
         <image name="ic_send_usdc" width="35" height="39"/>
         <image name="ic_stock" width="24" height="24"/>
-        <image name="ic_swap" width="24" height="24"/>
         <image name="ic_unlock" width="11" height="12"/>
         <image name="ic_up" width="14" height="13"/>
         <image name="ic_user" width="22" height="21"/>
