@@ -128,6 +128,9 @@
 		7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29F625F28FB7007A6921 /* CoinWithdrawItem.swift */; };
 		7BDD29FC25F29949007A6921 /* SupportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDD29FB25F29949007A6921 /* SupportController.swift */; };
 		D325177D2636C1BB005EA85E /* USDCRecipientListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D325177C2636C1BB005EA85E /* USDCRecipientListController.swift */; };
+		D328CDF7264B8EDA00EC9BE0 /* TopStocksItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CDF6264B8EDA00EC9BE0 /* TopStocksItem.swift */; };
+		D328CDFF264B8F3D00EC9BE0 /* TopStocksItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D328CDFE264B8F3D00EC9BE0 /* TopStocksItem.xib */; };
+		D328CE0A264BAC3200EC9BE0 /* TopStocksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CE09264BAC3200EC9BE0 /* TopStocksModel.swift */; };
 		D334AB5E26137F8C00FBB0B5 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */; };
 		D34C4C4125FE9CB8000B32D2 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */; };
 		D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */; };
@@ -346,6 +349,9 @@
 		93A6C30EBBBA3C80D50430A6 /* Pods-wyretrade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wyretrade.release.xcconfig"; path = "Target Support Files/Pods-wyretrade/Pods-wyretrade.release.xcconfig"; sourceTree = "<group>"; };
 		BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wyretrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D325177C2636C1BB005EA85E /* USDCRecipientListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDCRecipientListController.swift; sourceTree = "<group>"; };
+		D328CDF6264B8EDA00EC9BE0 /* TopStocksItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStocksItem.swift; sourceTree = "<group>"; };
+		D328CDFE264B8F3D00EC9BE0 /* TopStocksItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopStocksItem.xib; sourceTree = "<group>"; };
+		D328CE09264BAC3200EC9BE0 /* TopStocksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStocksModel.swift; sourceTree = "<group>"; };
 		D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 		D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
@@ -446,6 +452,7 @@
 		7B05703225EEEB9D001E4D24 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D328CDF5264B8EA800EC9BE0 /* TopStocksItem */,
 				D371A38B2608D73B00C5ECEE /* BankContactItem */,
 				D34C4CF82601A1A0000B32D2 /* CoinDepositItem */,
 				7B6CA00925EF263E00D11EB5 /* CoinItem */,
@@ -606,21 +613,22 @@
 				7BDD293D25F177AC007A6921 /* PredictionModel.swift */,
 				7B6D921225F0B3F700B1E466 /* StakeCoinModel.swift */,
 				7B6D920825F0B1B300B1E466 /* StakeModel.swift */,
+				D3EB8115261F3FB500FB7502 /* StellarAccount.swift */,
 				7B6CA01425EFB70200D11EB5 /* StockPositionModel.swift */,
 				7BDD29B225F20C2C007A6921 /* StocksDepositModel.swift */,
 				7BDD297425F19327007A6921 /* StocksModel.swift */,
 				7BDD29D125F275DB007A6921 /* StocksOrderModel.swift */,
 				D3CD1EBB25FE662B00255A89 /* StocksWithdrawModel.swift */,
 				7B28B88C25F02B3000C5F4C3 /* SwapModel.swift */,
+				D39DA878261A44F400F78746 /* SwapRateModel.swift */,
 				D34C4D332603902D000B32D2 /* TokenOrderModel.swift */,
 				D371A355260473A500C5ECEE /* TokenTradeDataModel.swift */,
 				D371A3502604707700C5ECEE /* TokenTradePair.swift */,
+				D328CE09264BAC3200EC9BE0 /* TopStocksModel.swift */,
 				7B68495B25F3D02F0075BB79 /* USDCPaymentModel.swift */,
 				7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */,
 				7B68494E25F3C6460075BB79 /* UserModel.swift */,
 				D34C4CA726005C5B000B32D2 /* UserProfileModel.swift */,
-				D39DA878261A44F400F78746 /* SwapRateModel.swift */,
-				D3EB8115261F3FB500FB7502 /* StellarAccount.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -804,6 +812,15 @@
 				BB32C47C9648DA63AB908BAB /* Pods_wyretrade.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D328CDF5264B8EA800EC9BE0 /* TopStocksItem */ = {
+			isa = PBXGroup;
+			children = (
+				D328CDF6264B8EDA00EC9BE0 /* TopStocksItem.swift */,
+				D328CDFE264B8F3D00EC9BE0 /* TopStocksItem.xib */,
+			);
+			path = TopStocksItem;
 			sourceTree = "<group>";
 		};
 		D34C4C7225FF60C3000B32D2 /* stocks */ = {
@@ -1144,6 +1161,7 @@
 				7BDD29F225F28F95007A6921 /* CoinWithdrawItem.xib in Resources */,
 				7B6D921E25F0B4F800B1E466 /* StakeCoin.xib in Resources */,
 				7B68496225F3D0AE0075BB79 /* USDCPayment.xib in Resources */,
+				D328CDFF264B8F3D00EC9BE0 /* TopStocksItem.xib in Resources */,
 				7B05704225EEEC85001E4D24 /* NewsView.xib in Resources */,
 				D34C4CE726018BEE000B32D2 /* webview.xib in Resources */,
 				7BDD29D825F27731007A6921 /* StocksOrderItem.xib in Resources */,
@@ -1281,6 +1299,7 @@
 				7BDD299825F1F572007A6921 /* StocksDepositCoinController.swift in Sources */,
 				7BA7728F25F9BB9100EAC761 /* CheckBox.swift in Sources */,
 				D34C4C7C25FF62A9000B32D2 /* StocksDepositPagerVC.swift in Sources */,
+				D328CE0A264BAC3200EC9BE0 /* TopStocksModel.swift in Sources */,
 				D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */,
 				7B68493F25F3AF960075BB79 /* CashAccountInfoController.swift in Sources */,
 				7BA7728A25F9BB4600EAC761 /* Button.swift in Sources */,
@@ -1330,6 +1349,7 @@
 				D371A3A12609748200C5ECEE /* Notification.swift in Sources */,
 				7B6D91F825F0AFB300B1E466 /* StakeItem.swift in Sources */,
 				7BDD29F725F28FB7007A6921 /* CoinWithdrawItem.swift in Sources */,
+				D328CDF7264B8EDA00EC9BE0 /* TopStocksItem.swift in Sources */,
 				D371A356260473A500C5ECEE /* TokenTradeDataModel.swift in Sources */,
 				7B7AB50425F7015400860D82 /* Network.swift in Sources */,
 				7BA7726725F9A2E400EAC761 /* UserAuthModel.swift in Sources */,

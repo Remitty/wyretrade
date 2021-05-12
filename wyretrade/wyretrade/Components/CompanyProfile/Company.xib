@@ -14,30 +14,21 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hws-mm-hUL">
-                    <rect key="frame" x="0.0" y="44" width="125.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMPANY PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hws-mm-hUL">
+                    <rect key="frame" x="0.0" y="44" width="160.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" red="0.093263645820000005" green="0.84853170379999998" blue="0.26059470280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="company description" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLo-hE-gs1">
-                    <rect key="frame" x="0.0" y="76" width="119" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLo-hE-gs1">
+                    <rect key="frame" x="0.0" y="74.5" width="414" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Company Industry" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMd-kb-u7r">
-                    <rect key="frame" x="0.0" y="99" width="127" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMd-kb-u7r">
+                    <rect key="frame" x="0.0" y="84.5" width="414" height="0.0"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2020-12-2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7S-7n-5Ss">
-                    <rect key="frame" x="0.0" y="124" width="61" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -46,10 +37,15 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Hws-mm-hUL" firstAttribute="leading" secondItem="BeZ-Kd-bBL" secondAttribute="leading" id="Esx-Wf-TgE"/>
+                <constraint firstItem="ZLo-hE-gs1" firstAttribute="leading" secondItem="BeZ-Kd-bBL" secondAttribute="leading" id="JS3-c9-lws"/>
+                <constraint firstItem="SMd-kb-u7r" firstAttribute="leading" secondItem="BeZ-Kd-bBL" secondAttribute="leading" id="NlQ-pr-JmT"/>
+                <constraint firstItem="BeZ-Kd-bBL" firstAttribute="trailing" secondItem="SMd-kb-u7r" secondAttribute="trailing" id="Vfw-tN-DGl"/>
                 <constraint firstItem="Hws-mm-hUL" firstAttribute="top" secondItem="BeZ-Kd-bBL" secondAttribute="top" id="WRp-Be-a3I"/>
+                <constraint firstItem="BeZ-Kd-bBL" firstAttribute="trailing" secondItem="ZLo-hE-gs1" secondAttribute="trailing" id="eyS-0d-PCg"/>
+                <constraint firstItem="SMd-kb-u7r" firstAttribute="top" secondItem="ZLo-hE-gs1" secondAttribute="bottom" constant="10" id="gZC-IZ-Yhe"/>
+                <constraint firstItem="ZLo-hE-gs1" firstAttribute="top" secondItem="Hws-mm-hUL" secondAttribute="bottom" constant="10" id="mFQ-hH-8z0"/>
             </constraints>
             <connections>
-                <outlet property="lbDate" destination="P7S-7n-5Ss" id="GYg-xy-PRp"/>
                 <outlet property="lbDescription" destination="ZLo-hE-gs1" id="lcr-ik-0Et"/>
                 <outlet property="lbIndustry" destination="SMd-kb-u7r" id="gpt-ha-OtS"/>
             </connections>

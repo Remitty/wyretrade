@@ -12,7 +12,7 @@ class Company: UIView {
     
     @IBOutlet weak var lbDescription: UILabel!
     @IBOutlet weak var lbIndustry: UILabel!
-    @IBOutlet weak var lbDate: UILabel!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

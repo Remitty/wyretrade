@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TopStocksItem" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopStocksItem" id="wqJ-Ho-8xQ" customClass="TopStocksItem" customModule="wyretrade" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wqJ-Ho-8xQ" id="DmX-ch-mDe">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOK-16-myc">
+                        <rect key="frame" x="10" y="3" width="394" height="38"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sk1-UP-iub">
+                                <rect key="frame" x="0.0" y="0.0" width="37.5" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i86-ta-2lZ">
+                                <rect key="frame" x="358.5" y="0.0" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemPurpleColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHZ-6W-DmV">
+                                <rect key="frame" x="0.0" y="21" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemPurpleColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TV-nJ-ecJ">
+                                <rect key="frame" x="361" y="22" width="33" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5TV-nJ-ecJ" secondAttribute="bottom" id="83C-YG-Hrs"/>
+                            <constraint firstItem="Sk1-UP-iub" firstAttribute="top" secondItem="BOK-16-myc" secondAttribute="top" id="E9R-i2-sXt"/>
+                            <constraint firstAttribute="bottom" secondItem="XHZ-6W-DmV" secondAttribute="bottom" id="QPH-tQ-isO"/>
+                            <constraint firstAttribute="trailing" secondItem="i86-ta-2lZ" secondAttribute="trailing" id="SaN-2g-Bfv"/>
+                            <constraint firstItem="XHZ-6W-DmV" firstAttribute="leading" secondItem="BOK-16-myc" secondAttribute="leading" id="cxM-jA-I9O"/>
+                            <constraint firstAttribute="trailing" secondItem="5TV-nJ-ecJ" secondAttribute="trailing" id="e3S-Gv-1v4"/>
+                            <constraint firstItem="i86-ta-2lZ" firstAttribute="top" secondItem="BOK-16-myc" secondAttribute="top" id="gyU-yA-TtK"/>
+                            <constraint firstItem="Sk1-UP-iub" firstAttribute="leading" secondItem="BOK-16-myc" secondAttribute="leading" id="ut4-gH-tzK"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="BOK-16-myc" firstAttribute="leading" secondItem="DmX-ch-mDe" secondAttribute="leading" constant="10" id="Izj-FV-uI0"/>
+                    <constraint firstItem="BOK-16-myc" firstAttribute="top" secondItem="DmX-ch-mDe" secondAttribute="top" constant="3" id="SOf-sr-vlf"/>
+                    <constraint firstAttribute="trailing" secondItem="BOK-16-myc" secondAttribute="trailing" constant="10" id="XhR-vW-zNu"/>
+                    <constraint firstAttribute="bottom" secondItem="BOK-16-myc" secondAttribute="bottom" constant="3" id="pNm-Qb-9xJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lbChange" destination="5TV-nJ-ecJ" id="Ihx-ZW-a0k"/>
+                <outlet property="lbName" destination="XHZ-6W-DmV" id="KHj-hi-D0L"/>
+                <outlet property="lbPrice" destination="i86-ta-2lZ" id="Tlh-Zb-dhU"/>
+                <outlet property="lbSymbol" destination="Sk1-UP-iub" id="C0X-j1-gDa"/>
+            </connections>
+            <point key="canvasLocation" x="43" y="74"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

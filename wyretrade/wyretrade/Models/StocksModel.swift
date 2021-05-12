@@ -16,6 +16,7 @@ struct StocksModel {
     var changeToday: String!
     var changeTodayPercent: Double!
     
+    
     init(fromDictionary dictionary: [String: Any]) {
         name = dictionary["name"] as? String
         ticker = dictionary["symbol"] as? String
@@ -24,15 +25,7 @@ struct StocksModel {
         avgPrice = PriceFormat(amount: (dictionary["filled_avg_price"] as! NSString).doubleValue, currency: Currency.usd).description
         changeToday = PriceFormat(amount: dictionary["todaysChange"] as! Double, currency: Currency.usd).description
         changeTodayPercent = dictionary["todaysChangePerc"] as! Double
+        
     }
     
-    func toDictionary() -> [String: Any] {
-        var dictionary = [String: Any]()
-        dictionary["name"] = name
-        dictionary["ticker"] = ticker
-        dictionary["shares"] = shares
-        dictionary["price"] = price
-        dictionary["changeToday"] = changeToday
-        return dictionary
-    }
 }

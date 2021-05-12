@@ -28,8 +28,17 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var viewFirst: UIView!
     @IBOutlet weak var viewSecond: UIView!
     
-
+    @IBOutlet weak var btnSell: UIButton!
+    
+    @IBOutlet weak var lbYearHigh: UILabel!
+    @IBOutlet weak var lbYearLow: UILabel!
+    @IBOutlet weak var lbVolume: UILabel!
+    
+    @IBOutlet weak var lbCompanyIndustry: UILabel!
+    @IBOutlet weak var lbCompanydDes: UILabel!
+    
     var stocks: StockPositionModel!
+    var topStocks: TopStocksModel!
     var stocksBalance = 0.0
 
     var company: CompanyModel!
@@ -50,34 +59,48 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.lbStocksSymbol.text = self.stocks.ticker
-        self.lbStocksName.text = self.stocks.name
-        self.lbStocksPrice.text = self.stocks.price
-        self.lbStocksChange.text = "$\(self.stocks.changeToday!) (\(self.stocks.changeTodayPercent!)%)  Today"
-        
-        if self.stocks.dbProfit >= 0 {
-            self.lbProfit.textColor = UIColor.green
-            self.lbStocksChange.textColor = UIColor.green
-            self.imgProfit.image = UIImage(named: "ic_up")
-        } else {
-            self.lbProfit.textColor = UIColor.red
-            self.lbStocksChange.textColor = UIColor.red
-            self.imgProfit.image = UIImage(named: "ic_down")
+        if self.stocks != nil {
+            self.lbStocksSymbol.text = self.stocks.ticker
+            self.lbStocksName.text = self.stocks.name
+            self.lbStocksPrice.text = self.stocks.price
+            self.lbStocksChange.text = "$\(self.stocks.changeToday!) (\(self.stocks.changeTodayPercent!)%)  Today"
+            
+            if self.stocks.dbProfit >= 0 {
+                self.lbProfit.textColor = UIColor.green
+                self.lbStocksChange.textColor = UIColor.green
+                self.imgProfit.image = UIImage(named: "ic_up")
+            } else {
+                self.lbProfit.textColor = UIColor.red
+                self.lbStocksChange.textColor = UIColor.red
+                self.imgProfit.image = UIImage(named: "ic_down")
+            }
+            
+            if self.stocks.shares > 0 {
+                self.lbShares.text = "\(self.stocks.shares!)"
+                self.lbAvgPrice.text = self.stocks.avgPrice
+                self.lbHolding.text = self.stocks.holding
+                self.lbProfit.text = self.stocks.profit
+            } else {
+                self.viewFirst.isHidden = true
+                self.viewSecond.isHidden = true
+                self.btnSell.isHidden = true
+            }
         }
         
-        if self.stocks.shares > 0 {
-            self.lbShares.text = "\(self.stocks.shares!)"
-            self.lbAvgPrice.text = self.stocks.avgPrice
-            self.lbHolding.text = self.stocks.holding
-            self.lbProfit.text = self.stocks.profit
-        } else {
-            self.viewFirst.isHidden = false
-            self.viewSecond.isHidden = false
+        if self.topStocks != nil {
+            self.lbStocksSymbol.text = self.topStocks.symbol
+            self.lbStocksName.text = self.topStocks.name
+            self.lbStocksPrice.text = "\(self.topStocks.price!)"
+            self.lbStocksChange.text = "\(self.topStocks.change!)\(self.topStocks.changePercent!)  Today"
+            
+            self.viewFirst.isHidden = true
+            self.viewSecond.isHidden = true
+            self.btnSell.isHidden = true
         }
 //
 //        self.loadData()
         
-        self.configCompany()
+//        self.configCompany()
         
         initTradeChart()
         
@@ -95,15 +118,18 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     
     func loadData() {
         self.startAnimating()
-        let param : [String : Any] = ["ticker": self.stocks.ticker]
+        let param : [String : Any] = ["ticker": self.lbStocksSymbol.text!]
         RequestHandler.getStockDetail(parameter: param as NSDictionary, success: { (successResponse) in
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
             self.stocksBalance = dictionary["stock_balance"] as! Double
+            
+            let stocks = StockPositionModel(fromDictionary: dictionary["stock"] as! [String: Any])
+            self.lbYearLow.text = stocks.yearLow
+            self.lbYearHigh.text = stocks.yearHigh
+            self.lbVolume.text = stocks.lastVolume
 
-            
-            
             var chart : ChartModel!
             
             if let data = dictionary["aggregate_day"] as? [[String:Any]] {
@@ -170,9 +196,9 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
             
             self.company = CompanyModel(fromDictionary: company as! [String: Any])
 
-            self.companyView.lbDescription.text = self.company.description
-            self.companyView.lbIndustry.text = self.company.industry
-            self.companyView.lbDate.text = self.company.site
+            self.lbCompanydDes.text = self.company.description
+            self.lbCompanyIndustry.text = self.company.industry
+//            self.companyView.lbDate.text = self.company.site
             
         }) { (error) in
                         self.stopAnimating()

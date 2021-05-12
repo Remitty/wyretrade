@@ -19,6 +19,9 @@ struct StockPositionModel {
     var holding: String!
     var changeToday: Double!
     var changeTodayPercent: Double!
+    var yearHigh: String!
+    var yearLow: String!
+    var lastVolume: String!
     
     init(fromDictionary dictionary: [String: Any]) {
         name = dictionary["name"] as? String
@@ -69,18 +72,13 @@ struct StockPositionModel {
             dbProfit = dictionary["profit"] as? Double
             profit = PriceFormat(amount: dbProfit, currency: Currency.usd).description
         }
+        if let year = dictionary["year_high"] as? Double {
+            yearHigh = PriceFormat(amount: dictionary["year_high"] as! Double, currency: Currency.usd).description
+            yearLow = PriceFormat(amount: dictionary["year_low"] as! Double, currency: Currency.usd).description
+            lastVolume = NumberFormat(value: dictionary["daily_volume"] as!Double, decimal: 4).description
+        }
+        
         
     }
     
-    func toDictionary() -> [String: Any] {
-        var dictionary = [String: Any]()
-        dictionary["name"] = name
-        dictionary["ticker"] = ticker
-        dictionary["shares"] = shares
-        dictionary["price"] = price
-        dictionary["profit"] = profit
-        dictionary["holding"] = holding
-        dictionary["changeToday"] = changeToday
-        return dictionary
-    }
 }
