@@ -655,6 +655,76 @@ class RequestHandler {
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
+    
+    class func handleCard(method: HTTPMethod, parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.REQUEST_CARD
+        print(url)
+        if method == .get {
+            NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+                
+                success(successResponse)
+            }) { (error) in
+                            
+                failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+            }
+        }
+        if method == .post {
+            NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+                
+                success(successResponse)
+            }) { (error) in
+                            
+                failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+            }
+        }
+        if method == .delete {
+            
+            NetworkHandler.deleteRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+                
+                success(successResponse)
+            }) { (error) in
+                            
+                failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+            }
+        }
+    }
+    
+    class func stripeConnect(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.REQUEST_STRIPE_CONNECT
+        print(url)
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            
+            success(successResponse)
+        }) { (error) in
+                        
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
+    
+    class func getPlaidToken(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.GET_PLAID_LINK_TOKEN
+        print(url)
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            
+            success(successResponse)
+        }) { (error) in
+                        
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
+    
+    class func connectPlaidBank(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.SEND_PLAID_CONNECT_BANK
+        print(url)
+        NetworkHandler.postRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            
+            success(successResponse)
+        }) { (error) in
+                        
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
+    
 
     class func getBankDetail(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
         let url = Constants.URL.GET_BANK_DETAIL

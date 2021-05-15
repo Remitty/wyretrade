@@ -16,6 +16,8 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndi
     var usdcBalance = 0.0
     var usdBalance = ""
     var stocksBalance = 0.0
+    var card: CardModel!
+    var paypal: [String: Any]!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,7 +37,8 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndi
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 
         let child1 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositCoinController") as! StocksDepositCoinController
-        let child2 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositBankController") as! StocksDepositBankController
+        let child2 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositCardController") as! StocksDepositCardController
+        let child3 = self.storyboard?.instantiateViewController(withIdentifier: "StocksDepositPaypalController") as! StocksDepositPaypalController
         
         
         child1.stocksBalance = self.stocksBalance
@@ -43,24 +46,14 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndi
         
         
         child2.stocksBalance = self.stocksBalance
-        child2.usdBalance = self.usdBalance
+        child2.card = self.card
         
-        guard isReload else {
-            return [child1, child2]
-        }
+        child3.stocksBalance = self.stocksBalance
+        child3.paypal = self.paypal
         
-        var childVCs = [child1, child2]
-        let count = childVCs.count
+        return [child1, child2, child3]
         
-        for index in childVCs.indices {
-            let nElements = count - index
-            let n = (Int(arc4random()) % nElements) + index
-            if n != index {
-                childVCs.swapAt(index, n)
-            }
-        }
-        let nItems = 1 + (arc4random() % 4)
-        return Array(childVCs.prefix(Int(nItems)))
+        
     }
     
     func looadData() {
@@ -85,6 +78,9 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndi
             
             self.usdBalance = dictionary["bank_usd_balance"] as! String
             
+            self.card = CardModel(fromDictionary: dictionary["card"] as! [String: Any])
+            self.paypal = dictionary["paypal"] as? [String: Any]
+            
             self.reloadPagerTabStripView()
    
             }) { (error) in
@@ -93,10 +89,5 @@ class StocksDepositPagerVC: SegmentedPagerTabStripViewController, NVActivityIndi
                         self.presentVC(alert)
             }
     }
-    
-    @IBAction func reloadTapped(_ sender: UIBarButtonItem) {
-            isReload = true
-            pagerBehaviour = .common(skipIntermediateViewControllers: arc4random() % 2 == 0)
-            reloadPagerTabStripView()
-        }
+
 }

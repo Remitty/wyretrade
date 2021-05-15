@@ -101,6 +101,9 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
             self.defaults.set(dictionary["msgCoinSwapFeePolicy"], forKey: "msgCoinSwapFeePolicy")
             self.defaults.set(dictionary["msgStockTradeFeePolicy"], forKey: "msgStockTradeFeePolicy")
             self.defaults.set(dictionary["msgCoinWithdrawFeePolicy"], forKey: "msgCoinWithdrawFeePolicy")
+            self.defaults.set(dictionary["token_amount_for_stock_deposit_payment"], forKey: "token_amount_for_stock_deposit_payment")
+            self.defaults.set(dictionary["stock_deposit_from_card_fee_percent"], forKey: "stock_deposit_from_card_fee_percent")
+            self.defaults.set(dictionary["stock_deposit_from_card_daily_limit"], forKey: "stock_deposit_from_card_daily_limit")
             self.defaults.synchronize()
             
             var news : NewsModel!

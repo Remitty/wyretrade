@@ -53,9 +53,9 @@ class Constants {
              static  let REMOVE_TRANSFER_COIN_CONTACT = REDIRECT_URL + "coin/transfer/contact/remove";
 
              static  let GET_ALL_STOCKS = REDIRECT_URL + "stocks";
-             static  let GET_ALL_STOCKS_DAILY = REDIRECT_URL + "stocks/search/iex";
+             static  let GET_ALL_STOCKS_DAILY = REDIRECT_URL + "stocks/search";
              static  let GET_ALL_STOCKS_AGGREGATE = REDIRECT_URL + "stocks/aggregates";
-             static  let GET_STOCK_DETAIL = REDIRECT_URL + "stock/iex/detail";
+             static  let GET_STOCK_DETAIL = REDIRECT_URL + "stock/detail";
              static  let GET_STOCK_NEWS = REDIRECT_URL + "stock/news/all";
              static  let REQUEST_STOCK_ORDER_CREATE = REDIRECT_URL + "stock/order/create";
              static  let REQUEST_STOCK_ORDER_REPLACE = REDIRECT_URL + "stock/order/replace";
@@ -67,6 +67,14 @@ class Constants {
              static  let REQUEST_DEPOSIT_STOCK = REDIRECT_URL + "stock/deposit";
             static  let GET_DEPOSIT_COIN_STOCK_HISOTRY = REDIRECT_URL + "stock/deposit/history/coin";
             static  let GET_DEPOSIT_BANK_STOCK_HISOTRY = REDIRECT_URL + "stock/deposit/history/bank";
+        
+            static let REQUEST_CARD = REDIRECT_URL + "card";
+        
+            static let REQUEST_STRIPE_CONNECT = REDIRECT_URL + "stripe/connect";
+
+            static let GET_PLAID_LINK_TOKEN = REDIRECT_URL + "plaid/linktoken";
+            static let SEND_PLAID_CONNECT_BANK = REDIRECT_URL + "plaid/bank/create";
+        
 
              static  let GET_BANK_DETAIL = REDIRECT_URL + "bank/detail";
              static  let REQUEST_ADD_BANK = REDIRECT_URL + "bank/add";

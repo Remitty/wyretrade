@@ -14,14 +14,22 @@ target 'wyretrade' do
     pod 'UITextField+Shake'
     pod 'XLPagerTabStrip', '~> 9.0'
 
-    pod 'DLRadioButton', '~> 1.4'
+    
     pod 'AnyChartiOS', '~> 1.0.3'
     pod 'DropDown'
+    pod 'DLRadioButton', '~> 1.4'
     pod 'RadioGroup'
+    
+    
     pod 'stellar-ios-mac-sdk', '~> 1.8.5'
+    
     pod 'PhoneNumberKit'
     pod 'FlagPhoneNumber'
     pod 'SwiftyCodeView/RxSwift'
+    
+    pod 'Stripe'
+    pod 'plaid-ios-sdk'
+    pod 'PayPal-iOS-SDK'
     
     pod 'DeviceKit'
     

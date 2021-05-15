@@ -131,6 +131,12 @@
 		D328CDF7264B8EDA00EC9BE0 /* TopStocksItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CDF6264B8EDA00EC9BE0 /* TopStocksItem.swift */; };
 		D328CDFF264B8F3D00EC9BE0 /* TopStocksItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D328CDFE264B8F3D00EC9BE0 /* TopStocksItem.xib */; };
 		D328CE0A264BAC3200EC9BE0 /* TopStocksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CE09264BAC3200EC9BE0 /* TopStocksModel.swift */; };
+		D328CE18264C9B4100EC9BE0 /* StocksDepositCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CE17264C9B4000EC9BE0 /* StocksDepositCardController.swift */; };
+		D328CE1D264CA5BA00EC9BE0 /* StocksDepositPaypalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CE1C264CA5BA00EC9BE0 /* StocksDepositPaypalController.swift */; };
+		D328CE26264E1C1300EC9BE0 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CE25264E1C1300EC9BE0 /* CardController.swift */; };
+		D328CE57264F581300EC9BE0 /* CardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CE56264F581200EC9BE0 /* CardItem.swift */; };
+		D328CE5F264F589500EC9BE0 /* CardItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D328CE5E264F589500EC9BE0 /* CardItem.xib */; };
+		D328CE64264F706300EC9BE0 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328CE63264F706300EC9BE0 /* CardModel.swift */; };
 		D334AB5E26137F8C00FBB0B5 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */; };
 		D34C4C4125FE9CB8000B32D2 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */; };
 		D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */; };
@@ -352,6 +358,12 @@
 		D328CDF6264B8EDA00EC9BE0 /* TopStocksItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStocksItem.swift; sourceTree = "<group>"; };
 		D328CDFE264B8F3D00EC9BE0 /* TopStocksItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopStocksItem.xib; sourceTree = "<group>"; };
 		D328CE09264BAC3200EC9BE0 /* TopStocksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStocksModel.swift; sourceTree = "<group>"; };
+		D328CE17264C9B4000EC9BE0 /* StocksDepositCardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksDepositCardController.swift; sourceTree = "<group>"; };
+		D328CE1C264CA5BA00EC9BE0 /* StocksDepositPaypalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksDepositPaypalController.swift; sourceTree = "<group>"; };
+		D328CE25264E1C1300EC9BE0 /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
+		D328CE56264F581200EC9BE0 /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
+		D328CE5E264F589500EC9BE0 /* CardItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardItem.xib; sourceTree = "<group>"; };
+		D328CE63264F706300EC9BE0 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		D334AB5D26137F8B00FBB0B5 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		D34C4C4025FE9CB8000B32D2 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 		D34C4C4525FEDCC7000B32D2 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
@@ -452,6 +464,7 @@
 		7B05703225EEEB9D001E4D24 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D328CE55264F57F400EC9BE0 /* CardItem */,
 				D328CDF5264B8EA800EC9BE0 /* TopStocksItem */,
 				D371A38B2608D73B00C5ECEE /* BankContactItem */,
 				D34C4CF82601A1A0000B32D2 /* CoinDepositItem */,
@@ -556,20 +569,21 @@
 		7B4D8EFA25ECD98700557F92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D3EB81AC262028BF00FB7502 /* verifyphonenumber */,
-				D34C4CE526018BC2000B32D2 /* webview */,
-				D34C4C7725FF61FD000B32D2 /* mtn */,
-				D34C4C7625FF61B7000B32D2 /* predict */,
-				D34C4C7525FF6160000B32D2 /* crypto */,
-				D34C4C7425FF6111000B32D2 /* auth */,
-				D34C4C7325FF60F4000B32D2 /* cash */,
-				D34C4C7225FF60C3000B32D2 /* stocks */,
 				7B4D8EFB25ECDA8F00557F92 /* HomeController.swift */,
 				7B61D07B25F5EA6500B219E5 /* LeftController.swift */,
 				7B4D8E7D25EC8AAC00557F92 /* MainController.swift */,
 				7B4D8F1425ECDB4300557F92 /* MenuController.swift */,
 				7B61D05025F5BC2F00B219E5 /* SplashController.swift */,
 				7BDD29FB25F29949007A6921 /* SupportController.swift */,
+				D34C4C7425FF6111000B32D2 /* auth */,
+				D34C4C7325FF60F4000B32D2 /* cash */,
+				D34C4C7525FF6160000B32D2 /* crypto */,
+				D34C4C7725FF61FD000B32D2 /* mtn */,
+				D328CE21264E19D700EC9BE0 /* payment */,
+				D34C4C7625FF61B7000B32D2 /* predict */,
+				D34C4C7225FF60C3000B32D2 /* stocks */,
+				D3EB81AC262028BF00FB7502 /* verifyphonenumber */,
+				D34C4CE526018BC2000B32D2 /* webview */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -629,6 +643,7 @@
 				7BA7726625F9A2E400EAC761 /* UserAuthModel.swift */,
 				7B68494E25F3C6460075BB79 /* UserModel.swift */,
 				D34C4CA726005C5B000B32D2 /* UserProfileModel.swift */,
+				D328CE63264F706300EC9BE0 /* CardModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -823,6 +838,23 @@
 			path = TopStocksItem;
 			sourceTree = "<group>";
 		};
+		D328CE21264E19D700EC9BE0 /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				D328CE25264E1C1300EC9BE0 /* CardController.swift */,
+			);
+			path = payment;
+			sourceTree = "<group>";
+		};
+		D328CE55264F57F400EC9BE0 /* CardItem */ = {
+			isa = PBXGroup;
+			children = (
+				D328CE56264F581200EC9BE0 /* CardItem.swift */,
+				D328CE5E264F589500EC9BE0 /* CardItem.xib */,
+			);
+			path = CardItem;
+			sourceTree = "<group>";
+		};
 		D34C4C7225FF60C3000B32D2 /* stocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,10 +863,12 @@
 				7B4D8F0A25ECDB2600557F92 /* StocksController.swift */,
 				7BDD299C25F1F59C007A6921 /* StocksDepositBankController.swift */,
 				D35F57A42632DD29003F4008 /* StocksDepositBankHistoryController.swift */,
+				D328CE17264C9B4000EC9BE0 /* StocksDepositCardController.swift */,
 				7BDD299725F1F572007A6921 /* StocksDepositCoinController.swift */,
 				D35F579F2632D92A003F4008 /* StocksDepositCoinHistoryController.swift */,
 				7BDD298725F1AA05007A6921 /* StocksDepositController.swift */,
 				D34C4C7B25FF62A9000B32D2 /* StocksDepositPagerVC.swift */,
+				D328CE1C264CA5BA00EC9BE0 /* StocksDepositPaypalController.swift */,
 				7BDD29B725F2126C007A6921 /* StocksDetailController.swift */,
 				7BDD29E125F28AFC007A6921 /* StocksHistoryController.swift */,
 				D34C4D0B2601A97B000B32D2 /* StocksHistoryPagerVC.swift */,
@@ -1161,6 +1195,7 @@
 				7BDD29F225F28F95007A6921 /* CoinWithdrawItem.xib in Resources */,
 				7B6D921E25F0B4F800B1E466 /* StakeCoin.xib in Resources */,
 				7B68496225F3D0AE0075BB79 /* USDCPayment.xib in Resources */,
+				D328CE5F264F589500EC9BE0 /* CardItem.xib in Resources */,
 				D328CDFF264B8F3D00EC9BE0 /* TopStocksItem.xib in Resources */,
 				7B05704225EEEC85001E4D24 /* NewsView.xib in Resources */,
 				D34C4CE726018BEE000B32D2 /* webview.xib in Resources */,
@@ -1283,6 +1318,7 @@
 				D371A3422603F37E00C5ECEE /* TradeTokenPagerVC.swift in Sources */,
 				D34C4CAD2600ECEE000B32D2 /* CoinSelectController.swift in Sources */,
 				7B68494A25F3C62D0075BB79 /* PaymentUser.swift in Sources */,
+				D328CE26264E1C1300EC9BE0 /* CardController.swift in Sources */,
 				D371A3472603F3A900C5ECEE /* TokenBuyController.swift in Sources */,
 				D34C4D422603975A000B32D2 /* TokenOrderItem.swift in Sources */,
 				D35F57B72632F095003F4008 /* USDCPayHistoryController.swift in Sources */,
@@ -1302,6 +1338,7 @@
 				D328CE0A264BAC3200EC9BE0 /* TopStocksModel.swift in Sources */,
 				D34C4C4625FEDCC7000B32D2 /* ChartModel.swift in Sources */,
 				7B68493F25F3AF960075BB79 /* CashAccountInfoController.swift in Sources */,
+				D328CE64264F706300EC9BE0 /* CardModel.swift in Sources */,
 				7BA7728A25F9BB4600EAC761 /* Button.swift in Sources */,
 				7BA7728525F9BB0E00EAC761 /* AlertView.swift in Sources */,
 				D34C4CD92601546D000B32D2 /* AssetView.swift in Sources */,
@@ -1383,12 +1420,14 @@
 				7B4D8F0625ECDB1900557F92 /* SwapController.swift in Sources */,
 				7B7AB52A25F71A6500860D82 /* RequestHandler.swift in Sources */,
 				D34C4CE12601580F000B32D2 /* LInkAssetController.swift in Sources */,
+				D328CE18264C9B4100EC9BE0 /* StocksDepositCardController.swift in Sources */,
 				7BA7728025F9B0DE00EAC761 /* ViewController.swift in Sources */,
 				7BDD29EC25F28D2B007A6921 /* CoinWithdrawModel.swift in Sources */,
 				7BDD298825F1AA05007A6921 /* StocksDepositController.swift in Sources */,
 				D3EB81DB2620435D00FB7502 /* CompleteWithdrawController.swift in Sources */,
 				7B68495C25F3D02F0075BB79 /* USDCPaymentModel.swift in Sources */,
 				7B6CA01525EFB70300D11EB5 /* StockPositionModel.swift in Sources */,
+				D328CE57264F581300EC9BE0 /* CardItem.swift in Sources */,
 				D371A3D9260B6FC700C5ECEE /* PredictAssetListController.swift in Sources */,
 				7B68496C25F3E1E20075BB79 /* CashAddBankController.swift in Sources */,
 				7BDD29DD25F27744007A6921 /* StocksOrderItem.swift in Sources */,
@@ -1402,6 +1441,7 @@
 				D34C4D502603A27A000B32D2 /* TokenHistoryItem.swift in Sources */,
 				7B68497625F3E2870075BB79 /* CashItemListController.swift in Sources */,
 				7B76AE9425F629B100C9FE5A /* DepositHistoryController.swift in Sources */,
+				D328CE1D264CA5BA00EC9BE0 /* StocksDepositPaypalController.swift in Sources */,
 				D39DA879261A44F400F78746 /* SwapRateModel.swift in Sources */,
 				7BD5E8A625FC638900396595 /* CoinTradeOptionModal.swift in Sources */,
 				7B4D8F0B25ECDB2600557F92 /* StocksController.swift in Sources */,
