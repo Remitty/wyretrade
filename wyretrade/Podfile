@@ -28,7 +28,7 @@ target 'wyretrade' do
     pod 'SwiftyCodeView/RxSwift'
     
     pod 'Stripe'
-    pod 'plaid-ios-sdk'
+    pod 'Plaid'
     pod 'PayPal-iOS-SDK'
     
     pod 'DeviceKit'

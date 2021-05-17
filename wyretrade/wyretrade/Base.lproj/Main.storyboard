@@ -5607,8 +5607,11 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bH-ZM-YYg">
                                                                 <rect key="frame" x="202" y="0.0" width="148" height="29"/>
+                                                                <color key="backgroundColor" systemColor="linkColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <state key="normal" title="Historical Transactions"/>
+                                                                <state key="normal" title="Historical Transactions">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
                                                                 <connections>
                                                                     <action selector="actionViewHistory:" destination="05T-dc-rOK" eventType="primaryActionTriggered" id="ccB-zn-wgU"/>
                                                                 </connections>
@@ -5727,7 +5730,10 @@
                                                             </tableView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2T-6M-pgw">
                                                                 <rect key="frame" x="0.0" y="1" width="96" height="30"/>
-                                                                <state key="normal" title="Current Order"/>
+                                                                <color key="backgroundColor" systemColor="linkColor"/>
+                                                                <state key="normal" title="Current Order">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
                                                                 <connections>
                                                                     <segue destination="UIj-KY-dce" kind="showDetail" id="gGa-9i-xZR"/>
                                                                 </connections>
@@ -6616,9 +6622,12 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQv-eQ-A6F">
-                                <rect key="frame" x="146.66666666666666" y="409" width="97" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Stake History"/>
+                                <rect key="frame" x="149" y="409" width="92" height="32"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Stake History">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="Ylp-Fa-cth" kind="showDetail" id="ioH-Iw-4Bd"/>
                                 </connections>
@@ -9219,7 +9228,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duZ-ie-RIi">
                                         <rect key="frame" x="122" y="335.33333333333331" width="106" height="30"/>
-                                        <state key="normal" title="Deposit History"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <state key="normal" title="Deposit History">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="actionHistory:" destination="3ho-y5-bxb" eventType="primaryActionTriggered" id="WCk-eJ-EfE"/>
                                         </connections>
@@ -9293,7 +9305,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No card" textAlignment="natural" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mW7-K1-vbR">
-                                                        <rect key="frame" x="0.0" y="58" width="54" height="18"/>
+                                                        <rect key="frame" x="0.0" y="58" width="120" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.84853170379999998" green="0.16744886370000001" blue="0.75945471409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -9352,6 +9364,7 @@
                                                     <constraint firstItem="mW7-K1-vbR" firstAttribute="leading" secondItem="rC5-Pw-Gzk" secondAttribute="leading" id="bDE-rb-nnY"/>
                                                     <constraint firstAttribute="trailing" secondItem="tjT-zs-Mod" secondAttribute="trailing" id="dF3-kC-NoW"/>
                                                     <constraint firstItem="t4q-Of-GvL" firstAttribute="top" secondItem="rC5-Pw-Gzk" secondAttribute="top" id="ttQ-nJ-Vhe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mW7-K1-vbR" secondAttribute="trailing" id="uL9-vc-3Yb"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -9513,7 +9526,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-N7-NJl">
                                         <rect key="frame" x="122" y="335.33333333333331" width="106" height="30"/>
-                                        <state key="normal" title="Deposit History"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <state key="normal" title="Deposit History">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="actionHistory:" destination="8SS-8f-sx0" eventType="touchUpInside" id="IHB-c1-uME"/>
                                             <action selector="actionHistory:" destination="SX4-rO-KAo" eventType="touchUpInside" id="vhO-8x-LlN"/>
@@ -9756,7 +9772,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slA-Aj-l4P">
                                         <rect key="frame" x="122" y="335.33333333333331" width="106" height="30"/>
-                                        <state key="normal" title="Deposit History"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <state key="normal" title="Deposit History">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="actionHistory:" destination="SX4-rO-KAo" eventType="touchUpInside" id="Smt-oi-wPn"/>
                                             <action selector="actionHistory:" destination="2ii-bE-kJR" eventType="touchUpInside" id="oTd-ha-zgZ"/>
@@ -9809,7 +9828,7 @@
         <!--Card Controller-->
         <scene sceneID="YXh-FN-KNj">
             <objects>
-                <viewController id="TA1-jg-9fn" customClass="CardController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardController" id="TA1-jg-9fn" customClass="CardController" customModule="wyretrade" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="07J-Pe-UI8">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -9817,16 +9836,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcF-DG-3z2">
                                 <rect key="frame" x="10" y="64" width="370" height="736"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDw-XB-tfq" customClass="STPCardCVCInputTextField" customModule="Stripe">
-                                        <rect key="frame" x="0.0" y="10" width="370" height="40"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGF-qz-hcJ">
+                                        <rect key="frame" x="10" y="20" width="350" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="WYg-DT-dpc"/>
+                                            <constraint firstAttribute="height" constant="50" id="MHw-1f-tPd"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrn-TV-tNn">
-                                        <rect key="frame" x="110" y="70" width="150" height="30"/>
+                                        <rect key="frame" x="110" y="90" width="150" height="30"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="7gr-jh-etW"/>
@@ -9841,7 +9859,7 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6in-he-a16">
-                                        <rect key="frame" x="0.0" y="130" width="370" height="400"/>
+                                        <rect key="frame" x="0.0" y="150" width="370" height="400"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="400" id="UsR-Ux-Jm4"/>
@@ -9850,13 +9868,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="cDw-XB-tfq" firstAttribute="leading" secondItem="rcF-DG-3z2" secondAttribute="leading" id="35b-Y9-zGd"/>
-                                    <constraint firstItem="qrn-TV-tNn" firstAttribute="top" secondItem="cDw-XB-tfq" secondAttribute="bottom" constant="20" id="3dR-Uc-Ckd"/>
+                                    <constraint firstAttribute="trailing" secondItem="SGF-qz-hcJ" secondAttribute="trailing" constant="10" id="3y7-VJ-7hC"/>
                                     <constraint firstItem="6in-he-a16" firstAttribute="top" secondItem="qrn-TV-tNn" secondAttribute="bottom" constant="30" id="9bk-Am-CgL"/>
-                                    <constraint firstAttribute="trailing" secondItem="cDw-XB-tfq" secondAttribute="trailing" id="Ayd-E9-MwF"/>
-                                    <constraint firstItem="qrn-TV-tNn" firstAttribute="centerX" secondItem="cDw-XB-tfq" secondAttribute="centerX" id="Bpb-b9-RVC"/>
+                                    <constraint firstItem="qrn-TV-tNn" firstAttribute="centerX" secondItem="rcF-DG-3z2" secondAttribute="centerX" id="Cq9-bR-1pr"/>
+                                    <constraint firstItem="SGF-qz-hcJ" firstAttribute="leading" secondItem="rcF-DG-3z2" secondAttribute="leading" constant="10" id="Iba-KO-3iw"/>
+                                    <constraint firstItem="SGF-qz-hcJ" firstAttribute="top" secondItem="rcF-DG-3z2" secondAttribute="top" constant="20" id="VHg-So-nm2"/>
                                     <constraint firstItem="6in-he-a16" firstAttribute="leading" secondItem="rcF-DG-3z2" secondAttribute="leading" id="Wr9-9Z-Gyi"/>
-                                    <constraint firstItem="cDw-XB-tfq" firstAttribute="top" secondItem="rcF-DG-3z2" secondAttribute="top" constant="10" id="jHy-Q0-pCp"/>
+                                    <constraint firstItem="qrn-TV-tNn" firstAttribute="top" secondItem="SGF-qz-hcJ" secondAttribute="bottom" constant="20" id="hyI-K4-AhK"/>
                                     <constraint firstAttribute="trailing" secondItem="6in-he-a16" secondAttribute="trailing" id="kCy-Xj-f0d"/>
                                 </constraints>
                             </view>
@@ -9873,8 +9891,8 @@
                     <connections>
                         <outlet property="btnAdd" destination="qrn-TV-tNn" id="mTS-Ky-M9g"/>
                         <outlet property="cardTable" destination="6in-he-a16" id="3v2-rf-POK"/>
+                        <outlet property="cardView" destination="SGF-qz-hcJ" id="Wy1-oo-13D"/>
                         <outlet property="constTableHeight" destination="UsR-Ux-Jm4" id="Pqq-Hf-W33"/>
-                        <outlet property="stripeWidget" destination="cDw-XB-tfq" id="gr8-4e-qzo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mIf-Bf-GNz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -10365,7 +10383,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzz-kS-4Lc">
                                         <rect key="frame" x="122" y="335.33333333333331" width="106" height="30"/>
-                                        <state key="normal" title="Deposit History"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <state key="normal" title="Deposit History">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="actionHistory:" destination="SX4-rO-KAo" eventType="touchUpInside" id="GOr-Bx-aP8"/>
                                         </connections>
@@ -10625,9 +10646,12 @@
                                             <constraint firstAttribute="trailing" secondItem="3TF-tO-gaE" secondAttribute="trailing" constant="10" id="twa-IR-JlQ"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meJ-lP-dV0">
-                                        <rect key="frame" x="115.66666666666666" y="344.33333333333331" width="119" height="30"/>
-                                        <state key="normal" title="Withdraw History"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meJ-lP-dV0">
+                                        <rect key="frame" x="114.66666666666666" y="344.33333333333331" width="129" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Withdraw History">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="actionHistory:" destination="KFL-M2-Tia" eventType="primaryActionTriggered" id="T4F-XT-nSR"/>
                                         </connections>
@@ -10695,7 +10719,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rw-NY-c6B">
-                                        <rect key="frame" x="25" y="666" width="300" height="40"/>
+                                        <rect key="frame" x="25" y="606" width="300" height="40"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="8f6-cL-PFs"/>
@@ -10710,10 +10734,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIW-qL-kbM">
-                                        <rect key="frame" x="20" y="616" width="310" height="40"/>
+                                        <rect key="frame" x="25" y="556" width="300" height="40"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Yzr-gx-xRn"/>
+                                            <constraint firstAttribute="width" constant="300" id="kBe-xi-fuG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Manage Cards">
@@ -10732,7 +10757,7 @@
                                     <constraint firstItem="3E0-MI-Bdg" firstAttribute="leading" secondItem="zje-S2-gVC" secondAttribute="leading" id="Cox-Fi-OTM"/>
                                     <constraint firstItem="xFl-xf-eC2" firstAttribute="leading" secondItem="zje-S2-gVC" secondAttribute="leading" id="IfY-N4-ZrK"/>
                                     <constraint firstAttribute="trailing" secondItem="lAH-yH-5HB" secondAttribute="trailing" constant="10" id="JzI-Om-046"/>
-                                    <constraint firstAttribute="bottom" secondItem="6rw-NY-c6B" secondAttribute="bottom" constant="10" id="L7X-hC-mff"/>
+                                    <constraint firstAttribute="bottom" secondItem="6rw-NY-c6B" secondAttribute="bottom" constant="70" id="L7X-hC-mff"/>
                                     <constraint firstItem="6rw-NY-c6B" firstAttribute="top" secondItem="PIW-qL-kbM" secondAttribute="bottom" constant="10" id="MHQ-Rj-D7p"/>
                                     <constraint firstItem="meJ-lP-dV0" firstAttribute="centerX" secondItem="zje-S2-gVC" secondAttribute="centerX" id="PXL-i7-bwd"/>
                                     <constraint firstItem="gWj-3R-ZNX" firstAttribute="leading" secondItem="zje-S2-gVC" secondAttribute="leading" constant="10" id="PtS-gq-y0f"/>
@@ -10744,8 +10769,7 @@
                                     <constraint firstAttribute="trailing" secondItem="gWj-3R-ZNX" secondAttribute="trailing" constant="10" id="izQ-HX-qMV"/>
                                     <constraint firstItem="eax-XG-1Sr" firstAttribute="leading" secondItem="zje-S2-gVC" secondAttribute="leading" id="n8c-F7-phH"/>
                                     <constraint firstItem="lAH-yH-5HB" firstAttribute="leading" secondItem="zje-S2-gVC" secondAttribute="leading" constant="10" id="q3k-w7-Foh"/>
-                                    <constraint firstAttribute="trailing" secondItem="PIW-qL-kbM" secondAttribute="trailing" constant="20" id="toV-V2-B1a"/>
-                                    <constraint firstItem="PIW-qL-kbM" firstAttribute="leading" secondItem="zje-S2-gVC" secondAttribute="leading" constant="20" id="xRJ-Xy-oTN"/>
+                                    <constraint firstItem="PIW-qL-kbM" firstAttribute="centerX" secondItem="zje-S2-gVC" secondAttribute="centerX" id="xRJ-Xy-oTN"/>
                                     <constraint firstItem="3E0-MI-Bdg" firstAttribute="top" secondItem="eax-XG-1Sr" secondAttribute="bottom" constant="10" id="ybp-1Y-mC8"/>
                                 </constraints>
                             </view>
@@ -11602,7 +11626,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fW7-8v-0gX">
                                         <rect key="frame" x="139.66666666666666" y="310" width="91" height="30"/>
-                                        <state key="normal" title="Swap History"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <state key="normal" title="Swap History">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="actionViewHistory:" destination="Z4B-ky-7s8" eventType="primaryActionTriggered" id="qaW-y4-3E9"/>
                                         </connections>
@@ -12333,7 +12360,11 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaD-Iu-A0e">
                                 <rect key="frame" x="165" y="447.66666666666669" width="78" height="30"/>
-                                <state key="normal" title="Pay History"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Pay History">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="actionHistory:" destination="pKp-Oa-fbm" eventType="primaryActionTriggered" id="Dma-er-Jcn"/>
                                 </connections>
@@ -13112,7 +13143,7 @@
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBA-GO-tBx" customClass="MDCButton">
                                                         <rect key="frame" x="45" y="305" width="150" height="40"/>
-                                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="9qF-GE-YVq"/>
                                                             <constraint firstAttribute="width" constant="150" id="bK5-X1-VYD"/>
@@ -13266,7 +13297,6 @@
         <!--Swap-->
         <scene sceneID="dgm-iM-FQc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IZC-k9-Ckg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lcs-mG-LOO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Swap" image="ic_swap" id="c3w-sj-17I"/>
                     <toolbarItems/>
@@ -13279,6 +13309,7 @@
                         <segue destination="Z4B-ky-7s8" kind="relationship" relationship="rootViewController" id="tGG-Gf-U37"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IZC-k9-Ckg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="91" y="-1131"/>
         </scene>
@@ -13384,9 +13415,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

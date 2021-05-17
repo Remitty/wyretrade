@@ -679,7 +679,7 @@ class RequestHandler {
         }
         if method == .delete {
             
-            NetworkHandler.deleteRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            NetworkHandler.deleteRequest(url: url + "/\(parameter["id"]!)", parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
                 
                 success(successResponse)
             }) { (error) in

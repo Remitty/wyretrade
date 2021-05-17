@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import XLPagerTabStrip
 import NVActivityIndicatorView
-
+//import PayPalMobile
 
 class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate, NVActivityIndicatorViewable {
     
@@ -92,7 +92,7 @@ class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UI
             return
         }
         
-        if amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
+        if !amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
             self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
             return
         }
@@ -112,7 +112,7 @@ class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UI
         self.presentVC(alert)
     }
 }
-
+//
 //extension StocksDepositPaypalController: PaypalPaymentDelegate {
 //    var environment:String = PayPalEnvironmentNoNetwork {
 //           willSet(newEnvironment) {

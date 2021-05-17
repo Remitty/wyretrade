@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import NVActivityIndicatorView
+import LinkKit
+
 
 class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
 
@@ -25,6 +27,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
     var stripeAccountVerified = false
     var type: String!
     var selectedCard: String!
+    var handler: Handler!
     
     
     override func viewDidLoad() {
@@ -37,6 +40,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
         super.viewWillAppear(animated)
         
         self.loadData()
+        self.getOpenLink()
     }
     
     func loadData() {
@@ -52,7 +56,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
             self.lbBalance.text = NumberFormat.init(value: self.estUsdc, decimal: 4).description
             self.lbEstBalance.text = PriceFormat.init(amount: self.stocksBalance, currency: Currency.usd).description
             self.paypal = dictionary["paypal"] as? String
-            self.bank = dictionary["bank"] as? String
+            self.bank = dictionary["stripe_bank"] as? String
             self.withdrawFee = (dictionary["withdraw_fee"] as! NSString).doubleValue
             self.coinWithdrawFee = (dictionary["coinwithdraw_fee"] as! NSString).doubleValue
             self.stripeAccountVerified = (dictionary["stripe_account_verified"] as! Int) == 0 ? false : true
@@ -126,7 +130,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
         guard let amount = txAmount.text else {
             return false
         }
-        if amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
+        if !amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
              self.txAmount.shake(6, withDelta: 10, speed: 0.06)
             return false
         }
@@ -146,6 +150,71 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
         
         
         return true
+    }
+    
+    func openPlaid() {
+        let method: PresentationMethod = .viewController(self)
+        
+        self.handler.open(presentUsing: method)
+    }
+    
+    func connectPlaid(linkToken: String) {
+        let configuration = LinkTokenConfiguration(
+            token: linkToken,
+            onSuccess: { linkSuccess in
+                // Send the linkSuccess.publicToken to your app server.
+                
+                self.sendPlaid(pubToken: linkSuccess.publicToken, accountId: linkSuccess.metadata.accounts[0].id)
+            }
+        )
+        
+        let result = Plaid.create(configuration)
+        
+        switch result {
+          case .failure(let error):
+            let alert = Alert.showBasicAlert(message: "Unable to create Plaid handler due to: \(error)")
+            self.presentVC(alert)
+          case .success(let handler):
+              self.handler = handler
+            
+        }
+    }
+    
+    func getOpenLink() {
+        let param : [String: Any] = [:]
+        self.startAnimating()
+        RequestHandler.getPlaidToken(parameter: param as NSDictionary, success: { (successResponse) in
+                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            self.connectPlaid(linkToken: dictionary["link_token"] as! String)
+            
+            
+            
+        }) { (error) in
+                        self.stopAnimating()
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
+    }
+    
+    func sendPlaid(pubToken: String, accountId: String) {
+        let param : [String: Any] = [
+            "pub_token": pubToken,
+            "account_id": accountId
+        ]
+        self.startAnimating()
+        RequestHandler.connectPlaidBank(parameter: param as NSDictionary, success: { (successResponse) in
+                        self.stopAnimating()
+            let dictionary = successResponse as! [String: Any]
+            
+            self.showToast(message: dictionary["message"] as! String)
+            
+        }) { (error) in
+                        self.stopAnimating()
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
     }
     
     @IBAction func actionHistory(_ sender: UIButton) {
@@ -223,6 +292,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
         if bank.isEmpty {
             if stripeAccountVerified {
                 //Plaid
+                openPlaid()
             } else {
                 let alert = Alert.showConfirmAlert(message: "No connected account. Would you connect?", handler: {
                                                     (_) in self.createStripeConnectLink(create: true)}
@@ -230,7 +300,7 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
                 self.presentVC(alert)
             }
         } else {
-            let alert = Alert.showConfirmAlert(message: "Connected to \(bank) already. Would you replace with other bank?", handler: {
+            let alert = Alert.showConfirmAlert(message: "Connected to \(bank!) already. Would you replace with other bank?", handler: {
                                                 (_) in }
             )
             self.presentVC(alert)

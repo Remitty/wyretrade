@@ -141,7 +141,7 @@ class StocksDepositCardController: UIViewController, IndicatorInfoProvider, UITe
             return
         }
       
-        if amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
+        if !amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
             self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
             return
         }

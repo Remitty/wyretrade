@@ -103,7 +103,7 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (3.3.3)
   - PhoneNumberKit/UIKit (3.3.3):
     - PhoneNumberKit/PhoneNumberKitCore
-  - plaid-ios-sdk (0.3.6)
+  - Plaid (2.1.2)
   - PromisesObjC (1.2.12)
   - RadioGroup (1.4.3):
     - SweeterSwift
@@ -139,7 +139,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView/Extended
   - PayPal-iOS-SDK
   - PhoneNumberKit
-  - plaid-ios-sdk
+  - Plaid
   - RadioGroup
   - SlideMenuControllerSwift (from `https://github.com/AtomicSLLC/SlideMenuControllerSwift.git`, branch `swift5`)
   - stellar-ios-mac-sdk (~> 1.8.5)
@@ -169,7 +169,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PayPal-iOS-SDK
     - PhoneNumberKit
-    - plaid-ios-sdk
+    - Plaid
     - PromisesObjC
     - RadioGroup
     - RxCocoa
@@ -212,7 +212,7 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PayPal-iOS-SDK: 70d56697aef502c130b9840e31dea5c6b8a350e1
   PhoneNumberKit: 4ce83273551c4d2ae10b7361162f4283dd02835f
-  plaid-ios-sdk: e9865b0fe6a79b3d30d886171d7a26f7e1408935
+  Plaid: c02276ccc630a726a9ed790bf923d29839ff4017
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RadioGroup: 7015c71759c90dbaae7050f33cfbc1de780e27a7
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
@@ -226,6 +226,6 @@ SPEC CHECKSUMS:
   "UITextField+Shake": 298ac5a0f239d731bdab999b19b628c956ca0ac3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: f13f3bbf5518a2a8183098734a0484245e03411e
+PODFILE CHECKSUM: 675962498ad690e58752eba363baea3a97a68b29
 
 COCOAPODS: 1.10.1

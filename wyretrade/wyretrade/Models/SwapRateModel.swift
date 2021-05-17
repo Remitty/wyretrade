@@ -12,6 +12,7 @@ struct SwapRateModel {
     var rate: Double!
     var fee: Double!
     var sendFee: Double!
+    var systemFeePerc: Double!
     
     init(fromDictionary dictionary: [String: Any]) {
         if let depostMax = dictionary["max"] as? NSString {
@@ -42,6 +43,12 @@ struct SwapRateModel {
             sendFee = minerFee.doubleValue
         } else {
             sendFee = dictionary["sendFee"] as? Double
+        }
+        
+        if let systemFee = dictionary["systemFeePerc"] as? NSString {
+            systemFeePerc = systemFee.doubleValue
+        } else {
+            systemFeePerc = dictionary["systemFeePerc"] as? Double
         }
         
     }

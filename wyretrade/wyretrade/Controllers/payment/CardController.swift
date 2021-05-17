@@ -12,8 +12,8 @@ import NVActivityIndicatorView
 
 class CardController: UIViewController, NVActivityIndicatorViewable {
     
-    
-    @IBOutlet weak var stripeWidget: STPPaymentCardTextField?
+    @IBOutlet weak var cardView: UIView!
+   
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var cardTable: UITableView! {
         didSet{
@@ -29,6 +29,7 @@ class CardController: UIViewController, NVActivityIndicatorViewable {
     var withdrawal = 0
     var cvv, cardNo: String!
     var month, year: Int!
+    let stripeWidget = STPPaymentCardTextField()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,6 +39,15 @@ class CardController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cardView.addSubview(stripeWidget)
+        let padding: CGFloat = 0
+        stripeWidget.frame = CGRect(
+            x: padding,
+            y: padding,
+            width: cardView.bounds.width - (padding * 2),
+            height: 50)
+        stripeWidget.postalCodeEntryEnabled = false
     }
     
     func getCard() {
@@ -76,7 +86,7 @@ class CardController: UIViewController, NVActivityIndicatorViewable {
             "cvc": self.cvv!
         ]
         self.startAnimating()
-        RequestHandler.handleCard(method: .delete, parameter: param as NSDictionary, success: { (successResponse) in
+        RequestHandler.handleCard(method: .post, parameter: param as NSDictionary, success: { (successResponse) in
              self.stopAnimating()
             
             self.getCard()
@@ -114,28 +124,33 @@ class CardController: UIViewController, NVActivityIndicatorViewable {
     }
     
     @IBAction func actionAddCard(_ sender: UIButton) {
-        cardNo = stripeWidget?.cardNumber
-        cvv = stripeWidget?.cvc
-        month = stripeWidget?.expirationMonth
-        year = stripeWidget?.expirationYear
+        cardNo = stripeWidget.cardNumber
+        cvv = stripeWidget.cvc
+        month = stripeWidget.expirationMonth
+        year = stripeWidget.expirationYear
         
-        if cardNo.isEmpty {
-            self.showToast(message: "Please input card number")
+//        if cardNo == nil {
+//            self.showToast(message: "Please input card number")
+//            return
+//        }
+//        if cvv == nil {
+//            self.showToast(message: "Please input cvv")
+//            return
+//        }
+//        if month  == nil {
+//            self.showToast(message: "Please input expiration month")
+//            return
+//        }
+//        if year  == nil {
+//            self.showToast(message: "Please input expiration year")
+//            return
+//        }
+//
+        if !stripeWidget.isValid {
+            let alert = Alert.showBasicAlert(message: "Invalid card format")
+            presentVC(alert)
             return
         }
-        if cvv.isEmpty {
-            self.showToast(message: "Please input cvv")
-            return
-        }
-        if month == 0 {
-            self.showToast(message: "Please input expiration month")
-            return
-        }
-        if year == 0 {
-            self.showToast(message: "Please input expiration year")
-            return
-        }
-        
         self.addCard()
     }
     
@@ -157,7 +172,7 @@ extension CardController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 50
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

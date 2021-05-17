@@ -293,8 +293,10 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
     }
     
     func displayFee() {
-        self.receiveAmount = self.sellAmount * (1 - self.rateModel.sendFee) * self.rateModel.rate
-        self.fee = self.receiveAmount * self.rateModel.fee
+        let sysFee = self.sellAmount * self.rateModel.systemFeePerc*0.01 * self.rateModel.rate
+        let sendFee = self.rateModel.sendFee * self.rateModel.rate
+        self.receiveAmount = self.sellAmount * self.rateModel.rate - sendFee - sysFee
+        self.fee = sysFee + self.rateModel.fee + sendFee
         self.lbFee.text = NumberFormat(value: self.fee, decimal: 6).description
     }
     
