@@ -8,6 +8,7 @@
 import UIKit
 import SlideMenuControllerSwift
 import Firebase
+import PayPalCheckout
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        let config = CheckoutConfig(
+                clientID: "AR2Siw3fi8ZVqIvRRg10-_fO8n1jA8z-ZYyilZnaXsA3xFW6Y4e5MA15_KYIxYnKRPTdt3K_JhbUC-Q4",
+                returnUrl: "https://wyretrade.com",
+            environment: .sandbox
+            )
+
+            Checkout.set(config: config)
         return true
     }
 

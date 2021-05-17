@@ -9729,7 +9729,7 @@
                                             <constraint firstAttribute="trailing" secondItem="hCx-sV-5tg" secondAttribute="trailing" constant="10" id="hHp-ZO-N5s"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-6t-ua6" customClass="MDCButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-6t-ua6">
                                         <rect key="frame" x="55" y="285.33333333333331" width="240" height="30"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
@@ -9741,7 +9741,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="actionTransfer:" destination="SX4-rO-KAo" eventType="primaryActionTriggered" id="4zq-jP-ne6"/>
+                                            <action selector="actionTransfer:" destination="2ii-bE-kJR" eventType="touchUpInside" id="knx-7q-7Zd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6I0-mW-t8G">
@@ -9777,9 +9777,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="actionHistory:" destination="SX4-rO-KAo" eventType="touchUpInside" id="Smt-oi-wPn"/>
-                                            <action selector="actionHistory:" destination="2ii-bE-kJR" eventType="touchUpInside" id="oTd-ha-zgZ"/>
-                                            <action selector="actionTransfer:" destination="2ii-bE-kJR" eventType="touchUpInside" id="JRP-Em-ug4"/>
+                                            <action selector="actionHistory:" destination="2ii-bE-kJR" eventType="touchUpInside" id="8xf-tD-mMf"/>
                                         </connections>
                                     </button>
                                 </subviews>

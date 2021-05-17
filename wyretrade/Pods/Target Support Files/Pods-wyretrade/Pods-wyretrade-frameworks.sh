@@ -203,6 +203,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/stellar-ios-mac-sdk/stellarsdk.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/PayPalCheckout/PayPalCheckout.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/LinkKit/LinkKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -234,6 +235,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/stellar-ios-mac-sdk/stellarsdk.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/PayPalCheckout/PayPalCheckout.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/LinkKit/LinkKit.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

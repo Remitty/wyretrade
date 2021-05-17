@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import XLPagerTabStrip
 import NVActivityIndicatorView
-//import PayPalMobile
+import PayPalCheckout
 
 class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UITextFieldDelegate, NVActivityIndicatorViewable {
     
@@ -33,6 +33,14 @@ class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UI
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         lbStocksBalance.text = PriceFormat.init(amount: stocksBalance, currency: Currency.usd).description
+//        print(paypal["client_id"] as! String)
+//        let config = CheckoutConfig(
+//                clientID: paypal["client_id"] as! String,
+//                returnUrl: "https://wyretrade.com",
+//            environment: .sandbox
+//            )
+//
+//            Checkout.set(config: config)
         
     }
 
@@ -66,8 +74,35 @@ class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UI
         self.presentVC(alert)
     }
     
-    func handlePaypal() {
-        
+    func handlePaypal(param: NSDictionary) {
+        Checkout.start(
+                createOrder: { createOrderAction in
+
+                    let amount = PurchaseUnit.Amount(currencyCode: .usd, value: "10.00")
+                    let purchaseUnit = PurchaseUnit(amount: amount)
+                    let order = OrderRequest(intent: .capture, purchaseUnits: [purchaseUnit])
+
+                    createOrderAction.create(order: order)
+
+                }, onApprove: { approval in
+
+                    approval.actions.capture { (response, error) in
+                        print("Order successfully captured: \(response?.data)")
+                        self.submitTransfer(param:param)
+                    }
+
+                }, onCancel: {
+
+                    // Optionally use this closure to respond to the user canceling the paysheet
+
+                }, onError: { error in
+
+                    // Optionally use this closure to respond to the user experiencing an error in
+                    // the payment experience
+                    print(error.error)
+                    print(error.reason)
+                }
+            )
     }
     
     @IBAction func actionCheckMargin(_ sender: Any) {
@@ -92,7 +127,17 @@ class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UI
             return
         }
         
-        if !amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
+//        if !amount.isValid(regex: "/^\\d*\\.?\\d*$/") {
+//            self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
+//            return
+//        }
+        
+        if amount.isEmpty || amount == "." {
+            self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
+            return
+        }
+        
+        if Double(amount)! == 0 {
             self.txtAmount.shake(6, withDelta: 10, speed: 0.06)
             return
         }
@@ -106,19 +151,10 @@ class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UI
             "check_margin": checkMargin
         ] as! NSDictionary
         
-        let alert = Alert.showConfirmAlert(message: "Amount: $\(amount) USDC \n Deposit Fee: \(defaults.string(forKey: "stock_deposit_from_card_fee_percent")!)%", handler: {
-            (_) in self.submitTransfer(param: param)
+        let alert = Alert.showConfirmAlert(message: "Amount: $\(amount) \n Deposit Fee: \(defaults.string(forKey: "stock_deposit_from_card_fee_percent")!)%", handler: {
+            (_) in self.handlePaypal(param: param)
         })
         self.presentVC(alert)
     }
 }
-//
-//extension StocksDepositPaypalController: PaypalPaymentDelegate {
-//    var environment:String = PayPalEnvironmentNoNetwork {
-//           willSet(newEnvironment) {
-//               if (newEnvironment != environment) {
-//                   PayPalMobile.preconnect(withEnvironment: newEnvironment)
-//               }
-//           }
-//       }
-//}
+

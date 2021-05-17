@@ -29,7 +29,7 @@ target 'wyretrade' do
     
     pod 'Stripe'
     pod 'Plaid'
-    pod 'PayPal-iOS-SDK'
+    pod 'PayPalCheckout'
     
     pod 'DeviceKit'
     
