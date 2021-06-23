@@ -373,11 +373,13 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
             let dictionary = successResponse as! [String: Any]
             
             let address = dictionary["address"] as! String
-            if address != self.stellarBaseSecret {
-                self.showAddressAlert(symbol: param["symbol"] as! String, address: address)
-            } else {
-                self.stellarWarningAlert()
-            }
+//            if address != self.stellarBaseSecret {
+//                self.showAddressAlert(symbol: param["symbol"] as! String, address: address)
+//            } else {
+//                self.stellarWarningAlert()
+//            }
+            
+            self.showAddressAlert(symbol: param["symbol"] as! String, address: address)
             
             
         }) {
@@ -418,6 +420,22 @@ extension CoinsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 60
+        }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let section = indexPath.section
+            
+            let item = coinList[indexPath.row]
+            
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CoinDetailController") as! CoinDetailController
+            vc.coin = item
+            vc.coinList = self.coinList
+            vc.onRamperCoins = self.onRamperCoins
+            vc.onramperApiKey = self.onramperApiKey
+            vc.xanpoolApiKey = self.xanpoolApiKey
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+
         }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

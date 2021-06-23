@@ -31,6 +31,8 @@ class Constants {
              static  let UseProfileUpdate = REDIRECT_URL+"profile/update";
              static  let GET_USER_BALANCES = REDIRECT_URL + "balances";
 
+            static  let GET_ALL_COINS = REDIRECT_URL + "coins";
+            static  let GET_COIN_DETAIL = REDIRECT_URL + "coin";
              static  let COIN_DEPOSIT = REDIRECT_URL + "coin/deposit";
              static  let COIN_STELLAR_DEPOSIT = REDIRECT_URL + "coin/deposit/stellar";
              static  let COIN_WITHDRAW = REDIRECT_URL + "coin/withdraw";
@@ -42,7 +44,7 @@ class Constants {
              static  let COIN_TRADE_DATA = REDIRECT_URL + "coin/trade/data";
              static  let COIN_TRADE_HISTORY_DATA = REDIRECT_URL + "coin/trade/history";
              static  let COIN_TRADE_CANCEL = REDIRECT_URL + "coin/trade/cancel";
-             static  let GET_ALL_COINS = REDIRECT_URL + "coins";
+             
              static  let GET_BUY_COIN_ASSETS = REDIRECT_URL + "coin/buy_assets";
              static  let GET_SEND_COIN_ASSETS = REDIRECT_URL + "coin/send_assets";
              static  let GET_WITHDRAWBLE_COIN_ASSETS = REDIRECT_URL + "coin/withdraw_assets";

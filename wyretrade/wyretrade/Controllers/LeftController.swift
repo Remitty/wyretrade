@@ -12,14 +12,12 @@ import NVActivityIndicatorView
 enum MainMenu: Int {
     
     case stakecoin = 0
-    case TradeToken
+    case usdc
     case linkwallet
     case mtnservice
-    case prediction
-    case cryptowithdraw
     case stockhistory
     case depositactivities
-    case stocknews
+    case friend
     case support
     case logout
 }
@@ -64,8 +62,8 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK:- Properties
     
     var defaults = UserDefaults.standard
-    var mainMenus = ["Stake Coin", "Trade Cryptos", "Link Wallet", "MTN Service", "Prediction", "Crypto Withdraw", "Stock History", "Deposit Activities", "Stock News", "Support", "Logout"]
-    var mainMenuImages = [#imageLiteral(resourceName: "xmt"),#imageLiteral(resourceName: "nav_trade"), #imageLiteral(resourceName: "nav_trading"),#imageLiteral(resourceName: "nav_smartphone"), #imageLiteral(resourceName: "nav_analysis"),#imageLiteral(resourceName: "nav_bitcoin"), #imageLiteral(resourceName: "nav_chart"),#imageLiteral(resourceName: "nav_credit"), #imageLiteral(resourceName: "nav_news"), #imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
+    var mainMenus = ["Stake Coin", "Send USDC", "Link Wallet", "MTN Service", "Stock History", "Deposit Activities", "Invite Friend", "Support", "Logout"]
+    var mainMenuImages = [#imageLiteral(resourceName: "xmt"),#imageLiteral(resourceName: "nav_trade"), #imageLiteral(resourceName: "nav_trading"),#imageLiteral(resourceName: "nav_smartphone"), #imageLiteral(resourceName: "nav_chart"),#imageLiteral(resourceName: "nav_credit"), #imageLiteral(resourceName: "nav_trade"), #imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
     var otherMenus = ["Support", "Logout"]
     var othersArrayImages = [#imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
     
@@ -79,6 +77,8 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var viewStockHistory: UIViewController!
     var viewDepositActivities: UIViewController!
     var viewStockNews: UIViewController!
+    var viewUSDC: UIViewController!
+    var viewInvite: UIViewController!
     
     
     //Other Menues
@@ -137,6 +137,12 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let stocksnewsView = storyboard?.instantiateViewController(withIdentifier: "StocksNewsController") as! StocksNewsController
         self.viewStockNews = stocksnewsView//UINavigationController(rootViewController: stocksnewsView)
+        
+        let usdcView = storyboard?.instantiateViewController(withIdentifier: "USDCController") as! USDCController
+        self.viewUSDC = usdcView//UINavigationController(rootViewController: stocksnewsView)
+        
+        let inviteView = storyboard?.instantiateViewController(withIdentifier: "ReferralController") as! ReferralController
+        self.viewInvite = inviteView//UINavigationController(rootViewController: stocksnewsView)
     }
 
     func initializeOtherViews() {
@@ -152,8 +158,8 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case .stakecoin:
             self.navigationController?.pushViewController(viewStakeCoin, animated: true)
 //            self.slideMenuController()?.changeMainViewController(self.viewStakeCoin, close: true)
-        case .TradeToken:
-            self.navigationController?.pushViewController(viewTradeToken, animated: true)
+        case .usdc:
+            self.navigationController?.pushViewController(viewUSDC, animated: true)
 //            self.slideMenuController()?.changeMainViewController(self.viewTradeToken, close: true)
         case .linkwallet:
             self.navigationController?.pushViewController(viewLinkWallet, animated: true)
@@ -161,11 +167,11 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case .mtnservice:
             self.navigationController?.pushViewController(viewMtnService, animated: true)
 //            self.slideMenuController()?.changeMainViewController(self.viewMtnService, close: true)
-        case .prediction:
-            self.navigationController?.pushViewController(viewPrediction, animated: true)
+//        case .prediction:
+//            self.navigationController?.pushViewController(viewPrediction, animated: true)
 //            self.slideMenuController()?.changeMainViewController(self.viewPrediction, close: true)
-        case .cryptowithdraw:
-            self.navigationController?.pushViewController(viewCryptoWithdraw, animated: true)
+//        case .cryptowithdraw:
+//            self.navigationController?.pushViewController(viewCryptoWithdraw, animated: true)
 //            self.slideMenuController()?.changeMainViewController(self.viewCryptoWithdraw, close: true)
         case .stockhistory:
             self.navigationController?.pushViewController(viewStockHistory, animated: true)
@@ -173,8 +179,8 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case .depositactivities:
             self.navigationController?.pushViewController(viewDepositActivities, animated: true)
 //            self.slideMenuController()?.changeMainViewController(self.viewDepositActivities, close: true)
-        case .stocknews:
-            self.navigationController?.pushViewController(viewStockNews, animated: true)
+        case .friend:
+            self.navigationController?.pushViewController(viewInvite, animated: true)
 //            self.slideMenuController()?.changeMainViewController(self.viewStockNews, close: true)
         case .support :
             self.navigationController?.pushViewController(viewSupport, animated: true)
@@ -205,7 +211,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 11
+        return 9
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

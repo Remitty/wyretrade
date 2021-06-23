@@ -16,6 +16,8 @@ class CoinTradePagerVC: SegmentedPagerTabStripViewController {
     var xanpoolApiKey: String!
     var onRamperCoins = ""
     
+    var currentIdx = 0
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,7 +35,7 @@ class CoinTradePagerVC: SegmentedPagerTabStripViewController {
 
         let child2 = self.storyboard?.instantiateViewController(withIdentifier: "CoinTradeController") as! CoinTradeController
         let child1 = self.storyboard?.instantiateViewController(withIdentifier: "TradeTokenController") as! TradeTokenController
-        
+        pagerTabStripController.offsetForChild(at: currentIdx)
         child2.coinList = self.coinList
         child2.onRamperCoins = self.onRamperCoins
         child2.onramperApiKey = self.onramperApiKey

@@ -70,10 +70,13 @@ class PredictionPostController: UIViewController, UITextFieldDelegate, NVActivit
         switch radioGroup.selectedIndex {
         case 0:
             self.type = 2
+            break
         case 1:
             self.type = 0
+            break
         case 2:
             self.type = 1
+            break
         default:
             self.type = 2
         }

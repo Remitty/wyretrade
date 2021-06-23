@@ -8,17 +8,14 @@
 import UIKit
 import MaterialComponents
 import NVActivityIndicatorView
+import ImageSlideshow
 //import SlideMenuControllerSwift
 
 class HomeController: UIViewController, NVActivityIndicatorViewable {
   
-    @IBOutlet weak var scroller: UIScrollView!
-    @IBOutlet weak var usdcBalance: UILabel!
+    @IBOutlet weak var scroller: UIScrollView!   
     
-    @IBOutlet weak var balanceCard: MDCCard!
-    @IBOutlet weak var payCard: UIView!
-    @IBOutlet weak var contactCard: UIView!
-    
+    @IBOutlet weak var slideshow: ImageSlideshow!
     @IBOutlet weak var newsTable: UITableView!
     {
         didSet {
@@ -58,6 +55,9 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
     var topGainers = [TopStocksModel]()
     var topLosers = [TopStocksModel]()
     
+    var sourceImages = [InputSource]()
+        var localImages = [String]()
+    
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -68,16 +68,6 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
         
         self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
-        payCard.isUserInteractionEnabled = true
-        let tap1 = UITapGestureRecognizer(target: self, action: #selector(HomeController.payCardClick))
-        payCard.addGestureRecognizer(tap1)
-        
-        contactCard.isUserInteractionEnabled = true
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(HomeController.contactCardClick))
-        contactCard.addGestureRecognizer(tap2)
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +76,28 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
        
        self.loadData()
        
+    }
+    
+    func imageSliderSetting() {
+        for image in localImages {
+            let alamofireSource = AlamofireSource(urlString: image.encodeUrl())!
+            sourceImages.append(alamofireSource)
+        }
+        slideshow.backgroundColor = UIColor.white
+        slideshow.slideshowInterval = 5.0
+        slideshow.pageControlPosition = PageControlPosition.insideScrollView
+        slideshow.pageControl.currentPageIndicatorTintColor = UIColor.white
+        slideshow.pageControl.pageIndicatorTintColor = UIColor.lightGray
+        slideshow.contentScaleMode = UIViewContentMode.scaleAspectFit
+        
+        // optional way to show activity indicator during image load (skipping the line will show no activity indicator)
+        slideshow.activityIndicator = DefaultActivityIndicator()
+        slideshow.currentPageChanged = { page in
+        }
+        
+        slideshow.setImageInputs(sourceImages)
+        
+        
     }
     
     func loadData() {
@@ -137,7 +149,16 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
                 self.losersTable.reloadData()
             }
 
-            self.usdcBalance.text = NumberFormat.init(value: dictionary["usdc_balance"] as! Double, decimal: 4).description
+            if let data = dictionary["banners"] as? [[String:Any]] {
+                for item in data {
+                    var path = item["image"] as? String
+                    if path?.starts(with: "http") == false {
+                        path = Constants.URL.base + "storage/" + path!
+                    }
+                    self.localImages.append(path!)
+                }
+                self.imageSliderSetting()
+            }
                     
                 
             }) { (error) in
@@ -148,15 +169,7 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
         
     }
     
-    @objc func payCardClick(sender: UITapGestureRecognizer) {
-        let payVC = self.storyboard?.instantiateViewController(withIdentifier: "USDCPayController") as! USDCPayController
-        self.navigationController?.pushViewController(payVC, animated: true)
-        
-    }
-    @objc func contactCardClick(sender: UITapGestureRecognizer) {
-        let contactVC = self.storyboard?.instantiateViewController(withIdentifier: "USDCAddContactController") as! USDCAddContactController
-        self.navigationController?.pushViewController(contactVC, animated: true)
-    }
+    
 }
 
 extension HomeController: UITableViewDelegate, UITableViewDataSource {

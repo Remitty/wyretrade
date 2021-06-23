@@ -17,7 +17,7 @@ target 'wyretrade' do
     
     pod 'AnyChartiOS', '~> 1.0.3'
     pod 'DropDown'
-    pod 'DLRadioButton', '~> 1.4'
+    pod 'DLRadioButton', '~> 1.4' #not use
     pod 'RadioGroup'
     
     
@@ -32,6 +32,10 @@ target 'wyretrade' do
     pod 'PayPalCheckout'
     
     pod 'DeviceKit'
+    
+    #For Image Sliding
+        pod 'ImageSlideshow'
+        pod "ImageSlideshow/Alamofire"
     
 # Pods for MDC-Tutorial
   

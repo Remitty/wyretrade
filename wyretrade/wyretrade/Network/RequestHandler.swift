@@ -150,6 +150,17 @@ class RequestHandler {
             failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
         }
     }
+    
+    class func getCoinDetail(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
+        let url = Constants.URL.GET_COIN_DETAIL
+        print(url)
+        NetworkHandler.getRequest(url: url, parameters: parameter as? Parameters, isAuth:true, success: { (successResponse) in
+            success(successResponse)
+        }) { (error) in
+                        
+            failure(NetworkError(status: Constants.NetworkError.generic, message: error.message))
+        }
+    }
 
     class func coinDeposit(parameter: NSDictionary, success: @escaping(Any?)-> Void, failure: @escaping(NetworkError)-> Void) {
         let url = Constants.URL.COIN_DEPOSIT
