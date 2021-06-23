@@ -3170,7 +3170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpN-2v-aPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3132.3076923076924" y="5872.7488151658763"/>
+            <point key="canvasLocation" x="4990.7692307692305" y="5872.7488151658763"/>
         </scene>
         <!--Mtn Transaction Controller-->
         <scene sceneID="dXh-Fv-Wzs">
@@ -3201,7 +3201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xK3-V8-WFC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4726.1538461538457" y="5876.3033175355449"/>
+            <point key="canvasLocation" x="6584.6153846153848" y="5876.3033175355449"/>
         </scene>
         <!--Predict PagerVC-->
         <scene sceneID="r5d-vC-tZI">
@@ -3212,7 +3212,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4l-3N-9Qq">
-                                <rect key="frame" x="0.0" y="44" width="390" height="717"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="624"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUY-W9-Cmp">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="717"/>
@@ -3253,7 +3253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akN-pf-BCW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1264.6153846153845" y="6493.3649289099521"/>
+            <point key="canvasLocation" x="3123.0769230769229" y="6493.3649289099521"/>
         </scene>
         <!--Predict List Controller-->
         <scene sceneID="Re3-1z-Md4">
@@ -3285,7 +3285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Icw-ME-MqR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4750.7692307692305" y="6496.9194312796208"/>
+            <point key="canvasLocation" x="6609.2307692307686" y="6496.9194312796208"/>
         </scene>
         <!--Predict Results Controller-->
         <scene sceneID="oD8-Ft-NiH">
@@ -3317,7 +3317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRf-XC-Hxn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5409.2307692307686" y="6496.9194312796208"/>
+            <point key="canvasLocation" x="7266.1538461538457" y="6496.9194312796208"/>
         </scene>
         <!--Predict Owner Controller-->
         <scene sceneID="nxG-XY-dLC">
@@ -3349,7 +3349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WO8-V8-Noc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6067.6923076923076" y="6496.9194312796208"/>
+            <point key="canvasLocation" x="7926.1538461538457" y="6496.9194312796208"/>
         </scene>
         <!--Prediction Post Controller-->
         <scene sceneID="WwP-dw-iMZ">
@@ -3849,7 +3849,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIP-XZ-BXg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6696.9230769230771" y="6499.7630331753553"/>
+            <point key="canvasLocation" x="8555.3846153846152" y="6499.7630331753553"/>
         </scene>
         <!--Predict Asset List Controller-->
         <scene sceneID="frW-Wn-UUv">
@@ -3890,7 +3890,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ue9-yd-XP8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7445" y="6514"/>
+            <point key="canvasLocation" x="9303.076923076922" y="6513.981042654028"/>
         </scene>
         <!--Coin Withdraw History Controller-->
         <scene sceneID="MhK-JC-zWZ">
@@ -3998,7 +3998,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBt-U8-6cz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="7129"/>
+            <point key="canvasLocation" x="3293.8461538461538" y="7128.9099526066348"/>
         </scene>
         <!--Crypto Withdraw-->
         <scene sceneID="9Q6-cR-fT9">
@@ -4348,7 +4348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zWG-po-Bl3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2183.0769230769229" y="7111.8483412322275"/>
+            <point key="canvasLocation" x="4041.5384615384614" y="7111.8483412322275"/>
         </scene>
         <!--Verify Phone Number Controller-->
         <scene sceneID="rVh-HO-7fP">
@@ -4420,7 +4420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nq5-ty-Vow" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3586" y="7131"/>
+            <point key="canvasLocation" x="6974" y="7141"/>
         </scene>
         <!--Verify Code Controller-->
         <scene sceneID="Bfr-Ga-1Xa">
@@ -4483,7 +4483,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34e-8U-8Li" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4461" y="7161"/>
+            <point key="canvasLocation" x="5991" y="7172"/>
         </scene>
         <!--Complete Withdraw Controller-->
         <scene sceneID="vgu-UR-WRt">
@@ -4622,7 +4622,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BlH-bw-TYq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2935" y="6530"/>
+            <point key="canvasLocation" x="4792.3076923076924" y="6529.6208530805688"/>
         </scene>
         <!--Stocks History PagerVC-->
         <scene sceneID="K14-yx-Q3N">
@@ -13219,6 +13219,7 @@
                     <connections>
                         <segue destination="6RC-FC-Taj" kind="relationship" relationship="viewControllers" id="fhV-Id-jkj"/>
                         <segue destination="rHz-zj-IDD" kind="relationship" relationship="viewControllers" id="Xoe-Bw-xLj"/>
+                        <segue destination="H3H-zS-HXQ" kind="relationship" relationship="viewControllers" id="qSF-VQ-w3d"/>
                         <segue destination="Lcs-mG-LOO" kind="relationship" relationship="viewControllers" id="n7Q-hT-vyU"/>
                         <segue destination="oXb-a8-fiE" kind="relationship" relationship="viewControllers" id="Ezn-Tx-eWw"/>
                     </connections>
@@ -13886,7 +13887,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zop-cC-kMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3796.9230769230767" y="5876.3033175355449"/>
+            <point key="canvasLocation" x="5655.3846153846152" y="5876.3033175355449"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tvR-Q7-ego">
@@ -13963,6 +13964,25 @@
             </objects>
             <point key="canvasLocation" x="1545" y="122"/>
         </scene>
+        <!--Predict-->
+        <scene sceneID="V4x-2o-Xlc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H3H-zS-HXQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Predict" image="hourglass.bottomhalf.fill" catalog="system" id="bHj-fV-qUO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gHE-gh-cMX">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fnA-rY-KGQ" kind="relationship" relationship="rootViewController" id="ONR-0g-2mu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o7a-mx-Eeb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2193.8461538461538" y="6493.3649289099521"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="tGG-Gf-U37"/>
@@ -13978,6 +13998,7 @@
         <image name="disbursement" width="225" height="225"/>
         <image name="help_executive" width="310" height="334"/>
         <image name="help_mail" width="209" height="209"/>
+        <image name="hourglass.bottomhalf.fill" catalog="system" width="109" height="128"/>
         <image name="ic_accounting" width="21" height="21"/>
         <image name="ic_add" width="20" height="24"/>
         <image name="ic_arrow_left" width="24" height="24"/>

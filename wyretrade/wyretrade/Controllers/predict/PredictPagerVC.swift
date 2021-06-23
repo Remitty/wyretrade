@@ -46,9 +46,8 @@ class PredictPagerVC: SegmentedPagerTabStripViewController, NVActivityIndicatorV
 //                    newCell?.label.textColor = .white
 //                }
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
-        
+       
+        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
         
     }
     

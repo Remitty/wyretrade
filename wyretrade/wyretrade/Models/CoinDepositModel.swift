@@ -14,12 +14,12 @@ struct CoinDepositModel {
     var date: String!
     
     init(fromDictionary dictionary: [String: Any]) {
-        symbol = dictionary["symbol"] as? String
+        symbol = dictionary["currency"] as? String
         icon = dictionary["icon"] as? String
         if !icon.starts(with: "http") {
             icon = Constants.URL.base + icon
         }
         amount = dictionary["amount"] as? String
-        date = (dictionary["created_at"] as! String).date
+        date = (dictionary["updated_at"] as! String).date
     }
 }
