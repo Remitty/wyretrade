@@ -26,30 +26,25 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
             newsTable.register(UINib(nibName: "NewsView", bundle: nil), forCellReuseIdentifier: "NewsView")
         }
     }
-
-    @IBOutlet weak var gainersTable: UITableView!
-    {
+    
+    
+    @IBOutlet weak var gainersCollectionView: UICollectionView! {
         didSet {
-            gainersTable.delegate = self
-            gainersTable.dataSource = self
-            gainersTable.showsVerticalScrollIndicator = false
-
-            gainersTable.register(UINib(nibName: "TopStocksItem", bundle: nil), forCellReuseIdentifier: "TopStocksItem")
+            gainersCollectionView.delegate = self
+            gainersCollectionView.dataSource = self
+            gainersCollectionView.showsHorizontalScrollIndicator = false
+            gainersCollectionView.register(UINib(nibName: "TopStocksItem", bundle: nil), forCellWithReuseIdentifier: "TopStocksItem")
         }
     }
     
-    @IBOutlet weak var losersTable: UITableView!
-    {
+    @IBOutlet weak var losersCollectionView: UICollectionView! {
         didSet {
-            losersTable.delegate = self
-            losersTable.dataSource = self
-            losersTable.showsVerticalScrollIndicator = false
-
-            losersTable.register(UINib(nibName: "TopStocksItem", bundle: nil), forCellReuseIdentifier: "TopStocksItem")
+            losersCollectionView.delegate = self
+            losersCollectionView.dataSource = self
+            losersCollectionView.showsHorizontalScrollIndicator = false
+            losersCollectionView.register(UINib(nibName: "TopStocksItem", bundle: nil), forCellWithReuseIdentifier: "TopStocksItem")
         }
     }
-    
-    
     
     var newsList = [NewsModel]()
     var topGainers = [TopStocksModel]()
@@ -59,6 +54,8 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
         var localImages = [String]()
     
     let defaults = UserDefaults.standard
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,7 +134,7 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
                     stocks = TopStocksModel(fromDictionary: item)
                     self.topGainers.append(stocks)
                 }
-                self.gainersTable.reloadData()
+                self.gainersCollectionView.reloadData()
             }
             
             if let data = dictionary["top_stocks_losers"] as? [[String:Any]] {
@@ -146,7 +143,7 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
                     stocks = TopStocksModel(fromDictionary: item)
                     self.topLosers.append(stocks)
                 }
-                self.losersTable.reloadData()
+                self.losersCollectionView.reloadData()
             }
 
             if let data = dictionary["banners"] as? [[String:Any]] {
@@ -178,12 +175,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         case newsTable:
             tableView.estimatedRowHeight = 300
             return newsList.count
-        case gainersTable:
-//            tableView.estimatedRowHeight = 35
-            return topGainers.count
-        case losersTable:
-//            tableView.estimatedRowHeight = 35
-            return topLosers.count
+        
         default:
             print("default")
             return 0
@@ -194,37 +186,34 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         switch tableView {
         case newsTable:
             return 310
-        case gainersTable:
-            return 45
-        case losersTable:
-            return 45
+       
         default:
             print("default")
             return 0
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch tableView {
-            case gainersTable:
-                let item = topGainers[indexPath.row]
-                let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
-                detailController.topStocks = item
-                
-                self.navigationController?.pushViewController(detailController, animated: true)
-            case losersTable:
-                let item = topLosers[indexPath.row]
-                let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
-                detailController.topStocks = item
-                
-                self.navigationController?.pushViewController(detailController, animated: true)
-                
-        default:
-            print("No data")
-        }
-        
-
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        switch tableView {
+//            case gainersTable:
+//                let item = topGainers[indexPath.row]
+//                let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
+//                detailController.topStocks = item
+//
+//                self.navigationController?.pushViewController(detailController, animated: true)
+//            case losersTable:
+//                let item = topLosers[indexPath.row]
+//                let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
+//                detailController.topStocks = item
+//
+//                self.navigationController?.pushViewController(detailController, animated: true)
+//
+//        default:
+//            print("No data")
+//        }
+//
+//
+//    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -240,34 +229,6 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
                 cell.logo.load(url: URL(string:image)!)
             }
             return cell
-        case gainersTable:
-            let cell: TopStocksItem = tableView.dequeueReusableCell(withIdentifier: "TopStocksItem", for: indexPath) as! TopStocksItem
-            
-            let item = topGainers[indexPath.row]
-            cell.lbName.text = item.name
-            cell.lbSymbol.text = item.symbol
-            cell.lbPrice.text = PriceFormat(amount: item.price, currency: .usd).description
-            cell.lbChange.text = "\(item.change!)\(item.changePercent!)"
-            if item.change.starts(with: "-") {
-                cell.lbChange.textColor = .systemRed
-            } else {
-                cell.lbChange.textColor = .systemGreen
-            }
-            return cell
-        case losersTable:
-            let cell: TopStocksItem = tableView.dequeueReusableCell(withIdentifier: "TopStocksItem", for: indexPath) as! TopStocksItem
-            
-            let item = topLosers[indexPath.row]
-            cell.lbName.text = item.name
-            cell.lbSymbol.text = item.symbol
-            cell.lbPrice.text = PriceFormat(amount: item.price, currency: .usd).description
-            cell.lbChange.text = "\(item.change!)\(item.changePercent!)"
-            if item.change.starts(with: "-") {
-                cell.lbChange.textColor = .systemRed
-            } else {
-                cell.lbChange.textColor = .systemGreen
-            }
-            return cell
         default:
             print("default")
             let cell = UITableViewCell()
@@ -275,4 +236,66 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+}
+
+extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case gainersCollectionView:
+            return topGainers.count
+        case losersCollectionView:
+            return topLosers.count
+        default:
+            return 0
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print("here")
+        return CGSize(width: collectionView.frame.width/2, height: 80)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: TopStocksItem = collectionView.dequeueReusableCell(withReuseIdentifier: "TopStocksItem", for: indexPath) as! TopStocksItem
+        var item: TopStocksModel
+        switch collectionView {
+        case gainersCollectionView:
+            item = topGainers[indexPath.row]
+                    
+            break
+        case losersCollectionView:
+            item = topLosers[indexPath.row]
+                    
+            break
+        default:
+            return cell
+        }
+        
+//        cell.lbName.text = item.name
+        cell.lbSymbol.text = item.symbol
+        cell.lbPrice.text = PriceFormat(amount: item.price, currency: .usd).description
+        cell.lbChange.text = "\(item.change!)\(item.changePercent!)"
+        if item.change.starts(with: "-") {
+            cell.lbChange.textColor = .systemRed
+        } else {
+            cell.lbChange.textColor = .systemGreen
+        }
+        
+        return cell
+    }
+    
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+   
 }

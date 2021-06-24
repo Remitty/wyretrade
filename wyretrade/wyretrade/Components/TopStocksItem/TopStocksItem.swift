@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TopStocksItem: UITableViewCell {
+class TopStocksItem: UICollectionViewCell {
     
     @IBOutlet weak var lbSymbol: UILabel!
     
