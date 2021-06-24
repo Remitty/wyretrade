@@ -22,7 +22,9 @@ class PredictResultsController: UIViewController, IndicatorInfoProvider {
             predictTable.register(UINib(nibName: "PredictionItem", bundle: nil), forCellReuseIdentifier: "PredictionItem")
         }
     }
+    @IBOutlet weak var lbEmpty: UILabel!
     
+    @IBOutlet weak var tableHeight: NSLayoutConstraint!
     var predictList = [PredictionModel]()
     
     override func viewDidLoad() {
@@ -37,6 +39,12 @@ class PredictResultsController: UIViewController, IndicatorInfoProvider {
 
 extension PredictResultsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableHeight.constant = CGFloat( Double(predictList.count) * 150.0)
+        if predictList.count > 0 {
+            lbEmpty.isHidden = true
+        } else {
+            lbEmpty.isHidden = false
+        }
         return predictList.count
     }
 

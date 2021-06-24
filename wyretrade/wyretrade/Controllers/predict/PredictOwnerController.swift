@@ -24,6 +24,10 @@ class PredictOwnerController: UIViewController, IndicatorInfoProvider, NVActivit
         }
     }
     
+    @IBOutlet weak var lbEmpty: UILabel!
+    
+    @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    
     var predictList = [PredictionModel]()
     
     override func viewDidLoad() {
@@ -52,6 +56,12 @@ class PredictOwnerController: UIViewController, IndicatorInfoProvider, NVActivit
 
 extension PredictOwnerController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableHeight.constant = CGFloat( Double(predictList.count) * 150.0)
+        if predictList.count > 0 {
+            lbEmpty.isHidden = true
+        } else {
+            lbEmpty.isHidden = false
+        }
         return predictList.count
     }
 

@@ -47,19 +47,21 @@ class PredictPagerVC: SegmentedPagerTabStripViewController, NVActivityIndicatorV
 //                }
         super.viewDidLoad()
        
-        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
         self.looadData()
-       
+        
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(newPost))
+        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu")!)
+        
 
         let child1 = self.storyboard?.instantiateViewController(withIdentifier: "PredictListController") as! PredictListController
         let child3 = self.storyboard?.instantiateViewController(withIdentifier: "PredictOwnerController") as! PredictOwnerController
