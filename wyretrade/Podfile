@@ -43,5 +43,6 @@ target 'wyretrade' do
   
   
   pod 'Firebase/Auth'
+  pod 'Firebase/Analytics'
   pod 'Firebase/DynamicLinks'
 end

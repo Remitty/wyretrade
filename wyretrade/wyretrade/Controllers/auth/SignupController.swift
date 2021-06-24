@@ -95,12 +95,15 @@ class SignupController: UIViewController, UITextFieldDelegate, NVActivityIndicat
         }
 
         else {
+            let defaults = UserDefaults.standard
+            
             let param : [String: Any] = [
                 "first_name": firstName,
                 "last_name": lastName,
                 "email": email,
                 "password": password,
-                "device_token": "ios"
+                "device_token": "ios",
+                "referred_by": defaults.string(forKey: "invitedBy")
             ]
             
             self.startAnimating()

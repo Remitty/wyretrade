@@ -110,6 +110,8 @@ class Constants {
              static  let REQUEST_ZABO_ACCOUNTS = REDIRECT_URL + "zaho/accounts";
              static  let GET_ZABO_ACCOUNT = REDIRECT_URL + "zaho/account/";
              static  let REQUEST_ZABO_DEPOSIT = REDIRECT_URL + "zaho/deposit";
+        
+        
     }
     
     
