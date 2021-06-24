@@ -85,7 +85,7 @@ class HomeController: UIViewController, NVActivityIndicatorViewable {
         slideshow.pageControlPosition = PageControlPosition.insideScrollView
         slideshow.pageControl.currentPageIndicatorTintColor = UIColor.white
         slideshow.pageControl.pageIndicatorTintColor = UIColor.lightGray
-        slideshow.contentScaleMode = UIViewContentMode.scaleAspectFit
+        slideshow.contentScaleMode = UIViewContentMode.scaleToFill
         
         // optional way to show activity indicator during image load (skipping the line will show no activity indicator)
         slideshow.activityIndicator = DefaultActivityIndicator()
@@ -185,35 +185,16 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
         case newsTable:
-            return 310
+            let news = newsList[indexPath.row]
+            let height = news.description.height(withConstrainedWidth: tableView.frame.width, font: UIFont.systemFont(ofSize: 14.0))
+            return height + 150
        
         default:
             print("default")
             return 0
         }
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch tableView {
-//            case gainersTable:
-//                let item = topGainers[indexPath.row]
-//                let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
-//                detailController.topStocks = item
-//
-//                self.navigationController?.pushViewController(detailController, animated: true)
-//            case losersTable:
-//                let item = topLosers[indexPath.row]
-//                let detailController = storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
-//                detailController.topStocks = item
-//
-//                self.navigationController?.pushViewController(detailController, animated: true)
-//
-//        default:
-//            print("No data")
-//        }
-//
-//
-//    }
+  
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -280,6 +261,13 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
             cell.lbChange.textColor = .systemRed
         } else {
             cell.lbChange.textColor = .systemGreen
+        }
+        
+        cell.onClick = { () in
+            let detailController = self.storyboard?.instantiateViewController(withIdentifier: "StocksDetailController") as! StocksDetailController
+            detailController.topStocks = item
+
+            self.navigationController?.pushViewController(detailController, animated: true)
         }
         
         return cell

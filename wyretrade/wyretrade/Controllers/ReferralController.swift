@@ -40,6 +40,7 @@ class ReferralController: UIViewController, MFMailComposeViewControllerDelegate 
           if let error = error {
             print("error")
             print(error.localizedDescription)
+            self.showToast(message: error.localizedDescription)
             return
           }
             print(shortURL?.absoluteURL)

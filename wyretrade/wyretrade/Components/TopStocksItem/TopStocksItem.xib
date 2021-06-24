@@ -29,7 +29,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCI-G8-hmo">
                                 <rect key="frame" x="0.0" y="24.5" width="669" height="18"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
+                                <color key="textColor" systemColor="systemPurpleColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqD-8K-Thn">
@@ -38,14 +38,24 @@
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXS-El-82O">
+                                <rect key="frame" x="0.0" y="0.0" width="669" height="97"/>
+                                <connections>
+                                    <action selector="actionClick:" destination="Izf-Nf-T2a" eventType="primaryActionTriggered" id="vjR-3g-A6r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bQA-ad-DzS" secondAttribute="trailing" id="0gj-Ve-icY"/>
+                            <constraint firstItem="RXS-El-82O" firstAttribute="top" secondItem="JQo-dR-1bY" secondAttribute="top" id="4eD-jM-Bap"/>
                             <constraint firstAttribute="trailing" secondItem="CCI-G8-hmo" secondAttribute="trailing" id="FNY-Aa-TXH"/>
                             <constraint firstItem="jqD-8K-Thn" firstAttribute="top" secondItem="CCI-G8-hmo" secondAttribute="bottom" constant="2" id="IAA-d1-ITx"/>
                             <constraint firstItem="bQA-ad-DzS" firstAttribute="top" secondItem="JQo-dR-1bY" secondAttribute="top" id="Pal-Qu-eNL"/>
                             <constraint firstAttribute="trailing" secondItem="jqD-8K-Thn" secondAttribute="trailing" id="RLy-Rx-m7f"/>
                             <constraint firstItem="bQA-ad-DzS" firstAttribute="leading" secondItem="JQo-dR-1bY" secondAttribute="leading" id="UIb-8u-3GD"/>
+                            <constraint firstAttribute="bottom" secondItem="RXS-El-82O" secondAttribute="bottom" id="YN4-73-6xF"/>
+                            <constraint firstItem="RXS-El-82O" firstAttribute="leading" secondItem="JQo-dR-1bY" secondAttribute="leading" id="ds7-cF-zWk"/>
+                            <constraint firstAttribute="trailing" secondItem="RXS-El-82O" secondAttribute="trailing" id="iwQ-3s-XsO"/>
                             <constraint firstItem="CCI-G8-hmo" firstAttribute="leading" secondItem="JQo-dR-1bY" secondAttribute="leading" id="lpZ-Tj-N6S"/>
                             <constraint firstItem="CCI-G8-hmo" firstAttribute="top" secondItem="bQA-ad-DzS" secondAttribute="bottom" constant="5" id="pHs-Si-pFU"/>
                             <constraint firstItem="jqD-8K-Thn" firstAttribute="leading" secondItem="JQo-dR-1bY" secondAttribute="leading" id="tUa-t1-i8a"/>
@@ -76,8 +86,8 @@
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

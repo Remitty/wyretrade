@@ -18,4 +18,10 @@ class TopStocksItem: UICollectionViewCell {
     
     @IBOutlet weak var lbName: UILabel!
     
+    var onClick: (() -> ())?
+    
+    @IBAction func actionClick(_ sender: Any) {
+        self.onClick?()
+    }
+    
 }

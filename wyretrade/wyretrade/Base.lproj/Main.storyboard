@@ -12348,7 +12348,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="370" height="1800"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d40-Yu-3nt" userLabel="news view">
-                                                                <rect key="frame" x="0.0" y="520" width="370" height="1570"/>
+                                                                <rect key="frame" x="0.0" y="560" width="370" height="1570"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUSINESS NEWS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8h-Vd-L0s">
                                                                         <rect key="frame" x="0.0" y="0.0" width="139.33333333333334" height="20.333333333333332"/>
@@ -12417,7 +12417,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYn-5t-g8C" userLabel="gainers view">
-                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="250"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="270"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY'S TOP GAINERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kw7-2k-mVS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="190.66666666666666" height="20.333333333333332"/>
@@ -12426,7 +12426,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IKP-KR-esJ">
-                                                                        <rect key="frame" x="0.0" y="25.333333333333357" width="370" height="224.66666666666663"/>
+                                                                        <rect key="frame" x="0.0" y="25.333333333333357" width="370" height="244.66666666666663"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <collectionViewLayout key="collectionViewLayout" id="KlW-hw-X7w" customClass="AdaptiveCollectionLayout" customModule="wyretrade" customModuleProvider="target"/>
                                                                         <cells/>
@@ -12440,11 +12440,11 @@
                                                                     <constraint firstItem="IKP-KR-esJ" firstAttribute="top" secondItem="kw7-2k-mVS" secondAttribute="bottom" constant="5" id="Y8e-iL-5XN"/>
                                                                     <constraint firstItem="kw7-2k-mVS" firstAttribute="top" secondItem="nYn-5t-g8C" secondAttribute="top" id="YuG-2r-bx0"/>
                                                                     <constraint firstItem="kw7-2k-mVS" firstAttribute="leading" secondItem="nYn-5t-g8C" secondAttribute="leading" id="bEW-YK-YZK"/>
-                                                                    <constraint firstAttribute="height" constant="250" id="d0N-XX-PMv"/>
+                                                                    <constraint firstAttribute="height" constant="270" id="d0N-XX-PMv"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Sk-lZ-ybn" userLabel="losers view">
-                                                                <rect key="frame" x="0.0" y="260" width="370" height="250"/>
+                                                                <rect key="frame" x="0.0" y="280" width="370" height="270"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY'S TOP LOSERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ari-yH-ery">
                                                                         <rect key="frame" x="0.0" y="0.0" width="182" height="20.333333333333332"/>
@@ -12453,7 +12453,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g5i-pu-gj9">
-                                                                        <rect key="frame" x="0.0" y="25.3333333333333" width="370" height="224.66666666666663"/>
+                                                                        <rect key="frame" x="0.0" y="25.3333333333333" width="370" height="244.66666666666663"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <collectionViewLayout key="collectionViewLayout" id="rnE-N3-FGi" customClass="AdaptiveCollectionLayout" customModule="wyretrade" customModuleProvider="target"/>
                                                                         <cells/>
@@ -12464,7 +12464,7 @@
                                                                     <constraint firstItem="Ari-yH-ery" firstAttribute="leading" secondItem="4Sk-lZ-ybn" secondAttribute="leading" id="2Kb-Wv-uat"/>
                                                                     <constraint firstItem="g5i-pu-gj9" firstAttribute="top" secondItem="Ari-yH-ery" secondAttribute="bottom" constant="5" id="5KH-dm-np4"/>
                                                                     <constraint firstItem="g5i-pu-gj9" firstAttribute="leading" secondItem="4Sk-lZ-ybn" secondAttribute="leading" id="9Gp-nw-zb7"/>
-                                                                    <constraint firstAttribute="height" constant="250" id="B2d-0a-QI6"/>
+                                                                    <constraint firstAttribute="height" constant="270" id="B2d-0a-QI6"/>
                                                                     <constraint firstAttribute="bottom" secondItem="g5i-pu-gj9" secondAttribute="bottom" id="Eaj-G1-dlH"/>
                                                                     <constraint firstItem="Ari-yH-ery" firstAttribute="top" secondItem="4Sk-lZ-ybn" secondAttribute="top" id="Lg9-Tg-2lT"/>
                                                                     <constraint firstAttribute="trailing" secondItem="g5i-pu-gj9" secondAttribute="trailing" id="g6h-id-TUS"/>
