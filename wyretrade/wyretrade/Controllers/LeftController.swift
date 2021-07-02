@@ -63,7 +63,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var defaults = UserDefaults.standard
     var mainMenus = ["Stake Coin", "Send USDC", "Link Wallet", "MTN Service", "Stock History", "Deposit Activities", "Invite Friend", "Support", "Logout"]
-    var mainMenuImages = [#imageLiteral(resourceName: "xmt"),#imageLiteral(resourceName: "nav_trade"), #imageLiteral(resourceName: "nav_trading"),#imageLiteral(resourceName: "nav_smartphone"), #imageLiteral(resourceName: "nav_chart"),#imageLiteral(resourceName: "nav_credit"), #imageLiteral(resourceName: "nav_trade"), #imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
+    var mainMenuImages = [#imageLiteral(resourceName: "logo"),#imageLiteral(resourceName: "nav_trade"), #imageLiteral(resourceName: "nav_trading"),#imageLiteral(resourceName: "nav_smartphone"), #imageLiteral(resourceName: "nav_chart"),#imageLiteral(resourceName: "nav_credit"), #imageLiteral(resourceName: "nav_trade"), #imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
     var otherMenus = ["Support", "Logout"]
     var othersArrayImages = [#imageLiteral(resourceName: "nav_support"),#imageLiteral(resourceName: "nav_logout")]
     
