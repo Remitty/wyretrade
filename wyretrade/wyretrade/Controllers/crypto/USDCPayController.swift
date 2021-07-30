@@ -23,6 +23,17 @@ class USDCPayController: UIViewController, UITextFieldDelegate, NVActivityIndica
         }
     }
     
+    @IBOutlet weak var btnPay: UIButton! {
+        didSet {
+            btnPay.round()
+        }
+    }
+
+    @IBOutlet weak var btnHistory: UIButton! {
+        didSet {
+            btnHistory.round()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="faf-5V-KCI" firstAttribute="leading" secondItem="hoz-ZO-lnt" secondAttribute="trailing" constant="10" id="0iP-Cl-V26"/>
                             <constraint firstItem="Rcc-tf-9yM" firstAttribute="leading" secondItem="q2E-sv-OZ6" secondAttribute="leading" constant="5" id="BWv-ev-eib"/>
@@ -70,8 +70,8 @@
     <resources>
         <image name="ic_delete_forever" width="36" height="36"/>
         <image name="ic_visa" width="71" height="44"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

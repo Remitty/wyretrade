@@ -13,6 +13,8 @@ class USDCController: UIViewController {
     @IBOutlet weak var payCard: UIView!
     @IBOutlet weak var contactCard: UIView!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

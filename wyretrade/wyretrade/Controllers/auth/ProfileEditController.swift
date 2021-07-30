@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import stellarsdk
 import NVActivityIndicatorView
+import FlagPhoneNumber
 
 class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIndicatorViewable {
     
@@ -27,7 +28,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
         txtEmail.delegate = self
        }
    }
-    @IBOutlet weak var txtPhone: UITextField! {
+    @IBOutlet weak var txtPhone: FPNTextField! {
         didSet {
             txtPhone.delegate = self
         }
@@ -70,24 +71,45 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
             txtPostalCode.delegate = self
         }
     }
+    @IBOutlet weak var btnUpdate: UIButton! {
+        didSet {
+            btnUpdate.round()
+        }
+    }
     
     var hasStellar: Bool = false
     var stellarBaseSecret: String!
+    var isComplete = false
+    
+    var phone = ""
+    var countryCode = "+1"
+    
+    var listController: FPNCountryListViewController = FPNCountryListViewController(style: .grouped)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        
+        self.flagPhoneNumber()
 //        self.loadProfile()
     }
     
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
 //       self.navigationController?.isNavigationBarHidden = true
+        if !isComplete {
+            self.loadProfile()
+        }
        
-       self.loadProfile()
-       
+    }
+    
+    func flagPhoneNumber() {
+        txtPhone.setFlag(countryCode: .US)
+        txtPhone.displayMode = .list // .picker by default
+        listController.setup(repository: txtPhone.countryRepository)
+        listController.didSelect = { [weak self] country in
+            self?.txtPhone.setFlag(countryCode: country.code)
+        }
     }
     
     func loadProfile() {
@@ -97,8 +119,8 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
-            self.hasStellar = dictionary["has_stellar"] as! Bool
+//            self.stellarBaseSecret = dictionary["stellar_base_secret"] as? String
+//            self.hasStellar = dictionary["has_stellar"] as! Bool
             
             var user : UserModel!
             
@@ -109,9 +131,13 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                 self.txtLastName.text = user.last_name
                 self.txtEmail.text = user.email
                 self.txtCity.text = user.city
-                self.dobPicker.setDate(from: user.dob)
-                self.txtPhone.text = user.phone
-                self.txtCountry.text = user.country
+//                self.dobPicker.setDate(from: user.dob)
+//                self.txtPhone.text = user.phone
+                self.phone = user.phone
+//                self.txtPhone.setFlag(countryCode: FPNCountryCode(rawValue: user.countryCode)!)
+                self.countryCode = user.countryCode
+                self.txtPhone.set(phoneNumber: user.countryCode + user.phone)
+                self.txtCountry.text = user.state
                 self.txtNationality.text = user.national
                 self.txtAddress1.text = user.address
                 self.txtAddress2.text = user.address2
@@ -136,8 +162,13 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
             let success = dictionary["success"] as! Bool
 //            var user : UserAuthModel!
             if success {
-                
-                self.showToast(message: "Updated successfully.")
+                if !self.isComplete {
+                    self.showToast(message: "Updated successfully.")
+                } else {
+                    self.isComplete = false
+                    let alert = Alert.showBasicAlert(message: "You will get free PEPE token. \nInvite friends and earn more PEPE token.")
+                    self.presentVC(alert)
+                }
             } else {
                 let alert = Alert.showBasicAlert(message: dictionary["message"] as! String)
                 self.presentVC(alert)
@@ -218,10 +249,10 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
             "mobile": self.txtPhone.text!,
             "address": self.txtAddress1.text!,
             "address2": self.txtAddress2.text!,
-            "country": self.txtCountry.text!,
+//            "country": self.txtCountry.text!,
             "city": self.txtCity.text!,
             "region": self.txtNationality.text!,
-            "dob": self.dobPicker.description,
+//            "dob": self.dobPicker.description,
             "postalcode": self.txtPostalCode.text!,
             "stellar_account_id": keyPair.accountId,
             "stellar_secret_seed": keyPair.secretSeed!
@@ -291,7 +322,7 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
             txtEmail.shake(6, withDelta: 10, speed: 0.06)
             return
         }
-        if txtPhone.text == "" {
+        if self.phone == "" {
             txtPhone.shake(6, withDelta: 10, speed: 0.06)
             return
         }
@@ -329,13 +360,14 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
                 "first_name": txtFirstName.text!,
                 "last_name": txtLastName.text!,
                 "email": txtEmail.text!,
-                "mobile": txtPhone.text!,
+                "mobile": self.phone,
+                "country_code": self.countryCode,
                 "address1": txtAddress1.text!,
                 "address2": txtAddress2.text!,
-                "country": txtCountry.text!,
+                "state": txtCountry.text!,
                 "city": txtCity.text!,
                 "region": txtNationality.text!,
-                "dob": dobPicker.description,
+//                "dob": dobPicker.description,
                 "postalcode": txtPostalCode.text!
             ]
             self.submitUpdate(param: param)
@@ -346,4 +378,41 @@ class ProfileEditController: UIViewController, UITextFieldDelegate, NVActivityIn
         
         
     }
+}
+
+
+extension ProfileEditController: FPNTextFieldDelegate {
+
+   /// The place to present/push the listController if you choosen displayMode = .list
+   func fpnDisplayCountryList() {
+        
+        
+        let navigationViewController = UINavigationController(rootViewController: listController)
+      
+        self.present(navigationViewController, animated: true, completion: nil)
+   }
+
+   /// Lets you know when a country is selected
+   func fpnDidSelectCountry(name: String, dialCode: String, code: String) {
+      print(name, dialCode, code) // Output "France", "+33", "FR"
+        countryCode = dialCode
+   }
+
+   /// Lets you know when the phone number is valid or not. Once a phone number is valid, you can get it in severals formats (E164, International, National, RFC3966)
+   func fpnDidValidatePhoneNumber(textField: FPNTextField, isValid: Bool) {
+    
+      if isValid {
+         // Do something...
+         print(textField.getFormattedPhoneNumber(format: .E164))           // Output "+33600000001"
+         print(textField.getFormattedPhoneNumber(format: .International))  // Output "+33 6 00 00 00 01"
+         print(textField.getFormattedPhoneNumber(format: .National))       // Output "06 00 00 00 01"
+         print(textField.getFormattedPhoneNumber(format: .RFC3966))        // Output "tel:+33-6-00-00-00-01"
+         print(textField.getRawPhoneNumber())                               // Output "600000001"
+        phone = textField.getRawPhoneNumber()!
+        
+        
+      } else {
+         // Do something...
+      }
+   }
 }

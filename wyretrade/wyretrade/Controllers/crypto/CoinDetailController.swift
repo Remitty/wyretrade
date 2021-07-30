@@ -28,6 +28,23 @@ class CoinDetailController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var viewChart: UIView!
     @IBOutlet weak var chartTab: UISegmentedControl!
     
+    @IBOutlet weak var btnDeposit: UIButton! {
+        didSet {
+            btnDeposit.roundCornors()
+        }
+    }
+    @IBOutlet weak var btnWithdraw: UIButton! {
+        didSet {
+            btnWithdraw.roundCornors()
+        }
+    }
+    
+    @IBOutlet weak var btnTrade: UIButton! {
+        didSet {
+            btnTrade.roundCornors()
+        }
+    }
+    
     var coin: CoinModel!
     
     var stocksBalance = 0.0

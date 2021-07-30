@@ -27,6 +27,23 @@ class CoinsController: UIViewController, NVActivityIndicatorViewable {
         }
     }
     
+    @IBOutlet weak var btnTrade: UIButton! {
+        didSet {
+            btnTrade.roundCorners()
+        }
+    }
+    @IBOutlet weak var btnWithdraw: UIButton! {
+        didSet {
+            btnWithdraw.roundCorners()
+        }
+    }
+    @IBOutlet weak var btnDeposit: UIButton! {
+        didSet {
+            btnDeposit.roundCorners()
+        }
+    }
+    
+    
     var coinList = [CoinModel]()
     var depositList = [CoinModel]()
     var onramperApiKey: String!

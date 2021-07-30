@@ -18,8 +18,8 @@ class PredictListController: UIViewController, IndicatorInfoProvider , NVActivit
             predictTable.delegate = self
             predictTable.dataSource = self
             predictTable.showsVerticalScrollIndicator = false
-            predictTable.separatorColor = UIColor.darkGray
-            predictTable.separatorStyle = .singleLineEtched
+            predictTable.separatorColor = UIColor.white
+            predictTable.separatorStyle = .singleLine
             predictTable.register(UINib(nibName: "PredictionItem", bundle: nil), forCellReuseIdentifier: "PredictionItem")
         }
     }

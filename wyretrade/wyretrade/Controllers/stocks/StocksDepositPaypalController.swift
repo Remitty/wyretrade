@@ -28,6 +28,17 @@ class StocksDepositPaypalController: UIViewController, IndicatorInfoProvider, UI
     }
     @IBOutlet weak var btnMarginCheck: UIButton!
     
+    @IBOutlet weak var btnTransfer: UIButton! {
+        didSet {
+            btnTransfer.round()
+        }
+    }
+
+    @IBOutlet weak var btnHistory: UIButton! {
+        didSet {
+            btnHistory.round()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

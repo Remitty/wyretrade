@@ -147,7 +147,7 @@ class LeftController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func initializeOtherViews() {
         let supportView = storyboard?.instantiateViewController(withIdentifier: "SupportController") as! SupportController
-        self.viewSupport = UINavigationController(rootViewController: supportView)
+        self.viewSupport = supportView//UINavigationController(rootViewController: supportView)
     }
     
     func changeMenu(_ other: MainMenu) {

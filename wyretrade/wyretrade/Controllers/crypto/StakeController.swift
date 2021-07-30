@@ -23,17 +23,27 @@ class StakeController: UIViewController, UITextFieldDelegate, NVActivityIndicato
             txtAmount.delegate = self
         }
     }
-    @IBOutlet weak var lbSymbol2: UILabel!
-    @IBOutlet weak var historyTable: UITableView!{
+    
+    @IBOutlet weak var btnStake: UIButton! {
         didSet {
-            historyTable.delegate = self
-            historyTable.dataSource = self
-            historyTable.showsVerticalScrollIndicator = false
-            historyTable.separatorColor = UIColor.darkGray
-            historyTable.separatorStyle = .singleLineEtched
-            historyTable.register(UINib(nibName: "StakeItem", bundle: nil), forCellReuseIdentifier: "StakeItem")
+            btnStake.roundCorners()
         }
     }
+
+    @IBOutlet weak var btnUnstake: UIButton! {
+        didSet {
+            btnUnstake.roundCorners()
+        }
+    }
+
+    @IBOutlet weak var btnHistory: UIButton! {
+        didSet {
+            btnHistory.round()
+        }
+    }
+    
+    @IBOutlet weak var lbSymbol2: UILabel!
+    
     
     var historyList = [StakeModel]()
     var coin: StakeCoinModel!
@@ -379,23 +389,5 @@ class StakeController: UIViewController, UITextFieldDelegate, NVActivityIndicato
             }
         })
         self.presentVC(alert)
-    }
-}
-
-extension StakeController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: StakeItem = tableView.dequeueReusableCell(withIdentifier: "StakeItem", for: indexPath) as! StakeItem
-        let item = historyList[indexPath.row]
-        cell.lbActivity.text = item.type
-        cell.lbToken.text = item.token
-        cell.lbQty.text = item.qty
-        cell.lbDate.text = item.date
-        
-        
-        return cell
     }
 }

@@ -23,12 +23,29 @@ class PortfolioController: UIViewController, NVActivityIndicatorViewable {
             stocksTable.delegate = self
             stocksTable.dataSource = self
             stocksTable.showsVerticalScrollIndicator = false
-            stocksTable.separatorColor = UIColor.darkGray
-            stocksTable.separatorStyle = .singleLineEtched
+            stocksTable.separatorColor = UIColor.label
+            stocksTable.separatorStyle = .singleLine
             stocksTable.register(UINib(nibName: "StockPosition", bundle: nil), forCellReuseIdentifier: "StockPosition")
         }
     }
     
+    @IBOutlet weak var btnTrade: UIButton! {
+        didSet {
+            btnTrade.roundCornors()
+        }
+    }
+    
+    @IBOutlet weak var btnDeposit: UIButton! {
+        didSet {
+            btnDeposit.roundCornors()
+        }
+    }
+    
+    @IBOutlet weak var btnWithdraw: UIButton! {
+        didSet {
+            btnWithdraw.roundCornors()
+        }
+    }
     var stocksList = [StockPositionModel]()
     var stockAutoSell = false
     
@@ -73,10 +90,10 @@ class PortfolioController: UIViewController, NVActivityIndicatorViewable {
             self.lbProfit.text = PriceFormat.init(amount: profit, currency: Currency.usd).description
             
             if profit >= 0 {
-                self.lbProfit.textColor = UIColor.green
+                self.lbProfit.textColor = UIColor.systemGreen
                 self.imgProfit.image = UIImage(named: "ic_up")
             } else {
-                self.lbProfit.textColor = UIColor.red
+                self.lbProfit.textColor = UIColor.systemRed
                 self.imgProfit.image = UIImage(named: "ic_down")
             }
             

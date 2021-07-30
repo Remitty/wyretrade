@@ -28,7 +28,6 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var viewFirst: UIView!
     @IBOutlet weak var viewSecond: UIView!
     
-    @IBOutlet weak var btnSell: UIButton!
     
     @IBOutlet weak var lbYearHigh: UILabel!
     @IBOutlet weak var lbYearLow: UILabel!
@@ -36,6 +35,20 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
     
     @IBOutlet weak var lbCompanyIndustry: UILabel!
     @IBOutlet weak var lbCompanydDes: UILabel!
+    @IBOutlet weak var lbCompanyCeo: UILabel!
+    @IBOutlet weak var tvCompanyUrl: UITextView!
+    
+    @IBOutlet weak var btnBuy: UIButton! {
+        didSet {
+            btnBuy.roundCorners()
+        }
+    }
+
+    @IBOutlet weak var btnSell: UIButton! {
+        didSet {
+            btnSell.roundCorners()
+        }
+    }
     
     var stocks: StockPositionModel!
     var topStocks: TopStocksModel!
@@ -125,10 +138,10 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
             
             self.stocksBalance = dictionary["stock_balance"] as! Double
             
-            let stocks = StockPositionModel(fromDictionary: dictionary["stock"] as! [String: Any])
-            self.lbYearLow.text = stocks.yearLow
-            self.lbYearHigh.text = stocks.yearHigh
-            self.lbVolume.text = stocks.lastVolume
+            self.stocks = StockPositionModel(fromDictionary: dictionary["stock"] as! [String: Any])
+            self.lbYearLow.text = self.stocks.yearLow
+            self.lbYearHigh.text = self.stocks.yearHigh
+            self.lbVolume.text = self.stocks.lastVolume
 
             var chart : ChartModel!
             
@@ -195,9 +208,12 @@ class StocksDetailController: UIViewController, NVActivityIndicatorViewable {
             }
             
             self.company = CompanyModel(fromDictionary: company as! [String: Any])
-
             self.lbCompanydDes.text = self.company.description
             self.lbCompanyIndustry.text = self.company.industry
+            self.lbCompanyCeo.text = "CEO: "+self.company.ceo
+            let attributedString = NSMutableAttributedString(string: "View site")
+            attributedString.addAttribute(.link, value: self.company.site!, range: NSRange(location: 0, length: 9))
+            self.tvCompanyUrl.attributedText = attributedString
 //            self.companyView.lbDate.text = self.company.site
             
         }) { (error) in

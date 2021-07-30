@@ -34,6 +34,18 @@ class PredictionItem: UITableViewCell {
     @IBOutlet weak var lbAnswer: UILabel!
     @IBOutlet weak var betView: UIView!
     
+    @IBOutlet weak var btnDisagree: UIButton! {
+        didSet {
+            btnDisagree.round()
+        }
+    }
+    
+    @IBOutlet weak var btnCancel: UIButton! {
+        didSet {
+            btnCancel.round()
+        }
+    }
+    
     @IBAction func actionBet(_ sender: Any) {
         let param = ["id": self.id] as! NSDictionary
         self.delegate?.betParam(param: param)

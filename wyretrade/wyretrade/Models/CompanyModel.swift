@@ -10,10 +10,12 @@ struct CompanyModel {
     var description: String!
     var industry: String!
     var site: String!
+    var ceo: String!
     
     init(fromDictionary dictionary: [String: Any]) {
         description = dictionary["description"] as? String
         industry = dictionary["industry"] as? String
         site = dictionary["website"] as? String
+        ceo = dictionary["ceo"] as? String
     }
 }

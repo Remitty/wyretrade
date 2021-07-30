@@ -31,7 +31,7 @@ class VerifyPhoneNumberController: UIViewController, NVActivityIndicatorViewable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.initPhoneNumberKit()
+//        self.initPhoneNumberKit()
         
         self.flagPhoneNumber()
        

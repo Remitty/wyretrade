@@ -81,9 +81,7 @@ class SplashController: UIViewController, NVActivityIndicatorViewable {
     func moveToCompleteProfile() {
         self.stopAnimating()
         let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileEditController") as! ProfileEditController
-//        let nav: UINavigationController = UINavigationController(rootViewController: profileVC)
-//        self.window?.rootViewController = nav
-//        self.window?.makeKeyAndVisible()
+        profileVC.isComplete = true
         navigationController?.pushViewController(profileVC, animated: true)
     }
 }

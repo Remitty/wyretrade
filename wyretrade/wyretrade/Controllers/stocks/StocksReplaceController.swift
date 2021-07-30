@@ -26,6 +26,16 @@ class StocksReplaceController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var viewFirst: UIView!
     @IBOutlet weak var viewSecond: UIView!
     
+    @IBOutlet weak var btnCancel: UIButton! {
+        didSet {
+            btnCancel.roundCornors()        }
+    }
+
+    @IBOutlet weak var btnReplace: UIButton! {
+        didSet {
+            btnReplace.roundCornors()
+        }
+    }
 
     var order: StocksOrderModel!
     var stocks: StockPositionModel!

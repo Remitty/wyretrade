@@ -21,8 +21,17 @@ class USDCAddContactController: UIViewController, UITextFieldDelegate, NVActivit
             txtEmail.delegate = self
         }
     }
-    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnAdd: UIButton! {
+        didSet {
+            btnAdd.round()
+        }
+    }
     
+    @IBOutlet weak var btnRec: UIButton! {
+        didSet {
+            btnRec.round()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

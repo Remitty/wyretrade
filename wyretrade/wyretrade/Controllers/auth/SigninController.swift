@@ -20,7 +20,12 @@ class SigninController: UIViewController, UITextFieldDelegate, NVActivityIndicat
     }
     @IBOutlet weak var txtPassword: UITextField!
     
-    @IBOutlet weak var btnSubmit: UIButton!
+    @IBOutlet weak var btnSubmit: UIButton! {
+        didSet {
+            btnSubmit.roundCorners()
+            btnSubmit.layer.borderWidth = 1
+        }
+    }
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var btnForgotPassword: UIButton!
     

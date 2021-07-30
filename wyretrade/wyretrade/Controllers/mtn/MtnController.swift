@@ -15,6 +15,30 @@ class MtnController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var lbBalance: UILabel!
     @IBOutlet weak var lbCurrency: UILabel!
     
+    @IBOutlet weak var btnWithdraw: UIButton! {
+        didSet {
+            btnWithdraw.round()
+        }
+    }
+
+    @IBOutlet weak var btnTopup: UIButton! {
+        didSet {
+            btnTopup.round()
+        }
+    }
+    
+    @IBOutlet weak var btnToUSDC: UIButton! {
+        didSet {
+            btnToUSDC.round()
+        }
+    }
+
+    @IBOutlet weak var btnToMtn: UIButton! {
+        didSet {
+            btnToMtn.round()
+        }
+    }
+    
     var balance = 0.0
     var historyList = [MtnModel]()
     

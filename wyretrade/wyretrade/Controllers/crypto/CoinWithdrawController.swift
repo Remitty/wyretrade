@@ -39,6 +39,19 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
     @IBOutlet weak var lbFee: UILabel!
     @IBOutlet weak var lbEstGet: UILabel!
     
+    @IBOutlet weak var btnWithdraw: UIButton! {
+        didSet {
+            btnWithdraw.round()
+        }
+    }
+    @IBOutlet weak var btnHistory: UIButton! {
+        didSet {
+            btnHistory.round()
+        }
+    }
+    
+    
+    
     var coinList = [CoinModel]()
     var selectedCoin: CoinModel!
     var withdrawFee = 0.0
@@ -47,7 +60,8 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
     var balance = 0.0
     var sendingAmount = 0.0
     var stellarBaseSecret: String!
-    var gasFee: String!
+    var ethGas: String!
+    var bscGas: String!
     
     let sdk = StellarSDK(withHorizonUrl: "https://horizon.stellar.org")
     
@@ -82,11 +96,16 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
     
     func displayEstGet() {
         var est: Double!
-        est = self.sendingAmount  - self.withdrawFee
+        if self.coinId == "0" {
+            est = self.sendingAmount
+        } else {
+            est = self.sendingAmount  - self.withdrawFee
+        }
         if self.sendingAmount == 0 {
             est = 0.0
         }
         self.lbEstGet.text = NumberFormat(value: est, decimal: 6).description
+        
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -102,19 +121,31 @@ class CoinWithdrawController: UIViewController, UITextFieldDelegate, NVActivityI
                 let dictionary = successResponse as! [String: Any]
                 
                 self.lbWeeklyLimit.text = "Weekly withdrawal limit =  $\(dictionary["weekly_withdraw_limit"]!)"
-                self.gasFee = "\(dictionary["coin_withdraw_gas_fee"]!)ETH"
+                self.ethGas = "\(dictionary["eth_gas"]!)ETH"
+                self.bscGas = "\(dictionary["bsc_gas"]!)BNB(BSC)"
                 self.selectedCoin = CoinModel(fromDictionary: dictionary["coin"] as! [String : Any])
                 
+                self.symbol = self.selectedCoin.symbol
+                self.coinId = self.selectedCoin.id
                 self.lbBalance.text = self.selectedCoin.balance
                 self.balance = Double(self.selectedCoin.balance)!
                 self.imgIcon.load(url: URL(string: self.selectedCoin.icon)!)
                 self.btnCoin.setTitle(self.selectedCoin.symbol!, for: .normal)
-                self.lbFee.text = NumberFormat(value: self.selectedCoin.withdrawFee, decimal: 4).description
-                self.symbol = self.selectedCoin.symbol
+                if self.coinId == "0" {
+                    self.lbFee.text = NumberFormat(value: self.selectedCoin.withdrawFee, decimal: 4).description + "BNB(BSC)"
+                } else {
+                    self.lbFee.text = NumberFormat(value: self.selectedCoin.withdrawFee, decimal: 4).description + self.symbol
+                }
                 self.withdrawFee = self.selectedCoin.withdrawFee
-                self.coinId = self.selectedCoin.id
                 
-                
+                if self.selectedCoin.type == "ERC20" {
+                    self.lbGasFee.text = self.ethGas + "ETH"
+                } else if self.selectedCoin.type == "BEP20" {
+                    self.lbGasFee.text = self.bscGas + "BNB(BSC)"
+                }
+                else {
+                    self.lbGasFee.text = "0"
+                }
                 
                 }) { (error) in
                         self.stopAnimating()
@@ -448,14 +479,22 @@ extension CoinWithdrawController: CoinSelectControllerDelegate {
         self.balance = Double(param.balance)!
         self.imgIcon.load(url: URL(string: param.icon)!)
         self.btnCoin.setTitle(param.symbol!, for: .normal)
-        self.lbFee.text = NumberFormat(value: param.withdrawFee, decimal: 4).description
+        
         self.symbol = param.symbol
         self.withdrawFee = param.withdrawFee
         self.coinId = param.id
         self.displayEstGet()
-        if param.type == "ERC20" {
-            self.lbGasFee.text = self.gasFee
+        if self.coinId == "0" {
+            self.lbFee.text = NumberFormat(value: self.selectedCoin.withdrawFee, decimal: 4).description + "BNB(BSC)"
         } else {
+            self.lbFee.text = NumberFormat(value: self.selectedCoin.withdrawFee, decimal: 4).description + self.symbol
+        }
+        if self.selectedCoin.type == "ERC20" {
+            self.lbGasFee.text = self.ethGas + "ETH"
+        } else if self.selectedCoin.type == "BEP20" {
+            self.lbGasFee.text = self.bscGas + "BNB(BSC)"
+        }
+        else {
             self.lbGasFee.text = "0"
         }
     }

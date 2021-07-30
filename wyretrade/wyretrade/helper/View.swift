@@ -15,6 +15,10 @@ extension UIView {
     func roundCorners() {
         self.layer.cornerRadius = 5
     }
+    
+    func round() {
+        self.layer.cornerRadius = 15
+    }
 
     // OUTPUT 1
     func addShadow(scale: Bool = true) {

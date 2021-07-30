@@ -17,6 +17,48 @@ class StocksWithdrawController: UIViewController, UITextFieldDelegate, NVActivit
     @IBOutlet weak var lbBalance: UILabel!
     @IBOutlet weak var lbEstBalance: UILabel!
     
+    @IBOutlet weak var btnUSDC: UIButton! {
+        didSet {
+            btnUSDC.roundCorners()
+        }
+    }
+
+    @IBOutlet weak var btnPaypal: UIButton! {
+        didSet {
+            btnPaypal.roundCorners()
+        }
+    }
+    
+    @IBOutlet weak var btnBank: UIButton! {
+        didSet {
+            btnBank.roundCorners()
+        }
+    }
+
+    @IBOutlet weak var btnCard: UIButton! {
+        didSet {
+            btnCard.roundCorners()
+        }
+    }
+    
+    @IBOutlet weak var btnCards: UIButton! {
+        didSet {
+            btnCards.round()
+        }
+    }
+
+    @IBOutlet weak var btnHistory: UIButton! {
+        didSet {
+            btnHistory.round()
+        }
+    }
+    @IBOutlet weak var btnConnect: UIButton! {
+        didSet {
+            btnConnect.round()
+        }
+    }
+
+    
     
     var stocksBalance = 0.0
     var estUsdc = 0.0

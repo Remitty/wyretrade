@@ -15,6 +15,12 @@ class CompleteWithdrawController: UIViewController {
     @IBOutlet weak var lbAmount: UILabel!
     @IBOutlet weak var lbAddress: UILabel!
     
+    @IBOutlet weak var btnReturn: UIButton! {
+        didSet {
+            btnReturn.round()
+        }
+    }
+    
     var icon: String!
     var symbol: String!
     var amount: String!

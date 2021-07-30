@@ -14,6 +14,13 @@ class ReferralController: UIViewController, MFMailComposeViewControllerDelegate 
     
     var invitationUrl: URL!
     
+    
+    @IBOutlet weak var btnInvite: UIButton! {
+        didSet {
+            btnInvite.round()
+        }
+    }
+    
     override func viewDidLoad() {
         DynamicLinks.performDiagnostics(completion: nil)
     }

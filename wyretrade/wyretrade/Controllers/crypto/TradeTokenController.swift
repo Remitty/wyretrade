@@ -29,8 +29,16 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     
     @IBOutlet weak var chartTab: UISegmentedControl!
     
-    @IBOutlet weak var btnBuy: UIButton!
-    @IBOutlet weak var btnSell: UIButton!
+    @IBOutlet weak var btnBuy: UIButton! {
+        didSet {
+            btnBuy.round()
+        }
+    }
+    @IBOutlet weak var btnSell: UIButton! {
+        didSet {
+            btnSell.round()
+        }
+    }
     @IBOutlet weak var lbTopBtcBalance: UILabel!
     @IBOutlet weak var txtQty: UITextField! {
         didSet {
@@ -47,10 +55,24 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     
     @IBOutlet weak var lbTradeSymbol: UILabel!
     
-    @IBOutlet weak var btnTrade: UIButton!
+    @IBOutlet weak var btnTrade: UIButton! {
+        didSet {
+            btnTrade.round()
+        }
+    }
     
+    @IBOutlet weak var btnCurrentOrder: UIButton! {
+        didSet {
+            btnCurrentOrder.roundCornors()
+        }
+
+    }
     
-    
+    @IBOutlet weak var btnHistory: UIButton! {
+        didSet {
+            btnHistory.roundCornors()
+        }
+    }
     @IBOutlet weak var lbXMTBalance: UILabel!
     @IBOutlet weak var lbBtcBalance: UILabel!
     
@@ -64,17 +86,6 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     @IBOutlet weak var lbThQty: UILabel!
     @IBOutlet weak var lbThAmount: UILabel!
     
-    @IBOutlet weak var orderTable: UITableView! {
-        didSet {
-            orderTable.delegate = self
-            orderTable.dataSource = self
-            orderTable.showsVerticalScrollIndicator = false
-            orderTable.separatorColor = UIColor.darkGray
-            orderTable.separatorStyle = .singleLineEtched
-            orderTable.register(UINib(nibName: "TokenOrderItem", bundle: nil), forCellReuseIdentifier: "TokenOrderItem")
-            
-        }
-    }
     
     @IBOutlet weak var askTable: UITableView! {
         didSet {
@@ -277,7 +288,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
                     self.askList = data.asks
                     self.bidList = data.bids
                     
-                    self.orderTable.reloadData()
+                    
                     self.askTable.reloadData()
                     self.bidTable.reloadData()
                     self.askTable.invalidateIntrinsicContentSize()
@@ -471,9 +482,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
 extension TradeTokenController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
-        case orderTable:
-            
-            return orderList.count
+        
         case askTable:
             tableView.estimatedRowHeight = 15
             askTableHegihtLayout.constant = CGFloat( Double(askList.count) * 15.0)
@@ -491,14 +500,7 @@ extension TradeTokenController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch tableView {
-        case orderTable:
-            let cell: TokenOrderItem = tableView.dequeueReusableCell(withIdentifier: "TokenOrderItem", for: indexPath) as! TokenOrderItem
-            let item = orderList[indexPath.row]
-            cell.lbPair.text = item.pair
-            cell.lbQty.text = item.qty
-            cell.lbPrice.text = "\(item.price!)"
-            cell.lbType.text = item.type
-            return cell
+        
         case askTable:
             let cell: TokenAskItem = tableView.dequeueReusableCell(withIdentifier: "TokenAskItem", for: indexPath) as! TokenAskItem
             let item = askList[indexPath.row]

@@ -27,13 +27,18 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
         }
     }
     @IBOutlet weak var lbEstCost: UILabel!
-    @IBOutlet weak var btnTrade: UIButton!
+    @IBOutlet weak var btnTrade: UIButton! {
+        didSet {
+            btnTrade.round()
+        }
+    }
     
     @IBOutlet weak var viewMarket: UIView!
     @IBOutlet weak var viewLimit: UIView!
     @IBOutlet weak var viewCompany: UIView!
     @IBOutlet weak var lbMarket: UILabel!
     @IBOutlet weak var lbLimit: UILabel!
+
 
     var stocks: StockPositionModel!
     var order: StocksOrderModel!

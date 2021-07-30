@@ -36,7 +36,17 @@ class SwapController: UIViewController, UITextFieldDelegate, NVActivityIndicator
             btnReceiveCoin.semanticContentAttribute = .forceRightToLeft
         }
     }
+    @IBOutlet weak var btnSwap: UIButton! {
+        didSet {
+            btnSwap.round()
+        }
+    }
     
+    @IBOutlet weak var btnHistory: UIButton! {
+        didSet {
+            btnHistory.round()
+        }
+    }
     
     
 //    @IBOutlet weak var historyTable: UITableView!{

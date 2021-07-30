@@ -18,6 +18,11 @@ class AssetView: UITableViewCell {
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbBalance: UILabel!
     @IBOutlet weak var lbFiatValue: UILabel!
+    @IBOutlet weak var btnDeposit: UIButton! {
+        didSet {
+            btnDeposit.round()
+        }
+    }
     
     var accountId = ""
     var asset = ""
