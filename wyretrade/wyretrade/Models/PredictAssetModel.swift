@@ -16,7 +16,7 @@ struct PredictAssetModel {
     var changeToday: String!
     
     init?(fromDictionary dictionary: [String: Any]) {
-        id = "\(dictionary["id"] as! Int)"
+//        id = "\(dictionary["id"] as! Int)"
         name = dictionary["name"] as? String
         symbol = dictionary["symbol"] as? String
         icon = dictionary["icon"] as? String

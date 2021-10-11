@@ -29,6 +29,7 @@ class PredictOwnerController: UIViewController, IndicatorInfoProvider, NVActivit
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
     
     var predictList = [PredictionModel]()
+    var selectedPredict = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +44,18 @@ class PredictOwnerController: UIViewController, IndicatorInfoProvider, NVActivit
         self.startAnimating()
         RequestHandler.cancelPredict(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
-                    let dictionary = successResponse as! [String: Any]
+            let dictionary = successResponse as! [String: Any]
                     
             self.showToast(message: "Cancelled successfully")
-                    
-                    }) { (error) in
-                        self.stopAnimating()
-                        let alert = Alert.showBasicAlert(message: error.message)
-                                self.presentVC(alert)
-                    }    }
+            self.predictList.remove(at: self.selectedPredict)
+            self.predictTable.reloadData()
+        }) { (error) in
+            self.stopAnimating()
+            let alert = Alert.showBasicAlert(message: error.message)
+                    self.presentVC(alert)
+        }
+        
+    }
 }
 
 extension PredictOwnerController: UITableViewDelegate, UITableViewDataSource {
@@ -87,6 +91,17 @@ extension PredictOwnerController: UITableViewDelegate, UITableViewDataSource {
         cell.betView.isHidden = true
         cell.remainingTime = item.remainTime
         cell.precessTimer()
+        
+        let param = ["id": item.id] as! NSDictionary
+        
+        cell.cancel = { () in
+            let alert = Alert.showConfirmAlert(message: "Are you sure you want to cancel this predict?", handler: {
+                (_) in
+                self.selectedPredict = indexPath.row
+                self.submitCancel(param: param)
+            })
+            self.presentVC(alert)
+        }
 
         return cell
     }

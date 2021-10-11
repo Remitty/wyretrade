@@ -100,7 +100,7 @@ class CoinTradeController: UIViewController, IndicatorInfoProvider, NVActivityIn
     func doXanpool() {
         
         
-        let base = "https://checkout.sandbox.xanpool.com/"
+        let base = "https://checkout.xanpool.com/"
         let apiKey = "?apiKey=\(self.xanpoolApiKey!)"
         let wallet = "&wallet=\(self.address)"
         let symbol = "&cryptoCurrency=\(self.symbol)"

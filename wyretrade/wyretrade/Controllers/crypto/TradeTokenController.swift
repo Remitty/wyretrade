@@ -142,7 +142,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
     var price = 0.0
     var btcPrice = 0.0
     
-    var selectedPair = "PEPE-XLM"
+    var selectedPair = ""
     var selectedType = "Buy"
     var selectedCoin = "PEPE"
     var pairs = [TokenTradePair]()
@@ -177,7 +177,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
 //        self.updateChartData()
         initTradeChart()
        
-       self.loadData()
+//       self.loadData()
         self.loadPairs()
         
 //        var tableViewHeight:CGFloat = 0;
@@ -348,7 +348,7 @@ class TradeTokenController: UIViewController, UITextFieldDelegate, IndicatorInfo
 //                            self.dropdown.dataSource.append("\(pair.symbol!)")
                         }
                         
-                    
+                    self.selectedPair = self.pairs[0].symbol
                     
                     }) { (error) in
                         self.stopAnimating()

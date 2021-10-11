@@ -195,9 +195,19 @@ class StocksBuyController: UIViewController, UITextFieldDelegate, NVActivityIndi
                         self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
             
-            self.stocksBalance = (dictionary["stock_balance"] as! NSString).doubleValue
+            
+            if let balance = (dictionary["stock_balance"] as? NSString)?.doubleValue {
+                self.stocksBalance = (NumberFormat.init(value: balance, decimal: 4).description as! NSString).doubleValue
+            } else {
+                self.stocksBalance = (NumberFormat.init(value: dictionary["stock_balance"] as! Double, decimal: 4).description as! NSString).doubleValue
+            }
             self.lbStocksBalance.text = "\(self.stocksBalance)"
-            self.stocksShares = (dictionary["shares"] as! NSString).doubleValue
+            
+            if let shares = (dictionary["shares"] as? NSString)?.doubleValue {
+                self.stocksShares = (NumberFormat.init(value: shares, decimal: 4).description as! NSString).doubleValue
+            } else {
+                self.stocksShares = (NumberFormat.init(value: dictionary["shares"] as! Double, decimal: 4).description as! NSString).doubleValue
+            }
             self.lbStocksShares.text = "\(self.stocksShares)"
             
             self.showToast(message: dictionary["message"] as! String)

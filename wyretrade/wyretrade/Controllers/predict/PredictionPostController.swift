@@ -94,7 +94,11 @@ class PredictionPostController: UIViewController, UITextFieldDelegate, NVActivit
         RequestHandler.predict(parameter: param as NSDictionary, success: { (successResponse) in
                                 self.stopAnimating()
             let dictionary = successResponse as! [String: Any]
-                    
+            if let balance = (dictionary["balance"] as? NSString)?.doubleValue {
+                self.lbUSDCBalance.text = NumberFormat.init(value: balance, decimal: 4).description
+            } else {
+                self.lbUSDCBalance.text = NumberFormat.init(value: dictionary["balance"] as! Double, decimal: 4).description
+            }
             self.showToast(message: "Posted successfully")
         }) { (error) in
                         self.stopAnimating()

@@ -20,6 +20,9 @@ class PredictionItem: UITableViewCell {
     var remainingTime = 0
     var timer = Timer()
     
+    var cancel: (()->())?
+    var bet: (()->())?
+    
     @IBOutlet weak var lbPrice: UILabel!
     @IBOutlet weak var lbAsset: UILabel!
     @IBOutlet weak var lbContent: UILabel!
@@ -52,8 +55,9 @@ class PredictionItem: UITableViewCell {
     }
     
     @IBAction func actionCancel(_ sender: Any) {
-        let param = ["id": self.id] as! NSDictionary
-        self.delegate?.cancelParam(param: param)
+//        let param = ["id": self.id] as! NSDictionary
+//        self.delegate?.cancelParam(param: param)
+        self.cancel?()
     }
     
     func precessTimer() {
